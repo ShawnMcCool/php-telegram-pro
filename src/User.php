@@ -3,7 +3,7 @@
 final class User
 ***REMOVED***
     private int $userId;
-    private bool $isBot;
+    private ?bool $isBot;
     private string $firstName;
     private ?string $lastName;
     private ?string $username;
@@ -14,7 +14,7 @@ final class User
 
     private function __construct(
         int $userId,
-        bool $isBot,
+        ?bool $isBot,
         string $firstName,
         ?string $lastName,
         ?string $username,
@@ -40,14 +40,14 @@ final class User
 
         return new static(
             $user->id,
-            $user->is_bot,
+            $user->is_bot ?? null,
             $user->first_name,
-            $user->last_name,
-            $user->username,
-            $user->language_code,
-            $user->can_join_groups,
-            $user->can_read_all_group_messages,
-            $user->supports_inline_queries
+            $user->last_name ?? null,
+            $user->username ?? null,
+            $user->language_code ?? null,
+            $user->can_join_groups ?? null,
+            $user->can_read_all_group_messages ?? null,
+            $user->supports_inline_queries ?? null
         );
     ***REMOVED***
 
@@ -62,5 +62,50 @@ final class User
         ***REMOVED***
 
         return $newChatMemberArray;
+    ***REMOVED***
+
+    public function userId(): int
+    ***REMOVED***
+        return $this->userId;
+    ***REMOVED***
+
+    public function isBot(): ?bool
+    ***REMOVED***
+        return $this->isBot;
+    ***REMOVED***
+
+    public function firstName(): string
+    ***REMOVED***
+        return $this->firstName;
+    ***REMOVED***
+
+    public function lastName(): ?string
+    ***REMOVED***
+        return $this->lastName;
+    ***REMOVED***
+
+    public function username(): ?string
+    ***REMOVED***
+        return $this->username;
+    ***REMOVED***
+
+    public function languageCode(): ?string
+    ***REMOVED***
+        return $this->languageCode;
+    ***REMOVED***
+
+    public function canJoinGroups(): ?bool
+    ***REMOVED***
+        return $this->canJoinGroups;
+    ***REMOVED***
+
+    public function canReadAllGroupMessages(): ?bool
+    ***REMOVED***
+        return $this->canReadAllGroupMessages;
+    ***REMOVED***
+
+    public function supportsInlineQueries(): ?bool
+    ***REMOVED***
+        return $this->supportsInlineQueries;
     ***REMOVED***
 ***REMOVED***

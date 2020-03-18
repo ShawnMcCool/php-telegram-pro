@@ -28,7 +28,7 @@ final class PreCheckoutQuery
         $this->orderInfo = $orderInfo;
     ***REMOVED***
 
-    public static function fromRequest($preCheckoutQuery): PreCheckoutQuery
+    public static function fromRequest($preCheckoutQuery): ?PreCheckoutQuery
     ***REMOVED***
         if ( ! $preCheckoutQuery) return null;
 

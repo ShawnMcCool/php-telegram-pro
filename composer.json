@@ -9,18 +9,23 @@
     ***REMOVED***
   ],
   "require": ***REMOVED***
-    "php":  ">=7.4"
+    "php": ">=7.4",
+    "ext-json": "*"
   ***REMOVED***,
   "require-dev": ***REMOVED***
-    "phpspec/phpspec": "dev-master"
+    "phpunit/phpunit": "^8.3@dev"
   ***REMOVED***,
   "config": ***REMOVED***
     "bin-dir": "bin"
   ***REMOVED***,
   "autoload": ***REMOVED***
     "psr-4": ***REMOVED***
-      "TelegramPro\\": "src/"
-    ***REMOVED***
+      "TelegramPro\\": "src/",
+      "Tests\\": "tests/"
+    ***REMOVED***,
+    "files": [
+      "tests/functions.php"
+    ]
   ***REMOVED***,
   "license": "none"
 ***REMOVED***

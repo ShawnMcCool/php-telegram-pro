@@ -3,7 +3,7 @@
 final class Audio
 ***REMOVED***
     private string $fileId;
-    private string $fileUniqueId;
+    private ?string $fileUniqueId;
     private int $duration;
     private ?string $performer;
     private ?string $title;
@@ -13,7 +13,7 @@ final class Audio
 
     public function __construct(
         string $fileId,
-        string $fileUniqueId,
+        ?string $fileUniqueId,
         int $duration,
         ?string $performer,
         ?string $title,
@@ -37,13 +37,53 @@ final class Audio
         
         return new static(
             $audio->file_id,
-            $audio->file_unique_id,
+            $audio->file_unique_id ?? null,
             $audio->duration,
-            $audio->performer,
-            $audio->title,
-            $audio->mime_type,
-            $audio->file_size,
-            PhotoSize::fromRequest($audio->thumb)
+            $audio->performer ?? null,
+            $audio->title ?? null,
+            $audio->mime_type ?? null,
+            $audio->file_size ?? null,
+            PhotoSize::fromRequest($audio->thumb ?? null)
         );
+    ***REMOVED***
+
+    public function fileId(): string
+    ***REMOVED***
+        return $this->fileId;
+    ***REMOVED***
+
+    public function fileUniqueId(): ?string
+    ***REMOVED***
+        return $this->fileUniqueId;
+    ***REMOVED***
+
+    public function duration(): int
+    ***REMOVED***
+        return $this->duration;
+    ***REMOVED***
+
+    public function performer(): ?string
+    ***REMOVED***
+        return $this->performer;
+    ***REMOVED***
+
+    public function title(): ?string
+    ***REMOVED***
+        return $this->title;
+    ***REMOVED***
+
+    public function mimeType(): ?string
+    ***REMOVED***
+        return $this->mimeType;
+    ***REMOVED***
+
+    public function fileSize(): ?int
+    ***REMOVED***
+        return $this->fileSize;
+    ***REMOVED***
+
+    public function thumb(): ?PhotoSize
+    ***REMOVED***
+        return $this->thumb;
     ***REMOVED***
 ***REMOVED***

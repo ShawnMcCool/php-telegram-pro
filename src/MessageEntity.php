@@ -40,15 +40,21 @@ final class MessageEntity
         return $this->type;
     ***REMOVED***
 
-    public function toArray(): array
+    public function url(): ?string
     ***REMOVED***
-        return [
-            'type' => $this->type,
-            'offset' => $this->offset,
-            'length' => $this->length,
-        ];
+        return $this->url;
     ***REMOVED***
 
+    public function user(): ?User
+    ***REMOVED***
+        return $this->user;
+    ***REMOVED***
+
+    public function language(): ?string
+    ***REMOVED***
+        return $this->language;
+    ***REMOVED***
+    
     public static function arrayFromRequest(?array $entities): ?array
     ***REMOVED***
         if ( ! $entities) return null;
@@ -68,9 +74,9 @@ final class MessageEntity
             $entity->type,
             $entity->offset,
             $entity->length,
-            $entity->url,
-            User::fromRequest($entity->user),
-            $entity->language
+            $entity->url ?? null,
+            User::fromRequest($entity->user ?? null),
+            $entity->language ?? null
         );
     ***REMOVED***
 ***REMOVED***

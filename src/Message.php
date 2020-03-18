@@ -3,7 +3,7 @@
 class Message
 ***REMOVED***
     private int $messageId;
-    private User $from;
+    private ?User $from;
     private int $date;
     private Chat $chat;
     private ?User $forwardFrom;
@@ -52,7 +52,7 @@ class Message
 
     public function __construct(
         int $messageId,
-        User $from,
+        ?User $from,
         int $date,
         Chat $chat,
         ?User $forwardFrom,
@@ -154,52 +154,287 @@ class Message
         
         return new static(
             $message->message_id,
-            User::fromRequest($message->from),
+            User::fromRequest($message->from ?? null),
             $message->date,
             Chat::fromRequest($message->chat),
-            User::fromRequest($message->forward_from),
-            Chat::fromRequest($message->forward_from_chat),
-            $message->forward_from_message_id,
-            $message->forward_signature,
-            $message->forward_sender_name,
-            $message->forward_date,
-            Message::fromRequest($message->reply_to_message),
-            $message->edit_date,
-            $message->media_group_id,
-            $message->author_signature,
-            $message->text,
-            MessageEntity::arrayFromRequest($message->entities),
-            MessageEntity::arrayFromRequest($message->caption_entities),
-            Audio::fromRequest($message->audio),
-            Document::fromRequest($message->document),
-            Animation::fromRequest($message->animation),
-            Game::fromRequest($message->game),
-            PhotoSize::arrayFromRequest($message->photo),
-            Sticker::fromRequest($message->sticker),
-            Video::fromRequest($message->video),
-            Voice::fromRequest($message->voice),
-            VideoNote::fromRequest($message->video_note),
-            $message->caption,
-            Contact::fromRequest($message->contact),
-            Location::fromRequest($message->location),
-            Venue::fromRequest($message->venue),
-            Poll::fromRequest($message->poll),
-            User::arrayFromRequest($message->new_chat_members),
-            User::fromRequest($message->left_chat_member),
-            $message->new_chat_title,
-            PhotoSize::arrayFromRequest($message->new_chat_photo),
-            $message->delete_chat_photo,
-            $message->group_chat_created,
-            $message->supergroup_chat_created,
-            $message->channel_chat_created,
-            $message->migrate_to_chat_id,
-            $message->migrate_from_chat_id,
-            Message::fromRequest($message->pinned_message),
-            Invoice::fromRequest($message->invoice),
-            SuccessfulPayment::fromRequest($message->successful_payment),
-            $message->connected_website,
-            PassportData::fromString($message->passport_data),
-            InlineKeyboardMarkup::fromRequest($message->reply_markup)
+            User::fromRequest($message->forward_from ?? null),
+            Chat::fromRequest($message->forward_from_chat ?? null),
+            $message->forward_from_message_id ?? null,
+            $message->forward_signature ?? null,
+            $message->forward_sender_name ?? null,
+            $message->forward_date ?? null,
+            Message::fromRequest($message->reply_to_message ?? null),
+            $message->edit_date ?? null,
+            $message->media_group_id ?? null,
+            $message->author_signature ?? null,
+            $message->text ?? null,
+            MessageEntity::arrayFromRequest($message->entities ?? null),
+            MessageEntity::arrayFromRequest($message->caption_entities ?? null),
+            Audio::fromRequest($message->audio ?? null),
+            Document::fromRequest($message->document ?? null),
+            Animation::fromRequest($message->animation ?? null),
+            Game::fromRequest($message->game ?? null),
+            PhotoSize::arrayFromRequest($message->photo ?? null),
+            Sticker::fromRequest($message->sticker ?? null),
+            Video::fromRequest($message->video ?? null),
+            Voice::fromRequest($message->voice ?? null),
+            VideoNote::fromRequest($message->video_note ?? null),
+            $message->caption ?? null,
+            Contact::fromRequest($message->contact ?? null),
+            Location::fromRequest($message->location ?? null),
+            Venue::fromRequest($message->venue ?? null),
+            Poll::fromRequest($message->poll ?? null),
+            User::arrayFromRequest($message->new_chat_members ?? null),
+            User::fromRequest($message->left_chat_member ?? null),
+            $message->new_chat_title ?? null,
+            PhotoSize::arrayFromRequest($message->new_chat_photo ?? null),
+            $message->delete_chat_photo ?? null,
+            $message->group_chat_created ?? null,
+            $message->supergroup_chat_created ?? null,
+            $message->channel_chat_created ?? null,
+            $message->migrate_to_chat_id ?? null,
+            $message->migrate_from_chat_id ?? null,
+            Message::fromRequest($message->pinned_message ?? null),
+            Invoice::fromRequest($message->invoice ?? null),
+            SuccessfulPayment::fromRequest($message->successful_payment ?? null),
+            $message->connected_website ?? null,
+            PassportData::fromString($message->passport_data ?? null),
+            InlineKeyboardMarkup::fromRequest($message->reply_markup ?? null)
         );
+    ***REMOVED***
+
+    public function messageId(): int
+    ***REMOVED***
+        return $this->messageId;
+    ***REMOVED***
+
+    public function from(): User
+    ***REMOVED***
+        return $this->from;
+    ***REMOVED***
+
+    public function date(): int
+    ***REMOVED***
+        return $this->date;
+    ***REMOVED***
+
+    public function chat(): Chat
+    ***REMOVED***
+        return $this->chat;
+    ***REMOVED***
+
+    public function forwardFrom(): ?User
+    ***REMOVED***
+        return $this->forwardFrom;
+    ***REMOVED***
+
+    public function forwardFromChat(): ?Chat
+    ***REMOVED***
+        return $this->forwardFromChat;
+    ***REMOVED***
+
+    public function forwardFromMessageId(): ?int
+    ***REMOVED***
+        return $this->forwardFromMessageId;
+    ***REMOVED***
+
+    public function forwardSignature(): ?string
+    ***REMOVED***
+        return $this->forwardSignature;
+    ***REMOVED***
+
+    public function forwardSenderName(): ?string
+    ***REMOVED***
+        return $this->forwardSenderName;
+    ***REMOVED***
+
+    public function forwardDate(): ?int
+    ***REMOVED***
+        return $this->forwardDate;
+    ***REMOVED***
+
+    public function replyToMessage(): ?Message
+    ***REMOVED***
+        return $this->replyToMessage;
+    ***REMOVED***
+
+    public function editDate(): ?int
+    ***REMOVED***
+        return $this->editDate;
+    ***REMOVED***
+
+    public function mediaGroupId(): ?string
+    ***REMOVED***
+        return $this->mediaGroupId;
+    ***REMOVED***
+
+    public function authorSignature(): ?string
+    ***REMOVED***
+        return $this->authorSignature;
+    ***REMOVED***
+
+    public function text(): ?string
+    ***REMOVED***
+        return $this->text;
+    ***REMOVED***
+
+    public function entities(): ?array
+    ***REMOVED***
+        return $this->entities;
+    ***REMOVED***
+
+    public function captionEntities(): ?array
+    ***REMOVED***
+        return $this->captionEntities;
+    ***REMOVED***
+
+    public function audio(): ?Audio
+    ***REMOVED***
+        return $this->audio;
+    ***REMOVED***
+
+    public function document(): ?Document
+    ***REMOVED***
+        return $this->document;
+    ***REMOVED***
+
+    public function animation(): ?Animation
+    ***REMOVED***
+        return $this->animation;
+    ***REMOVED***
+
+    public function game(): ?Game
+    ***REMOVED***
+        return $this->game;
+    ***REMOVED***
+
+    public function photo(): ?array
+    ***REMOVED***
+        return $this->photo;
+    ***REMOVED***
+
+    public function sticker(): ?Sticker
+    ***REMOVED***
+        return $this->sticker;
+    ***REMOVED***
+
+    public function video(): ?Video
+    ***REMOVED***
+        return $this->video;
+    ***REMOVED***
+
+    public function voice(): ?Voice
+    ***REMOVED***
+        return $this->voice;
+    ***REMOVED***
+
+    public function videoNote(): ?VideoNote
+    ***REMOVED***
+        return $this->videoNote;
+    ***REMOVED***
+
+    public function caption(): ?string
+    ***REMOVED***
+        return $this->caption;
+    ***REMOVED***
+
+    public function contact(): ?Contact
+    ***REMOVED***
+        return $this->contact;
+    ***REMOVED***
+
+    public function location(): ?Location
+    ***REMOVED***
+        return $this->location;
+    ***REMOVED***
+
+    public function venue(): ?Venue
+    ***REMOVED***
+        return $this->venue;
+    ***REMOVED***
+
+    public function poll(): ?Poll
+    ***REMOVED***
+        return $this->poll;
+    ***REMOVED***
+
+    public function newChatMembers(): ?array
+    ***REMOVED***
+        return $this->newChatMembers;
+    ***REMOVED***
+
+    public function leftChatMember(): ?User
+    ***REMOVED***
+        return $this->leftChatMember;
+    ***REMOVED***
+
+    public function newChatTitle(): ?string
+    ***REMOVED***
+        return $this->newChatTitle;
+    ***REMOVED***
+
+    public function newChatPhoto(): ?array
+    ***REMOVED***
+        return $this->newChatPhoto;
+    ***REMOVED***
+
+    public function deleteChatPhoto(): ?bool
+    ***REMOVED***
+        return $this->deleteChatPhoto;
+    ***REMOVED***
+
+    public function groupChatCreated(): ?bool
+    ***REMOVED***
+        return $this->groupChatCreated;
+    ***REMOVED***
+
+    public function supergroupChatCreated(): ?bool
+    ***REMOVED***
+        return $this->supergroupChatCreated;
+    ***REMOVED***
+
+    public function channelChatCreated(): ?bool
+    ***REMOVED***
+        return $this->channelChatCreated;
+    ***REMOVED***
+
+    public function migrateToChatId(): ?int
+    ***REMOVED***
+        return $this->migrateToChatId;
+    ***REMOVED***
+
+    public function migrateFromChatId(): ?int
+    ***REMOVED***
+        return $this->migrateFromChatId;
+    ***REMOVED***
+
+    public function pinnedMessage(): ?Message
+    ***REMOVED***
+        return $this->pinnedMessage;
+    ***REMOVED***
+
+    public function invoice(): ?Invoice
+    ***REMOVED***
+        return $this->invoice;
+    ***REMOVED***
+
+    public function successfulPayment(): ?SuccessfulPayment
+    ***REMOVED***
+        return $this->successfulPayment;
+    ***REMOVED***
+
+    public function connectedWebsite(): ?string
+    ***REMOVED***
+        return $this->connectedWebsite;
+    ***REMOVED***
+
+    public function passportData(): ?PassportData
+    ***REMOVED***
+        return $this->passportData;
+    ***REMOVED***
+
+    public function replyMarkup(): ?InlineKeyboardMarkup
+    ***REMOVED***
+        return $this->replyMarkup;
     ***REMOVED***
 ***REMOVED***

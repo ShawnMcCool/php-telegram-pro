@@ -23,7 +23,7 @@ final class ShippingQuery
     ***REMOVED***
         if ( ! $shippingQuery) return null;
 
-        return static(
+        return new static(
             $shippingQuery->id,
             User::fromRequest($shippingQuery->from),
             $shippingQuery->invoice_payload,

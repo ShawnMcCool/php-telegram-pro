@@ -3,7 +3,7 @@
 final class Chat
 ***REMOVED***
     private int $chatId;
-    private ChatType $type;
+    private string $type;
     private ?string $title;
     private ?string $username;
     private ?string $firstName;
@@ -19,7 +19,7 @@ final class Chat
 
     public function __construct(
         int $chatId,
-        ChatType $type,
+        string $type,
         ?string $title,
         ?string $username,
         ?string $firstName,
@@ -56,18 +56,88 @@ final class Chat
         return new static(
             $chat->id,
             $chat->type,
-            $chat->title,
-            $chat->username,
-            $chat->first_name,
-            $chat->last_name,
-            ChatPhoto::fromRequest($chat->photo),
-            $chat->description,
-            $chat->invite_link,
-            Message::fromRequest($chat->pinned_message),
-            ChatPermissions::fromRequest($chat->permissions),
-            $chat->slow_mode_delay,
-            $chat->sticker_set_name,
-            $chat->can_set_sticker_set
+            $chat->title ?? null,
+            $chat->username ?? null,
+            $chat->first_name ?? null,
+            $chat->last_name ?? null,
+            ChatPhoto::fromRequest($chat->photo ?? null),
+            $chat->description ?? null,
+            $chat->invite_link ?? null,
+            Message::fromRequest($chat->pinned_message ?? null),
+            ChatPermissions::fromRequest($chat->permissions ?? null),
+            $chat->slow_mode_delay ?? null,
+            $chat->sticker_set_name ?? null,
+            $chat->can_set_sticker_set ?? null
         );
+    ***REMOVED***
+
+    public function chatId(): int
+    ***REMOVED***
+        return $this->chatId;
+    ***REMOVED***
+
+    public function type(): string
+    ***REMOVED***
+        return $this->type;
+    ***REMOVED***
+
+    public function title(): ?string
+    ***REMOVED***
+        return $this->title;
+    ***REMOVED***
+
+    public function username(): ?string
+    ***REMOVED***
+        return $this->username;
+    ***REMOVED***
+
+    public function firstName(): ?string
+    ***REMOVED***
+        return $this->firstName;
+    ***REMOVED***
+
+    public function lastName(): ?string
+    ***REMOVED***
+        return $this->lastName;
+    ***REMOVED***
+
+    public function photo(): ?ChatPhoto
+    ***REMOVED***
+        return $this->photo;
+    ***REMOVED***
+
+    public function description(): ?string
+    ***REMOVED***
+        return $this->description;
+    ***REMOVED***
+
+    public function inviteLink(): ?string
+    ***REMOVED***
+        return $this->inviteLink;
+    ***REMOVED***
+
+    public function pinnedMessage(): ?Message
+    ***REMOVED***
+        return $this->pinnedMessage;
+    ***REMOVED***
+
+    public function permissions(): ?ChatPermissions
+    ***REMOVED***
+        return $this->permissions;
+    ***REMOVED***
+
+    public function slowModeDelay(): ?int
+    ***REMOVED***
+        return $this->slowModeDelay;
+    ***REMOVED***
+
+    public function stickerSetName(): ?string
+    ***REMOVED***
+        return $this->stickerSetName;
+    ***REMOVED***
+
+    public function canSetStickerSet(): ?bool
+    ***REMOVED***
+        return $this->canSetStickerSet;
     ***REMOVED***
 ***REMOVED***

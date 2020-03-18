@@ -29,9 +29,34 @@ final class ChosenInlineResult
         return new static(
             $chosenInlineResult->result_id,
             User::fromRequest($chosenInlineResult->from),
-            Location::fromRequest($chosenInlineResult->location),
+            Location::fromRequest($chosenInlineResult->location ?? null),
             $chosenInlineResult->inline_message_id,
             $chosenInlineResult->query,
         );
+    ***REMOVED***
+
+    public function resultId(): string
+    ***REMOVED***
+        return $this->resultId;
+    ***REMOVED***
+
+    public function from(): User
+    ***REMOVED***
+        return $this->from;
+    ***REMOVED***
+
+    public function location(): ?Location
+    ***REMOVED***
+        return $this->location;
+    ***REMOVED***
+
+    public function inlineMessageId(): string
+    ***REMOVED***
+        return $this->inlineMessageId;
+    ***REMOVED***
+
+    public function query(): string
+    ***REMOVED***
+        return $this->query;
     ***REMOVED***
 ***REMOVED***

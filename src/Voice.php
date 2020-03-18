@@ -3,14 +3,14 @@
 final class Voice
 ***REMOVED***
     private string $fileId;
-    private string $fileUniqueId;
+    private ?string $fileUniqueId;
     private int $duration;
     private ?string $mimeType;
     private ?int $fileSize;
 
     public function __construct(
         string $fileId,
-        string $fileUniqueId,
+        ?string $fileUniqueId,
         int $duration,
         ?string $mimeType,
         ?int $fileSize
@@ -28,10 +28,35 @@ final class Voice
 
         return new static(
             $voice->file_id,
-            $voice->file_unique_id,
+            $voice->file_unique_id ?? null,
             $voice->duration,
-            $voice->mime_type,
-            $voice->file_size
+            $voice->mime_type ?? null,
+            $voice->file_size ?? null
         );
+    ***REMOVED***
+
+    public function fileId(): string
+    ***REMOVED***
+        return $this->fileId;
+    ***REMOVED***
+
+    public function fileUniqueId(): ?string
+    ***REMOVED***
+        return $this->fileUniqueId;
+    ***REMOVED***
+
+    public function duration(): int
+    ***REMOVED***
+        return $this->duration;
+    ***REMOVED***
+
+    public function mimeType(): ?string
+    ***REMOVED***
+        return $this->mimeType;
+    ***REMOVED***
+
+    public function fileSize(): ?int
+    ***REMOVED***
+        return $this->fileSize;
     ***REMOVED***
 ***REMOVED***

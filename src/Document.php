@@ -3,7 +3,7 @@
 final class Document
 ***REMOVED***
     private string $fileId;
-    private string $fileUniqueId;
+    private ?string $fileUniqueId;
     private ?PhotoSize $thumb;
     private ?string $fileName;
     private ?string $mimeType;
@@ -11,7 +11,7 @@ final class Document
 
     public function __construct(
         string $fileId,
-        string $fileUniqueId,
+        ?string $fileUniqueId,
         ?PhotoSize $thumb,
         ?string $fileName,
         ?string $mimeType,
@@ -31,11 +31,41 @@ final class Document
 
         return new static(
             $document->file_id,
-            $document->file_unique_id,
-            PhotoSize::fromRequest($document->thumb),
-            $document->file_name,
-            $document->mime_type,
-            $document->file_size
+            $document->file_unique_id ?? null,
+            PhotoSize::fromRequest($document->thumb ?? null),
+            $document->file_name ?? null,
+            $document->mime_type ?? null,
+            $document->file_size ?? null
         );
+    ***REMOVED***
+
+    public function fileId(): string
+    ***REMOVED***
+        return $this->fileId;
+    ***REMOVED***
+
+    public function fileUniqueId(): ?string
+    ***REMOVED***
+        return $this->fileUniqueId;
+    ***REMOVED***
+
+    public function thumb(): ?PhotoSize
+    ***REMOVED***
+        return $this->thumb;
+    ***REMOVED***
+
+    public function fileName(): ?string
+    ***REMOVED***
+        return $this->fileName;
+    ***REMOVED***
+
+    public function mimeType(): ?string
+    ***REMOVED***
+        return $this->mimeType;
+    ***REMOVED***
+
+    public function fileSize(): ?int
+    ***REMOVED***
+        return $this->fileSize;
     ***REMOVED***
 ***REMOVED***
