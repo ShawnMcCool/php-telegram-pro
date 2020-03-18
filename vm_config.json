@@ -1,0 +1,16 @@
+***REMOVED***
+  "hostname": "php-telegram-sdk-pro",
+  "dbuser": "root",
+  "dbpasswd": "password",
+  "databases": [],
+  "sites": [],
+  "php_configs": [],
+  "php_version": "7.4",
+  "install_redis": "no",
+  "install_db": "no",
+  "install_web": "yes",
+  "install_javascript_build_system": "no",
+  "node_major_version": "10",
+  "enable_swap": "yes",
+  "swap_size_in_mb": "1024"
+***REMOVED***

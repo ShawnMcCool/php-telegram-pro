@@ -1,0 +1,7 @@
+/.idea
+/vendor
+/.vagrant
+.DS_Store
+/bin
+.phpunit.result.cache
+/ubuntu*.log
