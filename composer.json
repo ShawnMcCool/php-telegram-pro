@@ -1,0 +1,26 @@
+***REMOVED***
+  "name": "php-telegram-pro/php-telegram-pro",
+  "description": "The professional PHP Telegram SDK for interacting with the Telegram API",
+  "authors": [
+    ***REMOVED***
+      "name": "Shawn McCool",
+      "email": "shawnmc@gmail.com",
+      "homepage": "https://shawnmc.cool/"
+    ***REMOVED***
+  ],
+  "require": ***REMOVED***
+    "php":  ">=7.4"
+  ***REMOVED***,
+  "require-dev": ***REMOVED***
+    "phpspec/phpspec": "dev-master"
+  ***REMOVED***,
+  "config": ***REMOVED***
+    "bin-dir": "bin"
+  ***REMOVED***,
+  "autoload": ***REMOVED***
+    "psr-4": ***REMOVED***
+      "TelegramPro\\": "src/"
+    ***REMOVED***
+  ***REMOVED***,
+  "license": "none"
+***REMOVED***

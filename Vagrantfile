@@ -5,13 +5,13 @@ Vagrant.configure("2") do |config|
     config.vm.box = "ubuntu/bionic64"
     config.vm.network "private_network", ip: "10.10.10.10"
     config.vm.box_check_update = false
-    config.vm.hostname = "php-telegram-sdk-pro"
+    config.vm.hostname = "php-telegram-pro"
 
     config.vm.provider "virtualbox" do |v|
        v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
        v.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
        v.customize ["modifyvm", :id, "--memory", "1024"]
-       v.customize ["modifyvm", :id, "--name", "php-telegram-sdk-pro"]
+       v.customize ["modifyvm", :id, "--name", "php-telegram-pro"]
     end
 
     # set up ssh for inside-machine ansible. Change ~/.ssh to your host's ssh keys path.
