@@ -1,11 +1,12 @@
 <?php namespace Tests\Api\Methods;
 
+use Tests\TelegramTestCase;
 use TelegramPro\Types\Message;
 use TelegramPro\Methods\ParseMode;
 use TelegramPro\Methods\SendMessage;
 use TelegramPro\Methods\MethodError;
 
-class SendMessageTest extends MethodTestCase
+class SendMessageTest extends TelegramTestCase
 {
     function testSendMessage()
     {

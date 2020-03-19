@@ -1,11 +1,12 @@
 <?php namespace Tests\Unit\Types;
 
+use Tests\TelegramTestCase;
 use TelegramPro\Types\Update;
 use Tests\ExampleWebhooks;
 use TelegramPro\Types\MessageEntity;
 use PHPUnit\Framework\TestCase;
 
-final class UpdateTest extends TestCase
+final class UpdateTest extends TelegramTestCase
 {
     use ExampleWebhooks;
 

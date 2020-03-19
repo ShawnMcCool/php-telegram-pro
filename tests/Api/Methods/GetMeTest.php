@@ -1,9 +1,10 @@
 <?php namespace Tests\Api\Methods;
 
+use Tests\TelegramTestCase;
 use TelegramPro\Types\User;
 use TelegramPro\Methods\GetMe;
 
-class GetMeTest extends MethodTestCase
+class GetMeTest extends TelegramTestCase
 {
     function testCanGetOwnDetails()
     {

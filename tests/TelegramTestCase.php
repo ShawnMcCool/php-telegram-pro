@@ -1,15 +1,16 @@
-<?php namespace Tests\Api\Methods;
+<?php namespace Tests;
 
 use Tests\Api\BotTestConfig;
 use PHPUnit\Framework\TestCase;
 use TelegramPro\Methods\Method;
 use TelegramPro\Http\TelegramApi;
 
-class MethodTestCase extends TestCase
+class TelegramTestCase extends TestCase
 {
     protected TelegramApi $telegramApi;
     protected BotTestConfig $config;
-
+    protected TestMedia $media;
+    
     protected function setUp(): void
     {
         parent::setUp();
@@ -18,6 +19,10 @@ class MethodTestCase extends TestCase
 
         $this->telegramApi = TelegramApi::botToken(
             $this->config->token()
+        );
+        
+        $this->media = TestMedia::paths(
+            'tests/Media/Images'
         );
     }
 
