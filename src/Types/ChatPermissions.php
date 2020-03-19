@@ -1,7 +1,7 @@
 <?php namespace TelegramPro\Types;
 
 final class ChatPermissions
-***REMOVED***
+{
     private bool $canSendMessages;
     private bool $canSendMediaMessages;
     private bool $canSendPolls;
@@ -20,7 +20,7 @@ final class ChatPermissions
         bool $canChangeInfo,
         bool $canInviteUsers,
         bool $canPinMessages
-    ) ***REMOVED***
+    ) {
         $this->canSendMessages = $canSendMessages;
         $this->canSendMediaMessages = $canSendMediaMessages;
         $this->canSendPolls = $canSendPolls;
@@ -29,10 +29,10 @@ final class ChatPermissions
         $this->canChangeInfo = $canChangeInfo;
         $this->canInviteUsers = $canInviteUsers;
         $this->canPinMessages = $canPinMessages;
-    ***REMOVED***
+    }
 
     public static function fromApi($permissions): ?ChatPermissions
-    ***REMOVED***
+    {
         if ( ! $permissions) return null;
         
         return new static(
@@ -45,5 +45,5 @@ final class ChatPermissions
             $permissions->can_invite_users,
             $permissions->can_pin_messages
         );
-    ***REMOVED***
-***REMOVED***
+    }
+}

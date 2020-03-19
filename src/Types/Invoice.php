@@ -1,7 +1,7 @@
 <?php namespace TelegramPro\Types;
 
 final class Invoice
-***REMOVED***
+{
     private string $title;
     private string $description;
     private string $startParameter;
@@ -14,16 +14,16 @@ final class Invoice
         string $startParameter,
         string $currency,
         string $totalAmount
-    ) ***REMOVED***
+    ) {
         $this->title = $title;
         $this->description = $description;
         $this->startParameter = $startParameter;
         $this->currency = $currency;
         $this->totalAmount = $totalAmount;
-    ***REMOVED***
+    }
 
     public static function fromApi($invoice): ?Invoice
-    ***REMOVED***
+    {
         if ( ! $invoice) return null;
 
         return new static(
@@ -33,5 +33,5 @@ final class Invoice
             $invoice->currency,
             $invoice->total_amount
         );
-    ***REMOVED***
-***REMOVED***
+    }
+}

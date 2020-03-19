@@ -1,9 +1,11 @@
 <?php namespace TelegramPro\Methods;
 
+use TelegramPro\Http\TelegramApi;
 use TelegramPro\Types\ReplyMarkup;
+use TelegramPro\Http\CurlParameters;
 
 final class SendMessage implements Method
-***REMOVED***
+{
     private $chatId;
     private string $text;
     private ?ParseMode $parseMode;
@@ -20,7 +22,7 @@ final class SendMessage implements Method
         ?bool $disableNotification,
         ?int $replyToMessageId,
         ?ReplyMarkup $replyMarkup
-    ) ***REMOVED***
+    ) {
         $this->chatId = $chatId;
         $this->text = $text;
         $this->parseMode = $parseMode;
@@ -28,10 +30,10 @@ final class SendMessage implements Method
         $this->disableNotification = $disableNotification;
         $this->replyToMessageId = $replyToMessageId;
         $this->replyMarkup = $replyMarkup;
-    ***REMOVED***
+    }
 
-    public function request(): Request
-    ***REMOVED***
+    function toCurlParameters(string $botToken): CurlParameters
+    {
         return Request::json('sendMessage')
                       ->withParameters(
                           [
@@ -43,18 +45,26 @@ final class SendMessage implements Method
                               'reply_to_message_id' => $this->replyToMessageId,
                               'reply_markup' => $this->replyMarkup ? $this->replyMarkup->toParameter() : null, // toParameter
                           ]
-                      );
-    ***REMOVED***
+                      )
+                      ->toCurlParameters($botToken);
+    }
+
+    public function send(TelegramApi $telegramApi): SendMessageResponse
+    {
+        return SendMessageResponse::fromApi(
+            $telegramApi->send($this)
+        );
+    }
 
     public static function parameters(
         $chatId,
         string $text,
-        ?ParseMode $parseMode,
-        ?bool $disableWebPagePreview,
-        ?bool $disableNotification,
-        ?int $replyToMessageId,
-        ?ReplyMarkup $replyMarkup
-    ): SendMessage ***REMOVED***
+        ?ParseMode $parseMode = null,
+        ?bool $disableWebPagePreview = null,
+        ?bool $disableNotification = null,
+        ?int $replyToMessageId = null,
+        ?ReplyMarkup $replyMarkup = null
+    ): SendMessage {
         return new static(
             $chatId,
             $text,
@@ -64,5 +74,5 @@ final class SendMessage implements Method
             $replyToMessageId,
             $replyMarkup
         );
-    ***REMOVED***
-***REMOVED***
+    }
+}

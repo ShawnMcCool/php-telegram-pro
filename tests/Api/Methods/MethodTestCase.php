@@ -1,22 +1,28 @@
 <?php namespace Tests\Api\Methods;
 
+use Tests\Api\BotTestConfig;
 use PHPUnit\Framework\TestCase;
 use TelegramPro\Methods\Method;
 use TelegramPro\Http\TelegramApi;
 
 class MethodTestCase extends TestCase
-***REMOVED***
+{
     protected TelegramApi $telegramApi;
+    protected BotTestConfig $config;
 
     protected function setUp(): void
-    ***REMOVED***
+    {
         parent::setUp();
+
+        $this->config = BotTestConfig::fromConfigFile('.bot-test-config');
+
         $this->telegramApi = TelegramApi::botToken(
-            trim(file_get_contents('.token'))
+            $this->config->token()
         );
-    ***REMOVED***
-    
-    protected function call(Method $method) ***REMOVED***
+    }
+
+    protected function call(Method $method)
+    {
         $this->telegramApi->send($method);
-    ***REMOVED***
-***REMOVED***
+    }
+}

@@ -1,7 +1,7 @@
 <?php namespace TelegramPro\Types;
 
 final class Audio
-***REMOVED***
+{
     private string $fileId;
     private ?string $fileUniqueId;
     private int $duration;
@@ -20,7 +20,7 @@ final class Audio
         ?string $mimeType,
         ?int $fileSize,
         ?PhotoSize $thumb
-    ) ***REMOVED***
+    ) {
         $this->fileId = $fileId;
         $this->fileUniqueId = $fileUniqueId;
         $this->duration = $duration;
@@ -29,10 +29,10 @@ final class Audio
         $this->mimeType = $mimeType;
         $this->fileSize = $fileSize;
         $this->thumb = $thumb;
-    ***REMOVED***
+    }
 
     public static function fromApi($audio): ?Audio
-    ***REMOVED***
+    {
         if ( ! $audio) return null;
         
         return new static(
@@ -45,45 +45,45 @@ final class Audio
             $audio->file_size ?? null,
             PhotoSize::fromApi($audio->thumb ?? null)
         );
-    ***REMOVED***
+    }
 
     public function fileId(): string
-    ***REMOVED***
+    {
         return $this->fileId;
-    ***REMOVED***
+    }
 
     public function fileUniqueId(): ?string
-    ***REMOVED***
+    {
         return $this->fileUniqueId;
-    ***REMOVED***
+    }
 
     public function duration(): int
-    ***REMOVED***
+    {
         return $this->duration;
-    ***REMOVED***
+    }
 
     public function performer(): ?string
-    ***REMOVED***
+    {
         return $this->performer;
-    ***REMOVED***
+    }
 
     public function title(): ?string
-    ***REMOVED***
+    {
         return $this->title;
-    ***REMOVED***
+    }
 
     public function mimeType(): ?string
-    ***REMOVED***
+    {
         return $this->mimeType;
-    ***REMOVED***
+    }
 
     public function fileSize(): ?int
-    ***REMOVED***
+    {
         return $this->fileSize;
-    ***REMOVED***
+    }
 
     public function thumb(): ?PhotoSize
-    ***REMOVED***
+    {
         return $this->thumb;
-    ***REMOVED***
-***REMOVED***
+    }
+}

@@ -1,7 +1,7 @@
 <?php namespace TelegramPro\Types;
 
 class Message
-***REMOVED***
+{
     private int $messageId;
     private ?User $from;
     private int $date;
@@ -98,7 +98,7 @@ class Message
         ?string $connectedWebsite,
         ?PassportData $passportData,
         ?InlineKeyboardMarkup $replyMarkup
-    ) ***REMOVED***
+    ) {
         $this->messageId = $messageId;
         $this->from = $from;
         $this->date = $date;
@@ -146,10 +146,10 @@ class Message
         $this->connectedWebsite = $connectedWebsite;
         $this->passportData = $passportData;
         $this->replyMarkup = $replyMarkup;
-    ***REMOVED***
+    }
 
     public static function fromApi($message): ?Message
-    ***REMOVED***
+    {
         if ( ! $message) return null;
         
         return new static(
@@ -201,240 +201,240 @@ class Message
             PassportData::fromString($message->passport_data ?? null),
             InlineKeyboardMarkup::fromApi($message->reply_markup ?? null)
         );
-    ***REMOVED***
+    }
 
     public function messageId(): int
-    ***REMOVED***
+    {
         return $this->messageId;
-    ***REMOVED***
+    }
 
     public function from(): User
-    ***REMOVED***
+    {
         return $this->from;
-    ***REMOVED***
+    }
 
     public function date(): int
-    ***REMOVED***
+    {
         return $this->date;
-    ***REMOVED***
+    }
 
     public function chat(): Chat
-    ***REMOVED***
+    {
         return $this->chat;
-    ***REMOVED***
+    }
 
     public function forwardFrom(): ?User
-    ***REMOVED***
+    {
         return $this->forwardFrom;
-    ***REMOVED***
+    }
 
     public function forwardFromChat(): ?Chat
-    ***REMOVED***
+    {
         return $this->forwardFromChat;
-    ***REMOVED***
+    }
 
     public function forwardFromMessageId(): ?int
-    ***REMOVED***
+    {
         return $this->forwardFromMessageId;
-    ***REMOVED***
+    }
 
     public function forwardSignature(): ?string
-    ***REMOVED***
+    {
         return $this->forwardSignature;
-    ***REMOVED***
+    }
 
     public function forwardSenderName(): ?string
-    ***REMOVED***
+    {
         return $this->forwardSenderName;
-    ***REMOVED***
+    }
 
     public function forwardDate(): ?int
-    ***REMOVED***
+    {
         return $this->forwardDate;
-    ***REMOVED***
+    }
 
     public function replyToMessage(): ?Message
-    ***REMOVED***
+    {
         return $this->replyToMessage;
-    ***REMOVED***
+    }
 
     public function editDate(): ?int
-    ***REMOVED***
+    {
         return $this->editDate;
-    ***REMOVED***
+    }
 
     public function mediaGroupId(): ?string
-    ***REMOVED***
+    {
         return $this->mediaGroupId;
-    ***REMOVED***
+    }
 
     public function authorSignature(): ?string
-    ***REMOVED***
+    {
         return $this->authorSignature;
-    ***REMOVED***
+    }
 
     public function text(): ?string
-    ***REMOVED***
+    {
         return $this->text;
-    ***REMOVED***
+    }
 
     public function entities(): ?array
-    ***REMOVED***
+    {
         return $this->entities;
-    ***REMOVED***
+    }
 
     public function captionEntities(): ?array
-    ***REMOVED***
+    {
         return $this->captionEntities;
-    ***REMOVED***
+    }
 
     public function audio(): ?Audio
-    ***REMOVED***
+    {
         return $this->audio;
-    ***REMOVED***
+    }
 
     public function document(): ?Document
-    ***REMOVED***
+    {
         return $this->document;
-    ***REMOVED***
+    }
 
     public function animation(): ?Animation
-    ***REMOVED***
+    {
         return $this->animation;
-    ***REMOVED***
+    }
 
     public function game(): ?Game
-    ***REMOVED***
+    {
         return $this->game;
-    ***REMOVED***
+    }
 
     public function photo(): ?array
-    ***REMOVED***
+    {
         return $this->photo;
-    ***REMOVED***
+    }
 
     public function sticker(): ?Sticker
-    ***REMOVED***
+    {
         return $this->sticker;
-    ***REMOVED***
+    }
 
     public function video(): ?Video
-    ***REMOVED***
+    {
         return $this->video;
-    ***REMOVED***
+    }
 
     public function voice(): ?Voice
-    ***REMOVED***
+    {
         return $this->voice;
-    ***REMOVED***
+    }
 
     public function videoNote(): ?VideoNote
-    ***REMOVED***
+    {
         return $this->videoNote;
-    ***REMOVED***
+    }
 
     public function caption(): ?string
-    ***REMOVED***
+    {
         return $this->caption;
-    ***REMOVED***
+    }
 
     public function contact(): ?Contact
-    ***REMOVED***
+    {
         return $this->contact;
-    ***REMOVED***
+    }
 
     public function location(): ?Location
-    ***REMOVED***
+    {
         return $this->location;
-    ***REMOVED***
+    }
 
     public function venue(): ?Venue
-    ***REMOVED***
+    {
         return $this->venue;
-    ***REMOVED***
+    }
 
     public function poll(): ?Poll
-    ***REMOVED***
+    {
         return $this->poll;
-    ***REMOVED***
+    }
 
     public function newChatMembers(): ?array
-    ***REMOVED***
+    {
         return $this->newChatMembers;
-    ***REMOVED***
+    }
 
     public function leftChatMember(): ?User
-    ***REMOVED***
+    {
         return $this->leftChatMember;
-    ***REMOVED***
+    }
 
     public function newChatTitle(): ?string
-    ***REMOVED***
+    {
         return $this->newChatTitle;
-    ***REMOVED***
+    }
 
     public function newChatPhoto(): ?array
-    ***REMOVED***
+    {
         return $this->newChatPhoto;
-    ***REMOVED***
+    }
 
     public function deleteChatPhoto(): ?bool
-    ***REMOVED***
+    {
         return $this->deleteChatPhoto;
-    ***REMOVED***
+    }
 
     public function groupChatCreated(): ?bool
-    ***REMOVED***
+    {
         return $this->groupChatCreated;
-    ***REMOVED***
+    }
 
     public function supergroupChatCreated(): ?bool
-    ***REMOVED***
+    {
         return $this->supergroupChatCreated;
-    ***REMOVED***
+    }
 
     public function channelChatCreated(): ?bool
-    ***REMOVED***
+    {
         return $this->channelChatCreated;
-    ***REMOVED***
+    }
 
     public function migrateToChatId(): ?int
-    ***REMOVED***
+    {
         return $this->migrateToChatId;
-    ***REMOVED***
+    }
 
     public function migrateFromChatId(): ?int
-    ***REMOVED***
+    {
         return $this->migrateFromChatId;
-    ***REMOVED***
+    }
 
     public function pinnedMessage(): ?Message
-    ***REMOVED***
+    {
         return $this->pinnedMessage;
-    ***REMOVED***
+    }
 
     public function invoice(): ?Invoice
-    ***REMOVED***
+    {
         return $this->invoice;
-    ***REMOVED***
+    }
 
     public function successfulPayment(): ?SuccessfulPayment
-    ***REMOVED***
+    {
         return $this->successfulPayment;
-    ***REMOVED***
+    }
 
     public function connectedWebsite(): ?string
-    ***REMOVED***
+    {
         return $this->connectedWebsite;
-    ***REMOVED***
+    }
 
     public function passportData(): ?PassportData
-    ***REMOVED***
+    {
         return $this->passportData;
-    ***REMOVED***
+    }
 
     public function replyMarkup(): ?InlineKeyboardMarkup
-    ***REMOVED***
+    {
         return $this->replyMarkup;
-    ***REMOVED***
-***REMOVED***
+    }
+}

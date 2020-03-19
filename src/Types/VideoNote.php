@@ -1,7 +1,7 @@
 <?php namespace TelegramPro\Types;
 
 final class VideoNote
-***REMOVED***
+{
     private string $fileId;
     private string $fileUniqueId;
     private int $length;
@@ -16,17 +16,17 @@ final class VideoNote
         int $duration,
         ?PhotoSize $thumb,
         ?int $fileSize
-    ) ***REMOVED***
+    ) {
         $this->fileId = $fileId;
         $this->fileUniqueId = $fileUniqueId;
         $this->length = $length;
         $this->duration = $duration;
         $this->thumb = $thumb;
         $this->fileSize = $fileSize;
-    ***REMOVED***
+    }
 
     public static function fromApi($videoNote): ?VideoNote
-    ***REMOVED***
+    {
         if ( ! $videoNote) return null;
 
         return new static(
@@ -37,5 +37,5 @@ final class VideoNote
             PhotoSize::fromApi($videoNote->thumb),
             $videoNote->file_size,
         );
-    ***REMOVED***
-***REMOVED***
+    }
+}

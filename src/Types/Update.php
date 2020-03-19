@@ -1,7 +1,7 @@
 <?php namespace TelegramPro\Types;
 
 final class Update
-***REMOVED***
+{
     private int $updateId;
     private ?Message $message;
     private ?Message $editedMessage;
@@ -28,7 +28,7 @@ final class Update
         ?PreCheckoutQuery $preCheckoutQuery,
         ?Poll $poll,
         ?PollAnswer $pollAnswer
-    ) ***REMOVED***
+    ) {
         $this->updateId = $updateId;
         $this->message = $message;
         $this->editedMessage = $editedMessage;
@@ -41,10 +41,10 @@ final class Update
         $this->preCheckoutQuery = $preCheckoutQuery;
         $this->poll = $poll;
         $this->pollAnswer = $pollAnswer;
-    ***REMOVED***
+    }
 
     public static function fromApi(string $json): Update
-    ***REMOVED***
+    {
         $update = json_decode($json);
         
         return new static(
@@ -61,65 +61,65 @@ final class Update
             Poll::fromApi($update->poll ?? null),
             PollAnswer::fromApi($update->poll_answer ?? null)
         );
-    ***REMOVED***
+    }
 
     public function updateId(): int
-    ***REMOVED***
+    {
         return $this->updateId;
-    ***REMOVED***
+    }
 
     public function message(): ?Message
-    ***REMOVED***
+    {
         return $this->message;
-    ***REMOVED***
+    }
 
     public function editedMessage(): ?Message
-    ***REMOVED***
+    {
         return $this->editedMessage;
-    ***REMOVED***
+    }
 
     public function channelPost(): ?Message
-    ***REMOVED***
+    {
         return $this->channelPost;
-    ***REMOVED***
+    }
 
     public function editedChannelPost(): ?Message
-    ***REMOVED***
+    {
         return $this->editedChannelPost;
-    ***REMOVED***
+    }
 
     public function inlineQuery(): ?InlineQuery
-    ***REMOVED***
+    {
         return $this->inlineQuery;
-    ***REMOVED***
+    }
 
     public function chosenInlineResult(): ?ChosenInlineResult
-    ***REMOVED***
+    {
         return $this->chosenInlineResult;
-    ***REMOVED***
+    }
 
     public function callbackQuery(): ?CallbackQuery
-    ***REMOVED***
+    {
         return $this->callbackQuery;
-    ***REMOVED***
+    }
 
     public function shippingQuery(): ?ShippingQuery
-    ***REMOVED***
+    {
         return $this->shippingQuery;
-    ***REMOVED***
+    }
 
     public function preCheckoutQuery(): ?PreCheckoutQuery
-    ***REMOVED***
+    {
         return $this->preCheckoutQuery;
-    ***REMOVED***
+    }
 
     public function poll(): ?Poll
-    ***REMOVED***
+    {
         return $this->poll;
-    ***REMOVED***
+    }
 
     public function pollAnswer(): ?PollAnswer
-    ***REMOVED***
+    {
         return $this->pollAnswer;
-    ***REMOVED***
-***REMOVED***
+    }
+}

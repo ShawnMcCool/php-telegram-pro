@@ -1,7 +1,7 @@
 <?php namespace TelegramPro\Types;
 
 final class Contact
-***REMOVED***
+{
     private string $phoneNumber;
     private string $firstName;
     private ?string $lastName;
@@ -14,16 +14,16 @@ final class Contact
         ?string $lastName,
         ?int $userId,
         ?string $vcard
-    ) ***REMOVED***
+    ) {
         $this->phoneNumber = $phoneNumber;
         $this->firstName = $firstName;
         $this->lastName = $lastName;
         $this->userId = $userId;
         $this->vcard = $vcard;
-    ***REMOVED***
+    }
 
     public static function fromApi($contact): ?Contact
-    ***REMOVED***
+    {
         if ( ! $contact) return null;
 
         return new static(
@@ -33,5 +33,5 @@ final class Contact
             $contact->user_id,
             $contact->vcard
         );
-    ***REMOVED***
-***REMOVED***
+    }
+}

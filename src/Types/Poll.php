@@ -1,7 +1,7 @@
 <?php namespace TelegramPro\Types;
 
 final class Poll
-***REMOVED***
+{
     private string $id;
     private string $question;
     private array $options;
@@ -22,7 +22,7 @@ final class Poll
         string $type, // regular or quiz
         bool $allowsMultipleAnswers,
         ?int $correctOptionId
-    ) ***REMOVED***
+    ) {
         $this->id = $id;
         $this->question = $question;
         $this->options = $options;
@@ -32,10 +32,10 @@ final class Poll
         $this->type = $type;
         $this->allowsMultipleAnswers = $allowsMultipleAnswers;
         $this->correctOptionId = $correctOptionId;
-    ***REMOVED***
+    }
 
     public static function fromApi($poll): ?Poll
-    ***REMOVED***
+    {
         if ( ! $poll) return null;
 
         return new static(
@@ -49,5 +49,5 @@ final class Poll
             $poll->allows_multiple_answers,
             $poll->correct_option_id
         );
-    ***REMOVED***
-***REMOVED***
+    }
+}

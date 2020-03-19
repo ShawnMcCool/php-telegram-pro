@@ -1,7 +1,7 @@
 <?php namespace TelegramPro\Types;
 
 final class SuccessfulPayment
-***REMOVED***
+{
     private string $currency;
     private string $totalAmount;
     private string $invoicePayload;
@@ -18,7 +18,7 @@ final class SuccessfulPayment
         ?OrderInfo $orderInfo,
         string $telegramPaymentChargeId,
         string $providerPaymentChargeId
-    ) ***REMOVED***
+    ) {
         $this->currency = $currency;
         $this->totalAmount = $totalAmount;
         $this->invoicePayload = $invoicePayload;
@@ -26,10 +26,10 @@ final class SuccessfulPayment
         $this->orderInfo = $orderInfo;
         $this->telegramPaymentChargeId = $telegramPaymentChargeId;
         $this->providerPaymentChargeId = $providerPaymentChargeId;
-    ***REMOVED***
+    }
 
     public static function fromApi($successfulPayment): ?SuccessfulPayment
-    ***REMOVED***
+    {
         if ( ! $successfulPayment) return null;
 
         return new static(
@@ -41,5 +41,5 @@ final class SuccessfulPayment
             $successfulPayment->telegram_payment_charge_id,
             $successfulPayment->provider_payment_charge_id,
         );
-    ***REMOVED***
-***REMOVED***
+    }
+}

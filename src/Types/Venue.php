@@ -1,7 +1,7 @@
 <?php namespace TelegramPro\Types;
 
 final class Venue
-***REMOVED***
+{
     private Location $location;
     private string $title;
     private string $address;
@@ -14,16 +14,16 @@ final class Venue
         string $address,
         ?string $foursquareId,
         ?string $foursquareType
-    ) ***REMOVED***
+    ) {
         $this->location = $location;
         $this->title = $title;
         $this->address = $address;
         $this->foursquareId = $foursquareId;
         $this->foursquareType = $foursquareType;
-    ***REMOVED***
+    }
 
     public static function fromApi($venue): ?Venue
-    ***REMOVED***
+    {
         if ( ! $venue) return null;
 
         return new static(
@@ -33,5 +33,5 @@ final class Venue
             $venue->foursquare_id,
             $venue->foursquare_type
         );
-    ***REMOVED***
-***REMOVED***
+    }
+}

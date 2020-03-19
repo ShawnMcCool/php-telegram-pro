@@ -6,11 +6,11 @@ use TelegramPro\Types\MessageEntity;
 use PHPUnit\Framework\TestCase;
 
 final class UpdateTest extends TestCase
-***REMOVED***
+{
     use ExampleWebhooks;
 
     function testMessageWithText()
-    ***REMOVED***
+    {
         # Update
         $update = Update::fromApi($this->messageWithText);
 
@@ -40,10 +40,10 @@ final class UpdateTest extends TestCase
         self::assertSame(1111111, $from->userId());
         self::assertSame('Test Firstname', $from->firstName());
         self::assertSame('Testusername', $from->username());
-    ***REMOVED***
+    }
 
     function testForwardedMessage()
-    ***REMOVED***
+    {
         # Update
         $update = Update::fromApi($this->forwardedMessage);
 
@@ -81,10 +81,10 @@ final class UpdateTest extends TestCase
         self::assertSame('Forward Lastname', $from->lastName());
         self::assertSame(222222, $from->userId());
         self::assertSame('Forward Firstname', $from->firstName());
-    ***REMOVED***
+    }
 
     function testForwardedChannelMessage()
-    ***REMOVED***
+    {
         # Update
         $update = Update::fromApi($this->forwardedChannelMessage);
 
@@ -125,10 +125,10 @@ final class UpdateTest extends TestCase
         self::assertSame(-10000000000, $fromChat->chatId());
         self::assertSame('channel', $fromChat->type());
         self::assertSame('Test channel', $fromChat->title());
-    ***REMOVED***
+    }
 
     function testMessageWithAReply()
-    ***REMOVED***
+    {
         # Update
         $update = Update::fromApi($this->messageWithAReply);
 
@@ -175,10 +175,10 @@ final class UpdateTest extends TestCase
         self::assertSame('private', $replyToMessageChat->type());
         self::assertSame('Reply Firstname', $replyToMessageChat->firstName());
         self::assertSame('Testusername', $replyToMessageChat->username());
-    ***REMOVED***
+    }
 
     function testEditedMessage()
-    ***REMOVED***
+    {
         # Update
         $update = Update::fromApi($this->editedMessage);
 
@@ -210,10 +210,10 @@ final class UpdateTest extends TestCase
         self::assertSame(1111111, $from->userId());
         self::assertSame('Test Firstname', $from->firstName());
         self::assertSame('Testusername', $from->username());
-    ***REMOVED***
+    }
 
     function testMessageWithEntities()
-    ***REMOVED***
+    {
         # Update
         $update = Update::fromApi($this->messageWithEntities);
 
@@ -262,10 +262,10 @@ final class UpdateTest extends TestCase
         self::assertSame('bold', $two->type());
         self::assertSame(0, $two->offset());
         self::assertSame(4, $two->length());
-    ***REMOVED***
+    }
 
     function testMessageWithAudio()
-    ***REMOVED***
+    {
         # Update
         $update = Update::fromApi($this->messageWithAudio);
 
@@ -304,10 +304,10 @@ final class UpdateTest extends TestCase
         self::assertSame('audio/mpeg', $audio->mimeType());
         self::assertSame(3897500, $audio->fileSize());
         self::assertSame('Test music file', $audio->title());
-    ***REMOVED***
+    }
 
     function testVoiceMessage()
-    ***REMOVED***
+    {
         # Update
         $update = Update::fromApi($this->voiceMessage);
 
@@ -344,10 +344,10 @@ final class UpdateTest extends TestCase
         self::assertSame(5, $voice->duration());
         self::assertSame('audio/ogg', $voice->mimeType());
         self::assertSame(23000, $voice->fileSize());
-    ***REMOVED***
+    }
 
     function testMessageWithADocument()
-    ***REMOVED***
+    {
         # Update
         $update = Update::fromApi($this->messageWithADocument);
 
@@ -384,10 +384,10 @@ final class UpdateTest extends TestCase
         self::assertSame('Testfile.pdf', $document->fileName());
         self::assertSame('application/pdf', $document->mimeType());
         self::assertSame(536392, $document->fileSize());
-    ***REMOVED***
+    }
 
     function testInlineQuery()
-    ***REMOVED***
+    {
         $update = Update::fromApi($this->inlineQuery);
 
         self::assertSame(10000, $update->updateId());
@@ -406,10 +406,10 @@ final class UpdateTest extends TestCase
         self::assertSame(1111111, $from->userId());
         self::assertSame('Test Firstname', $from->firstName());
         self::assertSame('Testusername', $from->username());
-    ***REMOVED***
+    }
 
     function testChosenInlineQuery()
-    ***REMOVED***
+    {
         $update = Update::fromApi($this->chosenInlineQuery);
 
         self::assertSame(10000, $update->updateId());
@@ -428,10 +428,10 @@ final class UpdateTest extends TestCase
         self::assertSame(1111111, $from->userId());
         self::assertSame('Test Firstname', $from->firstName());
         self::assertSame('Testusername', $from->username());
-    ***REMOVED***
+    }
 
     function testCallbackQuery()
-    ***REMOVED***
+    {
         $update = Update::fromApi($this->callbackQuery);
 
         self::assertSame(10000, $update->updateId());
@@ -450,5 +450,5 @@ final class UpdateTest extends TestCase
         self::assertSame(1111111, $from->userId());
         self::assertSame('Test Firstname', $from->firstName());
         self::assertSame('Testusername', $from->username());
-    ***REMOVED***
-***REMOVED***
+    }
+}

@@ -1,7 +1,7 @@
 <?php namespace TelegramPro\Types;
 
 final class Video
-***REMOVED***
+{
     private string $fileId;
     private string $fileUniqueId;
     private int $width;
@@ -20,7 +20,7 @@ final class Video
         ?PhotoSize $thumb,
         ?string $mimeType,
         ?int $fileSize
-    ) ***REMOVED***
+    ) {
         $this->fileId = $fileId;
         $this->fileUniqueId = $fileUniqueId;
         $this->width = $width;
@@ -29,10 +29,10 @@ final class Video
         $this->thumb = $thumb;
         $this->mimeType = $mimeType;
         $this->fileSize = $fileSize;
-    ***REMOVED***
+    }
 
     public static function fromApi($video): ?Video
-    ***REMOVED***
+    {
         if ( ! $video) return null;
 
         return new static(
@@ -45,5 +45,5 @@ final class Video
             $video->mime_type,
             $video->file_size,
         );
-    ***REMOVED***
-***REMOVED***
+    }
+}

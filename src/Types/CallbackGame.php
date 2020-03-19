@@ -1,7 +1,7 @@
 <?php namespace TelegramPro\Types;
 
 final class CallbackGame
-***REMOVED***
+{
     private int $userId;
     private int $score;
     private ?bool $force;
@@ -18,7 +18,7 @@ final class CallbackGame
         ?int $chatId,
         ?int $messageId,
         ?string $inlineMessageId
-    ) ***REMOVED***
+    ) {
         $this->userId = $userId;
         $this->score = $score;
         $this->force = $force;
@@ -26,10 +26,10 @@ final class CallbackGame
         $this->chatId = $chatId;
         $this->messageId = $messageId;
         $this->inlineMessageId = $inlineMessageId;
-    ***REMOVED***
+    }
 
     public static function fromApi($callbackGame): ?CallbackGame
-    ***REMOVED***
+    {
         if ( ! $callbackGame) return null;
 
         return new static(
@@ -41,40 +41,40 @@ final class CallbackGame
             $callbackGame->message_id ?? null,
             $callbackGame->inline_message_id ?? null
         );
-    ***REMOVED***
+    }
 
     public function userId(): int
-    ***REMOVED***
+    {
         return $this->userId;
-    ***REMOVED***
+    }
 
     public function score(): int
-    ***REMOVED***
+    {
         return $this->score;
-    ***REMOVED***
+    }
 
     public function force(): ?bool
-    ***REMOVED***
+    {
         return $this->force;
-    ***REMOVED***
+    }
 
     public function disableEditMessage(): ?bool
-    ***REMOVED***
+    {
         return $this->disableEditMessage;
-    ***REMOVED***
+    }
 
     public function chatId(): ?int
-    ***REMOVED***
+    {
         return $this->chatId;
-    ***REMOVED***
+    }
 
     public function messageId(): ?int
-    ***REMOVED***
+    {
         return $this->messageId;
-    ***REMOVED***
+    }
 
     public function inlineMessageId(): ?string
-    ***REMOVED***
+    {
         return $this->inlineMessageId;
-    ***REMOVED***
-***REMOVED***
+    }
+}

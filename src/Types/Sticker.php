@@ -1,7 +1,7 @@
 <?php namespace TelegramPro\Types;
 
 final class Sticker
-***REMOVED***
+{
     private string $fileid;
     private string $fileUniqueId;
     private int $width;
@@ -24,7 +24,7 @@ final class Sticker
         ?string $setName,
         ?MaskPosition $maskPosition,
         ?int $fileSize
-    ) ***REMOVED***
+    ) {
         $this->fileid = $fileid;
         $this->fileUniqueId = $fileUniqueId;
         $this->width = $width;
@@ -35,10 +35,10 @@ final class Sticker
         $this->setName = $setName;
         $this->maskPosition = $maskPosition;
         $this->fileSize = $fileSize;
-    ***REMOVED***
+    }
 
     public static function fromApi($sticker): ?Sticker
-    ***REMOVED***
+    {
         if ( ! $sticker) return null;
         
         return new static(
@@ -53,5 +53,5 @@ final class Sticker
             MaskPosition::fromApi($sticker->mask_position),
             $sticker->file_size
         );
-    ***REMOVED***
-***REMOVED***
+    }
+}

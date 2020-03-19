@@ -1,16 +1,16 @@
 <?php namespace TelegramPro\Methods;
 
-use TelegramPro\Types\User;
+use TelegramPro\Types\Message;
 
-final class GetMeResponse
+final class SendMessageResponse
 {
     private bool $ok;
-    private ?User $result;
+    private ?Message $result;
     private ?MethodError $error;
 
     public function __construct(
         bool $ok,
-        ?User $result,
+        ?Message $result,
         ?MethodError $error
     ) {
         $this->ok = $ok;
@@ -23,7 +23,7 @@ final class GetMeResponse
         return $this->ok;
     }
 
-    public function result(): ?User
+    public function result(): ?Message
     {
         return $this->result;
     }
@@ -33,13 +33,13 @@ final class GetMeResponse
         return $this->error;
     }
 
-    public static function fromApi(string $jsonResponse): GetMeResponse
+    public static function fromApi(string $jsonResponse): self
     {
         $response = json_decode($jsonResponse);
 
         return new static(
             $response->ok,
-            User::fromApi($response->result ?? null),
+            Message::fromApi($response->result ?? null),
             MethodError::fromApi($response)
         );
     }

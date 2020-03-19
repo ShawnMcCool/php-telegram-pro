@@ -1,7 +1,7 @@
 <?php namespace TelegramPro\Types;
 
 final class PreCheckoutQuery
-***REMOVED***
+{
     private string $id;
     private User $from;
     private string $currency;
@@ -18,7 +18,7 @@ final class PreCheckoutQuery
         string $invoicePayload,
         ?string $shippingOptionId,
         ?OrderInfo $orderInfo
-    ) ***REMOVED***
+    ) {
         $this->id = $id;
         $this->from = $from;
         $this->currency = $currency;
@@ -26,10 +26,10 @@ final class PreCheckoutQuery
         $this->invoicePayload = $invoicePayload;
         $this->shippingOptionId = $shippingOptionId;
         $this->orderInfo = $orderInfo;
-    ***REMOVED***
+    }
 
     public static function fromApi($preCheckoutQuery): ?PreCheckoutQuery
-    ***REMOVED***
+    {
         if ( ! $preCheckoutQuery) return null;
 
         return new static(
@@ -41,5 +41,5 @@ final class PreCheckoutQuery
             $preCheckoutQuery->shipping_option_id,
             OrderInfo::fromApi($preCheckoutQuery->order_info)
         );
-    ***REMOVED***
-***REMOVED***
+    }
+}

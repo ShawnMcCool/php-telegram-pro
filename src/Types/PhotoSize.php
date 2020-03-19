@@ -1,7 +1,7 @@
 <?php namespace TelegramPro\Types;
 
 final class PhotoSize
-***REMOVED***
+{
     private string $fileId;
     private string $fileUniqueId;
     private int $width;
@@ -14,29 +14,29 @@ final class PhotoSize
         int $width,
         int $height,
         ?int $fileSize
-    ) ***REMOVED***
+    ) {
         $this->fileId = $fileId;
         $this->fileUniqueId = $fileUniqueId;
         $this->width = $width;
         $this->height = $height;
         $this->fileSize = $fileSize;
-    ***REMOVED***
+    }
 
     public static function arrayfromApi(?array $photoSizes): ?array
-    ***REMOVED***
+    {
         if ( ! $photoSizes) return null;
         
         $photoSizeArray = [];
         
-        foreach ($photoSizes as $photoSize) ***REMOVED***
+        foreach ($photoSizes as $photoSize) {
             $photoSizeArray[] = PhotoSize::fromApi($photoSize);
-        ***REMOVED***
+        }
         
         return $photoSizeArray;
-    ***REMOVED***
+    }
 
     public static function fromApi($thumb): ?PhotoSize
-    ***REMOVED***
+    {
         if ( ! $thumb) return null;
 
         return new static(
@@ -46,5 +46,5 @@ final class PhotoSize
             $thumb->height,
             $thumb->file_size
         );
-    ***REMOVED***
-***REMOVED***
+    }
+}

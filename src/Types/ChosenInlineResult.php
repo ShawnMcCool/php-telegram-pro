@@ -1,7 +1,7 @@
 <?php namespace TelegramPro\Types;
 
 final class ChosenInlineResult
-***REMOVED***
+{
     private string $resultId;
     private User $from;
     private ?Location $location;
@@ -14,16 +14,16 @@ final class ChosenInlineResult
         ?Location $location,
         string $inlineMessageId,
         string $query
-    ) ***REMOVED***
+    ) {
         $this->resultId = $resultId;
         $this->from = $from;
         $this->location = $location;
         $this->inlineMessageId = $inlineMessageId;
         $this->query = $query;
-    ***REMOVED***
+    }
 
     public static function fromApi($chosenInlineResult): ?ChosenInlineResult
-    ***REMOVED***
+    {
         if ( ! $chosenInlineResult) return null;
 
         return new static(
@@ -33,30 +33,30 @@ final class ChosenInlineResult
             $chosenInlineResult->inline_message_id,
             $chosenInlineResult->query,
         );
-    ***REMOVED***
+    }
 
     public function resultId(): string
-    ***REMOVED***
+    {
         return $this->resultId;
-    ***REMOVED***
+    }
 
     public function from(): User
-    ***REMOVED***
+    {
         return $this->from;
-    ***REMOVED***
+    }
 
     public function location(): ?Location
-    ***REMOVED***
+    {
         return $this->location;
-    ***REMOVED***
+    }
 
     public function inlineMessageId(): string
-    ***REMOVED***
+    {
         return $this->inlineMessageId;
-    ***REMOVED***
+    }
 
     public function query(): string
-    ***REMOVED***
+    {
         return $this->query;
-    ***REMOVED***
-***REMOVED***
+    }
+}

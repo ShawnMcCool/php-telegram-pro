@@ -1,7 +1,7 @@
 <?php namespace TelegramPro\Types;
 
 final class Chat
-***REMOVED***
+{
     private int $chatId;
     private string $type;
     private ?string $title;
@@ -32,7 +32,7 @@ final class Chat
         ?int $slowModeDelay,
         ?string $stickerSetName,
         ?bool $canSetStickerSet
-    ) ***REMOVED***
+    ) {
         $this->chatId = $chatId;
         $this->type = $type;
         $this->title = $title;
@@ -47,10 +47,10 @@ final class Chat
         $this->slowModeDelay = $slowModeDelay;
         $this->stickerSetName = $stickerSetName;
         $this->canSetStickerSet = $canSetStickerSet;
-    ***REMOVED***
+    }
 
     public static function fromApi($chat): ?Chat
-    ***REMOVED***
+    {
         if ( ! $chat) return null;
         
         return new static(
@@ -69,75 +69,75 @@ final class Chat
             $chat->sticker_set_name ?? null,
             $chat->can_set_sticker_set ?? null
         );
-    ***REMOVED***
+    }
 
     public function chatId(): int
-    ***REMOVED***
+    {
         return $this->chatId;
-    ***REMOVED***
+    }
 
     public function type(): string
-    ***REMOVED***
+    {
         return $this->type;
-    ***REMOVED***
+    }
 
     public function title(): ?string
-    ***REMOVED***
+    {
         return $this->title;
-    ***REMOVED***
+    }
 
     public function username(): ?string
-    ***REMOVED***
+    {
         return $this->username;
-    ***REMOVED***
+    }
 
     public function firstName(): ?string
-    ***REMOVED***
+    {
         return $this->firstName;
-    ***REMOVED***
+    }
 
     public function lastName(): ?string
-    ***REMOVED***
+    {
         return $this->lastName;
-    ***REMOVED***
+    }
 
     public function photo(): ?ChatPhoto
-    ***REMOVED***
+    {
         return $this->photo;
-    ***REMOVED***
+    }
 
     public function description(): ?string
-    ***REMOVED***
+    {
         return $this->description;
-    ***REMOVED***
+    }
 
     public function inviteLink(): ?string
-    ***REMOVED***
+    {
         return $this->inviteLink;
-    ***REMOVED***
+    }
 
     public function pinnedMessage(): ?Message
-    ***REMOVED***
+    {
         return $this->pinnedMessage;
-    ***REMOVED***
+    }
 
     public function permissions(): ?ChatPermissions
-    ***REMOVED***
+    {
         return $this->permissions;
-    ***REMOVED***
+    }
 
     public function slowModeDelay(): ?int
-    ***REMOVED***
+    {
         return $this->slowModeDelay;
-    ***REMOVED***
+    }
 
     public function stickerSetName(): ?string
-    ***REMOVED***
+    {
         return $this->stickerSetName;
-    ***REMOVED***
+    }
 
     public function canSetStickerSet(): ?bool
-    ***REMOVED***
+    {
         return $this->canSetStickerSet;
-    ***REMOVED***
-***REMOVED***
+    }
+}

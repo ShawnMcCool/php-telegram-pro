@@ -1,7 +1,7 @@
 <?php namespace TelegramPro\Types;
 
 final class EncryptedPassportElement
-***REMOVED***
+{
     private string $type;
     private ?string $data;
     private ?string $phoneNumber;
@@ -24,7 +24,7 @@ final class EncryptedPassportElement
         ?PassportFile $selfie,
         ?array $translation, // array of PassportFile
         string $hash
-    ) ***REMOVED***
+    ) {
         $this->type = $type;
         $this->data = $data;
         $this->phoneNumber = $phoneNumber;
@@ -35,23 +35,23 @@ final class EncryptedPassportElement
         $this->selfie = $selfie;
         $this->translation = $translation;
         $this->hash = $hash;
-    ***REMOVED***
+    }
 
     public static function arrayfromApi(?array $encryptedPassportElements): ?array
-    ***REMOVED***
+    {
         if ( ! $encryptedPassportElements) return null;
 
         $encryptedPassportElementArray = [];
 
-        foreach ($encryptedPassportElements as $encryptedPassportElement) ***REMOVED***
+        foreach ($encryptedPassportElements as $encryptedPassportElement) {
             $encryptedPassportElementArray[] = EncryptedPassportElement::fromApi($encryptedPassportElement);
-        ***REMOVED***
+        }
 
         return $encryptedPassportElementArray;
-    ***REMOVED***
+    }
 
     private static function fromApi($encryptedPassportElement): EncryptedPassportElement
-    ***REMOVED***
+    {
         return new static(
             $encryptedPassportElement->type,
             $encryptedPassportElement->data,
@@ -64,5 +64,5 @@ final class EncryptedPassportElement
             PassportFile::arrayfromApi($encryptedPassportElement->translation),
             $encryptedPassportElement->hash
         );
-    ***REMOVED***
-***REMOVED***
+    }
+}

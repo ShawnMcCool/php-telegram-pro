@@ -1,4 +1,4 @@
-***REMOVED***
+{
   "hostname": "php-telegram-pro",
   "dbuser": "root",
   "dbpasswd": "password",
@@ -13,4 +13,4 @@
   "node_major_version": "10",
   "enable_swap": "yes",
   "swap_size_in_mb": "1024"
-***REMOVED***
+}

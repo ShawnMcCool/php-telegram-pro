@@ -5,4 +5,4 @@
 /bin
 .phpunit.result.cache
 /ubuntu*.log
-/.token
+/.bot-test-config

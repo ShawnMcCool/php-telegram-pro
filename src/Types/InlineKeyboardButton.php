@@ -1,7 +1,7 @@
 <?php namespace TelegramPro\Types;
 
 final class InlineKeyboardButton
-***REMOVED***
+{
     private string $text;
     private ?string $url;
     private ?LoginUrl $loginUrl;
@@ -20,7 +20,7 @@ final class InlineKeyboardButton
         ?string $switchInlineQueryCurrentChat,
         ?CallbackGame $callbackGame,
         ?bool $pay
-    ) ***REMOVED***
+    ) {
         $this->text = $text;
         $this->url = $url;
         $this->loginUrl = $loginUrl;
@@ -29,36 +29,36 @@ final class InlineKeyboardButton
         $this->switchInlineQueryCurrentChat = $switchInlineQueryCurrentChat;
         $this->callbackGame = $callbackGame;
         $this->pay = $pay;
-    ***REMOVED***
+    }
 
     public static function arrayOfArraysfromApi(?array $inlineKeyboard): ?array
-    ***REMOVED***
+    {
         if ( ! $inlineKeyboard) return null;
 
         $keyboardRowArray = [];
 
-        foreach ($inlineKeyboard as $inlineKeyboardRows) ***REMOVED***
+        foreach ($inlineKeyboard as $inlineKeyboardRows) {
             $keyboardRowArray[] = static::arrayfromApi($inlineKeyboardRows);
-        ***REMOVED***
+        }
 
         return $keyboardRowArray;
-    ***REMOVED***
+    }
 
     private static function arrayfromApi(?array $inlineKeyboardButtons): ?array
-    ***REMOVED***
+    {
         if ( ! $inlineKeyboardButtons) return null;
 
         $buttonArray = [];
 
-        foreach ($inlineKeyboardButtons as $inlineKeyboardButton) ***REMOVED***
+        foreach ($inlineKeyboardButtons as $inlineKeyboardButton) {
             $buttonArray[] = InlineKeyboardButton::fromApi($inlineKeyboardButton);
-        ***REMOVED***
+        }
 
         return $buttonArray;
-    ***REMOVED***
+    }
 
     private static function fromApi($inlineKeyboardButton): InlineKeyboardButton
-    ***REMOVED***
+    {
         return new static(
             $inlineKeyboardButton->text,
             $inlineKeyboardButton->url,
@@ -69,5 +69,5 @@ final class InlineKeyboardButton
             CallbackGame::fromApi($inlineKeyboardButton->callback_game),
             $inlineKeyboardButton->pay
         );
-    ***REMOVED***
-***REMOVED***
+    }
+}

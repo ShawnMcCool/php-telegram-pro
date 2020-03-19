@@ -1,7 +1,7 @@
 <?php namespace TelegramPro\Types;
 
 final class ShippingAddress
-***REMOVED***
+{
     private string $countryCode;
     private string $state;
     private string $city;
@@ -16,17 +16,17 @@ final class ShippingAddress
         string $streetLine1,
         string $streetLine2,
         string $postalCode
-    ) ***REMOVED***
+    ) {
         $this->countryCode = $countryCode;
         $this->state = $state;
         $this->city = $city;
         $this->streetLine1 = $streetLine1;
         $this->streetLine2 = $streetLine2;
         $this->postalCode = $postalCode;
-    ***REMOVED***
+    }
 
     public static function fromApi($shippingAddress): ?ShippingAddress
-    ***REMOVED***
+    {
         if ( ! $shippingAddress) return null;
 
         return new static(
@@ -37,5 +37,5 @@ final class ShippingAddress
             $shippingAddress->street_line_2,
             $shippingAddress->postal_code
         );
-    ***REMOVED***
-***REMOVED***
+    }
+}

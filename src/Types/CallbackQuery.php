@@ -1,7 +1,7 @@
 <?php namespace TelegramPro\Types;
 
 final class CallbackQuery
-***REMOVED***
+{
     private string $id;
     private User $from;
     private ?Message $message;
@@ -18,7 +18,7 @@ final class CallbackQuery
         ?string $chatInstance,
         ?string $data,
         ?string $gameShortName
-    ) ***REMOVED***
+    ) {
         $this->id = $id;
         $this->from = $from;
         $this->message = $message;
@@ -26,10 +26,10 @@ final class CallbackQuery
         $this->chatInstance = $chatInstance;
         $this->data = $data;
         $this->gameShortName = $gameShortName;
-    ***REMOVED***
+    }
 
     public static function fromApi($callbackQuery): ?CallbackQuery
-    ***REMOVED***
+    {
         if ( ! $callbackQuery) return null;
 
         return new static(
@@ -41,40 +41,40 @@ final class CallbackQuery
             $callbackQuery->data ?? null,
             $callbackQuery->game_short_name ?? null
         );
-    ***REMOVED***
+    }
 
     public function id(): string
-    ***REMOVED***
+    {
         return $this->id;
-    ***REMOVED***
+    }
 
     public function from(): User
-    ***REMOVED***
+    {
         return $this->from;
-    ***REMOVED***
+    }
 
     public function message(): ?Message
-    ***REMOVED***
+    {
         return $this->message;
-    ***REMOVED***
+    }
 
     public function inlineMessageId(): ?string
-    ***REMOVED***
+    {
         return $this->inlineMessageId;
-    ***REMOVED***
+    }
 
     public function chatInstance(): ?string
-    ***REMOVED***
+    {
         return $this->chatInstance;
-    ***REMOVED***
+    }
 
     public function data(): ?string
-    ***REMOVED***
+    {
         return $this->data;
-    ***REMOVED***
+    }
 
     public function gameShortName(): ?string
-    ***REMOVED***
+    {
         return $this->gameShortName;
-    ***REMOVED***
-***REMOVED***
+    }
+}

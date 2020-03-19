@@ -1,7 +1,7 @@
 <?php namespace TelegramPro\Types;
 
 final class ChatPhoto
-***REMOVED***
+{
     private string $smallFileId;
     private string $smallFileUniqueId;
     private string $bigFileId;
@@ -12,15 +12,15 @@ final class ChatPhoto
         string $smallFileUniqueId,
         string $bigFileId,
         string $bigFileUniqueId
-    ) ***REMOVED***
+    ) {
         $this->smallFileId = $smallFileId;
         $this->smallFileUniqueId = $smallFileUniqueId;
         $this->bigFileId = $bigFileId;
         $this->bigFileUniqueId = $bigFileUniqueId;
-    ***REMOVED***
+    }
 
     public static function fromApi($photo): ?ChatPhoto
-    ***REMOVED***
+    {
         if ( ! $photo) return null;
 
         return new static(
@@ -29,5 +29,5 @@ final class ChatPhoto
             $photo->big_file_id,
             $photo->big_file_unique_id
         );
-    ***REMOVED***
-***REMOVED***
+    }
+}
