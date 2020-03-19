@@ -20,6 +20,18 @@ class SendMessageTest extends TelegramTestCase
         self::assertInstanceOf(Message::class, $response->result());
     }
 
+    function testSendMarkdownMessage()
+    {
+        $response = SendMessage::parameters(
+            $this->config->groupId(),
+            '[SendMessage] send *markdown parsed* message',
+            ParseMode::markdown()
+        )->send($this->telegramApi);
+
+        self::assertTrue($response->ok());
+        self::assertInstanceOf(Message::class, $response->result());
+    }
+
     function testCanParseError()
     {
         $sent = SendMessage::parameters(

@@ -14,6 +14,11 @@ final class ParseMode
         return $this->parseMode;
     }
 
+    public function __toString()
+    {
+        return $this->parseMode;
+    }
+
     public static function markdown(): ParseMode
     {
         return new static('MarkdownV2');
@@ -22,6 +27,11 @@ final class ParseMode
     public static function html(): ParseMode
     {
         return new static('HTML');
+    }
+
+    public static function legacyMarkdown(): ParseMode
+    {
+        return new static('markdown');
     }
 
     public static function none()

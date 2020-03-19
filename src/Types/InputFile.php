@@ -1,6 +1,8 @@
 <?php namespace TelegramPro\Types;
 
-final class InputFile
+use CURLFile;
+
+class InputFile
 {
     private ?string $fileId;
     private ?string $url;
@@ -30,7 +32,12 @@ final class InputFile
     {
         return $this->filePath;
     }
-    
+
+    public function toApi()
+    {
+        return $this->fileId ?? $this->url ?? new CURLFile(realpath($this->filePath));
+    }
+
     public static function fromFileId(string $fileId): InputFile
     {
         return new static($fileId, null, null);
@@ -41,7 +48,7 @@ final class InputFile
         if (filter_var($url, FILTER_VALIDATE_URL) === FALSE) {
             throw new CanNotValidateUrl($url);
         }
-        
+
         return new static(null, $url, null);
     }
 

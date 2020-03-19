@@ -22,7 +22,11 @@ class TelegramTestCase extends TestCase
         );
         
         $this->media = TestMedia::paths(
-            'tests/Media/Images'
+            'tests/Media/Images',
+            'https://homepages.cae.wisc.edu/~ece533/images/boat.png',
+            'tests/Media/Audio/audio.mp3',
+            'tests/Media/Audio/audio.m4a',
+            'https://file-examples.com/wp-content/uploads/2017/11/file_example_MP3_700KB.mp3'
         );
     }
 
