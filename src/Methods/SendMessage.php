@@ -39,7 +39,7 @@ final class SendMessage implements Method
                           [
                               'chat_id' => $this->chatId,
                               'text' => $this->text,
-                              'parse_mode' => $this->parseMode,
+                              'parse_mode' => $this->parseMode ? $this->parseMode->toParameter() : null,
                               'disable_web_page_preview' => $this->disableWebPagePreview,
                               'disable_notification' => $this->disableNotification,
                               'reply_to_message_id' => $this->replyToMessageId,
@@ -67,7 +67,7 @@ final class SendMessage implements Method
     ): SendMessage {
         return new static(
             $chatId,
-            $text,
+            $text ?? '',
             $parseMode,
             $disableWebPagePreview,
             $disableNotification,

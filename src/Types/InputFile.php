@@ -4,23 +4,33 @@ final class InputFile
 {
     private ?string $fileId;
     private ?string $url;
-    private ?string $binaryData;
+    private ?string $filePath;
 
     public function __construct(
         ?string $fileId,
         ?string $url,
-        $binaryData
+        ?string $filePath
     ) {
         $this->fileId = $fileId;
         $this->url = $url;
-        $this->binaryData = $binaryData;
+        $this->filePath = $filePath;
     }
 
-    public function toApi()
+    public function fileId(): ?string
     {
-        return $this->fileId ?? $this->url ?? $this->binaryData;
+        return $this->fileId;
     }
 
+    public function url(): ?string
+    {
+        return $this->url;
+    }
+
+    public function filePath(): ?string
+    {
+        return $this->filePath;
+    }
+    
     public static function fromFileId(string $fileId): InputFile
     {
         return new static($fileId, null, null);
@@ -41,13 +51,6 @@ final class InputFile
             throw CanNotOpenFile::fileDoesNotExist($filePath);
         }
 
-        return static::fromBinary(
-            file_get_contents($filePath)
-        );
-    }
-
-    public static function fromBinary($binaryData): InputFile
-    {
-        return new static(null, null, $binaryData);
+        return new static(null, null, $filePath);
     }
 }

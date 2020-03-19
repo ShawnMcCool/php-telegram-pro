@@ -9,13 +9,13 @@ class InputFileTest extends TelegramTestCase
     function testMakeInputFileFromFileId()
     {
         $file = InputFile::fromFileId('file id');
-        self::assertSame('file id', $file->toApi());
+        self::assertSame('file id', $file->fileId());
     }
 
     function testMakeInputFileFromUrl()
     {
         $file = InputFile::fromUrl('https://github.com');
-        self::assertSame('https://github.com', $file->toApi());
+        self::assertSame('https://github.com', $file->url());
 
         $this->expectException(CanNotValidateUrl::class);
         InputFile::fromUrl('url');
@@ -23,27 +23,13 @@ class InputFileTest extends TelegramTestCase
 
     function testMakeInputFileFromFile()
     {
-        $imagePath = $this->media->imagePath();
+        $imagePath = $this->media->image();
 
         $file = InputFile::fromFile($imagePath);
 
         self::assertSame(
-            filesize($imagePath),
-            strlen($file->toApi())
-        );
-    }
-
-    function testMakeInputFileFromBinary()
-    {
-        $imagePath = $this->media->imagePath();
-
-        $file = InputFile::fromBinary(
-            file_get_contents($imagePath)
-        );
-
-        self::assertSame(
-            filesize($imagePath),
-            strlen($file->toApi())
+            $imagePath,
+            $file->filePath()
         );
     }
 }

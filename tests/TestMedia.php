@@ -22,7 +22,7 @@ final class TestMedia
         );
     }
 
-    public function imagePath(): string
+    public function image(): string
     {
         $key = array_rand($this->images, 1);
         return $this->images[$key];

@@ -1,0 +1,48 @@
+<?php namespace Tests\Api\Methods;
+
+use Tests\TelegramTestCase;
+use TelegramPro\Types\Message;
+use TelegramPro\Types\InputFile;
+use TelegramPro\Methods\SendPhoto;
+use TelegramPro\Methods\MethodError;
+use TelegramPro\Types\CanNotOpenFile;
+
+class SendPhotoTest extends TelegramTestCase
+{
+    function testSendPhoto()
+    {
+        $sent = SendPhoto::parameters(
+            $this->config->groupId(),
+            InputFile::fromFile($this->media->image()),
+            '[SendPhoto] send photo test'
+        )->send($this->telegramApi);
+
+        self::assertTrue($sent->ok());
+        self::assertInstanceOf(Message::class, $sent->result());
+    }
+
+    function testCanNotSendNonExistentFile()
+    {
+        $this->expectException(CanNotOpenFile::class);
+
+        $sent = SendPhoto::parameters(
+            $this->config->groupId(),
+            InputFile::fromFile('non existent file'),
+            '[SendPhoto] parse error test'
+        )->send($this->telegramApi);
+    }
+
+    function testCanParseError()
+    {
+        $sent = SendPhoto::parameters(
+            $this->config->groupId(),
+            InputFile::fromUrl('https://bob'),
+            '[SendPhoto] parse error test'
+        )->send($this->telegramApi);
+        
+        self::assertFalse($sent->ok());
+        self::assertInstanceOf(MethodError::class, $sent->error());
+        self::assertSame('400', $sent->error()->code());
+        self::assertNotEmpty($sent->error()->description());
+    }
+}
