@@ -12,7 +12,7 @@ class SendMessageTest extends TelegramTestCase
     {
         $response = SendMessage::parameters(
             $this->config->groupId(),
-            '[SendMessage] can send message',
+            '[SendMessage] send message',
             ParseMode::none()
         )->send($this->telegramApi);
 
