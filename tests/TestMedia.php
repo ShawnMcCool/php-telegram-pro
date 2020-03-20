@@ -12,6 +12,8 @@ final class TestMedia
     private string $animationPath;
     private string $animationUrl;
     private string $videoUrl;
+    private string $voicePath;
+    private string $voiceUrl;
 
     private function __construct(
         array $images,
@@ -23,7 +25,9 @@ final class TestMedia
         string $videoPath,
         string $videoUrl,
         string $animationPath,
-        string $animationUrl
+        string $animationUrl,
+        string $voicePath,
+        string $voiceUrl
     ) {
         $this->images = $images;
         $this->mp3Path = $mp3Path;
@@ -35,6 +39,8 @@ final class TestMedia
         $this->animationPath = $animationPath;
         $this->animationUrl = $animationUrl;
         $this->videoUrl = $videoUrl;
+        $this->voicePath = $voicePath;
+        $this->voiceUrl = $voiceUrl;
     }
 
     public function image(): string
@@ -88,6 +94,16 @@ final class TestMedia
         return $this->animationUrl;
     }
 
+    public function voice(): string
+    {
+        return $this->voicePath;
+    }
+
+    public function voiceUrl(): string
+    {
+        return $this->voiceUrl;
+    }
+
     public static function paths(
         string $imageDirectory,
         string $imageUrl,
@@ -98,7 +114,9 @@ final class TestMedia
         string $videoPath,
         string $videoUrl,
         string $animationPath,
-        string $animationUrl
+        string $animationUrl,
+        string $voicePath,
+        string $voiceUrl
     ) {
         if ( ! realpath($imageDirectory)) {
             throw new DirectoryDoesNotExist($imageDirectory);
@@ -118,6 +136,9 @@ final class TestMedia
         if ( ! file_exists($animationPath)) {
             throw new FileDoesNotExist($animationPath);
         }
+        if ( ! file_exists($voicePath)) {
+            throw new FileDoesNotExist($voicePath);
+        }
 
         return new static(
             glob(realpath($imageDirectory) . '/*'),
@@ -129,7 +150,9 @@ final class TestMedia
             $videoPath,
             $videoUrl,
             $animationPath,
-            $animationUrl
+            $animationUrl,
+            $voicePath,
+            $voiceUrl
         );
     }
 }

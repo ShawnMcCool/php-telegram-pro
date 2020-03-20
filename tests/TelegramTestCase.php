@@ -33,7 +33,9 @@ class TelegramTestCase extends TestCase
             'tests/Media/Videos/big-buck-bunny-trailer.m4v',
             'https://www.sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4',
             'tests/Media/Animations/spinning-woman.gif',
-            'https://www.sample-videos.com/gif/3.gif'
+            'https://www.sample-videos.com/gif/3.gif',
+            'tests/Media/Voice/hurdy-sample.ogg',
+            'https://upload.wikimedia.org/wikipedia/commons/a/a3/HurdySample.ogg'
         );
     }
 

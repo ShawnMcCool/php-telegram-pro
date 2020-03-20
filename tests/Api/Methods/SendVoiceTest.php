@@ -2,53 +2,55 @@
 
 use Tests\TelegramTestCase;
 use TelegramPro\Types\Message;
-use TelegramPro\Types\AudioFile;
-use TelegramPro\Methods\SendAudio;
+use TelegramPro\Types\VoiceFile;
+use TelegramPro\Methods\SendVoice;
 use TelegramPro\Methods\MethodError;
 use TelegramPro\Types\CanNotOpenFile;
 
-class SendAudioTest extends TelegramTestCase
+class SendVoiceTest extends TelegramTestCase
 {
-    function testSendAudioFileWithFilePath()
+    function testSendVoiceFileWithFilePath()
     {
-        $sent = SendAudio::parameters(
+        $sent = SendVoice::parameters(
             $this->config->groupId(),
-            AudioFile::fromFile($this->media->mp3()),
-            '[SendAudio] send audio with file path'
+            VoiceFile::fromFile($this->media->voice()),
+            '[SendVoice] send voice with file path'
         )->send($this->telegram);
 
         $this->isOk($sent);
         self::assertInstanceOf(Message::class, $sent->result());
     }
 
-    function testSendAudioWithUrl()
+    function testSendVoiceWithUrl()
     {
-        $sent = SendAudio::parameters(
+        $sent = SendVoice::parameters(
             $this->config->groupId(),
-            AudioFile::fromUrl($this->media->audioUrl()),
-            '[SendAudio] send audio with url'
+            VoiceFile::fromUrl($this->media->voiceUrl()),
+            '[SendVoice] send voice with url'
         )->send($this->telegram);
 
         $this->isOk($sent);
         self::assertInstanceOf(Message::class, $sent->result());
     }
 
-    function testSendAudioWithFileId()
+    function testSendVoiceWithFileId()
     {
         $num = rand(0, 32767);
 
-        $sent = SendAudio::parameters(
+        $sent = SendVoice::parameters(
             $this->config->groupId(),
-            AudioFile::fromFile($this->media->mp3()),
-            '[SendAudio] send audio with file id 1/2 ' . $num
+            VoiceFile::fromFile($this->media->voice()),
+            '[SendVoice] send voice with file id 1/2 ' . $num
         )->send($this->telegram);
 
-        $audioId = $sent->result()->audio()->fileId();
+        $this->isOk($sent);
+        
+        $voiceId = $sent->result()->voice()->fileId();
 
-        $sent = SendAudio::parameters(
+        $sent = SendVoice::parameters(
             $this->config->groupId(),
-            AudioFile::fromFileId($audioId),
-            '[SendAudio] send audio with file id 2/2 ' . $num
+            VoiceFile::fromFileId($voiceId),
+            '[SendVoice] send voice with file id 2/2 ' . $num
         )->send($this->telegram);
 
         $this->isOk($sent);
@@ -59,19 +61,19 @@ class SendAudioTest extends TelegramTestCase
     {
         $this->expectException(CanNotOpenFile::class);
 
-        $sent = SendAudio::parameters(
+        $sent = SendVoice::parameters(
             $this->config->groupId(),
-            AudioFile::fromFile('non existent file'),
-            '[SendAudio] parse error test'
+            VoiceFile::fromFile('non existent file'),
+            '[SendVoice] parse error test'
         )->send($this->telegram);
     }
 
     function testCanParseError()
     {
-        $sent = SendAudio::parameters(
+        $sent = SendVoice::parameters(
             $this->config->groupId(),
-            AudioFile::fromUrl('https://bob'),
-            '[SendAudio] parse error test'
+            VoiceFile::fromUrl('https://bob'),
+            '[SendVoice] parse error test'
         )->send($this->telegram);
 
         self::assertFalse($sent->ok());
