@@ -8,6 +8,10 @@ final class TestMedia
     private string $m4aPath;
     private string $audioUrl;
     private string $documentPath;
+    private string $videoPath;
+    private string $animationPath;
+    private string $animationUrl;
+    private string $videoUrl;
 
     private function __construct(
         array $images,
@@ -15,7 +19,11 @@ final class TestMedia
         string $mp3Path,
         string $m4aPath,
         string $audioUrl,
-        string $documentPath
+        string $documentPath,
+        string $videoPath,
+        string $videoUrl,
+        string $animationPath,
+        string $animationUrl
     ) {
         $this->images = $images;
         $this->mp3Path = $mp3Path;
@@ -23,6 +31,10 @@ final class TestMedia
         $this->imageUrl = $imageUrl;
         $this->audioUrl = $audioUrl;
         $this->documentPath = $documentPath;
+        $this->videoPath = $videoPath;
+        $this->animationPath = $animationPath;
+        $this->animationUrl = $animationUrl;
+        $this->videoUrl = $videoUrl;
     }
 
     public function image(): string
@@ -56,13 +68,37 @@ final class TestMedia
         return $this->documentPath;
     }
 
+    public function video(): string
+    {
+        return $this->videoPath;
+    }
+
+    public function videoUrl(): string
+    {
+        return $this->videoUrl;
+    }
+
+    public function animation(): string
+    {
+        return $this->animationPath;
+    }
+
+    public function animationUrl(): string
+    {
+        return $this->animationUrl;
+    }
+
     public static function paths(
         string $imageDirectory,
         string $imageUrl,
         string $mp3Path,
         string $m4aPath,
         string $audioUrl,
-        string $documentPath
+        string $documentPath,
+        string $videoPath,
+        string $videoUrl,
+        string $animationPath,
+        string $animationUrl
     ) {
         if ( ! realpath($imageDirectory)) {
             throw new DirectoryDoesNotExist($imageDirectory);
@@ -76,6 +112,12 @@ final class TestMedia
         if ( ! file_exists($documentPath)) {
             throw new FileDoesNotExist($documentPath);
         }
+        if ( ! file_exists($videoPath)) {
+            throw new FileDoesNotExist($videoPath);
+        }
+        if ( ! file_exists($animationPath)) {
+            throw new FileDoesNotExist($animationPath);
+        }
 
         return new static(
             glob(realpath($imageDirectory) . '/*'),
@@ -83,7 +125,11 @@ final class TestMedia
             $mp3Path,
             $m4aPath,
             $audioUrl,
-            $documentPath
+            $documentPath,
+            $videoPath,
+            $videoUrl,
+            $animationPath,
+            $animationUrl
         );
     }
 }

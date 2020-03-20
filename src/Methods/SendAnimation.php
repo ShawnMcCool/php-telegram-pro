@@ -4,12 +4,17 @@ use TelegramPro\Api\Telegram;
 use TelegramPro\Types\PhotoFile;
 use TelegramPro\Types\ReplyMarkup;
 use TelegramPro\Api\CurlParameters;
+use TelegramPro\Types\AnimationFile;
 
-final class SendPhoto implements Method
+final class SendAnimation implements Method
 {
     private $chatId;
-    private PhotoFile $photo;
+    private AnimationFile $animation;
     private ?string $caption;
+    private ?int $duration;
+    private ?int $width;
+    private ?int $height;
+    private ?PhotoFile $thumb;
     private ?ParseMode $parseMode;
     private ?bool $disableNotification;
     private ?int $replyToMessageId;
@@ -17,17 +22,24 @@ final class SendPhoto implements Method
 
     public function __construct(
         $chatId,
-        PhotoFile $photo,
+        AnimationFile $animation,
         ?string $caption,
+        ?int $duration,
+        ?int $width,
+        ?int $height,
+        ?PhotoFile $thumb,
         ?ParseMode $parseMode,
         ?bool $disableNotification,
         ?int $replyToMessageId,
         ?ReplyMarkup $replyMarkup
-
     ) {
         $this->chatId = $chatId;
-        $this->photo = $photo;
+        $this->animation = $animation;
         $this->caption = $caption;
+        $this->duration = $duration;
+        $this->width = $width;
+        $this->height = $height;
+        $this->thumb = $thumb;
         $this->parseMode = $parseMode;
         $this->disableNotification = $disableNotification;
         $this->replyToMessageId = $replyToMessageId;
@@ -36,14 +48,18 @@ final class SendPhoto implements Method
 
     function toCurlParameters(string $botToken): CurlParameters
     {
-        return Request::multipartFormData('sendPhoto')
+        return Request::multipartFormData('sendAnimation')
                       ->withParameters(
                           [
                               'chat_id' => $this->chatId,
-                              'photo' => $this->photo->toApi(),
+                              'animation' => $this->animation->toApi(),
+                              'duration' => $this->duration,
+                              'width' => $this->width,
+                              'height' => $this->height,
+                              'thumb' => $this->thumb ? $this->thumb->toApi() : null,
                               'caption' => $this->caption,
                               'parse_mode' => $this->parseMode,
-                              'disable_web_page_preview' => $this->disableNotification,
+                              'disable_notification' => $this->disableNotification,
                               'reply_to_message_id' => $this->replyToMessageId,
                               'reply_markup' => $this->replyMarkup ? $this->replyMarkup->toParameter() : null, // toParameter
                           ]
@@ -51,17 +67,21 @@ final class SendPhoto implements Method
                       ->toCurlParameters($botToken);
     }
 
-    function send(Telegram $telegramApi): SendPhotoResponse
+    function send(Telegram $telegramApi): SendAnimationResponse
     {
-        return SendPhotoResponse::fromApi(
+        return SendAnimationResponse::fromApi(
             $telegramApi->send($this)
         );
     }
 
     public static function parameters(
         $chatId,
-        PhotoFile $photo,
-        ?string $caption = null,
+        AnimationFile $animation,
+        ?string $caption,
+        ?int $duration = null,
+        ?int $width = null,
+        ?int $height = null,
+        ?PhotoFile $thumb = null,
         ?ParseMode $parseMode = null,
         ?bool $disableNotification = null,
         ?int $replyToMessageId = null,
@@ -69,8 +89,12 @@ final class SendPhoto implements Method
     ): self {
         return new static(
             $chatId,
-            $photo,
+            $animation,
             $caption,
+            $duration,
+            $width,
+            $height,
+            $thumb,
             $parseMode,
             $disableNotification,
             $replyToMessageId,

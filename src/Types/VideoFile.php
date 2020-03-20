@@ -1,13 +1,13 @@
 <?php namespace TelegramPro\Types;
 
-final class AudioFile extends InputFile
+final class VideoFile extends InputFile
 {
-    public static function fromFileId(string $fileId): AudioFile
+    public static function fromFileId(string $fileId): VideoFile
     {
         return new static($fileId, null, null);
     }
 
-    public static function fromUrl(string $url): AudioFile
+    public static function fromUrl(string $url): VideoFile
     {
         if (filter_var($url, FILTER_VALIDATE_URL) === FALSE) {
             throw new CanNotValidateUrl($url);
@@ -16,20 +16,20 @@ final class AudioFile extends InputFile
         return new static(null, $url, null);
     }
 
-    public static function fromFile(string $filePath): AudioFile
+    public static function fromFile(string $filePath): VideoFile
     {
         if ( ! file_exists($filePath)) {
             throw CanNotOpenFile::fileDoesNotExist($filePath);
         }
-        
+
         if (bytesToMegabytes(filesize($filePath)) > 50) {
-            throw AudioFileNotSupported::fileSizeIsGreaterThan50Megabyte($filePath);
+            throw VideoFileNotSupported::fileSizeIsGreaterThan50Megabyte($filePath);
         }
 
         if ( ! static::isValidMimeType($filePath)) {
-            throw AudioFileNotSupported::formatNotSupported($filePath, mime_content_type($filePath));
+            throw VideoFileNotSupported::formatNotSupported($filePath, mime_content_type($filePath));
         }
-        
+
         return new static(null, null, $filePath);
     }
 
@@ -38,11 +38,8 @@ final class AudioFile extends InputFile
         return in_array(
             mime_content_type($filePath),
             [
-                'audio/mpeg',
-                'audio/mpeg3',
-                'audio/x-mpeg-3',
-                'audio/m4a',
-                'audio/x-m4a',
+                'video/mp4',
+                'video/x-m4v'
             ]
         );
     }
