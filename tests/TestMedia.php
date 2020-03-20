@@ -14,6 +14,7 @@ final class TestMedia
     private string $videoUrl;
     private string $voicePath;
     private string $voiceUrl;
+    private string $videoNotePath;
 
     private function __construct(
         array $images,
@@ -27,7 +28,8 @@ final class TestMedia
         string $animationPath,
         string $animationUrl,
         string $voicePath,
-        string $voiceUrl
+        string $voiceUrl,
+        string $videoNotePath
     ) {
         $this->images = $images;
         $this->mp3Path = $mp3Path;
@@ -41,6 +43,7 @@ final class TestMedia
         $this->videoUrl = $videoUrl;
         $this->voicePath = $voicePath;
         $this->voiceUrl = $voiceUrl;
+        $this->videoNotePath = $videoNotePath;
     }
 
     public function image(): string
@@ -104,6 +107,11 @@ final class TestMedia
         return $this->voiceUrl;
     }
 
+    public function videoNote(): string
+    {
+        return $this->videoNotePath;
+    }
+
     public static function paths(
         string $imageDirectory,
         string $imageUrl,
@@ -116,7 +124,8 @@ final class TestMedia
         string $animationPath,
         string $animationUrl,
         string $voicePath,
-        string $voiceUrl
+        string $voiceUrl,
+        string $videoNotePath
     ) {
         if ( ! realpath($imageDirectory)) {
             throw new DirectoryDoesNotExist($imageDirectory);
@@ -139,6 +148,9 @@ final class TestMedia
         if ( ! file_exists($voicePath)) {
             throw new FileDoesNotExist($voicePath);
         }
+        if ( ! file_exists($videoNotePath)) {
+            throw new FileDoesNotExist($videoNotePath);
+        }
 
         return new static(
             glob(realpath($imageDirectory) . '/*'),
@@ -152,7 +164,8 @@ final class TestMedia
             $animationPath,
             $animationUrl,
             $voicePath,
-            $voiceUrl
+            $voiceUrl,
+            $videoNotePath
         );
     }
 }

@@ -35,7 +35,8 @@ class TelegramTestCase extends TestCase
             'tests/Media/Animations/spinning-woman.gif',
             'https://www.sample-videos.com/gif/3.gif',
             'tests/Media/Voice/hurdy-sample.ogg',
-            'https://upload.wikimedia.org/wikipedia/commons/a/a3/HurdySample.ogg'
+            'https://upload.wikimedia.org/wikipedia/commons/a/a3/HurdySample.ogg',
+            'tests/Media/VideoNotes/golden-ratio-240px.mp4'
         );
     }
 

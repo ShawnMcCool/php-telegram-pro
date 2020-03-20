@@ -38,4 +38,34 @@ final class VideoNote
             $videoNote->file_size,
         );
     }
+
+    public function fileId(): string
+    {
+        return $this->fileId;
+    }
+
+    public function fileUniqueId(): string
+    {
+        return $this->fileUniqueId;
+    }
+
+    public function length(): int
+    {
+        return $this->length;
+    }
+
+    public function duration(): int
+    {
+        return $this->duration;
+    }
+
+    public function thumb(): ?PhotoSize
+    {
+        return $this->thumb;
+    }
+
+    public function fileSize(): ?int
+    {
+        return $this->fileSize;
+    }
 }
