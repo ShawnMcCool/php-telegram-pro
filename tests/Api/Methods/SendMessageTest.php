@@ -14,9 +14,9 @@ class SendMessageTest extends TelegramTestCase
             $this->config->groupId(),
             '[SendMessage] send message',
             ParseMode::none()
-        )->send($this->telegramApi);
+        )->send($this->telegram);
 
-        self::assertTrue($response->ok());
+        $this->isOk($response);
         self::assertInstanceOf(Message::class, $response->result());
     }
 
@@ -26,9 +26,9 @@ class SendMessageTest extends TelegramTestCase
             $this->config->groupId(),
             '[SendMessage] send *markdown parsed* message',
             ParseMode::markdown()
-        )->send($this->telegramApi);
+        )->send($this->telegram);
 
-        self::assertTrue($response->ok());
+        $this->isOk($response);
         self::assertInstanceOf(Message::class, $response->result());
     }
 
@@ -38,7 +38,7 @@ class SendMessageTest extends TelegramTestCase
             $this->config->wrongGroupId(),
             '[SendMessage] can parse error',
             ParseMode::none()
-        )->send($this->telegramApi);
+        )->send($this->telegram);
 
         self::assertFalse($sent->ok());
         self::assertInstanceOf(MethodError::class, $sent->error());

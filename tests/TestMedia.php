@@ -7,19 +7,22 @@ final class TestMedia
     private string $mp3Path;
     private string $m4aPath;
     private string $audioUrl;
+    private string $documentPath;
 
     private function __construct(
         array $images,
         string $imageUrl,
         string $mp3Path,
         string $m4aPath,
-        string $audioUrl
+        string $audioUrl,
+        string $documentPath
     ) {
         $this->images = $images;
         $this->mp3Path = $mp3Path;
         $this->m4aPath = $m4aPath;
         $this->imageUrl = $imageUrl;
         $this->audioUrl = $audioUrl;
+        $this->documentPath = $documentPath;
     }
 
     public function image(): string
@@ -48,12 +51,18 @@ final class TestMedia
         return $this->m4aPath;
     }
 
+    public function document(): string
+    {
+        return $this->documentPath;
+    }
+
     public static function paths(
         string $imageDirectory,
         string $imageUrl,
         string $mp3Path,
         string $m4aPath,
-        string $audioUrl
+        string $audioUrl,
+        string $documentPath
     ) {
         if ( ! realpath($imageDirectory)) {
             throw new DirectoryDoesNotExist($imageDirectory);
@@ -64,13 +73,17 @@ final class TestMedia
         if ( ! file_exists($m4aPath)) {
             throw new FileDoesNotExist($m4aPath);
         }
+        if ( ! file_exists($documentPath)) {
+            throw new FileDoesNotExist($documentPath);
+        }
 
         return new static(
             glob(realpath($imageDirectory) . '/*'),
             $imageUrl,
             $mp3Path,
             $m4aPath,
-            $audioUrl
+            $audioUrl,
+            $documentPath
         );
     }
 }

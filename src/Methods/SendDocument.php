@@ -1,32 +1,38 @@
 <?php namespace TelegramPro\Methods;
 
 use TelegramPro\Api\Telegram;
+use TelegramPro\Types\PhotoFile;
 use TelegramPro\Types\ReplyMarkup;
+use TelegramPro\Types\DocumentFile;
 use TelegramPro\Api\CurlParameters;
 
-final class SendMessage implements Method
+final class SendDocument implements Method
 {
     private $chatId;
-    private string $text;
+    private DocumentFile $document;
+    private ?PhotoFile $thumb;
+    private ?string $caption;
     private ?ParseMode $parseMode;
-    private ?bool $disableWebPagePreview;
     private ?bool $disableNotification;
     private ?int $replyToMessageId;
     private ?ReplyMarkup $replyMarkup;
 
-    private function __construct(
+    public function __construct(
         $chatId,
-        string $text,
+        DocumentFile $document,
+        ?PhotoFile $thumb,
+        ?string $caption,
         ?ParseMode $parseMode,
-        ?bool $disableWebPagePreview,
         ?bool $disableNotification,
         ?int $replyToMessageId,
         ?ReplyMarkup $replyMarkup
+
     ) {
         $this->chatId = $chatId;
-        $this->text = $text;
+        $this->document = $document;
+        $this->thumb = $thumb;
+        $this->caption = $caption;
         $this->parseMode = $parseMode;
-        $this->disableWebPagePreview = $disableWebPagePreview;
         $this->disableNotification = $disableNotification;
         $this->replyToMessageId = $replyToMessageId;
         $this->replyMarkup = $replyMarkup;
@@ -34,14 +40,15 @@ final class SendMessage implements Method
 
     function toCurlParameters(string $botToken): CurlParameters
     {
-        return Request::json('sendMessage')
+        return Request::multipartFormData('sendDocument')
                       ->withParameters(
                           [
                               'chat_id' => $this->chatId,
-                              'text' => $this->text,
-                              'parse_mode' => $this->parseMode ? $this->parseMode->toParameter() : null,
-                              'disable_web_page_preview' => $this->disableWebPagePreview,
-                              'disable_notification' => $this->disableNotification,
+                              'document' => $this->document->toApi(),
+                              'thumb' => $this->thumb ? $this->thumb->toApi() : null,
+                              'caption' => $this->caption,
+                              'parse_mode' => $this->parseMode,
+                              'disable_web_page_preview' => $this->disableNotification,
                               'reply_to_message_id' => $this->replyToMessageId,
                               'reply_markup' => $this->replyMarkup ? $this->replyMarkup->toParameter() : null, // toParameter
                           ]
@@ -49,27 +56,29 @@ final class SendMessage implements Method
                       ->toCurlParameters($botToken);
     }
 
-    public function send(Telegram $telegramApi): SendMessageResponse
+    function send(Telegram $telegramApi): SendPhotoResponse
     {
-        return SendMessageResponse::fromApi(
+        return SendPhotoResponse::fromApi(
             $telegramApi->send($this)
         );
     }
 
     public static function parameters(
         $chatId,
-        string $text,
+        DocumentFile $document,
+        ?PhotoFile $thumb,
+        ?string $caption = null,
         ?ParseMode $parseMode = null,
-        ?bool $disableWebPagePreview = null,
         ?bool $disableNotification = null,
         ?int $replyToMessageId = null,
         ?ReplyMarkup $replyMarkup = null
-    ): SendMessage {
+    ): self {
         return new static(
             $chatId,
-            $text ?? '',
+            $document,
+            $thumb,
+            $caption,
             $parseMode,
-            $disableWebPagePreview,
             $disableNotification,
             $replyToMessageId,
             $replyMarkup

@@ -1,7 +1,7 @@
 <?php namespace TelegramPro\Methods;
 
-use TelegramPro\Http\TelegramApi;
-use TelegramPro\Http\CurlParameters;
+use TelegramPro\Api\Telegram;
+use TelegramPro\Api\CurlParameters;
 
 final class ForwardMessage implements Method
 {
@@ -36,7 +36,7 @@ final class ForwardMessage implements Method
                       ->toCurlParameters($botToken);
     }
 
-    public function send(TelegramApi $telegramApi): ForwardMessageResponse
+    public function send(Telegram $telegramApi): ForwardMessageResponse
     {
         return ForwardMessageResponse::fromApi(
             $telegramApi->send($this)

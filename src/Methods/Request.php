@@ -1,6 +1,6 @@
 <?php namespace TelegramPro\Methods;
 
-use TelegramPro\Http\CurlParameters;
+use TelegramPro\Api\CurlParameters;
 
 final class Request
 {

@@ -1,10 +1,10 @@
 <?php namespace TelegramPro\Methods;
 
-use TelegramPro\Types\InputFile;
+use TelegramPro\Api\Telegram;
+use TelegramPro\Types\PhotoFile;
 use TelegramPro\Types\AudioFile;
-use TelegramPro\Http\TelegramApi;
 use TelegramPro\Types\ReplyMarkup;
-use TelegramPro\Http\CurlParameters;
+use TelegramPro\Api\CurlParameters;
 
 final class SendAudio implements Method
 {
@@ -15,7 +15,7 @@ final class SendAudio implements Method
     private ?int $duration;
     private ?string $performer;
     private ?string $title;
-    private ?InputFile $thumb;
+    private ?PhotoFile $thumb;
     private ?bool $disableNotification;
     private ?int $replyToMessageId;
     private ?ReplyMarkup $replyMarkup;
@@ -28,7 +28,7 @@ final class SendAudio implements Method
         ?int $duration,
         ?string $performer,
         ?string $title,
-        ?InputFile $thumb,
+        ?PhotoFile $thumb,
         ?bool $disableNotification,
         ?int $replyToMessageId,
         ?ReplyMarkup $replyMarkup
@@ -66,7 +66,7 @@ final class SendAudio implements Method
                       ->toCurlParameters($botToken);
     }
 
-    function send(TelegramApi $telegramApi): SendAudioResponse
+    function send(Telegram $telegramApi): SendAudioResponse
     {
         return SendAudioResponse::fromApi(
             $telegramApi->send($this)
@@ -81,7 +81,7 @@ final class SendAudio implements Method
         ?int $duration = null,
         ?string $performer = null,
         ?string $title = null,
-        ?InputFile $thumb = null,
+        ?PhotoFile $thumb = null,
         ?bool $disableNotification = null,
         ?int $replyToMessageId = null,
         ?ReplyMarkup $replyMarkup = null

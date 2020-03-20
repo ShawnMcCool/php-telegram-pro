@@ -1,10 +1,11 @@
 <?php namespace TelegramPro\Methods;
 
-use TelegramPro\Http\TelegramApi;
-use TelegramPro\Http\CurlParameters;
+use TelegramPro\Api\Telegram;
+use TelegramPro\Api\CurlParameters;
 
 interface Method
 {
     function toCurlParameters(string $botToken): CurlParameters;
-    function send(TelegramApi $telegramApi);
+
+    function send(Telegram $telegramApi);
 }

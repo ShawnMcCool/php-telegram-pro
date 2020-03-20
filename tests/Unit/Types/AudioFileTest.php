@@ -2,7 +2,7 @@
 
 use Tests\TelegramTestCase;
 use TelegramPro\Types\AudioFile;
-use TelegramPro\Types\AudioFileTypeNotSupported;
+use TelegramPro\Types\AudioFileNotSupported;
 
 class AudioFileTest extends TelegramTestCase
 {
@@ -32,7 +32,7 @@ class AudioFileTest extends TelegramTestCase
 
     function testRejectsUnsupportedTypes()
     {
-        $this->expectException(AudioFileTypeNotSupported::class);
+        $this->expectException(AudioFileNotSupported::class);
         
         AudioFile::fromFile(
             $this->media->image()

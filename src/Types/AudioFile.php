@@ -21,9 +21,13 @@ final class AudioFile extends InputFile
         if ( ! file_exists($filePath)) {
             throw CanNotOpenFile::fileDoesNotExist($filePath);
         }
+        
+        if (bytesToMegabytes(filesize($filePath)) > 50) {
+            throw AudioFileNotSupported::fileSizeIsGreaterThan50Megabyte($filePath);
+        }
 
         if ( ! static::isValidMimeType($filePath)) {
-            throw new AudioFileTypeNotSupported("'{$filePath}' is not in .MP3 or .M4A format.");
+            throw AudioFileNotSupported::formatNotSupported($filePath);
         }
         
         return new static(null, null, $filePath);

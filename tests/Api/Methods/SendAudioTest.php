@@ -16,9 +16,9 @@ class SendAudioTest extends TelegramTestCase
             $this->config->groupId(),
             AudioFile::fromFile($this->media->mp3()),
             '[SendAudio] send audio with file path'
-        )->send($this->telegramApi);
+        )->send($this->telegram);
 
-        self::assertTrue($sent->ok());
+        $this->isOk($sent);
         self::assertInstanceOf(Message::class, $sent->result());
     }
 
@@ -28,9 +28,9 @@ class SendAudioTest extends TelegramTestCase
             $this->config->groupId(),
             AudioFile::fromUrl($this->media->audioUrl()),
             '[SendAudio] send audio with url'
-        )->send($this->telegramApi);
+        )->send($this->telegram);
 
-        self::assertTrue($sent->ok());
+        $this->isOk($sent);
         self::assertInstanceOf(Message::class, $sent->result());
     }
 
@@ -42,7 +42,7 @@ class SendAudioTest extends TelegramTestCase
             $this->config->groupId(),
             AudioFile::fromFile($this->media->mp3()),
             '[SendAudio] send audio with file id 1/2 ' . $num
-        )->send($this->telegramApi);
+        )->send($this->telegram);
         
         $audioId = $sent->result()->audio()->fileId();
 
@@ -50,9 +50,9 @@ class SendAudioTest extends TelegramTestCase
             $this->config->groupId(),
             AudioFile::fromFileId($audioId),
             '[SendAudio] send photo with file id 2/2 ' . $num
-        )->send($this->telegramApi);
+        )->send($this->telegram);
 
-        self::assertTrue($sent->ok());
+        $this->isOk($sent);
         self::assertInstanceOf(Message::class, $sent->result());
     }
 
@@ -64,7 +64,7 @@ class SendAudioTest extends TelegramTestCase
             $this->config->groupId(),
             AudioFile::fromFile('non existent file'),
             '[SendAudio] parse error test'
-        )->send($this->telegramApi);
+        )->send($this->telegram);
     }
 
     function testCanParseError()
@@ -73,7 +73,7 @@ class SendAudioTest extends TelegramTestCase
             $this->config->groupId(),
             AudioFile::fromUrl('https://bob'),
             '[SendAudio] parse error test'
-        )->send($this->telegramApi);
+        )->send($this->telegram);
 
         self::assertFalse($sent->ok());
         self::assertInstanceOf(MethodError::class, $sent->error());

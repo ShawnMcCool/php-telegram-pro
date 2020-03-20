@@ -1,7 +1,7 @@
 <?php namespace TelegramPro\Methods;
 
-use TelegramPro\Http\TelegramApi;
-use TelegramPro\Http\CurlParameters;
+use TelegramPro\Api\Telegram;
+use TelegramPro\Api\CurlParameters;
 
 final class GetMe implements Method
 {
@@ -12,18 +12,18 @@ final class GetMe implements Method
     function toCurlParameters(string $botToken): CurlParameters
     {
         return Request::queryString('getMe')
-            ->toCurlParameters($botToken);
+                      ->toCurlParameters($botToken);
+    }
+
+    public function send(Telegram $telegramApi): GetMeResponse
+    {
+        return GetMeResponse::fromApi(
+            $telegramApi->send($this)
+        );
     }
 
     public static function parameters(array $parameters = []): GetMe
     {
         return new static;
-    }
-    
-    public function send(TelegramApi $telegramApi): GetMeResponse
-    {
-        return GetMeResponse::fromApi(
-            $telegramApi->send($this)
-        );
     }
 }

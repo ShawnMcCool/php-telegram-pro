@@ -1,8 +1,8 @@
-<?php namespace TelegramPro\Http;
+<?php namespace TelegramPro\Api;
 
 use TelegramPro\Methods\Method;
 
-final class TelegramApi
+final class TelegramApi implements Telegram
 {
     private string $botToken;
 
@@ -16,11 +16,8 @@ final class TelegramApi
         $parameters = $method->toCurlParameters($this->botToken);
         
         $curl = curl_init($parameters->url());
-        
         curl_setopt_array($curl, $parameters->optionArray());
-        
         $response = curl_exec($curl);
-        
         curl_close($curl);
         
         return $response;

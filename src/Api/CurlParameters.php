@@ -1,4 +1,4 @@
-<?php namespace TelegramPro\Http;
+<?php namespace TelegramPro\Api;
 
 final class CurlParameters
 {

@@ -16,18 +16,18 @@ class ForwardMessageTest extends TelegramTestCase
             $this->config->groupId(),
             $messageText,
             ParseMode::none()
-        )->send($this->telegramApi);
+        )->send($this->telegram);
 
-        self::assertTrue($sent->ok());
+        $this->isOk($sent);
         self::assertInstanceOf(Message::class, $sent->result());
         
         $forwarded = ForwardMessage::parameters(
             $this->config->groupId(),
             $this->config->groupId(),
             $sent->result()->messageId()
-        )->send($this->telegramApi);
+        )->send($this->telegram);
         
-        self::assertTrue($forwarded->ok());
+        $this->isOk($forwarded);
         self::assertInstanceOf(Message::class, $forwarded->result());
         self::assertSame($messageText, $forwarded->result()->text());
     }

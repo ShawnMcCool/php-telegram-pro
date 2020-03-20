@@ -1,15 +1,14 @@
 <?php namespace TelegramPro\Methods;
 
-use CURLFile;
-use TelegramPro\Types\InputFile;
-use TelegramPro\Http\TelegramApi;
+use TelegramPro\Api\Telegram;
+use TelegramPro\Types\PhotoFile;
 use TelegramPro\Types\ReplyMarkup;
-use TelegramPro\Http\CurlParameters;
+use TelegramPro\Api\CurlParameters;
 
 final class SendPhoto implements Method
 {
     private $chatId;
-    private InputFile $photo;
+    private PhotoFile $photo;
     private ?string $caption;
     private ?ParseMode $parseMode;
     private ?bool $disableNotification;
@@ -18,7 +17,7 @@ final class SendPhoto implements Method
 
     public function __construct(
         $chatId,
-        InputFile $photo,
+        PhotoFile $photo,
         string $caption,
         ?ParseMode $parseMode,
         ?bool $disableNotification,
@@ -52,7 +51,7 @@ final class SendPhoto implements Method
                       ->toCurlParameters($botToken);
     }
 
-    function send(TelegramApi $telegramApi): SendPhotoResponse
+    function send(Telegram $telegramApi): SendPhotoResponse
     {
         return SendPhotoResponse::fromApi(
             $telegramApi->send($this)
@@ -61,7 +60,7 @@ final class SendPhoto implements Method
 
     public static function parameters(
         $chatId,
-        InputFile $photo,
+        PhotoFile $photo,
         ?string $caption = null,
         ?ParseMode $parseMode = null,
         ?bool $disableNotification = null,
