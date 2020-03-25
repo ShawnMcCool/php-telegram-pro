@@ -1,6 +1,7 @@
 <?php namespace Tests\Api\Methods;
 
 use Tests\TelegramTestCase;
+use TelegramPro\Types\Text;
 use TelegramPro\Types\Message;
 use TelegramPro\Types\VideoFile;
 use TelegramPro\Methods\SendVideo;
@@ -14,7 +15,7 @@ class SendVideoTest extends TelegramTestCase
         $sent = SendVideo::parameters(
             $this->config->groupId(),
             VideoFile::fromFile($this->media->video()),
-            '[SendVideo] send video with file path'
+            Text::plain('[SendVideo] send video with file path')
         )->send($this->telegram);
 
         $this->isOk($sent);
@@ -26,7 +27,7 @@ class SendVideoTest extends TelegramTestCase
         $sent = SendVideo::parameters(
             $this->config->groupId(),
             VideoFile::fromUrl($this->media->videoUrl()),
-            '[SendVideo] send video with url'
+            Text::plain('[SendVideo] send video with url')
         )->send($this->telegram);
 
         $this->isOk($sent);
@@ -40,7 +41,7 @@ class SendVideoTest extends TelegramTestCase
         $sent = SendVideo::parameters(
             $this->config->groupId(),
             VideoFile::fromUrl($this->media->videoUrl()),
-            '[SendVideo] send video with file id 1/2 ' . $num
+            Text::plain('[SendVideo] send video with file id 1/2 ' . $num)
         )->send($this->telegram);
 
         $sent = SendVideo::parameters(
@@ -48,7 +49,7 @@ class SendVideoTest extends TelegramTestCase
             VideoFile::fromFileId(
                 $sent->result()->video()->fileId()
             ),
-            '[SendVideo] send video with file id 2/2 ' . $num
+            Text::plain('[SendVideo] send video with file id 2/2 ' . $num)
         )->send($this->telegram);
 
         $this->isOk($sent);
@@ -62,7 +63,7 @@ class SendVideoTest extends TelegramTestCase
         $sent = SendVideo::parameters(
             $this->config->groupId(),
             VideoFile::fromFile('non existent file'),
-            '[SendVideo] file does not exist error'
+            Text::plain('[SendVideo] file does not exist error')
         )->send($this->telegram);
     }
 
@@ -71,7 +72,7 @@ class SendVideoTest extends TelegramTestCase
         $sent = SendVideo::parameters(
             $this->config->groupId(),
             VideoFile::fromUrl('https://bob'),
-            '[SendVideo] parse error test'
+            Text::plain('[SendVideo] parse error test')
         )->send($this->telegram);
 
         self::assertFalse($sent->ok());

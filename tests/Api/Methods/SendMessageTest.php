@@ -1,6 +1,7 @@
 <?php namespace Tests\Api\Methods;
 
 use Tests\TelegramTestCase;
+use TelegramPro\Types\Text;
 use TelegramPro\Types\Message;
 use TelegramPro\Methods\ParseMode;
 use TelegramPro\Methods\SendMessage;
@@ -12,8 +13,7 @@ class SendMessageTest extends TelegramTestCase
     {
         $response = SendMessage::parameters(
             $this->config->groupId(),
-            '[SendMessage] send message',
-            ParseMode::none()
+            Text::plain('[SendMessage] send message')
         )->send($this->telegram);
 
         $this->isOk($response);
@@ -24,8 +24,7 @@ class SendMessageTest extends TelegramTestCase
     {
         $response = SendMessage::parameters(
             $this->config->groupId(),
-            '[SendMessage] send *markdown parsed* message',
-            ParseMode::markdown()
+            Text::plain('[SendMessage] send *markdown parsed* message')
         )->send($this->telegram);
 
         $this->isOk($response);
@@ -36,8 +35,7 @@ class SendMessageTest extends TelegramTestCase
     {
         $sent = SendMessage::parameters(
             $this->config->wrongGroupId(),
-            '[SendMessage] can parse error',
-            ParseMode::none()
+            Text::plain('[SendMessage] can parse error')
         )->send($this->telegram);
 
         self::assertFalse($sent->ok());

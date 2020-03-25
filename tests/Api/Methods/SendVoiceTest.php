@@ -1,6 +1,7 @@
 <?php namespace Tests\Api\Methods;
 
 use Tests\TelegramTestCase;
+use TelegramPro\Types\Text;
 use TelegramPro\Types\Message;
 use TelegramPro\Types\VoiceFile;
 use TelegramPro\Methods\SendVoice;
@@ -14,7 +15,7 @@ class SendVoiceTest extends TelegramTestCase
         $sent = SendVoice::parameters(
             $this->config->groupId(),
             VoiceFile::fromFile($this->media->voice()),
-            '[SendVoice] send voice with file path'
+            Text::plain('[SendVoice] send voice with file path')
         )->send($this->telegram);
 
         $this->isOk($sent);
@@ -26,7 +27,7 @@ class SendVoiceTest extends TelegramTestCase
         $sent = SendVoice::parameters(
             $this->config->groupId(),
             VoiceFile::fromUrl($this->media->voiceUrl()),
-            '[SendVoice] send voice with url'
+            Text::plain('[SendVoice] send voice with url')
         )->send($this->telegram);
 
         $this->isOk($sent);
@@ -40,7 +41,7 @@ class SendVoiceTest extends TelegramTestCase
         $sent = SendVoice::parameters(
             $this->config->groupId(),
             VoiceFile::fromFile($this->media->voice()),
-            '[SendVoice] send voice with file id 1/2 ' . $num
+            Text::plain('[SendVoice] send voice with file id 1/2 ' . $num)
         )->send($this->telegram);
 
         $this->isOk($sent);
@@ -50,7 +51,7 @@ class SendVoiceTest extends TelegramTestCase
         $sent = SendVoice::parameters(
             $this->config->groupId(),
             VoiceFile::fromFileId($voiceId),
-            '[SendVoice] send voice with file id 2/2 ' . $num
+            Text::plain('[SendVoice] send voice with file id 2/2 ' . $num)
         )->send($this->telegram);
 
         $this->isOk($sent);
@@ -64,7 +65,7 @@ class SendVoiceTest extends TelegramTestCase
         $sent = SendVoice::parameters(
             $this->config->groupId(),
             VoiceFile::fromFile('non existent file'),
-            '[SendVoice] parse error test'
+            Text::plain('[SendVoice] parse error test')
         )->send($this->telegram);
     }
 
@@ -73,7 +74,7 @@ class SendVoiceTest extends TelegramTestCase
         $sent = SendVoice::parameters(
             $this->config->groupId(),
             VoiceFile::fromUrl('https://bob'),
-            '[SendVoice] parse error test'
+            Text::plain('[SendVoice] parse error test')
         )->send($this->telegram);
 
         self::assertFalse($sent->ok());

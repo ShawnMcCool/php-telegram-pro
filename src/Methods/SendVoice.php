@@ -41,7 +41,7 @@ final class SendVoice implements Method
                           [
                               'chat_id' => $this->chatId,
                               'voice' => $this->voice->toApi(),
-                              'caption' => $this->caption->toString(),
+                              'caption' => $this->caption->text(),
                               'parse_mode' => $this->caption->parseMode(),
                               'duration' => $this->duration,
                               'disable_notification' => $this->disableNotification,

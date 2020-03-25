@@ -37,7 +37,7 @@ final class SendMessage implements Method
                           [
                               'chat_id' => $this->chatId,
                               'text' => $this->text->text(),
-                              'parse_mode' => $this->text->parseMode()->toParameter(),
+                              'parse_mode' => $this->text->parseMode(),
                               'disable_web_page_preview' => $this->disableWebPagePreview,
                               'disable_notification' => $this->disableNotification,
                               'reply_to_message_id' => $this->replyToMessageId,

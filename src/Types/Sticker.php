@@ -2,7 +2,7 @@
 
 final class Sticker
 {
-    private string $fileid;
+    private string $fileId;
     private string $fileUniqueId;
     private int $width;
     private int $height;
@@ -14,7 +14,7 @@ final class Sticker
     private ?int $fileSize;
 
     public function __construct(
-        string $fileid,
+        string $fileId,
         string $fileUniqueId,
         int $width,
         int $height,
@@ -25,7 +25,7 @@ final class Sticker
         ?MaskPosition $maskPosition,
         ?int $fileSize
     ) {
-        $this->fileid = $fileid;
+        $this->fileId = $fileId;
         $this->fileUniqueId = $fileUniqueId;
         $this->width = $width;
         $this->height = $height;

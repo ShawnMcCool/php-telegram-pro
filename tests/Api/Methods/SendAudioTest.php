@@ -1,6 +1,7 @@
 <?php namespace Tests\Api\Methods;
 
 use Tests\TelegramTestCase;
+use TelegramPro\Types\Text;
 use TelegramPro\Types\Message;
 use TelegramPro\Types\AudioFile;
 use TelegramPro\Methods\SendAudio;
@@ -14,7 +15,7 @@ class SendAudioTest extends TelegramTestCase
         $sent = SendAudio::parameters(
             $this->config->groupId(),
             AudioFile::fromFile($this->media->mp3()),
-            '[SendAudio] send audio with file path'
+            Text::plain('[SendAudio] send audio with file path')
         )->send($this->telegram);
 
         $this->isOk($sent);
@@ -26,7 +27,7 @@ class SendAudioTest extends TelegramTestCase
         $sent = SendAudio::parameters(
             $this->config->groupId(),
             AudioFile::fromUrl($this->media->audioUrl()),
-            '[SendAudio] send audio with url'
+            Text::plain('[SendAudio] send audio with url')
         )->send($this->telegram);
 
         $this->isOk($sent);
@@ -40,7 +41,7 @@ class SendAudioTest extends TelegramTestCase
         $sent = SendAudio::parameters(
             $this->config->groupId(),
             AudioFile::fromFile($this->media->mp3()),
-            '[SendAudio] send audio with file id 1/2 ' . $num
+            Text::plain('[SendAudio] send audio with file id 1/2 ' . $num)
         )->send($this->telegram);
 
         $audioId = $sent->result()->audio()->fileId();
@@ -48,7 +49,7 @@ class SendAudioTest extends TelegramTestCase
         $sent = SendAudio::parameters(
             $this->config->groupId(),
             AudioFile::fromFileId($audioId),
-            '[SendAudio] send audio with file id 2/2 ' . $num
+            Text::plain('[SendAudio] send audio with file id 2/2 ' . $num)
         )->send($this->telegram);
 
         $this->isOk($sent);
@@ -62,7 +63,7 @@ class SendAudioTest extends TelegramTestCase
         $sent = SendAudio::parameters(
             $this->config->groupId(),
             AudioFile::fromFile('non existent file'),
-            '[SendAudio] parse error test'
+            Text::plain('[SendAudio] parse error test')
         )->send($this->telegram);
     }
 
@@ -71,7 +72,7 @@ class SendAudioTest extends TelegramTestCase
         $sent = SendAudio::parameters(
             $this->config->groupId(),
             AudioFile::fromUrl('https://bob'),
-            '[SendAudio] parse error test'
+            Text::plain('[SendAudio] parse error test')
         )->send($this->telegram);
 
         self::assertFalse($sent->ok());

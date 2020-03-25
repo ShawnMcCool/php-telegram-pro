@@ -18,7 +18,7 @@ final class SendPhoto implements Method
     public function __construct(
         $chatId,
         PhotoFile $photo,
-        string $caption,
+        Text $caption,
         ?bool $disableNotification,
         ?int $replyToMessageId,
         ?ReplyMarkup $replyMarkup

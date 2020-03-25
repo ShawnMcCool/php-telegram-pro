@@ -36,10 +36,10 @@ final class SendMediaGroupResponse
     public static function fromApi(string $jsonResponse): self
     {
         $response = json_decode($jsonResponse);
-
+        
         return new static(
             $response->ok,
-            Message::arrayFromApi($response->result),
+            Message::arrayFromApi($response->result ?? null),
             MethodError::fromApi($response)
         );
     }

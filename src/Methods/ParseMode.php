@@ -2,21 +2,21 @@
 
 final class ParseMode
 {
-    private string $parseMode;
+    private ?string $parseMode;
 
     private function __construct(?string $parseMode)
     {
         $this->parseMode = $parseMode;
     }
 
-    public function toParameter(): string
+    public function toParameter(): ?string
     {
         return $this->parseMode;
     }
 
     public function __toString()
     {
-        return $this->parseMode;
+        return $this->parseMode ?? '';
     }
 
     public static function markdown(): ParseMode

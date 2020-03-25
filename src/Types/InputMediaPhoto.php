@@ -54,7 +54,7 @@ final class InputMediaPhoto implements InputMedia
                     ?? $this->photo->url()
                     ?? "attach://{$mediaKey}",
                 'caption' => $this->caption
-                    ? $this->caption->toString()
+                    ? $this->caption->text()
                     : null,
                 'parse_mode' => $this->caption
                     ? $this->caption->parseMode()->toParameter()
