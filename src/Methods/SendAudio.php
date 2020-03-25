@@ -1,5 +1,6 @@
 <?php namespace TelegramPro\Methods;
 
+use TelegramPro\Types\Text;
 use TelegramPro\Api\Telegram;
 use TelegramPro\Types\PhotoFile;
 use TelegramPro\Types\AudioFile;
@@ -10,8 +11,7 @@ final class SendAudio implements Method
 {
     private $chatId;
     private AudioFile $audio;
-    private ?string $caption;
-    private ?ParseMode $parseMode;
+    private Text $caption;
     private ?int $duration;
     private ?string $performer;
     private ?string $title;
@@ -23,8 +23,7 @@ final class SendAudio implements Method
     public function __construct(
         $chatId,
         AudioFile $audio,
-        ?string $caption,
-        ?ParseMode $parseMode,
+        Text $caption,
         ?int $duration,
         ?string $performer,
         ?string $title,
@@ -36,7 +35,6 @@ final class SendAudio implements Method
         $this->chatId = $chatId;
         $this->audio = $audio;
         $this->caption = $caption;
-        $this->parseMode = $parseMode;
         $this->duration = $duration;
         $this->performer = $performer;
         $this->title = $title;
@@ -53,8 +51,8 @@ final class SendAudio implements Method
                           [
                               'chat_id' => $this->chatId,
                               'audio' => $this->audio->toApi(),
-                              'caption' => $this->caption,
-                              'parse_mode' => $this->parseMode,
+                              'caption' => $this->caption->text(),
+                              'parse_mode' => $this->caption->parseMode(),
                               'duration' => $this->duration,
                               'performer' => $this->performer,
                               'thumb' => $this->thumb ? $this->thumb->toApi() : null,
@@ -76,8 +74,7 @@ final class SendAudio implements Method
     public static function parameters(
         $chatId,
         AudioFile $audio,
-        ?string $caption = null,
-        ?ParseMode $parseMode = null,
+        ?Text $caption = null,
         ?int $duration = null,
         ?string $performer = null,
         ?string $title = null,
@@ -89,8 +86,7 @@ final class SendAudio implements Method
         return new static(
             $chatId,
             $audio,
-            $caption,
-            $parseMode,
+            $caption ?? Text::none(),
             $duration,
             $performer,
             $title,

@@ -16,14 +16,16 @@ final class Ansi
     public function __toString()
     {
         $openTag = array_reduce(
-            $this->tags, function ($string, $tag) {
-            return $string . "\033[{$tag}m";
-        }, '');
+            $this->tags,
+            fn($string, $tag) => $string . "\033[{$tag}m",
+            ''
+        );
 
         $closeTag = array_reduce(
-            $this->tags, function ($string, $tag) {
-            return $string . "\033[0m";
-        }, '');
+            $this->tags,
+            fn($string, $tag) => $string . $string . "\033[0m",
+            ''
+        );
 
         return $openTag . $this->text . $closeTag;
     }

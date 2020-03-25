@@ -1,5 +1,6 @@
 <?php namespace TelegramPro\Methods;
 
+use TelegramPro\Types\Text;
 use TelegramPro\Api\Telegram;
 use TelegramPro\Types\PhotoFile;
 use TelegramPro\Types\ReplyMarkup;
@@ -9,8 +10,7 @@ final class SendPhoto implements Method
 {
     private $chatId;
     private PhotoFile $photo;
-    private ?string $caption;
-    private ?ParseMode $parseMode;
+    private Text $caption;
     private ?bool $disableNotification;
     private ?int $replyToMessageId;
     private ?ReplyMarkup $replyMarkup;
@@ -18,8 +18,7 @@ final class SendPhoto implements Method
     public function __construct(
         $chatId,
         PhotoFile $photo,
-        ?string $caption,
-        ?ParseMode $parseMode,
+        string $caption,
         ?bool $disableNotification,
         ?int $replyToMessageId,
         ?ReplyMarkup $replyMarkup
@@ -28,7 +27,6 @@ final class SendPhoto implements Method
         $this->chatId = $chatId;
         $this->photo = $photo;
         $this->caption = $caption;
-        $this->parseMode = $parseMode;
         $this->disableNotification = $disableNotification;
         $this->replyToMessageId = $replyToMessageId;
         $this->replyMarkup = $replyMarkup;
@@ -41,8 +39,8 @@ final class SendPhoto implements Method
                           [
                               'chat_id' => $this->chatId,
                               'photo' => $this->photo->toApi(),
-                              'caption' => $this->caption,
-                              'parse_mode' => $this->parseMode,
+                              'caption' => $this->caption->text(),
+                              'parse_mode' => $this->caption->parseMode(),
                               'disable_web_page_preview' => $this->disableNotification,
                               'reply_to_message_id' => $this->replyToMessageId,
                               'reply_markup' => $this->replyMarkup ? $this->replyMarkup->toParameter() : null, // toParameter
@@ -61,8 +59,7 @@ final class SendPhoto implements Method
     public static function parameters(
         $chatId,
         PhotoFile $photo,
-        ?string $caption = null,
-        ?ParseMode $parseMode = null,
+        ?Text $caption = null,
         ?bool $disableNotification = null,
         ?int $replyToMessageId = null,
         ?ReplyMarkup $replyMarkup = null
@@ -70,8 +67,7 @@ final class SendPhoto implements Method
         return new static(
             $chatId,
             $photo,
-            $caption,
-            $parseMode,
+            $caption ?? Text::none(),
             $disableNotification,
             $replyToMessageId,
             $replyMarkup

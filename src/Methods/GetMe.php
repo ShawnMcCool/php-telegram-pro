@@ -5,9 +5,7 @@ use TelegramPro\Api\CurlParameters;
 
 final class GetMe implements Method
 {
-    private function __construct()
-    {
-    }
+    private function __construct() {}
 
     function toCurlParameters(string $botToken): CurlParameters
     {

@@ -1,5 +1,6 @@
 <?php namespace TelegramPro\Methods;
 
+use TelegramPro\Types\Text;
 use TelegramPro\Api\Telegram;
 use TelegramPro\Types\PhotoFile;
 use TelegramPro\Types\ReplyMarkup;
@@ -10,12 +11,11 @@ final class SendAnimation implements Method
 {
     private $chatId;
     private AnimationFile $animation;
-    private ?string $caption;
+    private Text $caption;
     private ?int $duration;
     private ?int $width;
     private ?int $height;
     private ?PhotoFile $thumb;
-    private ?ParseMode $parseMode;
     private ?bool $disableNotification;
     private ?int $replyToMessageId;
     private ?ReplyMarkup $replyMarkup;
@@ -23,12 +23,11 @@ final class SendAnimation implements Method
     public function __construct(
         $chatId,
         AnimationFile $animation,
-        ?string $caption,
+        Text $caption,
         ?int $duration,
         ?int $width,
         ?int $height,
         ?PhotoFile $thumb,
-        ?ParseMode $parseMode,
         ?bool $disableNotification,
         ?int $replyToMessageId,
         ?ReplyMarkup $replyMarkup
@@ -40,7 +39,6 @@ final class SendAnimation implements Method
         $this->width = $width;
         $this->height = $height;
         $this->thumb = $thumb;
-        $this->parseMode = $parseMode;
         $this->disableNotification = $disableNotification;
         $this->replyToMessageId = $replyToMessageId;
         $this->replyMarkup = $replyMarkup;
@@ -57,8 +55,8 @@ final class SendAnimation implements Method
                               'width' => $this->width,
                               'height' => $this->height,
                               'thumb' => $this->thumb ? $this->thumb->toApi() : null,
-                              'caption' => $this->caption,
-                              'parse_mode' => $this->parseMode,
+                              'caption' => $this->caption->text(),
+                              'parse_mode' => $this->caption->parseMode(),
                               'disable_notification' => $this->disableNotification,
                               'reply_to_message_id' => $this->replyToMessageId,
                               'reply_markup' => $this->replyMarkup ? $this->replyMarkup->toParameter() : null, // toParameter
@@ -77,12 +75,11 @@ final class SendAnimation implements Method
     public static function parameters(
         $chatId,
         AnimationFile $animation,
-        ?string $caption,
+        ?Text $caption,
         ?int $duration = null,
         ?int $width = null,
         ?int $height = null,
         ?PhotoFile $thumb = null,
-        ?ParseMode $parseMode = null,
         ?bool $disableNotification = null,
         ?int $replyToMessageId = null,
         ?ReplyMarkup $replyMarkup = null
@@ -90,12 +87,11 @@ final class SendAnimation implements Method
         return new static(
             $chatId,
             $animation,
-            $caption,
+            $caption ?? Text::none(),
             $duration,
             $width,
             $height,
             $thumb,
-            $parseMode,
             $disableNotification,
             $replyToMessageId,
             $replyMarkup

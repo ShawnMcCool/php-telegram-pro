@@ -1,0 +1,4 @@
+- Captions / Text should have parsemode built in to type
+- arrays should be typed collections
+- ui should always be typed
+- parse mode should be filled in with 'none' everywhere

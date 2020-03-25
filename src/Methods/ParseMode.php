@@ -4,7 +4,7 @@ final class ParseMode
 {
     private string $parseMode;
 
-    private function __construct(string $parseMode)
+    private function __construct(?string $parseMode)
     {
         $this->parseMode = $parseMode;
     }
@@ -34,8 +34,8 @@ final class ParseMode
         return new static('markdown');
     }
 
-    public static function none()
+    public static function none(): ParseMode
     {
-        return null;
+        return new static(null);
     }
 }

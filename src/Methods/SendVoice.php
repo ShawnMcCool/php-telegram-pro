@@ -1,6 +1,7 @@
 <?php namespace TelegramPro\Methods;
 
 use TelegramPro\Api\Telegram;
+use TelegramPro\Types\Text;
 use TelegramPro\Types\VoiceFile;
 use TelegramPro\Types\ReplyMarkup;
 use TelegramPro\Api\CurlParameters;
@@ -9,8 +10,7 @@ final class SendVoice implements Method
 {
     private $chatId;
     private VoiceFile $voice;
-    private ?string $caption;
-    private ?ParseMode $parseMode;
+    private ?Text $caption;
     private ?int $duration;
     private ?bool $disableNotification;
     private ?int $replyToMessageId;
@@ -19,8 +19,7 @@ final class SendVoice implements Method
     public function __construct(
         $chatId,
         VoiceFile $voice,
-        ?string $caption,
-        ?ParseMode $parseMode,
+        ?Text $caption,
         ?int $duration,
         ?bool $disableNotification,
         ?int $replyToMessageId,
@@ -29,7 +28,6 @@ final class SendVoice implements Method
         $this->chatId = $chatId;
         $this->voice = $voice;
         $this->caption = $caption;
-        $this->parseMode = $parseMode;
         $this->duration = $duration;
         $this->disableNotification = $disableNotification;
         $this->replyToMessageId = $replyToMessageId;
@@ -43,8 +41,8 @@ final class SendVoice implements Method
                           [
                               'chat_id' => $this->chatId,
                               'voice' => $this->voice->toApi(),
-                              'caption' => $this->caption,
-                              'parse_mode' => $this->parseMode,
+                              'caption' => $this->caption->toString(),
+                              'parse_mode' => $this->caption->parseMode(),
                               'duration' => $this->duration,
                               'disable_notification' => $this->disableNotification,
                               'reply_to_message_id' => $this->replyToMessageId,
@@ -64,8 +62,7 @@ final class SendVoice implements Method
     public static function parameters(
         $chatId,
         VoiceFile $audio,
-        ?string $caption = null,
-        ?ParseMode $parseMode = null,
+        ?Text $caption = null,
         ?int $duration = null,
         ?bool $disableNotification = null,
         ?int $replyToMessageId = null,
@@ -75,7 +72,6 @@ final class SendVoice implements Method
             $chatId,
             $audio,
             $caption,
-            $parseMode,
             $duration,
             $disableNotification,
             $replyToMessageId,

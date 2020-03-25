@@ -22,7 +22,7 @@ final class PhotoSize
         $this->fileSize = $fileSize;
     }
 
-    public static function arrayfromApi(?array $photoSizes): ?array
+    public static function arrayFromApi(?array $photoSizes): ?array
     {
         if ( ! $photoSizes) return null;
         

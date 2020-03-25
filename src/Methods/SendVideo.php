@@ -1,5 +1,6 @@
 <?php namespace TelegramPro\Methods;
 
+use TelegramPro\Types\Text;
 use TelegramPro\Api\Telegram;
 use TelegramPro\Types\PhotoFile;
 use TelegramPro\Types\VideoFile;
@@ -10,12 +11,11 @@ final class SendVideo implements Method
 {
     private $chatId;
     private VideoFile $video;
-    private ?string $caption;
+    private ?Text $caption;
     private ?int $duration;
     private ?int $width;
     private ?int $height;
     private ?PhotoFile $thumb;
-    private ?ParseMode $parseMode;
     private ?bool $supportsStreaming;
     private ?bool $disableNotification;
     private ?int $replyToMessageId;
@@ -24,12 +24,11 @@ final class SendVideo implements Method
     public function __construct(
         $chatId,
         VideoFile $video,
-        ?string $caption,
+        ?Text $caption,
         ?int $duration,
         ?int $width,
         ?int $height,
         ?PhotoFile $thumb,
-        ?ParseMode $parseMode,
         ?bool $supportsStreaming,
         ?bool $disableNotification,
         ?int $replyToMessageId,
@@ -42,7 +41,6 @@ final class SendVideo implements Method
         $this->width = $width;
         $this->height = $height;
         $this->thumb = $thumb;
-        $this->parseMode = $parseMode;
         $this->supportsStreaming = $supportsStreaming;
         $this->disableNotification = $disableNotification;
         $this->replyToMessageId = $replyToMessageId;
@@ -60,8 +58,8 @@ final class SendVideo implements Method
                               'width' => $this->width,
                               'height' => $this->height,
                               'thumb' => $this->thumb ? $this->thumb->toApi() : null,
-                              'caption' => $this->caption,
-                              'parse_mode' => $this->parseMode,
+                              'caption' => $this->caption->text(),
+                              'parse_mode' => $this->caption->parseMode(),
                               'supports_streaming' => $this->supportsStreaming,
                               'disable_notification' => $this->disableNotification,
                               'reply_to_message_id' => $this->replyToMessageId,
@@ -81,12 +79,11 @@ final class SendVideo implements Method
     public static function parameters(
         $chatId,
         VideoFile $video,
-        ?string $caption,
+        ?Text $caption,
         ?int $duration = null,
         ?int $width = null,
         ?int $height = null,
         ?PhotoFile $thumb = null,
-        ?ParseMode $parseMode = null,
         ?bool $supportsStreaming = null,
         ?bool $disableNotification = null,
         ?int $replyToMessageId = null,
@@ -100,7 +97,6 @@ final class SendVideo implements Method
             $width,
             $height,
             $thumb,
-            $parseMode,
             $supportsStreaming,
             $disableNotification,
             $replyToMessageId,

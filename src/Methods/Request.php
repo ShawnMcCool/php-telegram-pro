@@ -30,23 +30,10 @@ final class Request
                 CURLOPT_HEADER => false,
                 CURLOPT_RETURNTRANSFER => 1,
                 CURLOPT_POST => 1,
-                CURLOPT_POSTFIELDS => ($this->parameterArray()),
+                CURLOPT_POSTFIELDS => array_filter($this->parameterArray),
                 CURLOPT_SSL_VERIFYPEER => false,
             ]
         );
-    }
-
-    public function parameterArray(): array
-    {
-        $validParameters = [];
-
-        foreach ($this->parameterArray as $key => $value) {
-            if ( ! is_null($value)) {
-                $validParameters[$key] = $value;
-            }
-        }
-
-        return $validParameters;
     }
 
     public static function queryString(string $method): Request

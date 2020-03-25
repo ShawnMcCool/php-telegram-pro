@@ -6,6 +6,5 @@ use TelegramPro\Api\CurlParameters;
 interface Method
 {
     function toCurlParameters(string $botToken): CurlParameters;
-
     function send(Telegram $telegramApi);
 }

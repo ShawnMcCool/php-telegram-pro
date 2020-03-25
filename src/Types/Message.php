@@ -148,61 +148,6 @@ class Message
         $this->replyMarkup = $replyMarkup;
     }
 
-    public static function fromApi($message): ?Message
-    {
-        if ( ! $message) return null;
-        
-        return new static(
-            $message->message_id,
-            User::fromApi($message->from ?? null),
-            $message->date,
-            Chat::fromApi($message->chat),
-            User::fromApi($message->forward_from ?? null),
-            Chat::fromApi($message->forward_from_chat ?? null),
-            $message->forward_from_message_id ?? null,
-            $message->forward_signature ?? null,
-            $message->forward_sender_name ?? null,
-            $message->forward_date ?? null,
-            Message::fromApi($message->reply_to_message ?? null),
-            $message->edit_date ?? null,
-            $message->media_group_id ?? null,
-            $message->author_signature ?? null,
-            $message->text ?? null,
-            MessageEntity::arrayfromApi($message->entities ?? null),
-            MessageEntity::arrayfromApi($message->caption_entities ?? null),
-            Audio::fromApi($message->audio ?? null),
-            Document::fromApi($message->document ?? null),
-            Animation::fromApi($message->animation ?? null),
-            Game::fromApi($message->game ?? null),
-            PhotoSize::arrayfromApi($message->photo ?? null),
-            Sticker::fromApi($message->sticker ?? null),
-            Video::fromApi($message->video ?? null),
-            Voice::fromApi($message->voice ?? null),
-            VideoNote::fromApi($message->video_note ?? null),
-            $message->caption ?? null,
-            Contact::fromApi($message->contact ?? null),
-            Location::fromApi($message->location ?? null),
-            Venue::fromApi($message->venue ?? null),
-            Poll::fromApi($message->poll ?? null),
-            User::arrayfromApi($message->new_chat_members ?? null),
-            User::fromApi($message->left_chat_member ?? null),
-            $message->new_chat_title ?? null,
-            PhotoSize::arrayfromApi($message->new_chat_photo ?? null),
-            $message->delete_chat_photo ?? null,
-            $message->group_chat_created ?? null,
-            $message->supergroup_chat_created ?? null,
-            $message->channel_chat_created ?? null,
-            $message->migrate_to_chat_id ?? null,
-            $message->migrate_from_chat_id ?? null,
-            Message::fromApi($message->pinned_message ?? null),
-            Invoice::fromApi($message->invoice ?? null),
-            SuccessfulPayment::fromApi($message->successful_payment ?? null),
-            $message->connected_website ?? null,
-            PassportData::fromString($message->passport_data ?? null),
-            InlineKeyboardMarkup::fromApi($message->reply_markup ?? null)
-        );
-    }
-
     public function messageId(): int
     {
         return $this->messageId;
@@ -436,5 +381,73 @@ class Message
     public function replyMarkup(): ?InlineKeyboardMarkup
     {
         return $this->replyMarkup;
+    }
+
+    public static function arrayFromApi($messages): array
+    {
+        if ( ! $messages) return [];
+
+        $messageArray = [];
+
+        foreach ($messages as $message) {
+            $messageArray[] = static::fromApi($message);
+        }
+
+        return $messageArray;
+    }
+
+    public static function fromApi($message): ?Message
+    {
+        if ( ! $message) return null;
+
+        return new static(
+            $message->message_id,
+            User::fromApi($message->from ?? null),
+            $message->date,
+            Chat::fromApi($message->chat),
+            User::fromApi($message->forward_from ?? null),
+            Chat::fromApi($message->forward_from_chat ?? null),
+            $message->forward_from_message_id ?? null,
+            $message->forward_signature ?? null,
+            $message->forward_sender_name ?? null,
+            $message->forward_date ?? null,
+            Message::fromApi($message->reply_to_message ?? null),
+            $message->edit_date ?? null,
+            $message->media_group_id ?? null,
+            $message->author_signature ?? null,
+            $message->text ?? null,
+            MessageEntity::arrayfromApi($message->entities ?? null),
+            MessageEntity::arrayfromApi($message->caption_entities ?? null),
+            Audio::fromApi($message->audio ?? null),
+            Document::fromApi($message->document ?? null),
+            Animation::fromApi($message->animation ?? null),
+            Game::fromApi($message->game ?? null),
+            PhotoSize::arrayfromApi($message->photo ?? null),
+            Sticker::fromApi($message->sticker ?? null),
+            Video::fromApi($message->video ?? null),
+            Voice::fromApi($message->voice ?? null),
+            VideoNote::fromApi($message->video_note ?? null),
+            $message->caption ?? null,
+            Contact::fromApi($message->contact ?? null),
+            Location::fromApi($message->location ?? null),
+            Venue::fromApi($message->venue ?? null),
+            Poll::fromApi($message->poll ?? null),
+            User::arrayfromApi($message->new_chat_members ?? null),
+            User::fromApi($message->left_chat_member ?? null),
+            $message->new_chat_title ?? null,
+            PhotoSize::arrayfromApi($message->new_chat_photo ?? null),
+            $message->delete_chat_photo ?? null,
+            $message->group_chat_created ?? null,
+            $message->supergroup_chat_created ?? null,
+            $message->channel_chat_created ?? null,
+            $message->migrate_to_chat_id ?? null,
+            $message->migrate_from_chat_id ?? null,
+            Message::fromApi($message->pinned_message ?? null),
+            Invoice::fromApi($message->invoice ?? null),
+            SuccessfulPayment::fromApi($message->successful_payment ?? null),
+            $message->connected_website ?? null,
+            PassportData::fromString($message->passport_data ?? null),
+            InlineKeyboardMarkup::fromApi($message->reply_markup ?? null)
+        );
     }
 }
