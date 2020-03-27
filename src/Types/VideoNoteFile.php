@@ -2,17 +2,13 @@
 
 final class VideoNoteFile extends InputFile
 {
-    public static function fromFileId(string $fileId): VideoNoteFile
+    public static function fromFileId(FileId $fileId): VideoNoteFile
     {
         return new static($fileId, null, null);
     }
 
-    public static function fromFile(string $filePath): VideoNoteFile
+    public static function fromFilePath(FilePath $filePath): VideoNoteFile
     {
-        if ( ! file_exists($filePath)) {
-            throw CanNotOpenFile::fileDoesNotExist($filePath);
-        }
-
         if ( ! static::isValidMimeType($filePath)) {
             throw VideoNoteFileNotSupported::formatNotSupported($filePath, mime_content_type($filePath));
         }

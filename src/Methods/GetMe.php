@@ -20,7 +20,7 @@ final class GetMe implements Method
         );
     }
 
-    public static function parameters(array $parameters = []): GetMe
+    public static function parameters(): GetMe
     {
         return new static;
     }

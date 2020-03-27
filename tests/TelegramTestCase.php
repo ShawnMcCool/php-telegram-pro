@@ -47,10 +47,15 @@ class TelegramTestCase extends TestCase
 
     protected function isOk($response)
     {
-        $errorMessage = $response->error() 
+        $errorMessage = $response->error()
             ? Ansi::red($response->error()->description())
             : '';
-        
+
         self::assertTrue($response->ok(), $errorMessage);
+    }
+
+    protected function sameValue(string $one, string $two)
+    {
+        self::assertSame($one, $two);
     }
 }

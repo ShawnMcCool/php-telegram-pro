@@ -1,19 +1,21 @@
 <?php namespace TelegramPro\Methods;
 
 use TelegramPro\Api\Telegram;
+use TelegramPro\Types\ChatId;
+use TelegramPro\Types\MessageId;
 use TelegramPro\Api\CurlParameters;
 
 final class ForwardMessage implements Method
 {
-    private $chatId;
-    private $fromChatId;
-    private int $messageId;
+    private ChatId $chatId;
+    private ChatId $fromChatId;
+    private MessageId $messageId;
     private ?bool $disableNotification;
 
     private function __construct(
-        $chatId,
-        $fromChatId,
-        int $messageId,
+        ChatId $chatId,
+        ChatId $fromChatId,
+        MessageId $messageId,
         ?bool $disableNotification
     ) {
         $this->chatId = $chatId;
@@ -44,9 +46,9 @@ final class ForwardMessage implements Method
     }
 
     public static function parameters(
-        $chatId,
-        $fromChatId,
-        int $messageId,
+        ChatId $chatId,
+        ChatId $fromChatId,
+        MessageId $messageId,
         ?bool $disableNotification = null
     ): ForwardMessage {
         return new static(

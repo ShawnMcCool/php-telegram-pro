@@ -2,19 +2,19 @@
 
 final class CallbackQuery
 {
-    private string $id;
+    private CallbackQueryId $id;
     private User $from;
     private ?Message $message;
-    private ?string $inlineMessageId;
+    private ?InlineMessageId $inlineMessageId;
     private ?string $chatInstance;
     private ?string $data;
     private ?string $gameShortName;
 
     public function __construct(
-        string $id,
+        CallbackQueryId $id,
         User $from,
         ?Message $message,
-        ?string $inlineMessageId,
+        ?InlineMessageId $inlineMessageId,
         ?string $chatInstance,
         ?string $data,
         ?string $gameShortName
@@ -33,17 +33,17 @@ final class CallbackQuery
         if ( ! $callbackQuery) return null;
 
         return new static(
-            $callbackQuery->id,
+            CallbackQueryId::fromString($callbackQuery->id),
             User::fromApi($callbackQuery->from),
             Message::fromApi($callbackQuery->message ?? null),
-            $callbackQuery->inline_message_id ?? null,
+            InlineMessageId::fromString($callbackQuery->inline_message_id ?? null),
             $callbackQuery->chat_instance ?? null,
             $callbackQuery->data ?? null,
             $callbackQuery->game_short_name ?? null
         );
     }
 
-    public function id(): string
+    public function id(): CallbackQueryId
     {
         return $this->id;
     }
@@ -58,7 +58,7 @@ final class CallbackQuery
         return $this->message;
     }
 
-    public function inlineMessageId(): ?string
+    public function inlineMessageId(): ?InlineMessageId
     {
         return $this->inlineMessageId;
     }

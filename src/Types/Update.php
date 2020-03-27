@@ -2,7 +2,7 @@
 
 final class Update
 {
-    private int $updateId;
+    private UpdateId $updateId;
     private ?Message $message;
     private ?Message $editedMessage;
     private ?Message $channelPost;
@@ -16,7 +16,7 @@ final class Update
     private ?PollAnswer $pollAnswer;
 
     private function __construct(
-        int $updateId,
+        UpdateId $updateId,
         ?Message $message,
         ?Message $editedMessage,
         ?Message $channelPost,
@@ -48,7 +48,7 @@ final class Update
         $update = json_decode($json);
         
         return new static(
-            $update->update_id,
+            UpdateId::fromInt($update->update_id),
             Message::fromApi($update->message ?? null),
             Message::fromApi($update->edited_message ?? null),
             Message::fromApi($update->channel_post ?? null),
@@ -63,7 +63,7 @@ final class Update
         );
     }
 
-    public function updateId(): int
+    public function updateId(): UpdateId
     {
         return $this->updateId;
     }

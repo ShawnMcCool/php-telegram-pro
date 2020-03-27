@@ -2,7 +2,7 @@
 
 class Message
 {
-    private int $messageId;
+    private MessageId $messageId;
     private ?User $from;
     private int $date;
     private Chat $chat;
@@ -51,7 +51,7 @@ class Message
     private ?InlineKeyboardMarkup $replyMarkup;
 
     public function __construct(
-        int $messageId,
+        MessageId $messageId,
         ?User $from,
         int $date,
         Chat $chat,
@@ -148,7 +148,7 @@ class Message
         $this->replyMarkup = $replyMarkup;
     }
 
-    public function messageId(): int
+    public function messageId(): MessageId
     {
         return $this->messageId;
     }
@@ -388,7 +388,7 @@ class Message
         if ( ! $message) return null;
 
         return new static(
-            $message->message_id,
+            MessageId::fromInt($message->message_id),
             User::fromApi($message->from ?? null),
             $message->date,
             Chat::fromApi($message->chat),

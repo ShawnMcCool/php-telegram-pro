@@ -1,6 +1,9 @@
 <?php namespace Tests\Unit\Types;
 
 use Tests\TelegramTestCase;
+use TelegramPro\Types\FileId;
+use TelegramPro\Types\Url;
+use TelegramPro\Types\FilePath;
 use TelegramPro\Types\InputFile;
 use TelegramPro\Types\CanNotValidateUrl;
 
@@ -8,26 +11,35 @@ class InputFileTest extends TelegramTestCase
 {
     function testMakeInputFileFromFileId()
     {
-        $file = InputFile::fromFileId('file id');
-        self::assertSame('file id', $file->fileId());
+        $file = InputFile::fromFileId(
+            FileId::fromString('file id')
+        );
+
+        $this->sameValue('file id', $file->fileId());
     }
 
     function testMakeInputFileFromUrl()
     {
-        $file = InputFile::fromUrl('https://github.com');
-        self::assertSame('https://github.com', $file->url());
+        $file = InputFile::fromUrl(
+            Url::fromString('https://github.com')
+        );
+        $this->sameValue('https://github.com', $file->url());
 
         $this->expectException(CanNotValidateUrl::class);
-        InputFile::fromUrl('url');
+        InputFile::fromUrl(
+            Url::fromString('url')
+        );
     }
 
     function testMakeInputFileFromFile()
     {
         $imagePath = $this->media->image();
 
-        $file = InputFile::fromFile($imagePath);
+        $file = InputFile::fromFilePath(
+            FilePath::fromString($imagePath)
+        );
 
-        self::assertSame(
+        $this->sameValue(
             $imagePath,
             $file->filePath()
         );

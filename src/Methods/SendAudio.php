@@ -2,14 +2,16 @@
 
 use TelegramPro\Types\Text;
 use TelegramPro\Api\Telegram;
+use TelegramPro\Types\ChatId;
 use TelegramPro\Types\PhotoFile;
 use TelegramPro\Types\AudioFile;
+use TelegramPro\Types\MessageId;
 use TelegramPro\Types\ReplyMarkup;
 use TelegramPro\Api\CurlParameters;
 
 final class SendAudio implements Method
 {
-    private $chatId;
+    private ChatId $chatId;
     private AudioFile $audio;
     private Text $caption;
     private ?int $duration;
@@ -17,11 +19,11 @@ final class SendAudio implements Method
     private ?string $title;
     private ?PhotoFile $thumb;
     private ?bool $disableNotification;
-    private ?int $replyToMessageId;
+    private ?MessageId $replyToMessageId;
     private ?ReplyMarkup $replyMarkup;
 
     public function __construct(
-        $chatId,
+        ChatId $chatId,
         AudioFile $audio,
         Text $caption,
         ?int $duration,
@@ -29,7 +31,7 @@ final class SendAudio implements Method
         ?string $title,
         ?PhotoFile $thumb,
         ?bool $disableNotification,
-        ?int $replyToMessageId,
+        ?MessageId $replyToMessageId,
         ?ReplyMarkup $replyMarkup
     ) {
         $this->chatId = $chatId;
@@ -72,7 +74,7 @@ final class SendAudio implements Method
     }
 
     public static function parameters(
-        $chatId,
+        ChatId $chatId,
         AudioFile $audio,
         ?Text $caption = null,
         ?int $duration = null,
@@ -80,7 +82,7 @@ final class SendAudio implements Method
         ?string $title = null,
         ?PhotoFile $thumb = null,
         ?bool $disableNotification = null,
-        ?int $replyToMessageId = null,
+        ?MessageId $replyToMessageId = null,
         ?ReplyMarkup $replyMarkup = null
     ): self {
         return new static(

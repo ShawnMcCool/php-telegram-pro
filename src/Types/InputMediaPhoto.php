@@ -15,8 +15,15 @@ final class InputMediaPhoto implements InputMedia
         $this->caption = $caption;
     }
 
+    private function apiString(string $mediaKey = ''): string
+    {
+        return $this->photo->fileId()
+        ?? $this->photo->url()
+        ?? "attach://{$mediaKey}";
+    }
+
     public static function fromFileId(
-        string $fileId,
+        FileId $fileId,
         ?Text $caption = null
     ): InputMediaPhoto {
         return new static(
@@ -26,7 +33,7 @@ final class InputMediaPhoto implements InputMedia
     }
 
     public static function fromUrl(
-        string $url,
+        Url $url,
         ?Text $caption = null
     ): InputMediaPhoto {
         return new static(
@@ -36,11 +43,11 @@ final class InputMediaPhoto implements InputMedia
     }
 
     public static function fromFile(
-        string $filePath,
+        FilePath $filePath,
         ?Text $caption = null
     ): InputMediaPhoto {
         return new static(
-            PhotoFile::fromFile($filePath),
+            PhotoFile::fromFilePath($filePath),
             $caption
         );
     }
@@ -50,9 +57,7 @@ final class InputMediaPhoto implements InputMedia
         return array_filter(
             [
                 'type' => 'photo',
-                'media' => $this->photo->fileId()
-                    ?? $this->photo->url()
-                    ?? "attach://{$mediaKey}",
+                'media' => $this->apiString($mediaKey),
                 'caption' => $this->caption
                     ? $this->caption->text()
                     : null,
@@ -62,11 +67,11 @@ final class InputMediaPhoto implements InputMedia
             ]
         );
     }
-
+    
     public function toFile(): ?CURLFile
     {
         return $this->photo->filePath()
-            ? new CURLFile(realpath($this->photo->filePath()))
+            ? new CURLFile($this->photo->filePath())
             : null;
     }
 }

@@ -2,17 +2,17 @@
 
 final class ChosenInlineResult
 {
-    private string $resultId;
+    private ResultId $resultId;
     private User $from;
     private ?Location $location;
-    private string $inlineMessageId;
+    private InlineMessageId $inlineMessageId;
     private string $query;
 
     public function __construct(
-        string $resultId,
+        ResultId $resultId,
         User $from,
         ?Location $location,
-        string $inlineMessageId,
+        InlineMessageId $inlineMessageId,
         string $query
     ) {
         $this->resultId = $resultId;
@@ -27,15 +27,15 @@ final class ChosenInlineResult
         if ( ! $chosenInlineResult) return null;
 
         return new static(
-            $chosenInlineResult->result_id,
+            ResultId::fromString($chosenInlineResult->result_id),
             User::fromApi($chosenInlineResult->from),
             Location::fromApi($chosenInlineResult->location ?? null),
-            $chosenInlineResult->inline_message_id,
+            InlineMessageId::fromString($chosenInlineResult->inline_message_id),
             $chosenInlineResult->query,
         );
     }
 
-    public function resultId(): string
+    public function resultId(): ResultId
     {
         return $this->resultId;
     }
@@ -50,7 +50,7 @@ final class ChosenInlineResult
         return $this->location;
     }
 
-    public function inlineMessageId(): string
+    public function inlineMessageId(): InlineMessageId
     {
         return $this->inlineMessageId;
     }

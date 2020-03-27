@@ -2,16 +2,16 @@
 
 final class Document
 {
-    private string $fileId;
-    private ?string $fileUniqueId;
+    private FileId $fileId;
+    private ?FileUniqueId $fileUniqueId;
     private ?PhotoSize $thumb;
     private ?string $fileName;
     private ?string $mimeType;
     private ?int $fileSize;
 
     public function __construct(
-        string $fileId,
-        ?string $fileUniqueId,
+        FileId $fileId,
+        ?FileUniqueId $fileUniqueId,
         ?PhotoSize $thumb,
         ?string $fileName,
         ?string $mimeType,
@@ -30,8 +30,8 @@ final class Document
         if ( ! $document) return null;
 
         return new static(
-            $document->file_id,
-            $document->file_unique_id ?? null,
+            FileId::fromString($document->file_id),
+            FileUniqueId::fromString($document->file_unique_id ?? null),
             PhotoSize::fromApi($document->thumb ?? null),
             $document->file_name ?? null,
             $document->mime_type ?? null,
@@ -39,12 +39,12 @@ final class Document
         );
     }
 
-    public function fileId(): string
+    public function fileId(): FileId
     {
         return $this->fileId;
     }
 
-    public function fileUniqueId(): ?string
+    public function fileUniqueId(): ?FileUniqueId
     {
         return $this->fileUniqueId;
     }

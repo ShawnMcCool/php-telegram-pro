@@ -1,8 +1,10 @@
 <?php namespace Tests\Api\Methods;
 
+use TelegramPro\Types\Url;
 use Tests\TelegramTestCase;
 use TelegramPro\Types\Text;
 use TelegramPro\Types\Message;
+use TelegramPro\Types\FilePath;
 use TelegramPro\Types\PhotoFile;
 use TelegramPro\Types\PhotoSize;
 use TelegramPro\Methods\SendPhoto;
@@ -14,8 +16,10 @@ class SendPhotoTest extends TelegramTestCase
     function testSendPhotoWithFilePath()
     {
         $sent = SendPhoto::parameters(
-            $this->config->groupId(),
-            PhotoFile::fromFile($this->media->image()),
+            $this->config->chatId(),
+            PhotoFile::fromFilePath(
+                FilePath::fromString($this->media->image())
+            ),
             Text::plain('[SendPhoto] send photo with file path')
         )->send($this->telegram);
 
@@ -26,8 +30,10 @@ class SendPhotoTest extends TelegramTestCase
     function testSendPhotoWithUrl()
     {
         $sent = SendPhoto::parameters(
-            $this->config->groupId(),
-            PhotoFile::fromUrl('https://homepages.cae.wisc.edu/~ece533/images/boat.png'),
+            $this->config->chatId(),
+            PhotoFile::fromUrl(
+                Url::fromString('https://homepages.cae.wisc.edu/~ece533/images/boat.png')
+            ),
             Text::plain('[SendPhoto] send photo with url')
         )->send($this->telegram);
 
@@ -40,8 +46,10 @@ class SendPhotoTest extends TelegramTestCase
         $num = rand(0, 32767);
         
         $sent = SendPhoto::parameters(
-            $this->config->groupId(),
-            PhotoFile::fromFile($this->media->image()),
+            $this->config->chatId(),
+            PhotoFile::fromFilePath(
+                FilePath::fromString($this->media->image())
+            ),
             Text::plain('[SendPhoto] send photo with file id 1/2 ' . $num)
         )->send($this->telegram);
 
@@ -49,7 +57,7 @@ class SendPhotoTest extends TelegramTestCase
         $photoSize = $sent->result()->photo()[0];
 
         $sent = SendPhoto::parameters(
-            $this->config->groupId(),
+            $this->config->chatId(),
             PhotoFile::fromFileId($photoSize->fileId()),
             Text::plain('[SendPhoto] send photo with file id 2/2 ' . $num)
         )->send($this->telegram);
@@ -63,8 +71,10 @@ class SendPhotoTest extends TelegramTestCase
         $this->expectException(CanNotOpenFile::class);
 
         $sent = SendPhoto::parameters(
-            $this->config->groupId(),
-            PhotoFile::fromFile('non existent file'),
+            $this->config->chatId(),
+            PhotoFile::fromFilePath(
+                FilePath::fromString('non existent file')
+            ),
             Text::plain('[SendPhoto] parse error test')
         )->send($this->telegram);
     }
@@ -72,8 +82,10 @@ class SendPhotoTest extends TelegramTestCase
     function testCanParseError()
     {
         $sent = SendPhoto::parameters(
-            $this->config->groupId(),
-            PhotoFile::fromUrl('https://bob'),
+            $this->config->chatId(),
+            PhotoFile::fromUrl(
+                Url::fromString('https://bob')
+            ),
             Text::plain('[SendPhoto] parse error test')
         )->send($this->telegram);
         

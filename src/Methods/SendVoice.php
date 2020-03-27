@@ -2,27 +2,29 @@
 
 use TelegramPro\Api\Telegram;
 use TelegramPro\Types\Text;
+use TelegramPro\Types\ChatId;
 use TelegramPro\Types\VoiceFile;
+use TelegramPro\Types\MessageId;
 use TelegramPro\Types\ReplyMarkup;
 use TelegramPro\Api\CurlParameters;
 
 final class SendVoice implements Method
 {
-    private $chatId;
+    private ChatId $chatId;
     private VoiceFile $voice;
     private ?Text $caption;
     private ?int $duration;
     private ?bool $disableNotification;
-    private ?int $replyToMessageId;
+    private ?MessageId $replyToMessageId;
     private ?ReplyMarkup $replyMarkup;
 
     public function __construct(
-        $chatId,
+        ChatId $chatId,
         VoiceFile $voice,
         ?Text $caption,
         ?int $duration,
         ?bool $disableNotification,
-        ?int $replyToMessageId,
+        ?MessageId $replyToMessageId,
         ?ReplyMarkup $replyMarkup
     ) {
         $this->chatId = $chatId;
@@ -60,12 +62,12 @@ final class SendVoice implements Method
     }
 
     public static function parameters(
-        $chatId,
+        ChatId $chatId,
         VoiceFile $audio,
         ?Text $caption = null,
         ?int $duration = null,
         ?bool $disableNotification = null,
-        ?int $replyToMessageId = null,
+        ?MessageId $replyToMessageId = null,
         ?ReplyMarkup $replyMarkup = null
     ): self {
         return new static(

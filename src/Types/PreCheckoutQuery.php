@@ -2,7 +2,7 @@
 
 final class PreCheckoutQuery
 {
-    private string $id;
+    private PreCheckoutQueryId $id;
     private User $from;
     private string $currency;
     private string $totalAmount;
@@ -11,7 +11,7 @@ final class PreCheckoutQuery
     private ?OrderInfo $orderInfo;
 
     public function __construct(
-        string $id,
+        PreCheckoutQueryId $id,
         User $from,
         string $currency,
         string $totalAmount,
@@ -33,7 +33,7 @@ final class PreCheckoutQuery
         if ( ! $preCheckoutQuery) return null;
 
         return new static(
-            $preCheckoutQuery->id,
+            PreCheckoutQueryId::fromString($preCheckoutQuery->id),
             User::fromApi($preCheckoutQuery->from),
             $preCheckoutQuery->currency,
             $preCheckoutQuery->total_amount,

@@ -2,13 +2,13 @@
 
 final class ShippingQuery
 {
-    private string $id;
+    private ShippingQueryId $id;
     private User $from;
     private string $invoicePayload;
     private ShippingAddress $shippingAddress;
 
     public function __construct(
-        string $id,
+        ShippingQueryId $id,
         User $from,
         string $invoicePayload,
         ShippingAddress $shippingAddress
@@ -24,7 +24,7 @@ final class ShippingQuery
         if ( ! $shippingQuery) return null;
 
         return new static(
-            $shippingQuery->id,
+            ShippingQueryId::fromString($shippingQuery->id),
             User::fromApi($shippingQuery->from),
             $shippingQuery->invoice_payload,
             ShippingAddress::fromApi($shippingQuery->shipping_address)

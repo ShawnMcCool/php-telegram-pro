@@ -2,16 +2,16 @@
 
 final class VideoNote
 {
-    private string $fileId;
-    private string $fileUniqueId;
+    private FileId $fileId;
+    private FileUniqueId $fileUniqueId;
     private int $length;
     private int $duration;
     private ?PhotoSize $thumb;
     private ?int $fileSize;
 
     public function __construct(
-        string $fileId,
-        string $fileUniqueId,
+        FileId $fileId,
+        FileUniqueId $fileUniqueId,
         int $length,
         int $duration,
         ?PhotoSize $thumb,
@@ -30,8 +30,8 @@ final class VideoNote
         if ( ! $videoNote) return null;
 
         return new static(
-            $videoNote->file_id,
-            $videoNote->file_unique_id,
+            FileId::fromString($videoNote->file_id),
+            FileUniqueId::fromString($videoNote->file_unique_id),
             $videoNote->length,
             $videoNote->duration,
             PhotoSize::fromApi($videoNote->thumb),
@@ -39,12 +39,12 @@ final class VideoNote
         );
     }
 
-    public function fileId(): string
+    public function fileId(): FileId
     {
         return $this->fileId;
     }
 
-    public function fileUniqueId(): string
+    public function fileUniqueId(): FileUniqueId
     {
         return $this->fileUniqueId;
     }

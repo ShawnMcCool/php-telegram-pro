@@ -3,18 +3,22 @@
 use Tests\TelegramTestCase;
 use TelegramPro\Types\Text;
 use TelegramPro\Types\Message;
+use TelegramPro\Types\Url;
+use TelegramPro\Types\FilePath;
 use TelegramPro\Types\AnimationFile;
-use TelegramPro\Methods\SendAnimation;
 use TelegramPro\Methods\MethodError;
 use TelegramPro\Types\CanNotOpenFile;
+use TelegramPro\Methods\SendAnimation;
 
 class SendAnimationTest extends TelegramTestCase
 {
     function testSendAnimationWithFilePath()
     {
         $sent = SendAnimation::parameters(
-            $this->config->groupId(),
-            AnimationFile::fromFile($this->media->animation()),
+            $this->config->chatId(),
+            AnimationFile::fromFilePath(
+                FilePath::fromString($this->media->animation())
+            ),
             Text::plain('[SendAnimation] send animation with file path')
         )->send($this->telegram);
 
@@ -25,8 +29,10 @@ class SendAnimationTest extends TelegramTestCase
     function testSendAnimationWithUrl()
     {
         $sent = SendAnimation::parameters(
-            $this->config->groupId(),
-            AnimationFile::fromUrl($this->media->animationUrl()),
+            $this->config->chatId(),
+            AnimationFile::fromUrl(
+                Url::fromString($this->media->animationUrl())
+            ),
             Text::plain('[SendAnimation] send animation with url')
         )->send($this->telegram);
 
@@ -39,13 +45,15 @@ class SendAnimationTest extends TelegramTestCase
         $num = rand(0, 32767);
 
         $sent = SendAnimation::parameters(
-            $this->config->groupId(),
-            AnimationFile::fromUrl($this->media->animationUrl()),
+            $this->config->chatId(),
+            AnimationFile::fromUrl(
+                Url::fromString($this->media->animationUrl())
+            ),
             Text::plain('[SendAnimation] send animation with file id 1/2 ' . $num)
         )->send($this->telegram);
 
         $sent = SendAnimation::parameters(
-            $this->config->groupId(),
+            $this->config->chatId(),
             AnimationFile::fromFileId(
                 $sent->result()->animation()->fileId()
             ),
@@ -61,8 +69,8 @@ class SendAnimationTest extends TelegramTestCase
         $this->expectException(CanNotOpenFile::class);
 
         $sent = SendAnimation::parameters(
-            $this->config->groupId(),
-            AnimationFile::fromFile('non existent file'),
+            $this->config->chatId(),
+            AnimationFile::fromFilePath(FilePath::fromString('non existent file')),
             Text::plain('[SendAnimation] file does not exist error')
         )->send($this->telegram);
     }
@@ -70,8 +78,8 @@ class SendAnimationTest extends TelegramTestCase
     function testCanParseError()
     {
         $sent = SendAnimation::parameters(
-            $this->config->groupId(),
-            AnimationFile::fromUrl('https://bob'),
+            $this->config->chatId(),
+            AnimationFile::fromUrl(Url::fromString('https://bob')),
             Text::plain('[SendAnimation] parse error test')
         )->send($this->telegram);
 

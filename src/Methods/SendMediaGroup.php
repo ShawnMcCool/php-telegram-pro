@@ -1,21 +1,23 @@
 <?php namespace TelegramPro\Methods;
 
 use TelegramPro\Api\Telegram;
+use TelegramPro\Types\ChatId;
+use TelegramPro\Types\MessageId;
 use TelegramPro\Types\MediaGroup;
 use TelegramPro\Api\CurlParameters;
 
 final class SendMediaGroup implements Method
 {
-    private $chatId;
+    private ChatId $chatId;
     private MediaGroup $mediaGroup;
     private ?bool $disableNotification;
-    private ?int $replyToMessageId;
+    private ?MessageId $replyToMessageId;
 
     public function __construct(
-        $chatId,
+        ChatId $chatId,
         MediaGroup $mediaGroup,
         ?bool $disableNotification,
-        ?int $replyToMessageId
+        ?MessageId $replyToMessageId
     ) {
         $this->chatId = $chatId;
         $this->mediaGroup = $mediaGroup;
@@ -48,10 +50,10 @@ final class SendMediaGroup implements Method
     }
 
     public static function parameters(
-        $chatId,
+        ChatId $chatId,
         MediaGroup $mediaGroup,
         ?bool $disableNotification = null,
-        ?int $replyToMessageId = null
+        ?MessageId $replyToMessageId = null
     ): self {
         return new static(
             $chatId,

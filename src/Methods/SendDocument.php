@@ -2,28 +2,30 @@
 
 use TelegramPro\Api\Telegram;
 use TelegramPro\Types\Text;
+use TelegramPro\Types\ChatId;
 use TelegramPro\Types\PhotoFile;
+use TelegramPro\Types\MessageId;
 use TelegramPro\Types\ReplyMarkup;
 use TelegramPro\Types\DocumentFile;
 use TelegramPro\Api\CurlParameters;
 
 final class SendDocument implements Method
 {
-    private $chatId;
+    private ChatId $chatId;
     private DocumentFile $document;
     private ?PhotoFile $thumb;
     private Text $caption;
     private ?bool $disableNotification;
-    private ?int $replyToMessageId;
+    private ?MessageId $replyToMessageId;
     private ?ReplyMarkup $replyMarkup;
 
     public function __construct(
-        $chatId,
+        ChatId $chatId,
         DocumentFile $document,
         ?PhotoFile $thumb,
         Text $caption,
         ?bool $disableNotification,
-        ?int $replyToMessageId,
+        ?MessageId $replyToMessageId,
         ?ReplyMarkup $replyMarkup
 
     ) {
@@ -62,12 +64,12 @@ final class SendDocument implements Method
     }
 
     public static function parameters(
-        $chatId,
+        ChatId $chatId,
         DocumentFile $document,
         ?PhotoFile $thumb,
         ?Text $caption = null,
         ?bool $disableNotification = null,
-        ?int $replyToMessageId = null,
+        ?MessageId $replyToMessageId = null,
         ?ReplyMarkup $replyMarkup = null
     ): self {
         return new static(

@@ -3,6 +3,7 @@
 use TelegramPro\Types\Text;
 use TelegramPro\Api\Telegram;
 use TelegramPro\Types\PhotoFile;
+use TelegramPro\Types\MessageId;
 use TelegramPro\Types\ReplyMarkup;
 use TelegramPro\Api\CurlParameters;
 use TelegramPro\Types\AnimationFile;
@@ -17,7 +18,7 @@ final class SendAnimation implements Method
     private ?int $height;
     private ?PhotoFile $thumb;
     private ?bool $disableNotification;
-    private ?int $replyToMessageId;
+    private ?MessageId $replyToMessageId;
     private ?ReplyMarkup $replyMarkup;
 
     public function __construct(
@@ -29,7 +30,7 @@ final class SendAnimation implements Method
         ?int $height,
         ?PhotoFile $thumb,
         ?bool $disableNotification,
-        ?int $replyToMessageId,
+        ?MessageId $replyToMessageId,
         ?ReplyMarkup $replyMarkup
     ) {
         $this->chatId = $chatId;
@@ -81,7 +82,7 @@ final class SendAnimation implements Method
         ?int $height = null,
         ?PhotoFile $thumb = null,
         ?bool $disableNotification = null,
-        ?int $replyToMessageId = null,
+        ?MessageId $replyToMessageId = null,
         ?ReplyMarkup $replyMarkup = null
     ): self {
         return new static(

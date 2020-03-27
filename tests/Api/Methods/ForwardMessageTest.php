@@ -13,7 +13,7 @@ class ForwardMessageTest extends TelegramTestCase
         $messageText = '[ForwardMessage] can forward message ' . rand(0, 32767);
 
         $sent = SendMessage::parameters(
-            $this->config->groupId(),
+            $this->config->chatId(),
             Text::plain($messageText)
         )->send($this->telegram);
 
@@ -21,8 +21,8 @@ class ForwardMessageTest extends TelegramTestCase
         self::assertInstanceOf(Message::class, $sent->result());
 
         $forwarded = ForwardMessage::parameters(
-            $this->config->groupId(),
-            $this->config->groupId(),
+            $this->config->chatId(),
+            $this->config->chatId(),
             $sent->result()->messageId()
         )->send($this->telegram);
 

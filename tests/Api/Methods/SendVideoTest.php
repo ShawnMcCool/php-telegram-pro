@@ -1,8 +1,10 @@
 <?php namespace Tests\Api\Methods;
 
+use TelegramPro\Types\Url;
 use Tests\TelegramTestCase;
 use TelegramPro\Types\Text;
 use TelegramPro\Types\Message;
+use TelegramPro\Types\FilePath;
 use TelegramPro\Types\VideoFile;
 use TelegramPro\Methods\SendVideo;
 use TelegramPro\Methods\MethodError;
@@ -13,8 +15,10 @@ class SendVideoTest extends TelegramTestCase
     function testSendVideoWithFilePath()
     {
         $sent = SendVideo::parameters(
-            $this->config->groupId(),
-            VideoFile::fromFile($this->media->video()),
+            $this->config->chatId(),
+            VideoFile::fromFilePath(
+                FilePath::fromString($this->media->video())
+            ),
             Text::plain('[SendVideo] send video with file path')
         )->send($this->telegram);
 
@@ -25,8 +29,10 @@ class SendVideoTest extends TelegramTestCase
     function testSendVideoWithUrl()
     {
         $sent = SendVideo::parameters(
-            $this->config->groupId(),
-            VideoFile::fromUrl($this->media->videoUrl()),
+            $this->config->chatId(),
+            VideoFile::fromUrl(
+                Url::fromString($this->media->videoUrl())
+            ),
             Text::plain('[SendVideo] send video with url')
         )->send($this->telegram);
 
@@ -39,13 +45,15 @@ class SendVideoTest extends TelegramTestCase
         $num = rand(0, 32767);
 
         $sent = SendVideo::parameters(
-            $this->config->groupId(),
-            VideoFile::fromUrl($this->media->videoUrl()),
+            $this->config->chatId(),
+            VideoFile::fromUrl(
+                Url::fromString($this->media->videoUrl())
+            ),
             Text::plain('[SendVideo] send video with file id 1/2 ' . $num)
         )->send($this->telegram);
 
         $sent = SendVideo::parameters(
-            $this->config->groupId(),
+            $this->config->chatId(),
             VideoFile::fromFileId(
                 $sent->result()->video()->fileId()
             ),
@@ -61,8 +69,10 @@ class SendVideoTest extends TelegramTestCase
         $this->expectException(CanNotOpenFile::class);
 
         $sent = SendVideo::parameters(
-            $this->config->groupId(),
-            VideoFile::fromFile('non existent file'),
+            $this->config->chatId(),
+            VideoFile::fromFilePath(
+                FilePath::fromString('non existent file')
+            ),
             Text::plain('[SendVideo] file does not exist error')
         )->send($this->telegram);
     }
@@ -70,8 +80,10 @@ class SendVideoTest extends TelegramTestCase
     function testCanParseError()
     {
         $sent = SendVideo::parameters(
-            $this->config->groupId(),
-            VideoFile::fromUrl('https://bob'),
+            $this->config->chatId(),
+            VideoFile::fromUrl(
+                Url::fromString('https://bob')
+            ),
             Text::plain('[SendVideo] parse error test')
         )->send($this->telegram);
 

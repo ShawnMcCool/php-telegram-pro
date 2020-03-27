@@ -2,7 +2,7 @@
 
 final class User
 {
-    private int $userId;
+    private UserId $userId;
     private ?bool $isBot;
     private string $firstName;
     private ?string $lastName;
@@ -13,7 +13,7 @@ final class User
     private ?bool $supportsInlineQueries;
 
     private function __construct(
-        int $userId,
+        UserId $userId,
         ?bool $isBot,
         string $firstName,
         ?string $lastName,
@@ -34,7 +34,7 @@ final class User
         $this->supportsInlineQueries = $supportsInlineQueries;
     }
 
-    public function userId(): int
+    public function userId(): UserId
     {
         return $this->userId;
     }
@@ -84,7 +84,7 @@ final class User
         if ( ! $user) return null;
 
         return new static(
-            $user->id,
+            UserId::fromInt($user->id),
             $user->is_bot ?? null,
             $user->first_name,
             $user->last_name ?? null,

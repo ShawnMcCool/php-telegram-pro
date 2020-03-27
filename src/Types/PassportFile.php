@@ -2,14 +2,14 @@
 
 final class PassportFile
 {
-    private string $fileId;
-    private string $fileUniqueId;
+    private FileId $fileId;
+    private FileUniqueId $fileUniqueId;
     private int $fileSize;
     private int $fileDate;
 
     public function __construct(
-        string $fileId,
-        string $fileUniqueId,
+        FileId $fileId,
+        FileUniqueId $fileUniqueId,
         int $fileSize,
         int $fileDate
     ) {
@@ -22,8 +22,8 @@ final class PassportFile
     public static function fromApi($file): ?PassportFile
     {
         return new static(
-            $file->file_id,
-            $file->file_unique_id,
+            FileId::fromString($file->file_id),
+            FileUniqueId::fromString($file->file_unique_id),
             $file->file_size,
             $file->file_date,
         );

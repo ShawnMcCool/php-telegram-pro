@@ -2,15 +2,15 @@
 
 final class Voice
 {
-    private string $fileId;
-    private ?string $fileUniqueId;
+    private FileId $fileId;
+    private ?FileUniqueId $fileUniqueId;
     private int $duration;
     private ?string $mimeType;
     private ?int $fileSize;
 
     public function __construct(
-        string $fileId,
-        ?string $fileUniqueId,
+        FileId $fileId,
+        ?FileUniqueId $fileUniqueId,
         int $duration,
         ?string $mimeType,
         ?int $fileSize
@@ -27,8 +27,8 @@ final class Voice
         if ( ! $voice) return null;
 
         return new static(
-            $voice->file_id,
-            $voice->file_unique_id ?? null,
+            FileId::fromString($voice->file_id),
+            FileUniqueId::fromString($voice->file_unique_id ?? null),
             $voice->duration,
             $voice->mime_type ?? null,
             $voice->file_size ?? null

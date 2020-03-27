@@ -3,7 +3,7 @@
 final class InlineKeyboardButton
 {
     private string $text;
-    private ?string $url;
+    private ?Url $url;
     private ?LoginUrl $loginUrl;
     private ?string $callbackData;
     private ?string $switchInlineQuery;
@@ -13,7 +13,7 @@ final class InlineKeyboardButton
 
     public function __construct(
         string $text,
-        ?string $url,
+        ?Url $url,
         ?LoginUrl $loginUrl,
         ?string $callbackData,
         ?string $switchInlineQuery,
@@ -35,12 +35,12 @@ final class InlineKeyboardButton
     {
         return new static(
             $inlineKeyboardButton->text,
-            $inlineKeyboardButton->url,
-            LoginUrl::fromApi($inlineKeyboardButton->login_url),
+            Url::fromString($inlineKeyboardButton->url ?? null),
+            LoginUrl::fromApi($inlineKeyboardButton->login_url ?? null),
             $inlineKeyboardButton->callback_data,
             $inlineKeyboardButton->switch_inline_queries,
             $inlineKeyboardButton->switch_inline_query_current_chat,
-            CallbackGame::fromApi($inlineKeyboardButton->callback_game),
+            CallbackGame::fromApi($inlineKeyboardButton->callback_game ?? null),
             $inlineKeyboardButton->pay
         );
     }

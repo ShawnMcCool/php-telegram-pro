@@ -2,26 +2,18 @@
 
 final class AnimationFile extends InputFile
 {
-    public static function fromFileId(string $fileId): AnimationFile
+    public static function fromFileId(FileId $fileId): AnimationFile
     {
         return new static($fileId, null, null);
     }
 
-    public static function fromUrl(string $url): AnimationFile
+    public static function fromUrl(Url $url): AnimationFile
     {
-        if (filter_var($url, FILTER_VALIDATE_URL) === FALSE) {
-            throw new CanNotValidateUrl($url);
-        }
-
         return new static(null, $url, null);
     }
 
-    public static function fromFile(string $filePath): AnimationFile
+    public static function fromFilePath(FilePath $filePath): AnimationFile
     {
-        if ( ! file_exists($filePath)) {
-            throw CanNotOpenFile::fileDoesNotExist($filePath);
-        }
-
         if (bytesToMegabytes(filesize($filePath)) > 50) {
             throw AnimationFileNotSupported::fileSizeIsGreaterThan50Megabyte($filePath);
         }

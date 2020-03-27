@@ -2,16 +2,15 @@
 
 final class PollAnswer
 {
-    private string $pollId;
+    private PollId $pollId;
     private User $user;
-    private array $optionIds;
+    private ArrayOfPollOptionIds $optionIds;
 
     public function __construct(
-        string $pollId,
+        PollId $pollId,
         User $user,
-        array $optionIds // array of integers
-    )
-    {
+        ArrayOfPollOptionIds $optionIds
+    ) {
         $this->pollId = $pollId;
         $this->user = $user;
         $this->optionIds = $optionIds;
@@ -22,9 +21,9 @@ final class PollAnswer
         if ( ! $pollAnswer) return null;
 
         return new static(
-            $pollAnswer->poll_id,
+            PollId::fromString($pollAnswer->poll_id),
             User::fromApi($pollAnswer->user),
-            $pollAnswer->option_ids
+            ArrayOfPollOptionIds::fromApi($pollAnswer->option_ids)
         );
     }
 }

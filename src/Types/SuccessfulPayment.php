@@ -5,7 +5,7 @@ final class SuccessfulPayment
     private string $currency;
     private string $totalAmount;
     private string $invoicePayload;
-    private ?string $shippingOptionId;
+    private ?ShippingOptionId $shippingOptionId;
     private ?OrderInfo $orderInfo;
     private string $telegramPaymentChargeId;
     private string $providerPaymentChargeId;
@@ -14,7 +14,7 @@ final class SuccessfulPayment
         string $currency,
         string $totalAmount,
         string $invoicePayload,
-        ?string $shippingOptionId,
+        ?ShippingOptionId $shippingOptionId,
         ?OrderInfo $orderInfo,
         string $telegramPaymentChargeId,
         string $providerPaymentChargeId
@@ -36,7 +36,7 @@ final class SuccessfulPayment
             $successfulPayment->currency,
             $successfulPayment->total_amount,
             $successfulPayment->invoice_payment,
-            $successfulPayment->shipping_option_id,
+            ShippingOptionId::fromString($successfulPayment->shipping_option_id),
             OrderInfo::fromApi($successfulPayment->order_info),
             $successfulPayment->telegram_payment_charge_id,
             $successfulPayment->provider_payment_charge_id,

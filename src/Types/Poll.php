@@ -2,26 +2,26 @@
 
 final class Poll
 {
-    private string $id;
+    private PollId $id;
     private string $question;
-    private array $options;
+    private ArrayOfPollOptions $options;
     private int $totalVoterCount;
     private bool $isClosed;
     private bool $isAnonymous;
-    private string $type;
+    private PollType $type;
     private bool $allowsMultipleAnswers;
-    private ?int $correctOptionId;
+    private ?PollOptionId $correctOptionId;
 
     public function __construct(
-        string $id,
+        PollId $id,
         string $question,
-        array $options,
+        ArrayOfPollOptions $options,
         int $totalVoterCount,
         bool $isClosed,
         bool $isAnonymous,
-        string $type, // regular or quiz
+        PollType $type,
         bool $allowsMultipleAnswers,
-        ?int $correctOptionId
+        ?PollOptionId $correctOptionId
     ) {
         $this->id = $id;
         $this->question = $question;
@@ -39,15 +39,15 @@ final class Poll
         if ( ! $poll) return null;
 
         return new static(
-            $poll->id,
+            PollId::fromString($poll->id),
             $poll->question,
-            PollOption::arrayFromApi($poll->options),
+            ArrayOfPollOptions::fromApi($poll->options),
             $poll->total_voter_count,
             $poll->is_closed,
             $poll->is_anonymous,
-            $poll->type,
+            PollType::fromString($poll->type),
             $poll->allows_multiple_answers,
-            $poll->correct_option_id
+            PollOptionId::fromInt($poll->correct_option_id)
         );
     }
 }

@@ -2,16 +2,16 @@
 
 final class ChatPhoto
 {
-    private string $smallFileId;
-    private string $smallFileUniqueId;
-    private string $bigFileId;
-    private string $bigFileUniqueId;
+    private FileId $smallFileId;
+    private FileUniqueId $smallFileUniqueId;
+    private FileId $bigFileId;
+    private FileUniqueId $bigFileUniqueId;
 
     public function __construct(
-        string $smallFileId,
-        string $smallFileUniqueId,
-        string $bigFileId,
-        string $bigFileUniqueId
+        FileId $smallFileId,
+        FileUniqueId $smallFileUniqueId,
+        FileId $bigFileId,
+        FileUniqueId $bigFileUniqueId
     ) {
         $this->smallFileId = $smallFileId;
         $this->smallFileUniqueId = $smallFileUniqueId;
@@ -24,10 +24,10 @@ final class ChatPhoto
         if ( ! $photo) return null;
 
         return new static(
-            $photo->small_file_id,
-            $photo->small_file_unique_id,
-            $photo->big_file_id,
-            $photo->big_file_unique_id
+            FileId::fromString($photo->small_file_id),
+            FileUniqueId::fromString($photo->small_file_unique_id),
+            FileId::fromString($photo->big_file_id),
+            FileUniqueId::fromString($photo->big_file_unique_id)
         );
     }
 }

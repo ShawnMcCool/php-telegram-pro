@@ -1,8 +1,10 @@
 <?php namespace Tests\Api\Methods;
 
+use TelegramPro\Types\Url;
 use Tests\TelegramTestCase;
 use TelegramPro\Types\Text;
 use TelegramPro\Types\Message;
+use TelegramPro\Types\FilePath;
 use TelegramPro\Types\DocumentFile;
 use TelegramPro\Methods\MethodError;
 use TelegramPro\Methods\SendDocument;
@@ -13,8 +15,10 @@ class SendDocumentTest extends TelegramTestCase
     function testSendDocumentFileWithFilePath()
     {
         $sent = SendDocument::parameters(
-            $this->config->groupId(),
-            DocumentFile::fromFile($this->media->document()),
+            $this->config->chatId(),
+            DocumentFile::fromFilePath(
+                FilePath::fromString($this->media->document())
+            ),
             null,
             Text::plain('[SendDocument] send document with file path')
         )->send($this->telegram);
@@ -26,8 +30,10 @@ class SendDocumentTest extends TelegramTestCase
     function testSendDocumentWithUrl()
     {
         $sent = SendDocument::parameters(
-            $this->config->groupId(),
-            DocumentFile::fromUrl($this->media->imageUrl()),
+            $this->config->chatId(),
+            DocumentFile::fromUrl(
+                Url::fromString($this->media->imageUrl())
+            ),
             null,
             Text::plain('[SendDocument] send document with url')
         )->send($this->telegram);
@@ -41,8 +47,10 @@ class SendDocumentTest extends TelegramTestCase
         $num = rand(0, 32767);
 
         $sent = SendDocument::parameters(
-            $this->config->groupId(),
-            DocumentFile::fromFile($this->media->document()),
+            $this->config->chatId(),
+            DocumentFile::fromFilePath(
+                FilePath::fromString($this->media->document())
+            ),
             null,
             Text::plain('[SendDocument] send document with file id 1/2 ' . $num)
         )->send($this->telegram);
@@ -50,7 +58,7 @@ class SendDocumentTest extends TelegramTestCase
         $documentId = $sent->result()->document()->fileId();
 
         $sent = SendDocument::parameters(
-            $this->config->groupId(),
+            $this->config->chatId(),
             DocumentFile::fromFileId($documentId),
             null,
             Text::plain('[SendDocument] send photo with file id 2/2 ' . $num)
@@ -65,8 +73,10 @@ class SendDocumentTest extends TelegramTestCase
         $this->expectException(CanNotOpenFile::class);
 
         $sent = SendDocument::parameters(
-            $this->config->groupId(),
-            DocumentFile::fromFile('non existent file'),
+            $this->config->chatId(),
+            DocumentFile::fromFilePath(
+                FilePath::fromString('non existent file')
+            ),
             null,
             Text::plain('[SendDocument] non existent file exception test')
         )->send($this->telegram);
@@ -75,8 +85,10 @@ class SendDocumentTest extends TelegramTestCase
     function testCanParseError()
     {
         $sent = SendDocument::parameters(
-            $this->config->groupId(),
-            DocumentFile::fromUrl('https://bob'),
+            $this->config->chatId(),
+            DocumentFile::fromUrl(
+                Url::fromString('https://bob')
+            ),
             null,
             Text::plain('[SendDocument] parse error test')
         )->send($this->telegram);

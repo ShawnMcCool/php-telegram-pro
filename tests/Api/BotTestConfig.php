@@ -1,21 +1,37 @@
 <?php namespace Tests\Api;
 
 use Exception;
+use TelegramPro\Types\ChatId;
 
 final class BotTestConfig
 {
     private string $token;
-    private int $groupId;
-    private int $wrongGroupId;
+    private ChatId $chatId;
+    private ChatId $wrongGroupId;
 
     private function __construct(
         string $token,
-        int $groupId,
-    int $wrongGroupId
+        ChatId $chatId,
+        ChatId $wrongGroupId
     ) {
         $this->token = $token;
-        $this->groupId = $groupId;
+        $this->chatId = $chatId;
         $this->wrongGroupId = $wrongGroupId;
+    }
+
+    public function token(): string
+    {
+        return $this->token;
+    }
+
+    public function chatId(): ChatId
+    {
+        return $this->chatId;
+    }
+
+    public function wrongGroupId(): ChatId
+    {
+        return $this->wrongGroupId;
     }
 
     public static function fromConfigFile($filePath): BotTestConfig
@@ -28,23 +44,8 @@ final class BotTestConfig
 
         return new static(
             $config->token,
-            $config->groupId,
-            $config->wrongGroupId
+            ChatId::fromInt($config->chatId),
+            ChatId::fromInt($config->wrongChatId)
         );
-    }
-
-    public function token(): string
-    {
-        return $this->token;
-    }
-
-    public function groupId(): int
-    {
-        return $this->groupId;
-    }
-
-    public function wrongGroupId(): int
-    {
-        return $this->wrongGroupId;
     }
 }

@@ -2,8 +2,8 @@
 
 final class Video
 {
-    private string $fileId;
-    private string $fileUniqueId;
+    private FileId $fileId;
+    private FileUniqueId $fileUniqueId;
     private int $width;
     private int $height;
     private int $duration;
@@ -12,8 +12,8 @@ final class Video
     private ?int $fileSize;
 
     public function __construct(
-        string $fileId,
-        string $fileUniqueId,
+        FileId $fileId,
+        FileUniqueId $fileUniqueId,
         int $width,
         int $height,
         int $duration,
@@ -31,12 +31,12 @@ final class Video
         $this->fileSize = $fileSize;
     }
 
-    public function fileId(): string
+    public function fileId(): FileId
     {
         return $this->fileId;
     }
 
-    public function fileUniqueId(): string
+    public function fileUniqueId(): FileUniqueId
     {
         return $this->fileUniqueId;
     }
@@ -76,8 +76,8 @@ final class Video
         if ( ! $video) return null;
 
         return new static(
-            $video->file_id,
-            $video->file_unique_id,
+            FileId::fromString($video->file_id),
+            FileUniqueId::fromString($video->file_unique_id),
             $video->width,
             $video->height,
             $video->duration,

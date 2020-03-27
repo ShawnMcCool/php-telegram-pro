@@ -2,22 +2,22 @@
 
 final class CallbackGame
 {
-    private int $userId;
+    private UserId $userId;
     private int $score;
     private ?bool $force;
     private ?bool $disableEditMessage;
-    private ?int $chatId;
+    private ?ChatId $chatId;
     private ?int $messageId;
-    private ?string $inlineMessageId;
+    private ?InlineMessageId $inlineMessageId;
 
     public function __construct(
-        int $userId,
+        UserId $userId,
         int $score,
         ?bool $force,
         ?bool $disableEditMessage,
-        ?int $chatId,
+        ?ChatId $chatId,
         ?int $messageId,
-        ?string $inlineMessageId
+        ?InlineMessageId $inlineMessageId
     ) {
         $this->userId = $userId;
         $this->score = $score;
@@ -33,17 +33,17 @@ final class CallbackGame
         if ( ! $callbackGame) return null;
 
         return new static(
-            $callbackGame->user_id,
+            UserId::fromInt($callbackGame->user_id),
             $callbackGame->score,
             $callbackGame->force ?? null,
             $callbackGame->disable_edit_message ?? null,
-            $callbackGame->chat_id ?? null,
+            ChatId::fromInt($callbackGame->chat_id ?? null),
             $callbackGame->message_id ?? null,
-            $callbackGame->inline_message_id ?? null
+            InlineMessageId::fromString($callbackGame->inline_message_id ?? null)
         );
     }
 
-    public function userId(): int
+    public function userId(): UserId
     {
         return $this->userId;
     }
@@ -63,7 +63,7 @@ final class CallbackGame
         return $this->disableEditMessage;
     }
 
-    public function chatId(): ?int
+    public function chatId(): ?ChatId
     {
         return $this->chatId;
     }
@@ -73,7 +73,7 @@ final class CallbackGame
         return $this->messageId;
     }
 
-    public function inlineMessageId(): ?string
+    public function inlineMessageId(): ?InlineMessageId
     {
         return $this->inlineMessageId;
     }

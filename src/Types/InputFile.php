@@ -4,60 +4,52 @@ use CURLFile;
 
 class InputFile
 {
-    private ?string $fileId;
-    private ?string $url;
-    private ?string $filePath;
+    private ?FileId $fileId;
+    private ?Url $url;
+    private ?FilePath $filePath;
 
     public function __construct(
-        ?string $fileId,
-        ?string $url,
-        ?string $filePath
+        ?FileId $fileId,
+        ?Url $url,
+        ?FilePath $filePath
     ) {
         $this->fileId = $fileId;
         $this->url = $url;
         $this->filePath = $filePath;
     }
 
-    public function fileId(): ?string
+    public function fileId(): ?FileId
     {
         return $this->fileId;
     }
 
-    public function url(): ?string
+    public function url(): ?Url
     {
         return $this->url;
     }
 
-    public function filePath(): ?string
+    public function filePath(): ?FilePath
     {
         return $this->filePath;
     }
 
     public function toApi()
     {
-        return $this->fileId ?? $this->url ?? new CURLFile(realpath($this->filePath));
+        return $this->fileId ?? $this->url ?? new CURLFile($this->filePath);
     }
 
-    public static function fromFileId(string $fileId): InputFile
+    public static function fromFileId(FileId $fileId): InputFile
     {
         return new static($fileId, null, null);
     }
 
-    public static function fromUrl(string $url): InputFile
+    public static function fromUrl(Url $url): InputFile
     {
-        if (filter_var($url, FILTER_VALIDATE_URL) === FALSE) {
-            throw new CanNotValidateUrl($url);
-        }
-
         return new static(null, $url, null);
     }
 
-    public static function fromFile(string $filePath): InputFile
+    public static function fromFilePath(FilePath $filePath): InputFile
     {
-        if ( ! file_exists($filePath)) {
-            throw CanNotOpenFile::fileDoesNotExist($filePath);
-        }
-
         return new static(null, null, $filePath);
     }
 }

@@ -2,8 +2,8 @@
 
 final class Sticker
 {
-    private string $fileId;
-    private string $fileUniqueId;
+    private FileId $fileId;
+    private FileUniqueId $fileUniqueId;
     private int $width;
     private int $height;
     private bool $isAnimated;
@@ -14,8 +14,8 @@ final class Sticker
     private ?int $fileSize;
 
     public function __construct(
-        string $fileId,
-        string $fileUniqueId,
+        FileId $fileId,
+        FileUniqueId $fileUniqueId,
         int $width,
         int $height,
         bool $isAnimated,

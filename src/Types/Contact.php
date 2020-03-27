@@ -5,14 +5,14 @@ final class Contact
     private string $phoneNumber;
     private string $firstName;
     private ?string $lastName;
-    private ?int $userId;
+    private ?UserId $userId;
     private ?string $vcard;
 
     public function __construct(
         string $phoneNumber,
         string $firstName,
         ?string $lastName,
-        ?int $userId,
+        ?UserId $userId,
         ?string $vcard
     ) {
         $this->phoneNumber = $phoneNumber;
@@ -30,8 +30,33 @@ final class Contact
             $contact->phone_number,
             $contact->first_name,
             $contact->last_name,
-            $contact->user_id,
+            UserId::fromInt($contact->user_id),
             $contact->vcard
         );
+    }
+
+    public function phoneNumber(): string
+    {
+        return $this->phoneNumber;
+    }
+
+    public function firstName(): string
+    {
+        return $this->firstName;
+    }
+
+    public function lastName(): ?string
+    {
+        return $this->lastName;
+    }
+
+    public function userId(): ?UserId
+    {
+        return $this->userId;
+    }
+
+    public function vcard(): ?string
+    {
+        return $this->vcard;
     }
 }

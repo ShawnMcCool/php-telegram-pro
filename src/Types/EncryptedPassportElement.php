@@ -2,7 +2,7 @@
 
 final class EncryptedPassportElement
 {
-    private string $type;
+    private EncryptedPassportElementType $type;
     private ?string $data;
     private ?string $phoneNumber;
     private ?string $email;
@@ -14,7 +14,7 @@ final class EncryptedPassportElement
     private string $hash;
 
     public function __construct(
-        string $type, // finite
+        EncryptedPassportElementType $type,
         ?string $data,
         ?string $phoneNumber,
         ?string $email,
@@ -40,15 +40,15 @@ final class EncryptedPassportElement
     public static function fromApi($encryptedPassportElement): EncryptedPassportElement
     {
         return new static(
-            $encryptedPassportElement->type,
+            EncryptedPassportElementType::fromString($encryptedPassportElement->type),
             $encryptedPassportElement->data,
             $encryptedPassportElement->phone_number,
             $encryptedPassportElement->email,
-            PassportFile::arrayFromApi($encryptedPassportElement->files),
+            ArrayOfPassportFiles::fromApi($encryptedPassportElement->files),
             PassportFile::fromApi($encryptedPassportElement->front_side),
             PassportFile::fromApi($encryptedPassportElement->reverse_side),
             PassportFile::fromApi($encryptedPassportElement->selfie),
-            PassportFile::arrayFromApi($encryptedPassportElement->translation),
+            ArrayOfPassportFiles::fromApi($encryptedPassportElement->translation),
             $encryptedPassportElement->hash
         );
     }

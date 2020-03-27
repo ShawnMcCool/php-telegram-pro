@@ -2,15 +2,15 @@
 
 final class PhotoSize
 {
-    private string $fileId;
-    private string $fileUniqueId;
+    private FileId $fileId;
+    private FileUniqueId $fileUniqueId;
     private int $width;
     private int $height;
     private ?int $fileSize;
 
     public function __construct(
-        string $fileId,
-        string $fileUniqueId,
+        FileId $fileId,
+        FileUniqueId $fileUniqueId,
         int $width,
         int $height,
         ?int $fileSize
@@ -27,20 +27,20 @@ final class PhotoSize
         if ( ! $thumb) return null;
         
         return new static(
-            $thumb->file_id,
-            $thumb->file_unique_id,
+            FileId::fromString($thumb->file_id),
+            FileUniqueId::fromString($thumb->file_unique_id),
             $thumb->width,
             $thumb->height,
             $thumb->file_size
         );
     }
 
-    public function fileId(): string
+    public function fileId(): FileId
     {
         return $this->fileId;
     }
 
-    public function fileUniqueId(): string
+    public function fileUniqueId(): FileUniqueId
     {
         return $this->fileUniqueId;
     }

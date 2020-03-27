@@ -2,8 +2,8 @@
 
 final class Animation
 {
-    private string $fileId;
-    private string $fileUniqueId;
+    private FileId $fileId;
+    private FileUniqueId $fileUniqueId;
     private int $width;
     private int $height;
     private int $duration;
@@ -13,8 +13,8 @@ final class Animation
     private ?string $fileSize;
 
     public function __construct(
-        string $fileId,
-        string $fileUniqueId,
+        FileId $fileId,
+        FileUniqueId $fileUniqueId,
         int $width,
         int $height,
         int $duration,
@@ -39,8 +39,8 @@ final class Animation
         if ( ! $animation) return null;
 
         return new static(
-            $animation->file_id,
-            $animation->file_unique_id,
+            FileId::fromString($animation->file_id),
+            FileUniqueId::fromString($animation->file_unique_id),
             $animation->width,
             $animation->height,
             $animation->duration,
@@ -51,12 +51,12 @@ final class Animation
         );
     }
 
-    public function fileId(): string
+    public function fileId(): FileId
     {
         return $this->fileId;
     }
 
-    public function fileUniqueId(): string
+    public function fileUniqueId(): FileUniqueId
     {
         return $this->fileUniqueId;
     }

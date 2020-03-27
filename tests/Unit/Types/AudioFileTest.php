@@ -1,6 +1,7 @@
 <?php namespace Tests\Unit\Types;
 
 use Tests\TelegramTestCase;
+use TelegramPro\Types\FilePath;
 use TelegramPro\Types\AudioFile;
 use TelegramPro\Types\AudioFileNotSupported;
 
@@ -8,24 +9,26 @@ class AudioFileTest extends TelegramTestCase
 {
     function testCanRepresentMp3Files()
     {
-        $audio = AudioFile::fromFile(
-            $this->media->mp3()
+        $audio = AudioFile::fromFilePath(
+            FilePath::fromString($this->media->mp3())
         );
-
-        self::assertSame(
-            $this->media->mp3(),
+        
+        $this->sameValue(
+            FilePath::fromString($this->media->mp3()),
             $audio->filePath()
         );
     }
 
     function testCanRepresentM4aFiles()
     {
-        $audio = AudioFile::fromFile(
-            $this->media->m4a()
+        $audio = AudioFile::fromFilePath(
+            FilePath::fromString(
+                $this->media->m4a()
+            )
         );
 
-        self::assertSame(
-            $this->media->m4a(),
+        $this->sameValue(
+            FilePath::fromString($this->media->m4a()),
             $audio->filePath()
         );
     }
@@ -34,8 +37,10 @@ class AudioFileTest extends TelegramTestCase
     {
         $this->expectException(AudioFileNotSupported::class);
         
-        AudioFile::fromFile(
-            $this->media->image()
+        AudioFile::fromFilePath(
+            FilePath::fromString(
+                $this->media->image()
+            )
         );
     }
 }

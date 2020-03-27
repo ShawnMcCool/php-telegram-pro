@@ -1,13 +1,11 @@
 <?php namespace TelegramPro\Types;
 
-use IteratorAggregate;
-
 final class MessageEntity
 {
     private int $offset;
     private int $length;
     private string $type;
-    private ?string $url;
+    private ?Url $url;
     private ?User $user;
     private ?string $language;
 
@@ -15,7 +13,7 @@ final class MessageEntity
         string $type,
         int $offset,
         int $length,
-        ?string $url,
+        ?Url $url,
         ?User $user,
         ?string $language
     ) {
@@ -42,7 +40,7 @@ final class MessageEntity
         return $this->type;
     }
 
-    public function url(): ?string
+    public function url(): ?Url
     {
         return $this->url;
     }
@@ -57,7 +55,7 @@ final class MessageEntity
         return $this->language;
     }
     
-    public static function arrayFromApi(?IteratorAggregate $entities): ArrayOfMessageEntities
+    public static function arrayFromApi($entities): ArrayOfMessageEntities
     {
         return ArrayOfMessageEntities::fromApi($entities);
     }
@@ -68,7 +66,7 @@ final class MessageEntity
             $entity->type,
             $entity->offset,
             $entity->length,
-            $entity->url ?? null,
+            Url::fromString($entity->url ?? null),
             User::fromApi($entity->user ?? null),
             $entity->language ?? null
         );

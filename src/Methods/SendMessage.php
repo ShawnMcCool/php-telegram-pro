@@ -2,6 +2,7 @@
 
 use TelegramPro\Api\Telegram;
 use TelegramPro\Types\Text;
+use TelegramPro\Types\MessageId;
 use TelegramPro\Types\ReplyMarkup;
 use TelegramPro\Api\CurlParameters;
 
@@ -11,7 +12,7 @@ final class SendMessage implements Method
     private Text $text;
     private ?bool $disableWebPagePreview;
     private ?bool $disableNotification;
-    private ?int $replyToMessageId;
+    private ?MessageId $replyToMessageId;
     private ?ReplyMarkup $replyMarkup;
 
     private function __construct(
@@ -19,7 +20,7 @@ final class SendMessage implements Method
         Text $text,
         ?bool $disableWebPagePreview,
         ?bool $disableNotification,
-        ?int $replyToMessageId,
+        ?MessageId $replyToMessageId,
         ?ReplyMarkup $replyMarkup
     ) {
         $this->chatId = $chatId;
@@ -59,7 +60,7 @@ final class SendMessage implements Method
         Text $text,
         ?bool $disableWebPagePreview = null,
         ?bool $disableNotification = null,
-        ?int $replyToMessageId = null,
+        ?MessageId $replyToMessageId = null,
         ?ReplyMarkup $replyMarkup = null
     ): SendMessage {
         return new static(

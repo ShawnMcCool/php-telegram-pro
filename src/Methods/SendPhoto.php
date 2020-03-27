@@ -2,25 +2,27 @@
 
 use TelegramPro\Types\Text;
 use TelegramPro\Api\Telegram;
+use TelegramPro\Types\ChatId;
 use TelegramPro\Types\PhotoFile;
+use TelegramPro\Types\MessageId;
 use TelegramPro\Types\ReplyMarkup;
 use TelegramPro\Api\CurlParameters;
 
 final class SendPhoto implements Method
 {
-    private $chatId;
+    private ChatId $chatId;
     private PhotoFile $photo;
     private Text $caption;
     private ?bool $disableNotification;
-    private ?int $replyToMessageId;
+    private ?MessageId $replyToMessageId;
     private ?ReplyMarkup $replyMarkup;
 
     public function __construct(
-        $chatId,
+        ChatId $chatId,
         PhotoFile $photo,
         Text $caption,
         ?bool $disableNotification,
-        ?int $replyToMessageId,
+        ?MessageId $replyToMessageId,
         ?ReplyMarkup $replyMarkup
 
     ) {
@@ -57,11 +59,11 @@ final class SendPhoto implements Method
     }
 
     public static function parameters(
-        $chatId,
+        ChatId $chatId,
         PhotoFile $photo,
         ?Text $caption = null,
         ?bool $disableNotification = null,
-        ?int $replyToMessageId = null,
+        ?MessageId $replyToMessageId = null,
         ?ReplyMarkup $replyMarkup = null
     ): self {
         return new static(

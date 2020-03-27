@@ -2,8 +2,8 @@
 
 final class Audio
 {
-    private string $fileId;
-    private ?string $fileUniqueId;
+    private FileId $fileId;
+    private ?FileUniqueId $fileUniqueId;
     private int $duration;
     private ?string $performer;
     private ?string $title;
@@ -12,8 +12,8 @@ final class Audio
     private ?PhotoSize $thumb;
 
     public function __construct(
-        string $fileId,
-        ?string $fileUniqueId,
+        FileId $fileId,
+        ?FileUniqueId $fileUniqueId,
         int $duration,
         ?string $performer,
         ?string $title,
@@ -36,8 +36,8 @@ final class Audio
         if ( ! $audio) return null;
         
         return new static(
-            $audio->file_id,
-            $audio->file_unique_id ?? null,
+            FileId::fromString($audio->file_id),
+            FileUniqueId::fromString($audio->file_unique_id ?? null),
             $audio->duration,
             $audio->performer ?? null,
             $audio->title ?? null,
@@ -47,12 +47,12 @@ final class Audio
         );
     }
 
-    public function fileId(): string
+    public function fileId(): FileId
     {
         return $this->fileId;
     }
 
-    public function fileUniqueId(): ?string
+    public function fileUniqueId(): ?FileUniqueId
     {
         return $this->fileUniqueId;
     }

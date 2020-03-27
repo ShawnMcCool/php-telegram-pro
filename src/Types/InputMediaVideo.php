@@ -29,15 +29,20 @@ final class InputMediaVideo implements InputMedia
         $this->duration = $duration;
         $this->supportsStreaming = $supportsStreaming;
     }
+    
+    private function apiString(string $mediaKey = ''): string
+    {
+        return $this->video->fileId()
+            ?? $this->video->url()
+            ?? "attach://{$mediaKey}";
+    }
 
     public function toApi(string $mediaKey): array
     {
         return array_filter(
             [
                 'type' => 'video',
-                'media' => $this->video->fileId()
-                    ?? $this->video->url()
-                    ?? "attach://{$mediaKey}",
+                'media' => $this->apiString($mediaKey),
                 'caption' => $this->caption
                     ? $this->caption->text()
                     : null,
@@ -51,12 +56,12 @@ final class InputMediaVideo implements InputMedia
     public function toFile(): ?CURLFile
     {
         return $this->video->filePath()
-            ? new CURLFile(realpath($this->video->filePath()))
+            ? new CURLFile($this->video->filePath())
             : null;
     }
 
     public static function fromFileId(
-        string $fileId,
+        FileId $fileId,
         ?Text $caption = null,
         ?PhotoFile $thumb = null,
         ?int $width = null,
@@ -76,7 +81,7 @@ final class InputMediaVideo implements InputMedia
     }
 
     public static function fromUrl(
-        string $url,
+        Url $url,
         ?Text $caption = null,
         ?PhotoFile $thumb = null,
         ?int $width = null,
@@ -96,7 +101,7 @@ final class InputMediaVideo implements InputMedia
     }
 
     public static function fromFile(
-        string $filePath,
+        FilePath $filePath,
         ?Text $caption = null,
         ?PhotoFile $thumb = null,
         ?int $width = null,
@@ -105,7 +110,7 @@ final class InputMediaVideo implements InputMedia
         ?bool $supportsStreaming = null
     ): InputMediaVideo {
         return new static(
-            VideoFile::fromFile($filePath),
+            VideoFile::fromFilePath($filePath),
             $caption,
             $thumb,
             $width,

@@ -2,14 +2,16 @@
 
 use TelegramPro\Types\Text;
 use TelegramPro\Api\Telegram;
+use TelegramPro\Types\ChatId;
 use TelegramPro\Types\PhotoFile;
 use TelegramPro\Types\VideoFile;
+use TelegramPro\Types\MessageId;
 use TelegramPro\Types\ReplyMarkup;
 use TelegramPro\Api\CurlParameters;
 
 final class SendVideo implements Method
 {
-    private $chatId;
+    private ChatId $chatId;
     private VideoFile $video;
     private ?Text $caption;
     private ?int $duration;
@@ -18,11 +20,11 @@ final class SendVideo implements Method
     private ?PhotoFile $thumb;
     private ?bool $supportsStreaming;
     private ?bool $disableNotification;
-    private ?int $replyToMessageId;
+    private ?MessageId $replyToMessageId;
     private ?ReplyMarkup $replyMarkup;
 
     public function __construct(
-        $chatId,
+        ChatId $chatId,
         VideoFile $video,
         ?Text $caption,
         ?int $duration,
@@ -31,7 +33,7 @@ final class SendVideo implements Method
         ?PhotoFile $thumb,
         ?bool $supportsStreaming,
         ?bool $disableNotification,
-        ?int $replyToMessageId,
+        ?MessageId $replyToMessageId,
         ?ReplyMarkup $replyMarkup
     ) {
         $this->chatId = $chatId;
@@ -77,7 +79,7 @@ final class SendVideo implements Method
     }
 
     public static function parameters(
-        $chatId,
+        ChatId $chatId,
         VideoFile $video,
         ?Text $caption,
         ?int $duration = null,
@@ -86,7 +88,7 @@ final class SendVideo implements Method
         ?PhotoFile $thumb = null,
         ?bool $supportsStreaming = null,
         ?bool $disableNotification = null,
-        ?int $replyToMessageId = null,
+        ?MessageId $replyToMessageId = null,
         ?ReplyMarkup $replyMarkup = null
     ): self {
         return new static(

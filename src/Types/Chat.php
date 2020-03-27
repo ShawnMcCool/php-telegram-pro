@@ -2,8 +2,8 @@
 
 final class Chat
 {
-    private int $chatId;
-    private string $type;
+    private ChatId $chatId;
+    private ChatType $type;
     private ?string $title;
     private ?string $username;
     private ?string $firstName;
@@ -18,8 +18,8 @@ final class Chat
     private ?bool $canSetStickerSet;
 
     public function __construct(
-        int $chatId,
-        string $type,
+        ChatId $chatId,
+        ChatType $type,
         ?string $title,
         ?string $username,
         ?string $firstName,
@@ -54,8 +54,8 @@ final class Chat
         if ( ! $chat) return null;
         
         return new static(
-            $chat->id,
-            $chat->type,
+            ChatId::fromInt($chat->id),
+            ChatType::fromString($chat->type),
             $chat->title ?? null,
             $chat->username ?? null,
             $chat->first_name ?? null,
@@ -71,12 +71,12 @@ final class Chat
         );
     }
 
-    public function chatId(): int
+    public function chatId(): ChatId
     {
         return $this->chatId;
     }
 
-    public function type(): string
+    public function type(): ChatType
     {
         return $this->type;
     }
