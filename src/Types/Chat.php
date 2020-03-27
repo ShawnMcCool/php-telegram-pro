@@ -10,7 +10,7 @@ final class Chat
     private ?string $lastName;
     private ?ChatPhoto $photo;
     private ?string $description;
-    private ?string $inviteLink;
+    private ?Url $inviteLink;
     private ?Message $pinnedMessage;
     private ?ChatPermissions $permissions;
     private ?int $slowModeDelay;
@@ -26,7 +26,7 @@ final class Chat
         ?string $lastName,
         ?ChatPhoto $photo,
         ?string $description,
-        ?string $inviteLink,
+        ?Url $inviteLink,
         ?Message $pinnedMessage,
         ?ChatPermissions $permissions,
         ?int $slowModeDelay,
@@ -62,7 +62,7 @@ final class Chat
             $chat->last_name ?? null,
             ChatPhoto::fromApi($chat->photo ?? null),
             $chat->description ?? null,
-            $chat->invite_link ?? null,
+            Url::fromString($chat->invite_link ?? null),
             Message::fromApi($chat->pinned_message ?? null),
             ChatPermissions::fromApi($chat->permissions ?? null),
             $chat->slow_mode_delay ?? null,
@@ -111,7 +111,7 @@ final class Chat
         return $this->description;
     }
 
-    public function inviteLink(): ?string
+    public function inviteLink(): ?Url
     {
         return $this->inviteLink;
     }

@@ -2,7 +2,7 @@
 
 final class SuccessfulPayment
 {
-    private string $currency;
+    private Currency $currency;
     private string $totalAmount;
     private string $invoicePayload;
     private ?ShippingOptionId $shippingOptionId;
@@ -11,7 +11,7 @@ final class SuccessfulPayment
     private string $providerPaymentChargeId;
 
     public function __construct(
-        string $currency,
+        Currency $currency,
         string $totalAmount,
         string $invoicePayload,
         ?ShippingOptionId $shippingOptionId,
@@ -33,7 +33,7 @@ final class SuccessfulPayment
         if ( ! $successfulPayment) return null;
 
         return new static(
-            $successfulPayment->currency,
+            Currency::fromString($successfulPayment->currency),
             $successfulPayment->total_amount,
             $successfulPayment->invoice_payment,
             ShippingOptionId::fromString($successfulPayment->shipping_option_id),

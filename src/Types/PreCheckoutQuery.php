@@ -4,7 +4,7 @@ final class PreCheckoutQuery
 {
     private PreCheckoutQueryId $id;
     private User $from;
-    private string $currency;
+    private Currency $currency;
     private string $totalAmount;
     private string $invoicePayload;
     private ?string $shippingOptionId;
@@ -13,7 +13,7 @@ final class PreCheckoutQuery
     public function __construct(
         PreCheckoutQueryId $id,
         User $from,
-        string $currency,
+        Currency $currency,
         string $totalAmount,
         string $invoicePayload,
         ?string $shippingOptionId,
@@ -35,7 +35,7 @@ final class PreCheckoutQuery
         return new static(
             PreCheckoutQueryId::fromString($preCheckoutQuery->id),
             User::fromApi($preCheckoutQuery->from),
-            $preCheckoutQuery->currency,
+            Currency::fromString($preCheckoutQuery->currency),
             $preCheckoutQuery->total_amount,
             $preCheckoutQuery->invoice_payload,
             $preCheckoutQuery->shipping_option_id,

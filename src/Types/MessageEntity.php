@@ -4,18 +4,18 @@ final class MessageEntity
 {
     private int $offset;
     private int $length;
-    private string $type;
+    private MessageEntityType $type;
     private ?Url $url;
     private ?User $user;
-    private ?string $language;
+    private ?ProgrammingLanguage $language;
 
     public function __construct(
-        string $type,
+        MessageEntityType $type,
         int $offset,
         int $length,
         ?Url $url,
         ?User $user,
-        ?string $language
+        ?ProgrammingLanguage $language
     ) {
         $this->offset = $offset;
         $this->length = $length;
@@ -35,7 +35,7 @@ final class MessageEntity
         return $this->length;
     }
 
-    public function type(): string
+    public function type(): MessageEntityType
     {
         return $this->type;
     }
@@ -50,7 +50,7 @@ final class MessageEntity
         return $this->user;
     }
 
-    public function language(): ?string
+    public function language(): ?ProgrammingLanguage
     {
         return $this->language;
     }
@@ -63,12 +63,12 @@ final class MessageEntity
     public static function fromApi($entity): MessageEntity
     {
         return new static(
-            $entity->type,
+            MessageEntityType::fromString($entity->type),
             $entity->offset,
             $entity->length,
             Url::fromString($entity->url ?? null),
             User::fromApi($entity->user ?? null),
-            $entity->language ?? null
+            ProgrammingLanguage::fromString($entity->language ?? null)
         );
     }
 }

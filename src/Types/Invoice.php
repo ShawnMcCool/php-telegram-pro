@@ -5,14 +5,14 @@ final class Invoice
     private string $title;
     private string $description;
     private string $startParameter;
-    private string $currency;
+    private Currency $currency;
     private string $totalAmount;
 
     public function __construct(
         string $title,
         string $description,
         string $startParameter,
-        string $currency,
+        Currency $currency,
         string $totalAmount
     ) {
         $this->title = $title;
@@ -30,7 +30,7 @@ final class Invoice
             $invoice->title,
             $invoice->description,
             $invoice->start_parameter,
-            $invoice->currency,
+            Currency::fromString($invoice->currency),
             $invoice->total_amount
         );
     }

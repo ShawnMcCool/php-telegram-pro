@@ -4,16 +4,16 @@ class Message
 {
     private MessageId $messageId;
     private ?User $from;
-    private int $date;
+    private Date $date;
     private Chat $chat;
     private ?User $forwardFrom;
     private ?Chat $forwardFromChat;
-    private ?int $forwardFromMessageId;
+    private ?MessageId $forwardFromMessageId;
     private ?string $forwardSignature;
     private ?string $forwardSenderName;
-    private ?int $forwardDate;
+    private ?Date $forwardDate;
     private ?Message $replyToMessage;
-    private ?int $editDate;
+    private ?Date $editDate;
     private ?string $mediaGroupId;
     private ?string $authorSignature;
     private ?string $text;
@@ -41,8 +41,8 @@ class Message
     private ?bool $groupChatCreated;
     private ?bool $supergroupChatCreated;
     private ?bool $channelChatCreated;
-    private ?int $migrateToChatId;
-    private ?int $migrateFromChatId;
+    private ?ChatId $migrateToChatId;
+    private ?ChatId $migrateFromChatId;
     private ?Message $pinnedMessage;
     private ?Invoice $invoice;
     private ?SuccessfulPayment $successfulPayment;
@@ -53,16 +53,16 @@ class Message
     public function __construct(
         MessageId $messageId,
         ?User $from,
-        int $date,
+        Date $date,
         Chat $chat,
         ?User $forwardFrom,
         ?Chat $forwardFromChat,
-        ?int $forwardFromMessageId,
+        ?MessageId $forwardFromMessageId,
         ?string $forwardSignature,
         ?string $forwardSenderName,
-        ?int $forwardDate,
+        ?Date $forwardDate,
         ?Message $replyToMessage,
-        ?int $editDate,
+        ?Date $editDate,
         ?string $mediaGroupId,
         ?string $authorSignature,
         ?string $text,
@@ -90,8 +90,8 @@ class Message
         ?bool $groupChatCreated,
         ?bool $supergroupChatCreated,
         ?bool $channelChatCreated,
-        ?int $migrateToChatId,
-        ?int $migrateFromChatId,
+        ?ChatId $migrateToChatId,
+        ?ChatId $migrateFromChatId,
         ?Message $pinnedMessage,
         ?Invoice $invoice,
         ?SuccessfulPayment $successfulPayment,
@@ -158,7 +158,7 @@ class Message
         return $this->from;
     }
 
-    public function date(): int
+    public function date(): Date
     {
         return $this->date;
     }
@@ -178,7 +178,7 @@ class Message
         return $this->forwardFromChat;
     }
 
-    public function forwardFromMessageId(): ?int
+    public function forwardFromMessageId(): ?MessageId
     {
         return $this->forwardFromMessageId;
     }
@@ -193,7 +193,7 @@ class Message
         return $this->forwardSenderName;
     }
 
-    public function forwardDate(): ?int
+    public function forwardDate(): ?Date
     {
         return $this->forwardDate;
     }
@@ -203,7 +203,7 @@ class Message
         return $this->replyToMessage;
     }
 
-    public function editDate(): ?int
+    public function editDate(): ?Date
     {
         return $this->editDate;
     }
@@ -343,12 +343,12 @@ class Message
         return $this->channelChatCreated;
     }
 
-    public function migrateToChatId(): ?int
+    public function migrateToChatId(): ?ChatId
     {
         return $this->migrateToChatId;
     }
 
-    public function migrateFromChatId(): ?int
+    public function migrateFromChatId(): ?ChatId
     {
         return $this->migrateFromChatId;
     }
@@ -390,16 +390,16 @@ class Message
         return new static(
             MessageId::fromInt($message->message_id),
             User::fromApi($message->from ?? null),
-            $message->date,
+            Date::fromApi($message->date),
             Chat::fromApi($message->chat),
             User::fromApi($message->forward_from ?? null),
             Chat::fromApi($message->forward_from_chat ?? null),
-            $message->forward_from_message_id ?? null,
+            MessageId::fromInt($message->forward_from_message_id ?? null),
             $message->forward_signature ?? null,
             $message->forward_sender_name ?? null,
-            $message->forward_date ?? null,
+            Date::fromApi($message->forward_date ?? null),
             Message::fromApi($message->reply_to_message ?? null),
-            $message->edit_date ?? null,
+            Date::fromApi($message->edit_date ?? null),
             $message->media_group_id ?? null,
             $message->author_signature ?? null,
             $message->text ?? null,
@@ -427,8 +427,8 @@ class Message
             $message->group_chat_created ?? null,
             $message->supergroup_chat_created ?? null,
             $message->channel_chat_created ?? null,
-            $message->migrate_to_chat_id ?? null,
-            $message->migrate_from_chat_id ?? null,
+            ChatId::fromInt($message->migrate_to_chat_id ?? null),
+            ChatId::fromInt($message->migrate_from_chat_id ?? null),
             Message::fromApi($message->pinned_message ?? null),
             Invoice::fromApi($message->invoice ?? null),
             SuccessfulPayment::fromApi($message->successful_payment ?? null),

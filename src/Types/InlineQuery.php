@@ -2,14 +2,14 @@
 
 final class InlineQuery
 {
-    private string $id;
+    private InlineQueryId $id;
     private User $from;
     private ?Location $location;
     private string $query;
     private string $offset;
 
     public function __construct(
-        string $id,
+        InlineQueryId $id,
         User $from,
         ?Location $location,
         string $query,
@@ -27,7 +27,7 @@ final class InlineQuery
         if ( ! $inlineQuery) return null;
 
         return new static(
-            $inlineQuery->id,
+            InlineQueryId::fromString($inlineQuery->id),
             User::fromApi($inlineQuery->from),
             Location::fromApi($inlineQuery->location ?? null),
             $inlineQuery->query,
@@ -35,7 +35,7 @@ final class InlineQuery
         );
     }
 
-    public function id(): string
+    public function id(): InlineQueryId
     {
         return $this->id;
     }
