@@ -4,17 +4,17 @@ final class Game
 {
     private string $title;
     private string $description;
-    private array $photos;
+    private ArrayOfPhotoSizes $photos;
     private ?string $text;
-    private array $textEntities;
+    private ArrayOfMessageEntities $textEntities;
     private ?Animation $animation;
 
     public function __construct(
         string $title,
         string $description,
-        array $photos, // of PhotoSize objects
+        ArrayOfPhotoSizes $photos,
         ?string $text,
-        array $textEntities, // of MessageEntity
+        ArrayOfMessageEntities $textEntities, // of MessageEntity
         ?Animation $animation
     ) {
         $this->title = $title;
@@ -32,9 +32,9 @@ final class Game
         return new static(
             $game->title,
             $game->description,
-            PhotoSize::arrayfromApi($game->photos),
+            ArrayOfPhotoSizes::fromApi($game->photos),
             $game->text,
-            MessageEntity::arrayfromApi($game->text_entities),
+            MessageEntity::arrayFromApi($game->text_entities),
             Animation::fromApi($game->animation)
         );
     }

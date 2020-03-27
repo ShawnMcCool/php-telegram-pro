@@ -22,23 +22,10 @@ final class PhotoSize
         $this->fileSize = $fileSize;
     }
 
-    public static function arrayFromApi(?array $photoSizes): ?array
-    {
-        if ( ! $photoSizes) return null;
-        
-        $photoSizeArray = [];
-        
-        foreach ($photoSizes as $photoSize) {
-            $photoSizeArray[] = PhotoSize::fromApi($photoSize);
-        }
-        
-        return $photoSizeArray;
-    }
-
     public static function fromApi($thumb): ?PhotoSize
     {
         if ( ! $thumb) return null;
-
+        
         return new static(
             $thumb->file_id,
             $thumb->file_unique_id,

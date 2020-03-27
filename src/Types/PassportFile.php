@@ -19,19 +19,6 @@ final class PassportFile
         $this->fileDate = $fileDate;
     }
 
-    public static function arrayfromApi(?array $files): ?array
-    {
-        if ( ! $files) return null;
-
-        $fileArray = [];
-
-        foreach ($files as $file) {
-            $fileArray[] = PassportFile::fromApi($file);
-        }
-
-        return $fileArray;
-    }
-
     public static function fromApi($file): ?PassportFile
     {
         return new static(

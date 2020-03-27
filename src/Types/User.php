@@ -34,36 +34,6 @@ final class User
         $this->supportsInlineQueries = $supportsInlineQueries;
     }
 
-    public static function fromApi($user): ?User
-    {
-        if ( ! $user) return null;
-
-        return new static(
-            $user->id,
-            $user->is_bot ?? null,
-            $user->first_name,
-            $user->last_name ?? null,
-            $user->username ?? null,
-            $user->language_code ?? null,
-            $user->can_join_groups ?? null,
-            $user->can_read_all_group_messages ?? null,
-            $user->supports_inline_queries ?? null
-        );
-    }
-
-    public static function arrayfromApi(?array $newChatMembers): ?array
-    {
-        if ( ! $newChatMembers) return null;
-
-        $newChatMemberArray = [];
-
-        foreach ($newChatMembers as $newChatMember) {
-            $newChatMemberArray[] = User::fromApi($newChatMember);
-        }
-
-        return $newChatMemberArray;
-    }
-
     public function userId(): int
     {
         return $this->userId;
@@ -107,5 +77,22 @@ final class User
     public function supportsInlineQueries(): ?bool
     {
         return $this->supportsInlineQueries;
+    }
+
+    public static function fromApi($user): ?User
+    {
+        if ( ! $user) return null;
+
+        return new static(
+            $user->id,
+            $user->is_bot ?? null,
+            $user->first_name,
+            $user->last_name ?? null,
+            $user->username ?? null,
+            $user->language_code ?? null,
+            $user->can_join_groups ?? null,
+            $user->can_read_all_group_messages ?? null,
+            $user->supports_inline_queries ?? null
+        );
     }
 }

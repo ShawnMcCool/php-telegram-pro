@@ -13,7 +13,7 @@ final class PollOption
         $this->voterCount = $voterCount;
     }
 
-    public static function arrayfromApi(?array $options): ?array
+    public static function arrayFromApi(?IteratorAggregate $options): ?IteratorAggregate
     {
         if ( ! $options) return null;
 

@@ -1,16 +1,16 @@
 <?php namespace TelegramPro\Methods;
 
-use TelegramPro\Types\Message;
+use TelegramPro\Types\ArrayOfMessages;
 
 final class SendMediaGroupResponse
 {
     private bool $ok;
-    private ?array $result;
+    private ArrayOfMessages $result;
     private ?MethodError $error;
 
     public function __construct(
         bool $ok,
-        ?array $result,
+        ArrayOfMessages $result,
         ?MethodError $error
     ) {
         $this->ok = $ok;
@@ -23,7 +23,7 @@ final class SendMediaGroupResponse
         return $this->ok;
     }
 
-    public function result(): ?array
+    public function result(): ArrayOfMessages
     {
         return $this->result;
     }
@@ -36,10 +36,10 @@ final class SendMediaGroupResponse
     public static function fromApi(string $jsonResponse): self
     {
         $response = json_decode($jsonResponse);
-        
+
         return new static(
             $response->ok,
-            Message::arrayFromApi($response->result ?? null),
+            ArrayOfMessages::fromApi($response->result ?? null),
             MethodError::fromApi($response)
         );
     }

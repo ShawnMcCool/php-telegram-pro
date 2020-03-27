@@ -41,7 +41,7 @@ final class Poll
         return new static(
             $poll->id,
             $poll->question,
-            PollOption::arrayfromApi($poll->options),
+            PollOption::arrayFromApi($poll->options),
             $poll->total_voter_count,
             $poll->is_closed,
             $poll->is_anonymous,

@@ -3,7 +3,6 @@
 use Tests\TelegramTestCase;
 use TelegramPro\Types\Text;
 use TelegramPro\Types\Message;
-use TelegramPro\Methods\ParseMode;
 use TelegramPro\Methods\SendMessage;
 use TelegramPro\Methods\MethodError;
 

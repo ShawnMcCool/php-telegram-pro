@@ -6,11 +6,11 @@ final class EncryptedPassportElement
     private ?string $data;
     private ?string $phoneNumber;
     private ?string $email;
-    private ?array $files;
+    private ArrayOfPassportFiles $files;
     private ?PassportFile $frontSide;
     private ?PassportFile $reverseSide;
     private ?PassportFile $selfie;
-    private ?array $translation;
+    private ArrayOfPassportFiles $translation;
     private string $hash;
 
     public function __construct(
@@ -18,11 +18,11 @@ final class EncryptedPassportElement
         ?string $data,
         ?string $phoneNumber,
         ?string $email,
-        ?array $files, // array of PassportFile
+        ArrayOfPassportFiles $files,
         ?PassportFile $frontSide,
         ?PassportFile $reverseSide,
         ?PassportFile $selfie,
-        ?array $translation, // array of PassportFile
+        ArrayOfPassportFiles $translation,
         string $hash
     ) {
         $this->type = $type;
@@ -37,31 +37,18 @@ final class EncryptedPassportElement
         $this->hash = $hash;
     }
 
-    public static function arrayfromApi(?array $encryptedPassportElements): ?array
-    {
-        if ( ! $encryptedPassportElements) return null;
-
-        $encryptedPassportElementArray = [];
-
-        foreach ($encryptedPassportElements as $encryptedPassportElement) {
-            $encryptedPassportElementArray[] = EncryptedPassportElement::fromApi($encryptedPassportElement);
-        }
-
-        return $encryptedPassportElementArray;
-    }
-
-    private static function fromApi($encryptedPassportElement): EncryptedPassportElement
+    public static function fromApi($encryptedPassportElement): EncryptedPassportElement
     {
         return new static(
             $encryptedPassportElement->type,
             $encryptedPassportElement->data,
             $encryptedPassportElement->phone_number,
             $encryptedPassportElement->email,
-            PassportFile::arrayfromApi($encryptedPassportElement->files),
+            PassportFile::arrayFromApi($encryptedPassportElement->files),
             PassportFile::fromApi($encryptedPassportElement->front_side),
             PassportFile::fromApi($encryptedPassportElement->reverse_side),
             PassportFile::fromApi($encryptedPassportElement->selfie),
-            PassportFile::arrayfromApi($encryptedPassportElement->translation),
+            PassportFile::arrayFromApi($encryptedPassportElement->translation),
             $encryptedPassportElement->hash
         );
     }

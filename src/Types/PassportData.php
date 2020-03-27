@@ -2,11 +2,11 @@
 
 final class PassportData
 {
-    private array $data;
+    private ArrayOfEncryptedPassportElements $data;
     private EncryptedCredentials $credentials;
 
     public function __construct(
-        array $data, // array of EncryptedPassportElement
+        ArrayOfEncryptedPassportElements $data,
         EncryptedCredentials $credentials
     ) {
         $this->data = $data;
@@ -18,7 +18,7 @@ final class PassportData
         if ( ! $passportData) return null;
         
         return new static(
-            EncryptedPassportElement::arrayfromApi($passportData->data),
+            ArrayOfEncryptedPassportElements::fromApi($passportData->data),
             EncryptedCredentials::fromApi($passportData->credentials)
         );
     }

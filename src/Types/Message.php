@@ -17,13 +17,13 @@ class Message
     private ?string $mediaGroupId;
     private ?string $authorSignature;
     private ?string $text;
-    private ?array $entities;
-    private ?array $captionEntities;
+    private ArrayOfMessageEntities $entities;
+    private ArrayOfMessageEntities $captionEntities;
     private ?Audio $audio;
     private ?Document $document;
     private ?Animation $animation;
     private ?Game $game;
-    private ?array $photo;
+    private ArrayOfPhotoSizes $photo;
     private ?Sticker $sticker;
     private ?Video $video;
     private ?Voice $voice;
@@ -33,10 +33,10 @@ class Message
     private ?Location $location;
     private ?Venue $venue;
     private ?Poll $poll;
-    private ?array $newChatMembers;
+    private ArrayOfUsers $newChatMembers;
     private ?User $leftChatMember;
     private ?string $newChatTitle;
-    private ?array $newChatPhoto;
+    private ArrayOfPhotoSizes $newChatPhoto;
     private ?bool $deleteChatPhoto;
     private ?bool $groupChatCreated;
     private ?bool $supergroupChatCreated;
@@ -66,13 +66,13 @@ class Message
         ?string $mediaGroupId,
         ?string $authorSignature,
         ?string $text,
-        ?array $entities,
-        ?array $captionEntities,
+        ArrayOfMessageEntities $entities,
+        ArrayOfMessageEntities $captionEntities,
         ?Audio $audio,
         ?Document $document,
         ?Animation $animation,
         ?Game $game,
-        ?array $photo, // of PhotoSize
+        ArrayOfPhotoSizes $photo,
         ?Sticker $sticker,
         ?Video $video,
         ?Voice $voice,
@@ -82,10 +82,10 @@ class Message
         ?Location $location,
         ?Venue $venue,
         ?Poll $poll,
-        ?array $newChatMembers, // array of User
+        ArrayOfUsers $newChatMembers,
         ?User $leftChatMember,
         ?string $newChatTitle,
-        ?array $newChatPhoto, // array of PhotoSize
+        ArrayOfPhotoSizes $newChatPhoto,
         ?bool $deleteChatPhoto,
         ?bool $groupChatCreated,
         ?bool $supergroupChatCreated,
@@ -223,12 +223,12 @@ class Message
         return $this->text;
     }
 
-    public function entities(): ?array
+    public function entities(): ArrayOfMessageEntities
     {
         return $this->entities;
     }
 
-    public function captionEntities(): ?array
+    public function captionEntities(): ArrayOfMessageEntities
     {
         return $this->captionEntities;
     }
@@ -253,7 +253,7 @@ class Message
         return $this->game;
     }
 
-    public function photo(): ?array
+    public function photo(): ArrayOfPhotoSizes
     {
         return $this->photo;
     }
@@ -303,7 +303,7 @@ class Message
         return $this->poll;
     }
 
-    public function newChatMembers(): ?array
+    public function newChatMembers(): ArrayOfUsers
     {
         return $this->newChatMembers;
     }
@@ -318,7 +318,7 @@ class Message
         return $this->newChatTitle;
     }
 
-    public function newChatPhoto(): ?array
+    public function newChatPhoto(): ArrayOfPhotoSizes
     {
         return $this->newChatPhoto;
     }
@@ -383,19 +383,6 @@ class Message
         return $this->replyMarkup;
     }
 
-    public static function arrayFromApi($messages): array
-    {
-        if ( ! $messages) return [];
-
-        $messageArray = [];
-
-        foreach ($messages as $message) {
-            $messageArray[] = static::fromApi($message);
-        }
-
-        return $messageArray;
-    }
-
     public static function fromApi($message): ?Message
     {
         if ( ! $message) return null;
@@ -416,13 +403,13 @@ class Message
             $message->media_group_id ?? null,
             $message->author_signature ?? null,
             $message->text ?? null,
-            MessageEntity::arrayfromApi($message->entities ?? null),
-            MessageEntity::arrayfromApi($message->caption_entities ?? null),
+            ArrayOfMessageEntities::fromApi($message->entities ?? null),
+            MessageEntity::arrayFromApi($message->caption_entities ?? null),
             Audio::fromApi($message->audio ?? null),
             Document::fromApi($message->document ?? null),
             Animation::fromApi($message->animation ?? null),
             Game::fromApi($message->game ?? null),
-            PhotoSize::arrayfromApi($message->photo ?? null),
+            ArrayOfPhotoSizes::fromApi($message->photo ?? null),
             Sticker::fromApi($message->sticker ?? null),
             Video::fromApi($message->video ?? null),
             Voice::fromApi($message->voice ?? null),
@@ -432,10 +419,10 @@ class Message
             Location::fromApi($message->location ?? null),
             Venue::fromApi($message->venue ?? null),
             Poll::fromApi($message->poll ?? null),
-            User::arrayfromApi($message->new_chat_members ?? null),
+            ArrayOfUsers::fromApi($message->new_chat_members ?? null),
             User::fromApi($message->left_chat_member ?? null),
             $message->new_chat_title ?? null,
-            PhotoSize::arrayfromApi($message->new_chat_photo ?? null),
+            ArrayOfPhotoSizes::fromApi($message->new_chat_photo ?? null),
             $message->delete_chat_photo ?? null,
             $message->group_chat_created ?? null,
             $message->supergroup_chat_created ?? null,

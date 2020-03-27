@@ -31,33 +31,7 @@ final class InlineKeyboardButton
         $this->pay = $pay;
     }
 
-    public static function arrayOfArraysfromApi(?array $inlineKeyboard): ?array
-    {
-        if ( ! $inlineKeyboard) return null;
-
-        $keyboardRowArray = [];
-
-        foreach ($inlineKeyboard as $inlineKeyboardRows) {
-            $keyboardRowArray[] = static::arrayfromApi($inlineKeyboardRows);
-        }
-
-        return $keyboardRowArray;
-    }
-
-    private static function arrayfromApi(?array $inlineKeyboardButtons): ?array
-    {
-        if ( ! $inlineKeyboardButtons) return null;
-
-        $buttonArray = [];
-
-        foreach ($inlineKeyboardButtons as $inlineKeyboardButton) {
-            $buttonArray[] = InlineKeyboardButton::fromApi($inlineKeyboardButton);
-        }
-
-        return $buttonArray;
-    }
-
-    private static function fromApi($inlineKeyboardButton): InlineKeyboardButton
+    public static function fromApi($inlineKeyboardButton): InlineKeyboardButton
     {
         return new static(
             $inlineKeyboardButton->text,

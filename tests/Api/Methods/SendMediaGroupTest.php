@@ -3,12 +3,15 @@
 use Tests\TelegramTestCase;
 use TelegramPro\Types\Text;
 use TelegramPro\Types\Video;
+use TelegramPro\Types\Message;
 use TelegramPro\Types\PhotoFile;
 use TelegramPro\Types\PhotoSize;
 use TelegramPro\Types\VideoFile;
 use TelegramPro\Types\MediaGroup;
 use TelegramPro\Methods\SendPhoto;
 use TelegramPro\Methods\SendVideo;
+use TelegramPro\Methods\MethodError;
+use TelegramPro\Types\CanNotOpenFile;
 use TelegramPro\Types\InputMediaPhoto;
 use TelegramPro\Types\InputMediaVideo;
 use TelegramPro\Methods\SendMediaGroup;
@@ -26,7 +29,8 @@ class SendMediaGroupTest extends TelegramTestCase
         )->send($this->telegram);
 
         $this->isOk($sent);
-        self::assertIsArray($sent->result());
+        self::assertCount(2, $sent->result());
+        self::assertInstanceOf(Message::class, $sent->result()->get(0));
     }
 
     function testSendMediaGroupWithUrl()
@@ -40,7 +44,7 @@ class SendMediaGroupTest extends TelegramTestCase
         )->send($this->telegram);
 
         $this->isOk($sent);
-        self::assertIsArray($sent->result());
+        self::assertCount(2, $sent->result());
     }
 
     function testSendMediaGroupWithFileId()
@@ -74,31 +78,35 @@ class SendMediaGroupTest extends TelegramTestCase
         )->send($this->telegram);
 
         $this->isOk($sent);
-        self::assertIsArray($sent->result());
+        self::assertCount(2, $sent->result());
     }
 
-//    function testCanNotSendNonExistentFile()
-//    {
-//        $this->expectException(CanNotOpenFile::class);
-//
-//        $sent = SendMediaGroup::parameters(
-//            $this->config->groupId(),
-//            PhotoFile::fromFile('non existent file'),
-//            '[SendMediaGroup] parse error test'
-//        )->send($this->telegram);
-//    }
-//
-//    function testCanParseError()
-//    {
-//        $sent = SendMediaGroup::parameters(
-//            $this->config->groupId(),
-//            PhotoFile::fromUrl('https://bob'),
-//            '[SendMediaGroup] parse error test'
-//        )->send($this->telegram);
-//
-//        self::assertFalse($sent->ok());
-//        self::assertInstanceOf(MethodError::class, $sent->error());
-//        self::assertSame('400', $sent->error()->code());
-//        self::assertNotEmpty($sent->error()->description());
-//    }
+    function testCanNotSendNonExistentFile()
+    {
+        $this->expectException(CanNotOpenFile::class);
+
+        $sent = SendMediaGroup::parameters(
+            $this->config->groupId(),
+            MediaGroup::items(
+                InputMediaPhoto::fromFile('non existent file'),
+                InputMediaPhoto::fromFile('non existent file')
+            )
+        )->send($this->telegram);
+    }
+
+    function testCanParseError()
+    {
+        $sent = SendMediaGroup::parameters(
+            $this->config->groupId(),
+            MediaGroup::items(
+                InputMediaPhoto::fromUrl('http://non.existent.url'),
+                InputMediaPhoto::fromUrl('http://non.existent.url')
+            )
+        )->send($this->telegram);
+        
+        self::assertFalse($sent->ok());
+        self::assertInstanceOf(MethodError::class, $sent->error());
+        self::assertSame('400', $sent->error()->code());
+        self::assertNotEmpty($sent->error()->description());
+    }
 }

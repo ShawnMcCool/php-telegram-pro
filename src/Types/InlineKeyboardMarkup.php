@@ -1,11 +1,14 @@
 <?php namespace TelegramPro\Types;
 
+use ArrayIterator;
+use IteratorAggregate;
+
 final class InlineKeyboardMarkup implements ReplyMarkup
 {
-    private ?array $inlineKeyboard;
+    private ArrayOfInlineKeyboardRows $inlineKeyboard;
 
     public function __construct(
-        ?array $inlineKeyboard // array of rows (arrays) of InlineKeyboardButtons
+        ArrayOfInlineKeyboardRows $inlineKeyboard // array of rows (arrays) of InlineKeyboardButtons
     ) {
         $this->inlineKeyboard = $inlineKeyboard;
     }
@@ -15,11 +18,11 @@ final class InlineKeyboardMarkup implements ReplyMarkup
         if ( ! $replyMarkup) return null;
         
         return new static(
-            InlineKeyboardButton::arrayOfArraysfromApi($replyMarkup->inline_keyboard ?? null)
+            ArrayOfInlineKeyboardRows::fromApi($replyMarkup->inline_keyboard ?? null)
         );
     }
 
-    function toParameter(): ?array
+    function toParameter(): ?IteratorAggregate
     {
         return $this->inlineKeyboard;
     }

@@ -1,5 +1,7 @@
 <?php namespace TelegramPro\Types;
 
+use IteratorAggregate;
+
 final class MessageEntity
 {
     private int $offset;
@@ -55,20 +57,12 @@ final class MessageEntity
         return $this->language;
     }
     
-    public static function arrayfromApi(?array $entities): ?array
+    public static function arrayFromApi(?IteratorAggregate $entities): ArrayOfMessageEntities
     {
-        if ( ! $entities) return null;
-
-        $entityArray = [];
-
-        foreach ($entities as $entity) {
-            $entityArray[] = MessageEntity::fromApi($entity);
-        }
-
-        return $entityArray;
+        return ArrayOfMessageEntities::fromApi($entities);
     }
 
-    private static function fromApi($entity): MessageEntity
+    public static function fromApi($entity): MessageEntity
     {
         return new static(
             $entity->type,
