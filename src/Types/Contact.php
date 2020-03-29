@@ -1,5 +1,8 @@
 <?php namespace TelegramPro\Types;
 
+/**
+ * This object represents a phone contact.
+ */
 final class Contact
 {
     private string $phoneNumber;
@@ -35,26 +38,41 @@ final class Contact
         );
     }
 
+    /**
+     * Contact's phone number
+     */
     public function phoneNumber(): string
     {
         return $this->phoneNumber;
     }
 
+    /**
+     * Contact's first name
+     */
     public function firstName(): string
     {
         return $this->firstName;
     }
 
+    /**
+     *
+     */
     public function lastName(): ?string
     {
         return $this->lastName;
     }
 
+    /**
+     * Optional. Contact's last name
+     */
     public function userId(): ?UserId
     {
         return $this->userId;
     }
 
+    /**
+     * Optional. Additional data about the contact in the form of a vCard
+     */
     public function vcard(): ?string
     {
         return $this->vcard;

@@ -1,5 +1,8 @@
 <?php namespace TelegramPro\Types;
 
+/**
+ * This object represents a general file (as opposed to photos, voice messages and audio files).
+ */
 final class Document
 {
     private FileId $fileId;
@@ -39,31 +42,49 @@ final class Document
         );
     }
 
+    /**
+     * Identifier for this file, which can be used to download or reuse the file
+     */
     public function fileId(): FileId
     {
         return $this->fileId;
     }
 
+    /**
+     * Unique identifier for this file, which is supposed to be the same over time and for different bots. Can't be used to download or reuse the file.
+     */
     public function fileUniqueId(): ?FileUniqueId
     {
         return $this->fileUniqueId;
     }
 
+    /**
+     * Optional. Document thumbnail as defined by sender
+     */
     public function thumb(): ?PhotoSize
     {
         return $this->thumb;
     }
 
+    /**
+     * Optional. Original filename as defined by sender
+     */
     public function fileName(): ?string
     {
         return $this->fileName;
     }
 
+    /**
+     * Optional. MIME type of the file as defined by sender
+     */
     public function mimeType(): ?string
     {
         return $this->mimeType;
     }
 
+    /**
+     * Optional. File size
+     */
     public function fileSize(): ?int
     {
         return $this->fileSize;

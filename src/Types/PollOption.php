@@ -1,12 +1,15 @@
 <?php namespace TelegramPro\Types;
 
+/**
+ * This object contains information about one answer option in a poll.
+ */
 final class PollOption
 {
-    private string $text;
+    private PollOptionText $text;
     private int $voterCount;
 
     public function __construct(
-        string $text,
+        PollOptionText $text,
         int $voterCount
     ) {
         $this->text = $text;
@@ -16,8 +19,24 @@ final class PollOption
     public static function fromApi($option): PollOption
     {
         return new static(
-            $option->text,
+            PollOptionText::fromApi($option->text),
             $option->voter_count
         );
+    }
+
+    /**
+     * Option text, 1-100 characters
+     */
+    public function text(): PollOptionText
+    {
+        return $this->text;
+    }
+
+    /**
+     * Number of users that voted for this option
+     */
+    public function voterCount(): int
+    {
+        return $this->voterCount;
     }
 }

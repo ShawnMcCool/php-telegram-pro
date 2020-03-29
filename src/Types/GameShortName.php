@@ -2,4 +2,4 @@
 
 use TelegramPro\PritimiveTypes\StringObject;
 
-final class InlineMessageId extends StringObject {}
+final class GameShortName extends StringObject {}

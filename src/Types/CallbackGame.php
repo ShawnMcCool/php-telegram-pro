@@ -8,7 +8,7 @@ final class CallbackGame
     private ?bool $disableEditMessage;
     private ?ChatId $chatId;
     private ?MessageId $messageId;
-    private ?InlineMessageId $inlineMessageId;
+    private ?MessageId $inlineMessageId;
 
     public function __construct(
         UserId $userId,
@@ -17,7 +17,7 @@ final class CallbackGame
         ?bool $disableEditMessage,
         ?ChatId $chatId,
         ?MessageId $messageId,
-        ?InlineMessageId $inlineMessageId
+        ?MessageId $inlineMessageId
     ) {
         $this->userId = $userId;
         $this->score = $score;
@@ -39,7 +39,7 @@ final class CallbackGame
             $callbackGame->disable_edit_message ?? null,
             ChatId::fromInt($callbackGame->chat_id ?? null),
             MessageId::fromInt($callbackGame->message_id ?? null),
-            InlineMessageId::fromString($callbackGame->inline_message_id ?? null)
+            MessageId::fromInt($callbackGame->inline_message_id ?? null)
         );
     }
 
@@ -73,7 +73,7 @@ final class CallbackGame
         return $this->messageId;
     }
 
-    public function inlineMessageId(): ?InlineMessageId
+    public function inlineMessageId(): ?MessageId
     {
         return $this->inlineMessageId;
     }

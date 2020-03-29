@@ -1,5 +1,8 @@
 <?php namespace TelegramPro\Types;
 
+/**
+ * This object represents a voice note.
+ */
 final class Voice
 {
     private FileId $fileId;
@@ -35,26 +38,41 @@ final class Voice
         );
     }
 
+    /**
+     * Identifier for this file, which can be used to download or reuse the file
+     */
     public function fileId(): string
     {
         return $this->fileId;
     }
 
+    /**
+     * Unique identifier for this file, which is supposed to be the same over time and for different bots. Can't be used to download or reuse the file.
+     */
     public function fileUniqueId(): ?string
     {
         return $this->fileUniqueId;
     }
 
+    /**
+     * Duration of the audio in seconds as defined by sender
+     */
     public function duration(): int
     {
         return $this->duration;
     }
 
+    /**
+     * Optional. MIME type of the file as defined by sender
+     */
     public function mimeType(): ?string
     {
         return $this->mimeType;
     }
 
+    /**
+     * Optional. File size
+     */
     public function fileSize(): ?int
     {
         return $this->fileSize;

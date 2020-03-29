@@ -1,5 +1,8 @@
 <?php namespace TelegramPro\Types;
 
+/**
+ * This object represents a point on the map.
+ */
 final class Location
 {
     private float $longitude;
@@ -21,5 +24,21 @@ final class Location
             $location->longitude,
             $location->latitude
         );
+    }
+
+    /**
+     * Longitude as defined by sender
+     */
+    public function longitude(): float
+    {
+        return $this->longitude;
+    }
+
+    /**
+     * Latitude as defined by sender
+     */
+    public function latitude(): float
+    {
+        return $this->latitude;
     }
 }

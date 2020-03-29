@@ -1,0 +1,37 @@
+<?php namespace TelegramPro\Types;
+
+/**
+ * The member's status in the chat. Can be “creator”, “administrator”, “member”, “restricted”, “left” or “kicked”
+ */
+final class ChatMemberStatus
+{
+    private string $type;
+
+    private function __construct(string $type)
+    {
+        $this->type = $type;
+    }
+
+    public function __toString()
+    {
+        return $this->toString();
+    }
+
+    public function toString(): string
+    {
+        return $this->type;
+    }
+
+    public static function fromApi(?string $type): ?self
+    {
+        if (is_null($type)) {
+            return null;
+        }
+        
+        if ( ! in_array($type, ['creator', 'administrator', 'member', 'restricted', 'left', 'kicked'])) {
+            throw new ChatTypeNotSupported($type);
+        }
+
+        return new static ($type);
+    }
+}

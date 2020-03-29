@@ -1,5 +1,8 @@
 <?php namespace TelegramPro\Types;
 
+/**
+ * This object represents an answer of a user in a non-anonymous poll.
+ */
 final class PollAnswer
 {
     private PollId $pollId;
@@ -25,5 +28,29 @@ final class PollAnswer
             User::fromApi($pollAnswer->user),
             ArrayOfPollOptionIds::fromApi($pollAnswer->option_ids)
         );
+    }
+
+    /**
+     * Unique poll identifier
+     */
+    public function pollId(): PollId
+    {
+        return $this->pollId;
+    }
+
+    /**
+     * The user, who changed the answer to the poll
+     */
+    public function user(): User
+    {
+        return $this->user;
+    }
+
+    /**
+     * 0-based identifiers of answer options, chosen by the user. May be empty if the user retracted their vote.
+     */
+    public function optionIds(): ArrayOfPollOptionIds
+    {
+        return $this->optionIds;
     }
 }

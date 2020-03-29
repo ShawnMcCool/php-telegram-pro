@@ -1,5 +1,8 @@
 <?php namespace TelegramPro\Types;
 
+/**
+ * This object represents a venue.
+ */
 final class Venue
 {
     private Location $location;
@@ -33,5 +36,45 @@ final class Venue
             $venue->foursquare_id,
             $venue->foursquare_type
         );
+    }
+
+    /**
+     * Venue location
+     */
+    public function location(): Location
+    {
+        return $this->location;
+    }
+
+    /**
+     * Name of the venue
+     */
+    public function title(): string
+    {
+        return $this->title;
+    }
+
+    /**
+     * Address of the venue
+     */
+    public function address(): string
+    {
+        return $this->address;
+    }
+
+    /**
+     * Optional. Foursquare identifier of the venue
+     */
+    public function foursquareId(): ?string
+    {
+        return $this->foursquareId;
+    }
+
+    /**
+     * Optional. Foursquare type of the venue. (For example, “arts_entertainment/default”, “arts_entertainment/aquarium” or “food/icecream”.)
+     */
+    public function foursquareType(): ?string
+    {
+        return $this->foursquareType;
     }
 }

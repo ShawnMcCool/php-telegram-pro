@@ -5,14 +5,14 @@ final class ChosenInlineResult
     private ResultId $resultId;
     private User $from;
     private ?Location $location;
-    private InlineMessageId $inlineMessageId;
+    private MessageId $inlineMessageId;
     private string $query;
 
     public function __construct(
         ResultId $resultId,
         User $from,
         ?Location $location,
-        InlineMessageId $inlineMessageId,
+        MessageId $inlineMessageId,
         string $query
     ) {
         $this->resultId = $resultId;
@@ -30,7 +30,7 @@ final class ChosenInlineResult
             ResultId::fromString($chosenInlineResult->result_id),
             User::fromApi($chosenInlineResult->from),
             Location::fromApi($chosenInlineResult->location ?? null),
-            InlineMessageId::fromString($chosenInlineResult->inline_message_id),
+            MessageId::fromString($chosenInlineResult->inline_message_id),
             $chosenInlineResult->query,
         );
     }
@@ -50,7 +50,7 @@ final class ChosenInlineResult
         return $this->location;
     }
 
-    public function inlineMessageId(): InlineMessageId
+    public function inlineMessageId(): MessageId
     {
         return $this->inlineMessageId;
     }
