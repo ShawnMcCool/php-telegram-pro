@@ -1,33 +1,26 @@
 <?php namespace TelegramPro\Collections;
 
-use ArrayAccess;
-use ArrayIterator;
 use Countable;
+use Exception;
+use ArrayAccess;
+use Traversable;
+use ArrayIterator;
+use JsonSerializable;
 use IteratorAggregate;
 
-class Collection implements IteratorAggregate, Countable, ArrayAccess
+class Collection implements Countable, ArrayAccess, IteratorAggregate, JsonSerializable
 {
     /** @var array */
     protected $items;
 
+    /**
+     * Position for Iterator interface
+     */
+    private int $position = 0;
+
     public function __construct(array $items = [])
     {
         $this->items = $items;
-    }
-
-    public static function of(array $items): Collection
-    {
-        return new static($items);
-    }
-
-    public static function empty(): Collection
-    {
-        return new static;
-    }
-
-    public static function list(...$items): Collection
-    {
-        return new static($items);
     }
 
     public function add($item): Collection
@@ -126,17 +119,12 @@ class Collection implements IteratorAggregate, Countable, ArrayAccess
 
     public function merge(Collection $that)
     {
-        return new static(array_merge($this->items, $that->items));
+        return new static(array_merge((array)$this, ...$that));
     }
 
     public function reverse(): Collection
     {
         return new static(array_reverse($this->items));
-    }
-
-    public function getIterator(): ArrayIterator
-    {
-        return new ArrayIterator($this->items);
     }
 
     public function isEmpty(): bool
@@ -209,5 +197,36 @@ class Collection implements IteratorAggregate, Countable, ArrayAccess
         return new static(
             array_map(null, $this->items, $that->items)
         );
+    }
+
+    public static function of(array $items): Collection
+    {
+        return new static($items);
+    }
+
+    public static function empty(): Collection
+    {
+        return new static;
+    }
+
+    public static function list(...$items): Collection
+    {
+        return new static($items);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function jsonSerialize()
+    {
+        return $this->items;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getIterator()
+    {
+        return new ArrayIterator($this->items);
     }
 }

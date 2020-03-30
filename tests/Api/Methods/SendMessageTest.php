@@ -3,6 +3,7 @@
 use Tests\TelegramTestCase;
 use TelegramPro\Types\Text;
 use TelegramPro\Types\Message;
+use TelegramPro\Types\MessageText;
 use TelegramPro\Methods\SendMessage;
 use TelegramPro\Methods\MethodError;
 
@@ -12,7 +13,7 @@ class SendMessageTest extends TelegramTestCase
     {
         $response = SendMessage::parameters(
             $this->config->chatId(),
-            Text::plain('[SendMessage] send message')
+            MessageText::fromString('[SendMessage] send message')
         )->send($this->telegram);
 
         $this->isOk($response);
@@ -23,7 +24,7 @@ class SendMessageTest extends TelegramTestCase
     {
         $response = SendMessage::parameters(
             $this->config->chatId(),
-            Text::plain('[SendMessage] send *markdown parsed* message')
+            MessageText::fromString('[SendMessage] send *markdown parsed* message')
         )->send($this->telegram);
 
         $this->isOk($response);
@@ -34,7 +35,7 @@ class SendMessageTest extends TelegramTestCase
     {
         $sent = SendMessage::parameters(
             $this->config->wrongGroupId(),
-            Text::plain('[SendMessage] can parse error')
+            MessageText::fromString('[SendMessage] can parse error')
         )->send($this->telegram);
 
         self::assertFalse($sent->ok());

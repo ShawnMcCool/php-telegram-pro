@@ -4,9 +4,9 @@ use TelegramPro\Api\Telegram;
 use TelegramPro\Types\ChatId;
 use TelegramPro\Types\PhotoFile;
 use TelegramPro\Types\MessageId;
-use TelegramPro\Types\VideoNoteFile;
 use TelegramPro\Types\ReplyMarkup;
 use TelegramPro\Api\CurlParameters;
+use TelegramPro\Types\VideoNoteFile;
 
 final class SendVideoNote implements Method
 {
@@ -45,15 +45,18 @@ final class SendVideoNote implements Method
                       ->withParameters(
                           [
                               'chat_id' => $this->chatId,
-                              'video_note' => $this->videoNote->toApi(),
                               'duration' => $this->duration,
                               'length' => $this->length,
-                              'thumb' => $this->thumb ? $this->thumb->toApi() : null,
                               'disable_notification' => $this->disableNotification,
                               'reply_to_message_id' => $this->replyToMessageId,
                               'reply_markup' => $this->replyMarkup ? $this->replyMarkup->toParameter() : null, // toParameter
                           ]
-                      )
+                      )->withFiles(
+                [
+                    'video_note' => $this->videoNote,
+                    'thumb' => $this->thumb,
+                ]
+            )
                       ->toCurlParameters($botToken);
     }
 

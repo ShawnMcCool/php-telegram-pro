@@ -1,5 +1,8 @@
 <?php namespace TelegramPro\Types;
 
+/**
+ * Optional. Data associated with the callback button. Be aware that a bad client can send arbitrary data in this field.
+ */
 final class CallbackData
 {
     private string $data;

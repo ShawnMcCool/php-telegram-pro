@@ -5,7 +5,7 @@ final class Game
     private string $title;
     private string $description;
     private ArrayOfPhotoSizes $photos;
-    private ?string $text;
+    private ?MessageText $text;
     private ArrayOfMessageEntities $textEntities;
     private ?Animation $animation;
 
@@ -13,7 +13,7 @@ final class Game
         string $title,
         string $description,
         ArrayOfPhotoSizes $photos,
-        ?string $text,
+        ?MessageText $text,
         ArrayOfMessageEntities $textEntities, // of MessageEntity
         ?Animation $animation
     ) {
@@ -33,8 +33,8 @@ final class Game
             $game->title,
             $game->description,
             ArrayOfPhotoSizes::fromApi($game->photos),
-            $game->text,
-            MessageEntity::arrayFromApi($game->text_entities),
+            MessageText::fromApi($game->text),
+            ArrayOfMessageEntities::fromApi($game->text_entities),
             Animation::fromApi($game->animation)
         );
     }

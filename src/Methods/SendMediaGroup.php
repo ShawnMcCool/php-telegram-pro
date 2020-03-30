@@ -29,16 +29,13 @@ final class SendMediaGroup implements Method
     {
         return Request::multipartFormData('sendMediaGroup')
                       ->withParameters(
-                          array_merge(
-                              [
-                                  'chat_id' => $this->chatId,
-                                  'media' => $this->mediaGroup->toApi(),
-                                  'disable_notification' => $this->disableNotification,
-                                  'reply_to_message_id' => $this->replyToMessageId,
-                              ],
-                              $this->mediaGroup->files()
-                          )
-                      )
+                          [
+                              'chat_id' => $this->chatId,
+                              'media' => $this->mediaGroup->toApi(),
+                              'disable_notification' => $this->disableNotification,
+                              'reply_to_message_id' => $this->replyToMessageId,
+                          ],
+                      )->withFiles($this->mediaGroup->filesToUpload())
                       ->toCurlParameters($botToken);
     }
 

@@ -1,77 +1,76 @@
 <?php namespace TelegramPro\Types;
 
-use CURLFile;
-
+/**
+ * Represents a photo to be sent.
+ */
 final class InputMediaPhoto implements InputMedia
 {
-    private PhotoFile $photo;
-    private ?Text $caption;
+    /**
+     * Type of the result, must be photo
+     */
+    private $type = 'photo';
+    /**
+     * File to send. Pass a file_id to send a file that exists on the Telegram servers (recommended), pass an HTTP URL for Telegram to get a file from the Internet, or pass “attach://<file_attach_name>” to upload a new one using multipart/form-data under <file_attach_name> name. More info on Sending Files »
+     */
+    private PhotoFile $media;
+    /**
+     * Optional. Caption of the photo to be sent, 0-1024 characters after entities parsing
+     */
+    private ?MediaCaption $caption;
+    /**
+     * Optional. Send Markdown or HTML, if you want Telegram apps to show bold, italic, fixed-width text or inline URLs in the media caption.
+     */
+    private ?ParseMode $parseMode;
 
     private function __construct(
-        PhotoFile $photo,
-        ?Text $caption
+        PhotoFile $media,
+        ?MediaCaption $caption,
+        ?ParseMode $parseMode
     ) {
-        $this->photo = $photo;
+        $this->media = $media;
         $this->caption = $caption;
+        $this->parseMode = $parseMode;
     }
 
-    private function apiString(string $mediaKey = ''): string
-    {
-        return $this->photo->fileId()
-        ?? $this->photo->url()
-        ?? "attach://{$mediaKey}";
-    }
-
-    public static function fromFileId(
-        FileId $fileId,
-        ?Text $caption = null
-    ): InputMediaPhoto {
-        return new static(
-            PhotoFile::fromFileId($fileId),
-            $caption
-        );
-    }
-
-    public static function fromUrl(
-        Url $url,
-        ?Text $caption = null
-    ): InputMediaPhoto {
-        return new static(
-            PhotoFile::fromUrl($url),
-            $caption
-        );
-    }
-
-    public static function fromFile(
-        FilePath $filePath,
-        ?Text $caption = null
-    ): InputMediaPhoto {
-        return new static(
-            PhotoFile::fromFilePath($filePath),
-            $caption
-        );
-    }
-
-    public function toApi(string $mediaKey): array
+    public function toApi(): array
     {
         return array_filter(
             [
-                'type' => 'photo',
-                'media' => $this->apiString($mediaKey),
-                'caption' => $this->caption
-                    ? $this->caption->text()
-                    : null,
-                'parse_mode' => $this->caption
-                    ? $this->caption->parseMode()->toParameter()
-                    : null,
+                'type' => $this->type,
+                'caption' => $this->caption,
+                'parse_mode' => $this->parseMode,
+                'media' => $this->media,
             ]
         );
     }
-    
-    public function toFile(): ?CURLFile
+
+    public function filesToUpload(): array
     {
-        return $this->photo->filePath()
-            ? new CURLFile($this->photo->filePath())
-            : null;
+        return [
+            'media' => $this->media
+        ];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function jsonSerialize()
+    {
+        return $this->toApi();
+    }
+
+    /**
+     * Construct an InputMediaPhoto from a Telegram file id.
+     */
+    public static function fromPhotoFile(
+        PhotoFile $photo,
+        ?MediaCaption $caption = null,
+        ?ParseMode $parseMode = null
+    ): InputMediaPhoto {
+        return new static(
+            $photo,
+            $caption,
+            $parseMode
+        );
     }
 }

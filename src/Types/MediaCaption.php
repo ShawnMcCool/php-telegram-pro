@@ -1,6 +1,8 @@
 <?php namespace TelegramPro\Types;
 
-final class MediaCaption
+use JsonSerializable;
+
+final class MediaCaption implements JsonSerializable
 {
     private string $caption;
 
@@ -19,16 +21,28 @@ final class MediaCaption
         return $this->toString();
     }
 
+    public static function fromString(string $caption): MediaCaption
+    {
+        if (strlen($caption) > 1024) {
+            throw new MessageTextIsTooLong("Media caption '{$caption}' can not be longer than 1024 bytes.");
+        }
+        return new static($caption);
+    }
+
     public static function fromApi(?string $caption): ?MediaCaption
     {
         if (is_null($caption)) {
             return null;
         }
 
-        if (strlen($caption) > 1024) {
-            throw new MessageTextIsTooLong("Media caption '{$caption}' can not be longer than 1024 bytes.");
-        }
+        return static::fromString($caption);
+    }
 
-        return new static($caption);
+    /**
+     * @inheritDoc
+     */
+    public function jsonSerialize()
+    {
+        return $this->toString();
     }
 }

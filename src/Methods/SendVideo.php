@@ -1,19 +1,21 @@
 <?php namespace TelegramPro\Methods;
 
-use TelegramPro\Types\Text;
 use TelegramPro\Api\Telegram;
 use TelegramPro\Types\ChatId;
 use TelegramPro\Types\PhotoFile;
 use TelegramPro\Types\VideoFile;
 use TelegramPro\Types\MessageId;
+use TelegramPro\Types\ParseMode;
 use TelegramPro\Types\ReplyMarkup;
 use TelegramPro\Api\CurlParameters;
+use TelegramPro\Types\MediaCaption;
 
 final class SendVideo implements Method
 {
     private ChatId $chatId;
     private VideoFile $video;
-    private ?Text $caption;
+    private ?MediaCaption $caption;
+    private ?ParseMode $parseMode;
     private ?int $duration;
     private ?int $width;
     private ?int $height;
@@ -26,7 +28,8 @@ final class SendVideo implements Method
     public function __construct(
         ChatId $chatId,
         VideoFile $video,
-        ?Text $caption,
+        ?MediaCaption $caption,
+        ?ParseMode $parseMode,
         ?int $duration,
         ?int $width,
         ?int $height,
@@ -39,6 +42,7 @@ final class SendVideo implements Method
         $this->chatId = $chatId;
         $this->video = $video;
         $this->caption = $caption;
+        $this->parseMode = $parseMode;
         $this->duration = $duration;
         $this->width = $width;
         $this->height = $height;
@@ -55,20 +59,22 @@ final class SendVideo implements Method
                       ->withParameters(
                           [
                               'chat_id' => $this->chatId,
-                              'video' => $this->video->toApi(),
                               'duration' => $this->duration,
                               'width' => $this->width,
                               'height' => $this->height,
-                              'thumb' => $this->thumb ? $this->thumb->toApi() : null,
-                              'caption' => $this->caption->text(),
-                              'parse_mode' => $this->caption->parseMode(),
+                              'caption' => $this->caption,
+                              'parse_mode' => $this->parseMode,
                               'supports_streaming' => $this->supportsStreaming,
                               'disable_notification' => $this->disableNotification,
                               'reply_to_message_id' => $this->replyToMessageId,
                               'reply_markup' => $this->replyMarkup ? $this->replyMarkup->toParameter() : null, // toParameter
                           ]
-                      )
-                      ->toCurlParameters($botToken);
+                      )->withFiles(
+                [
+                    'video' => $this->video,
+                    'thumb' => $this->thumb,
+                ]
+            )->toCurlParameters($botToken);
     }
 
     function send(Telegram $telegramApi): SendVideoResponse
@@ -81,7 +87,8 @@ final class SendVideo implements Method
     public static function parameters(
         ChatId $chatId,
         VideoFile $video,
-        ?Text $caption,
+        ?MediaCaption $caption,
+        ?ParseMode $parseMode = null,
         ?int $duration = null,
         ?int $width = null,
         ?int $height = null,
@@ -95,6 +102,7 @@ final class SendVideo implements Method
             $chatId,
             $video,
             $caption,
+            $parseMode,
             $duration,
             $width,
             $height,

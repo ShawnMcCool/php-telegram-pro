@@ -1,8 +1,8 @@
 <?php namespace Tests\Api\Methods;
 
 use Tests\TelegramTestCase;
-use TelegramPro\Types\Text;
 use TelegramPro\Types\Message;
+use TelegramPro\Types\MessageText;
 use TelegramPro\Methods\SendMessage;
 use TelegramPro\Methods\ForwardMessage;
 
@@ -14,7 +14,7 @@ class ForwardMessageTest extends TelegramTestCase
 
         $sent = SendMessage::parameters(
             $this->config->chatId(),
-            Text::plain($messageText)
+            MessageText::fromString($messageText)
         )->send($this->telegram);
 
         $this->isOk($sent);

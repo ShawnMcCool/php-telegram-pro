@@ -2,11 +2,11 @@
 
 use TelegramPro\Types\Url;
 use Tests\TelegramTestCase;
-use TelegramPro\Types\Text;
 use TelegramPro\Types\Message;
 use TelegramPro\Types\FilePath;
 use TelegramPro\Types\VideoFile;
 use TelegramPro\Methods\SendVideo;
+use TelegramPro\Types\MediaCaption;
 use TelegramPro\Methods\MethodError;
 use TelegramPro\Types\CanNotOpenFile;
 
@@ -19,7 +19,7 @@ class SendVideoTest extends TelegramTestCase
             VideoFile::fromFilePath(
                 FilePath::fromString($this->media->video())
             ),
-            Text::plain('[SendVideo] send video with file path')
+            MediaCaption::fromString('[SendVideo] send video with file path')
         )->send($this->telegram);
 
         $this->isOk($sent);
@@ -33,7 +33,7 @@ class SendVideoTest extends TelegramTestCase
             VideoFile::fromUrl(
                 Url::fromString($this->media->videoUrl())
             ),
-            Text::plain('[SendVideo] send video with url')
+            MediaCaption::fromString('[SendVideo] send video with url')
         )->send($this->telegram);
 
         $this->isOk($sent);
@@ -49,15 +49,15 @@ class SendVideoTest extends TelegramTestCase
             VideoFile::fromUrl(
                 Url::fromString($this->media->videoUrl())
             ),
-            Text::plain('[SendVideo] send video with file id 1/2 ' . $num)
+            MediaCaption::fromString('[SendVideo] send video with file id 1/2 ' . $num)
         )->send($this->telegram);
-
+        
         $sent = SendVideo::parameters(
             $this->config->chatId(),
             VideoFile::fromFileId(
                 $sent->result()->video()->fileId()
             ),
-            Text::plain('[SendVideo] send video with file id 2/2 ' . $num)
+            MediaCaption::fromString('[SendVideo] send video with file id 2/2 ' . $num)
         )->send($this->telegram);
 
         $this->isOk($sent);
@@ -73,7 +73,7 @@ class SendVideoTest extends TelegramTestCase
             VideoFile::fromFilePath(
                 FilePath::fromString('non existent file')
             ),
-            Text::plain('[SendVideo] file does not exist error')
+            MediaCaption::fromString('[SendVideo] file does not exist error')
         )->send($this->telegram);
     }
 
@@ -84,7 +84,7 @@ class SendVideoTest extends TelegramTestCase
             VideoFile::fromUrl(
                 Url::fromString('https://bob')
             ),
-            Text::plain('[SendVideo] parse error test')
+            MediaCaption::fromString('[SendVideo] parse error test')
         )->send($this->telegram);
 
         self::assertFalse($sent->ok());

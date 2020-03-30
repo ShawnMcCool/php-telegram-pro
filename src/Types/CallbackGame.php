@@ -38,8 +38,8 @@ final class CallbackGame
             $callbackGame->force ?? null,
             $callbackGame->disable_edit_message ?? null,
             ChatId::fromInt($callbackGame->chat_id ?? null),
-            MessageId::fromInt($callbackGame->message_id ?? null),
-            MessageId::fromInt($callbackGame->inline_message_id ?? null)
+            MessageId::fromString($callbackGame->message_id ?? null),
+            MessageId::fromString($callbackGame->inline_message_id ?? null)
         );
     }
 

@@ -1,4 +1,4 @@
-<?php namespace TelegramPro\Methods;
+<?php namespace TelegramPro\Types;
 
 final class ParseMode
 {

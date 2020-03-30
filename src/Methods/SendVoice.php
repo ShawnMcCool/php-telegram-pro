@@ -1,18 +1,20 @@
 <?php namespace TelegramPro\Methods;
 
 use TelegramPro\Api\Telegram;
-use TelegramPro\Types\Text;
 use TelegramPro\Types\ChatId;
 use TelegramPro\Types\VoiceFile;
 use TelegramPro\Types\MessageId;
+use TelegramPro\Types\ParseMode;
 use TelegramPro\Types\ReplyMarkup;
 use TelegramPro\Api\CurlParameters;
+use TelegramPro\Types\MediaCaption;
 
 final class SendVoice implements Method
 {
     private ChatId $chatId;
     private VoiceFile $voice;
-    private ?Text $caption;
+    private ?MediaCaption $caption;
+    private ?ParseMode $parseMode;
     private ?int $duration;
     private ?bool $disableNotification;
     private ?MessageId $replyToMessageId;
@@ -21,7 +23,8 @@ final class SendVoice implements Method
     public function __construct(
         ChatId $chatId,
         VoiceFile $voice,
-        ?Text $caption,
+        ?MediaCaption $caption,
+        ?ParseMode $parseMode,
         ?int $duration,
         ?bool $disableNotification,
         ?MessageId $replyToMessageId,
@@ -30,6 +33,7 @@ final class SendVoice implements Method
         $this->chatId = $chatId;
         $this->voice = $voice;
         $this->caption = $caption;
+        $this->parseMode = $parseMode;
         $this->duration = $duration;
         $this->disableNotification = $disableNotification;
         $this->replyToMessageId = $replyToMessageId;
@@ -42,15 +46,18 @@ final class SendVoice implements Method
                       ->withParameters(
                           [
                               'chat_id' => $this->chatId,
-                              'voice' => $this->voice->toApi(),
-                              'caption' => $this->caption->text(),
-                              'parse_mode' => $this->caption->parseMode(),
+                              'caption' => $this->caption,
+                              'parse_mode' => $this->parseMode,
                               'duration' => $this->duration,
                               'disable_notification' => $this->disableNotification,
                               'reply_to_message_id' => $this->replyToMessageId,
                               'reply_markup' => $this->replyMarkup ? $this->replyMarkup->toParameter() : null, // toParameter
                           ]
-                      )
+                      )->withFiles(
+                [
+                    'voice' => $this->voice,
+                ]
+            )
                       ->toCurlParameters($botToken);
     }
 
@@ -64,7 +71,8 @@ final class SendVoice implements Method
     public static function parameters(
         ChatId $chatId,
         VoiceFile $audio,
-        ?Text $caption = null,
+        ?MediaCaption $caption = null,
+        ?ParseMode $parseMode = null,
         ?int $duration = null,
         ?bool $disableNotification = null,
         ?MessageId $replyToMessageId = null,
@@ -74,6 +82,7 @@ final class SendVoice implements Method
             $chatId,
             $audio,
             $caption,
+            $parseMode,
             $duration,
             $disableNotification,
             $replyToMessageId,

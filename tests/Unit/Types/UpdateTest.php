@@ -26,7 +26,7 @@ final class UpdateTest extends TelegramTestCase
 
         self::assertNotNull($message);
         self::assertSame(1441645532, $message->date()->toUnixTimestamp());
-        $this->sameValue(MessageId::fromInt(1365), $message->messageId());
+        $this->sameValue(MessageId::fromString('1365'), $message->messageId());
         self::assertSame('/start', $message->text());
 
         # Message - Chat
@@ -59,7 +59,7 @@ final class UpdateTest extends TelegramTestCase
 
         self::assertNotNull($message);
         self::assertSame(1441645532, $message->date()->toUnixTimestamp());
-        $this->sameValue(MessageId::fromInt(1365), $message->messageId());
+        $this->sameValue(MessageId::fromString('1365'), $message->messageId());
         self::assertSame(1441645550, $message->forwardDate()->toUnixTimestamp());
         self::assertSame('/start', $message->text());
 
@@ -100,7 +100,7 @@ final class UpdateTest extends TelegramTestCase
 
         self::assertNotNull($message);
         self::assertSame(1441645532, $message->date()->toUnixTimestamp());
-        $this->sameValue(MessageId::fromInt(1365), $message->messageId());
+        $this->sameValue(MessageId::fromString('1365'), $message->messageId());
         self::assertSame(1441645550, $message->forwardDate()->toUnixTimestamp());
         self::assertSame('/start', $message->text());
 
@@ -443,7 +443,7 @@ final class UpdateTest extends TelegramTestCase
 
         # Update - CallbackQuery
         $callbackQuery = $update->callbackQuery();
-
+        
         $this->sameValue('4382bfdwdsb323b2d9', $callbackQuery->id());
         self::assertSame('Data from button callback', $callbackQuery->data());
         $this->sameValue('1234csdbsk4839', $callbackQuery->inlineMessageId());

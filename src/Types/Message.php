@@ -537,13 +537,13 @@ class Message
         if ( ! $message) return null;
 
         return new static(
-            MessageId::fromInt($message->message_id),
+            MessageId::fromString($message->message_id),
             User::fromApi($message->from ?? null),
             Date::fromApi($message->date),
             Chat::fromApi($message->chat),
             User::fromApi($message->forward_from ?? null),
             Chat::fromApi($message->forward_from_chat ?? null),
-            MessageId::fromInt($message->forward_from_message_id ?? null),
+            MessageId::fromString($message->forward_from_message_id ?? null),
             $message->forward_signature ?? null,
             $message->forward_sender_name ?? null,
             Date::fromApi($message->forward_date ?? null),
@@ -563,7 +563,7 @@ class Message
             Video::fromApi($message->video ?? null),
             Voice::fromApi($message->voice ?? null),
             VideoNote::fromApi($message->video_note ?? null),
-            $message->caption ?? null,
+            MediaCaption::fromApi($message->caption ?? null),
             Contact::fromApi($message->contact ?? null),
             Location::fromApi($message->location ?? null),
             Venue::fromApi($message->venue ?? null),

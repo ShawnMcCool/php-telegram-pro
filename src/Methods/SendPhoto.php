@@ -1,18 +1,20 @@
 <?php namespace TelegramPro\Methods;
 
-use TelegramPro\Types\Text;
 use TelegramPro\Api\Telegram;
 use TelegramPro\Types\ChatId;
 use TelegramPro\Types\PhotoFile;
 use TelegramPro\Types\MessageId;
+use TelegramPro\Types\ParseMode;
 use TelegramPro\Types\ReplyMarkup;
 use TelegramPro\Api\CurlParameters;
+use TelegramPro\Types\MediaCaption;
 
 final class SendPhoto implements Method
 {
     private ChatId $chatId;
     private PhotoFile $photo;
-    private Text $caption;
+    private ?MediaCaption $caption;
+    private ?ParseMode $parseMode;
     private ?bool $disableNotification;
     private ?MessageId $replyToMessageId;
     private ?ReplyMarkup $replyMarkup;
@@ -20,7 +22,8 @@ final class SendPhoto implements Method
     public function __construct(
         ChatId $chatId,
         PhotoFile $photo,
-        Text $caption,
+        ?MediaCaption $caption,
+        ?ParseMode $parseMode,
         ?bool $disableNotification,
         ?MessageId $replyToMessageId,
         ?ReplyMarkup $replyMarkup
@@ -29,6 +32,7 @@ final class SendPhoto implements Method
         $this->chatId = $chatId;
         $this->photo = $photo;
         $this->caption = $caption;
+        $this->parseMode = $parseMode;
         $this->disableNotification = $disableNotification;
         $this->replyToMessageId = $replyToMessageId;
         $this->replyMarkup = $replyMarkup;
@@ -40,15 +44,17 @@ final class SendPhoto implements Method
                       ->withParameters(
                           [
                               'chat_id' => $this->chatId,
-                              'photo' => $this->photo->toApi(),
-                              'caption' => $this->caption->text(),
-                              'parse_mode' => $this->caption->parseMode(),
+                              'caption' => $this->caption,
+                              'parse_mode' => $this->parseMode,
                               'disable_web_page_preview' => $this->disableNotification,
                               'reply_to_message_id' => $this->replyToMessageId,
                               'reply_markup' => $this->replyMarkup ? $this->replyMarkup->toParameter() : null, // toParameter
                           ]
-                      )
-                      ->toCurlParameters($botToken);
+                      )->withFiles(
+                [
+                    'photo' => $this->photo,
+                ]
+            )->toCurlParameters($botToken);
     }
 
     function send(Telegram $telegramApi): SendPhotoResponse
@@ -61,7 +67,8 @@ final class SendPhoto implements Method
     public static function parameters(
         ChatId $chatId,
         PhotoFile $photo,
-        ?Text $caption = null,
+        ?MediaCaption $caption = null,
+        ?ParseMode $parseMode = null,
         ?bool $disableNotification = null,
         ?MessageId $replyToMessageId = null,
         ?ReplyMarkup $replyMarkup = null
@@ -69,7 +76,8 @@ final class SendPhoto implements Method
         return new static(
             $chatId,
             $photo,
-            $caption ?? Text::none(),
+            $caption,
+            $parseMode,
             $disableNotification,
             $replyToMessageId,
             $replyMarkup

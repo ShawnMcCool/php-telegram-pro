@@ -1,7 +1,5 @@
 <?php namespace TelegramPro\Types;
 
-use TelegramPro\Methods\ParseMode;
-
 final class Text
 {
     private string $text;

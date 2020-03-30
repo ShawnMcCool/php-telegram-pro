@@ -41,7 +41,7 @@ final class CallbackQuery
             CallbackQueryId::fromString($callbackQuery->id),
             User::fromApi($callbackQuery->from),
             Message::fromApi($callbackQuery->message ?? null),
-            MessageId::fromInt($callbackQuery->inline_message_id ?? null),
+            MessageId::fromString($callbackQuery->inline_message_id ?? null),
             ChatId::fromInt($callbackQuery->chat_instance ?? null),
             $callbackQuery->data ?? null,
             $callbackQuery->game_short_name ?? null

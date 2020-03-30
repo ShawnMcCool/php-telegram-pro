@@ -7,7 +7,7 @@ use TelegramPro\Types\VideoNoteFile;
 use TelegramPro\Types\CanNotOpenFile;
 use TelegramPro\Methods\SendVideoNote;
 
-class SendVideoNoteNoteTest extends TelegramTestCase
+class SendVideoNoteTest extends TelegramTestCase
 {
     function testSendVideoNoteWithFilePath()
     {

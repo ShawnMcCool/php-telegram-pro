@@ -51,16 +51,20 @@ final class SendAnimation implements Method
                       ->withParameters(
                           [
                               'chat_id' => $this->chatId,
-                              'animation' => $this->animation->toApi(),
                               'duration' => $this->duration,
                               'width' => $this->width,
                               'height' => $this->height,
-                              'thumb' => $this->thumb ? $this->thumb->toApi() : null,
                               'caption' => $this->caption->text(),
                               'parse_mode' => $this->caption->parseMode(),
                               'disable_notification' => $this->disableNotification,
                               'reply_to_message_id' => $this->replyToMessageId,
                               'reply_markup' => $this->replyMarkup ? $this->replyMarkup->toParameter() : null, // toParameter
+                          ]
+                      )
+                      ->withFiles(
+                          [
+                              'animation' => $this->animation,
+                              'thumb' => $this->thumb,
                           ]
                       )
                       ->toCurlParameters($botToken);

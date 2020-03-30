@@ -8,6 +8,7 @@ use TelegramPro\Types\FilePath;
 use TelegramPro\Types\PhotoFile;
 use TelegramPro\Types\PhotoSize;
 use TelegramPro\Methods\SendPhoto;
+use TelegramPro\Types\MediaCaption;
 use TelegramPro\Methods\MethodError;
 use TelegramPro\Types\CanNotOpenFile;
 
@@ -20,7 +21,7 @@ class SendPhotoTest extends TelegramTestCase
             PhotoFile::fromFilePath(
                 FilePath::fromString($this->media->image())
             ),
-            Text::plain('[SendPhoto] send photo with file path')
+            MediaCaption::fromString('[SendPhoto] send photo with file path')
         )->send($this->telegram);
 
         $this->isOk($sent);
@@ -34,7 +35,7 @@ class SendPhotoTest extends TelegramTestCase
             PhotoFile::fromUrl(
                 Url::fromString('https://homepages.cae.wisc.edu/~ece533/images/boat.png')
             ),
-            Text::plain('[SendPhoto] send photo with url')
+            MediaCaption::fromString('[SendPhoto] send photo with url')
         )->send($this->telegram);
 
         $this->isOk($sent);
@@ -50,7 +51,7 @@ class SendPhotoTest extends TelegramTestCase
             PhotoFile::fromFilePath(
                 FilePath::fromString($this->media->image())
             ),
-            Text::plain('[SendPhoto] send photo with file id 1/2 ' . $num)
+            MediaCaption::fromString('[SendPhoto] send photo with file id 1/2 ' . $num)
         )->send($this->telegram);
 
         /** @var PhotoSize $photoSize */
@@ -59,7 +60,7 @@ class SendPhotoTest extends TelegramTestCase
         $sent = SendPhoto::parameters(
             $this->config->chatId(),
             PhotoFile::fromFileId($photoSize->fileId()),
-            Text::plain('[SendPhoto] send photo with file id 2/2 ' . $num)
+            MediaCaption::fromString('[SendPhoto] send photo with file id 2/2 ' . $num)
         )->send($this->telegram);
         
         $this->isOk($sent);
@@ -75,7 +76,7 @@ class SendPhotoTest extends TelegramTestCase
             PhotoFile::fromFilePath(
                 FilePath::fromString('non existent file')
             ),
-            Text::plain('[SendPhoto] parse error test')
+            MediaCaption::fromString('[SendPhoto] parse error test')
         )->send($this->telegram);
     }
 
@@ -86,7 +87,7 @@ class SendPhotoTest extends TelegramTestCase
             PhotoFile::fromUrl(
                 Url::fromString('https://bob')
             ),
-            Text::plain('[SendPhoto] parse error test')
+            MediaCaption::fromString('[SendPhoto] parse error test')
         )->send($this->telegram);
         
         self::assertFalse($sent->ok());

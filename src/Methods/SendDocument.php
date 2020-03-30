@@ -1,7 +1,7 @@
 <?php namespace TelegramPro\Methods;
 
-use TelegramPro\Api\Telegram;
 use TelegramPro\Types\Text;
+use TelegramPro\Api\Telegram;
 use TelegramPro\Types\ChatId;
 use TelegramPro\Types\PhotoFile;
 use TelegramPro\Types\MessageId;
@@ -44,15 +44,18 @@ final class SendDocument implements Method
                       ->withParameters(
                           [
                               'chat_id' => $this->chatId,
-                              'document' => $this->document->toApi(),
-                              'thumb' => $this->thumb ? $this->thumb->toApi() : null,
                               'caption' => $this->caption->text(),
                               'parse_mode' => $this->caption->parseMode(),
                               'disable_web_page_preview' => $this->disableNotification,
                               'reply_to_message_id' => $this->replyToMessageId,
                               'reply_markup' => $this->replyMarkup ? $this->replyMarkup->toParameter() : null, // toParameter
-                          ]
-                      )
+                          ])
+                      ->withFiles(
+                          [
+                              'document' => $this->document,
+                              'thumb' => $this->thumb,
+
+                          ])
                       ->toCurlParameters($botToken);
     }
 

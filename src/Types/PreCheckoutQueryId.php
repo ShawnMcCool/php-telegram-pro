@@ -1,5 +1,5 @@
 <?php namespace TelegramPro\Types;
 
-use TelegramPro\PritimiveTypes\StringObject;
+use TelegramPro\PrimitiveTypes\StringObject;
 
 final class PreCheckoutQueryId extends StringObject {}

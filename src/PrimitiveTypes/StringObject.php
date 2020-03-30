@@ -1,4 +1,4 @@
-<?php namespace TelegramPro\PritimiveTypes;
+<?php namespace TelegramPro\PrimitiveTypes;
 
 abstract class StringObject
 {

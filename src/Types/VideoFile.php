@@ -35,4 +35,9 @@ final class VideoFile extends InputFile
             ]
         );
     }
+    
+    public function __toString()
+    {
+        return $this->inputFileString();
+    }
 }

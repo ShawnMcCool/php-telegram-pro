@@ -58,4 +58,15 @@ class TelegramTestCase extends TestCase
     {
         self::assertSame($one, $two);
     }
+
+    public static function tearDownAfterClass(): void
+    {
+        parent::tearDownAfterClass();
+//        echo Ansi::cyan('Sleeping.');
+//        sleep(1);
+//        echo Ansi::cyan('.');
+//        sleep(1);
+//        echo Ansi::cyan('.');
+//        sleep(1);
+    }
 }

@@ -1,5 +1,7 @@
 <?php namespace TelegramPro\Types;
 
-use TelegramPro\PritimiveTypes\IntegerObject;
+use TelegramPro\PrimitiveTypes\StringObject;
 
-final class MessageId extends IntegerObject {}
+final class MessageId extends StringObject
+{
+}

@@ -2,7 +2,7 @@
 
 final class MediaGroup
 {
-    private array $mediaGroup;
+    private array $mediaGroup ;
 
     public function __construct(array $mediaGroup)
     {
@@ -13,23 +13,31 @@ final class MediaGroup
     {
         $mediaArray = [];
 
+        /**
+         * @var int $key
+         * @var InputMedia $media
+         */
         foreach ($this->mediaGroup as $key => $media) {
-            $mediaArray[] = $media->toApi("media_{$key}");
+            $mediaArray[] = $media->toApi();
         }
 
         return json_encode($mediaArray);
     }
 
-    public function files(): array
+    public function filesToUpload(): array
     {
-        $fileArray = [];
-
-        foreach ($this->mediaGroup as $key => $media) {
-            /** @var InputMedia $media */
-            $fileArray["media_{$key}"] = $media->toFile();
+        $mediaArray = [];
+        
+        /** @var InputMedia $media */
+        foreach ($this->mediaGroup as $media) {
+            /** @var InputFile $file */
+            foreach ($media->filesToUpload() as $field => $file) {
+                if ( ! $file) continue;
+                $mediaArray[] = $file;
+            }
         }
-
-        return $fileArray;
+        
+        return $mediaArray;
     }
 
     public static function items(InputMedia ...$items)

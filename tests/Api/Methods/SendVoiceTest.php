@@ -8,6 +8,7 @@ use TelegramPro\Types\Message;
 use TelegramPro\Types\FilePath;
 use TelegramPro\Types\VoiceFile;
 use TelegramPro\Methods\SendVoice;
+use TelegramPro\Types\MediaCaption;
 use TelegramPro\Methods\MethodError;
 use TelegramPro\Types\CanNotOpenFile;
 
@@ -20,7 +21,7 @@ class SendVoiceTest extends TelegramTestCase
             VoiceFile::fromFilePath(
                 FilePath::fromString($this->media->voice())
             ),
-            Text::plain('[SendVoice] send voice with file path')
+            MediaCaption::fromString('[SendVoice] send voice with file path')
         )->send($this->telegram);
 
         $this->isOk($sent);
@@ -34,7 +35,7 @@ class SendVoiceTest extends TelegramTestCase
             VoiceFile::fromUrl(
                 Url::fromString($this->media->voiceUrl())
             ),
-            Text::plain('[SendVoice] send voice with url')
+            MediaCaption::fromString('[SendVoice] send voice with url')
         )->send($this->telegram);
 
         $this->isOk($sent);
@@ -50,7 +51,7 @@ class SendVoiceTest extends TelegramTestCase
             VoiceFile::fromFilePath(
                 FilePath::fromString($this->media->voice())
             ),
-            Text::plain('[SendVoice] send voice with file id 1/2 ' . $num)
+            MediaCaption::fromString('[SendVoice] send voice with file id 1/2 ' . $num)
         )->send($this->telegram);
 
         $this->isOk($sent);
@@ -62,7 +63,7 @@ class SendVoiceTest extends TelegramTestCase
             VoiceFile::fromFileId(
                 FileId::fromString($voiceId)
             ),
-            Text::plain('[SendVoice] send voice with file id 2/2 ' . $num)
+            MediaCaption::fromString('[SendVoice] send voice with file id 2/2 ' . $num)
         )->send($this->telegram);
 
         $this->isOk($sent);
@@ -78,7 +79,7 @@ class SendVoiceTest extends TelegramTestCase
             VoiceFile::fromFilePath(
                 FilePath::fromString('non existent file')
             ),
-            Text::plain('[SendVoice] parse error test')
+            MediaCaption::fromString('[SendVoice] parse error test')
         )->send($this->telegram);
     }
 
@@ -89,7 +90,7 @@ class SendVoiceTest extends TelegramTestCase
             VoiceFile::fromUrl(
                 Url::fromString('https://bob')
             ),
-            Text::plain('[SendVoice] parse error test')
+            MediaCaption::fromString('[SendVoice] parse error test')
         )->send($this->telegram);
 
         self::assertFalse($sent->ok());

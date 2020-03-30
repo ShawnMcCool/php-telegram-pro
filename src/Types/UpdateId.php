@@ -1,5 +1,5 @@
 <?php namespace TelegramPro\Types;
 
-use TelegramPro\PritimiveTypes\IntegerObject;
+use TelegramPro\PrimitiveTypes\IntegerObject;
 
 final class UpdateId extends IntegerObject {}

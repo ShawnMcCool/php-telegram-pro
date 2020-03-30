@@ -1,15 +1,17 @@
 <?php namespace TelegramPro\Methods;
 
 use TelegramPro\Api\Telegram;
-use TelegramPro\Types\Text;
 use TelegramPro\Types\MessageId;
+use TelegramPro\Types\ParseMode;
 use TelegramPro\Types\ReplyMarkup;
+use TelegramPro\Types\MessageText;
 use TelegramPro\Api\CurlParameters;
 
 final class SendMessage implements Method
 {
     private $chatId;
-    private Text $text;
+    private MessageText $text;
+    private ParseMode $parseMode;
     private ?bool $disableWebPagePreview;
     private ?bool $disableNotification;
     private ?MessageId $replyToMessageId;
@@ -17,7 +19,8 @@ final class SendMessage implements Method
 
     private function __construct(
         $chatId,
-        Text $text,
+        MessageText $text,
+        ParseMode $parseMode,
         ?bool $disableWebPagePreview,
         ?bool $disableNotification,
         ?MessageId $replyToMessageId,
@@ -25,6 +28,7 @@ final class SendMessage implements Method
     ) {
         $this->chatId = $chatId;
         $this->text = $text;
+        $this->parseMode = $parseMode;
         $this->disableWebPagePreview = $disableWebPagePreview;
         $this->disableNotification = $disableNotification;
         $this->replyToMessageId = $replyToMessageId;
@@ -37,8 +41,8 @@ final class SendMessage implements Method
                       ->withParameters(
                           [
                               'chat_id' => $this->chatId,
-                              'text' => $this->text->text(),
-                              'parse_mode' => $this->text->parseMode(),
+                              'text' => $this->text,
+                              'parse_mode' => $this->parseMode,
                               'disable_web_page_preview' => $this->disableWebPagePreview,
                               'disable_notification' => $this->disableNotification,
                               'reply_to_message_id' => $this->replyToMessageId,
@@ -57,7 +61,8 @@ final class SendMessage implements Method
 
     public static function parameters(
         $chatId,
-        Text $text,
+        MessageText $text,
+        ?ParseMode $parseMode = null,
         ?bool $disableWebPagePreview = null,
         ?bool $disableNotification = null,
         ?MessageId $replyToMessageId = null,
@@ -66,6 +71,7 @@ final class SendMessage implements Method
         return new static(
             $chatId,
             $text,
+            $parseMode ?? ParseMode::none(),
             $disableWebPagePreview,
             $disableNotification,
             $replyToMessageId,

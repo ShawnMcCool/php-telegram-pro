@@ -1,12 +1,16 @@
 <?php namespace TelegramPro\Methods;
 
+use CURLFile;
+use TelegramPro\Types\InputFile;
 use TelegramPro\Api\CurlParameters;
 
 final class Request
 {
     private string $method;
     private string $requestType;
-    private array $parameterArray = [];
+
+    private array $parameters = [];
+    private array $files = [];
 
     private function __construct(
         string $method,
@@ -16,9 +20,16 @@ final class Request
         $this->requestType = $requestType;
     }
 
-    public function withParameters(array $parameterArray): Request
+    public function withParameters(array $parameterArray): self
     {
-        $this->parameterArray = $parameterArray;
+
+        $this->parameters = $parameterArray;
+        return $this;
+    }
+
+    public function withFiles(array $files): self
+    {
+        $this->files = $files;
         return $this;
     }
 
@@ -30,28 +41,51 @@ final class Request
                 CURLOPT_HEADER => false,
                 CURLOPT_RETURNTRANSFER => 1,
                 CURLOPT_POST => 1,
-                CURLOPT_POSTFIELDS => array_filter($this->parameterArray),
+                CURLOPT_POSTFIELDS => $this->parameters(),
                 CURLOPT_SSL_VERIFYPEER => false,
             ]
         );
     }
 
-    public static function queryString(string $method): Request
+    private function parameters(): array
+    {
+        $fileParameters = [];
+
+        /** @var InputFile $file */
+        foreach ($this->files as $fieldName => $file) {
+            if ( ! $file) continue;
+
+            if ($file->fileToUpload()) {
+                $fileParameters[$file->fileToUpload()->formFieldName()] = new CURLFile($file->fileToUpload()->filePath());
+            }
+
+            $fileParameters[$fieldName] = $file->inputFileString();
+        }
+        
+        return array_filter(
+            array_merge(
+                $this->parameters,
+                $fileParameters
+            )
+        );
+    }
+
+    public static function queryString(string $method): self
     {
         return new static($method, 'query-string');
     }
 
-    public static function xWwwFormUrlencoded(string $method): Request
+    public static function xWwwFormUrlencoded(string $method): self
     {
         return new static($method, 'application/x-www-form-urlencoded');
     }
 
-    public static function multipartFormData(string $method): Request
+    public static function multipartFormData(string $method): self
     {
         return new static($method, 'multipart/form-data');
     }
 
-    public static function json(string $method): Request
+    public static function json(string $method): self
     {
         return new static($method, 'application/json');
     }

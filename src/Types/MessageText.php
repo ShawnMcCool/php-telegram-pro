@@ -25,10 +25,15 @@ final class MessageText
             return null;
         }
 
-        if (strlen($text) > 4096) {
-            throw new MessageTextIsTooLong("Message text '{$text}' can not be longer than 4096 bytes.");
-        }
+        return static::fromString($text);
+    }
 
-        return new static($text);
+    public static function fromString(string $string): self
+    {
+        if (strlen($string) > 4096) {
+            throw new MessageTextIsTooLong("Message text '{$string}' can not be longer than 4096 bytes.");
+        }
+        
+        return new static($string);
     }
 }

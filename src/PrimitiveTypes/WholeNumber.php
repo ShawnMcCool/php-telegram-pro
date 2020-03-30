@@ -1,22 +1,22 @@
-<?php namespace TelegramPro\PritimiveTypes;
+<?php namespace TelegramPro\PrimitiveTypes;
 
-abstract class IntegerObject
+abstract class WholeNumber
 {
-    private int $integer;
+    private int $number;
 
-    private function __construct(int $integer)
+    private function __construct(int $number)
     {
-        $this->integer = $integer;
+        $this->number = $number;
     }
 
     public function toInteger(): int
     {
-        return $this->integer;
+        return $this->number;
     }
 
     public function toString(): string
     {
-        return (string)$this->integer;
+        return (string) $this->number;
     }
 
     public function __toString(): string
@@ -28,6 +28,10 @@ abstract class IntegerObject
     {
         if (is_null($integer)) {
             return null;
+        }
+
+        if (($integer % 2) != 0) {
+            throw new NonWholeNumberIsNotSupported($integer);
         }
         
         return new static($integer);
