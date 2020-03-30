@@ -1,6 +1,5 @@
 <?php namespace TelegramPro\Methods;
 
-use CURLFile;
 use TelegramPro\Types\InputFile;
 use TelegramPro\Api\CurlParameters;
 
@@ -56,12 +55,12 @@ final class Request
             if ( ! $file) continue;
 
             if ($file->fileToUpload()) {
-                $fileParameters[$file->fileToUpload()->formFieldName()] = new CURLFile($file->fileToUpload()->filePath());
+                $fileParameters[$file->fileToUpload()->formFieldName()] = $file->fileToUpload()->curlFile();
             }
 
             $fileParameters[$fieldName] = $file->inputFileString();
         }
-        
+
         return array_filter(
             array_merge(
                 $this->parameters,

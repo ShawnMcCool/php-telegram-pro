@@ -5,6 +5,7 @@ use TelegramPro\Types\Text;
 use TelegramPro\Types\Message;
 use TelegramPro\Types\Url;
 use TelegramPro\Types\FilePath;
+use TelegramPro\Types\MediaCaption;
 use TelegramPro\Types\AnimationFile;
 use TelegramPro\Methods\MethodError;
 use TelegramPro\Types\CanNotOpenFile;
@@ -19,7 +20,7 @@ class SendAnimationTest extends TelegramTestCase
             AnimationFile::fromFilePath(
                 FilePath::fromString($this->media->animation())
             ),
-            Text::plain('[SendAnimation] send animation with file path')
+            MediaCaption::fromString('[SendAnimation] send animation with file path')
         )->send($this->telegram);
 
         $this->isOk($sent);
@@ -33,7 +34,7 @@ class SendAnimationTest extends TelegramTestCase
             AnimationFile::fromUrl(
                 Url::fromString($this->media->animationUrl())
             ),
-            Text::plain('[SendAnimation] send animation with url')
+            MediaCaption::fromString('[SendAnimation] send animation with url')
         )->send($this->telegram);
 
         $this->isOk($sent);
@@ -49,7 +50,7 @@ class SendAnimationTest extends TelegramTestCase
             AnimationFile::fromUrl(
                 Url::fromString($this->media->animationUrl())
             ),
-            Text::plain('[SendAnimation] send animation with file id 1/2 ' . $num)
+            MediaCaption::fromString('[SendAnimation] send animation with file id 1/2 ' . $num)
         )->send($this->telegram);
 
         $sent = SendAnimation::parameters(
@@ -57,7 +58,7 @@ class SendAnimationTest extends TelegramTestCase
             AnimationFile::fromFileId(
                 $sent->result()->animation()->fileId()
             ),
-            Text::plain('[SendAnimation] send animation with file id 2/2 ' . $num)
+            MediaCaption::fromString('[SendAnimation] send animation with file id 2/2 ' . $num)
         )->send($this->telegram);
 
         $this->isOk($sent);
@@ -71,7 +72,7 @@ class SendAnimationTest extends TelegramTestCase
         $sent = SendAnimation::parameters(
             $this->config->chatId(),
             AnimationFile::fromFilePath(FilePath::fromString('non existent file')),
-            Text::plain('[SendAnimation] file does not exist error')
+            MediaCaption::fromString('[SendAnimation] file does not exist error')
         )->send($this->telegram);
     }
 
@@ -80,7 +81,7 @@ class SendAnimationTest extends TelegramTestCase
         $sent = SendAnimation::parameters(
             $this->config->chatId(),
             AnimationFile::fromUrl(Url::fromString('https://bob')),
-            Text::plain('[SendAnimation] parse error test')
+            MediaCaption::fromString('[SendAnimation] parse error test')
         )->send($this->telegram);
 
         self::assertFalse($sent->ok());

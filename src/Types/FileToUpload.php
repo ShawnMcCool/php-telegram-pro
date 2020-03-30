@@ -1,5 +1,7 @@
 <?php namespace TelegramPro\Types;
 
+use CURLFile;
+
 final class FileToUpload
 {
     private string $formFieldName;
@@ -21,6 +23,11 @@ final class FileToUpload
     public function filePath(): FilePath
     {
         return $this->filePath;
+    }
+
+    public function curlFile(): CURLFile
+    {
+        return new CURLFile($this->filePath->toString());
     }
 
     public static function fromFilePath(

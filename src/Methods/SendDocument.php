@@ -1,20 +1,22 @@
 <?php namespace TelegramPro\Methods;
 
-use TelegramPro\Types\Text;
 use TelegramPro\Api\Telegram;
 use TelegramPro\Types\ChatId;
 use TelegramPro\Types\PhotoFile;
 use TelegramPro\Types\MessageId;
+use TelegramPro\Types\ParseMode;
 use TelegramPro\Types\ReplyMarkup;
 use TelegramPro\Types\DocumentFile;
 use TelegramPro\Api\CurlParameters;
+use TelegramPro\Types\MediaCaption;
 
 final class SendDocument implements Method
 {
     private ChatId $chatId;
     private DocumentFile $document;
     private ?PhotoFile $thumb;
-    private Text $caption;
+    private MediaCaption $caption;
+    private ?ParseMode $parseMode;
     private ?bool $disableNotification;
     private ?MessageId $replyToMessageId;
     private ?ReplyMarkup $replyMarkup;
@@ -23,7 +25,8 @@ final class SendDocument implements Method
         ChatId $chatId,
         DocumentFile $document,
         ?PhotoFile $thumb,
-        Text $caption,
+        ?MediaCaption $caption,
+        ?ParseMode $parseMode,
         ?bool $disableNotification,
         ?MessageId $replyToMessageId,
         ?ReplyMarkup $replyMarkup
@@ -33,6 +36,7 @@ final class SendDocument implements Method
         $this->document = $document;
         $this->thumb = $thumb;
         $this->caption = $caption;
+        $this->parseMode = $parseMode;
         $this->disableNotification = $disableNotification;
         $this->replyToMessageId = $replyToMessageId;
         $this->replyMarkup = $replyMarkup;
@@ -44,8 +48,8 @@ final class SendDocument implements Method
                       ->withParameters(
                           [
                               'chat_id' => $this->chatId,
-                              'caption' => $this->caption->text(),
-                              'parse_mode' => $this->caption->parseMode(),
+                              'caption' => $this->caption,
+                              'parse_mode' => $this->parseMode,
                               'disable_web_page_preview' => $this->disableNotification,
                               'reply_to_message_id' => $this->replyToMessageId,
                               'reply_markup' => $this->replyMarkup ? $this->replyMarkup->toParameter() : null, // toParameter
@@ -70,7 +74,8 @@ final class SendDocument implements Method
         ChatId $chatId,
         DocumentFile $document,
         ?PhotoFile $thumb,
-        ?Text $caption = null,
+        ?MediaCaption $caption = null,
+        ?ParseMode $parseMode = null,
         ?bool $disableNotification = null,
         ?MessageId $replyToMessageId = null,
         ?ReplyMarkup $replyMarkup = null
@@ -79,7 +84,8 @@ final class SendDocument implements Method
             $chatId,
             $document,
             $thumb,
-            $caption ?? Text::none(),
+            $caption,
+            $parseMode,
             $disableNotification,
             $replyToMessageId,
             $replyMarkup

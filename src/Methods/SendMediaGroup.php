@@ -34,7 +34,7 @@ final class SendMediaGroup implements Method
                               'media' => $this->mediaGroup->toApi(),
                               'disable_notification' => $this->disableNotification,
                               'reply_to_message_id' => $this->replyToMessageId,
-                          ],
+                          ]
                       )->withFiles($this->mediaGroup->filesToUpload())
                       ->toCurlParameters($botToken);
     }

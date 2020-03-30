@@ -6,6 +6,7 @@ use TelegramPro\Types\Text;
 use TelegramPro\Types\Message;
 use TelegramPro\Types\FilePath;
 use TelegramPro\Types\DocumentFile;
+use TelegramPro\Types\MediaCaption;
 use TelegramPro\Methods\MethodError;
 use TelegramPro\Methods\SendDocument;
 use TelegramPro\Types\CanNotOpenFile;
@@ -20,7 +21,7 @@ class SendDocumentTest extends TelegramTestCase
                 FilePath::fromString($this->media->document())
             ),
             null,
-            Text::plain('[SendDocument] send document with file path')
+            MediaCaption::fromString('[SendDocument] send document with file path')
         )->send($this->telegram);
 
         $this->isOk($sent);
@@ -35,7 +36,7 @@ class SendDocumentTest extends TelegramTestCase
                 Url::fromString($this->media->imageUrl())
             ),
             null,
-            Text::plain('[SendDocument] send document with url')
+            MediaCaption::fromString('[SendDocument] send document with url')
         )->send($this->telegram);
 
         $this->isOk($sent);
@@ -52,7 +53,7 @@ class SendDocumentTest extends TelegramTestCase
                 FilePath::fromString($this->media->document())
             ),
             null,
-            Text::plain('[SendDocument] send document with file id 1/2 ' . $num)
+            MediaCaption::fromString('[SendDocument] send document with file id 1/2 ' . $num)
         )->send($this->telegram);
 
         $documentId = $sent->result()->document()->fileId();
@@ -61,7 +62,7 @@ class SendDocumentTest extends TelegramTestCase
             $this->config->chatId(),
             DocumentFile::fromFileId($documentId),
             null,
-            Text::plain('[SendDocument] send photo with file id 2/2 ' . $num)
+            MediaCaption::fromString('[SendDocument] send photo with file id 2/2 ' . $num)
         )->send($this->telegram);
 
         $this->isOk($sent);
@@ -78,7 +79,7 @@ class SendDocumentTest extends TelegramTestCase
                 FilePath::fromString('non existent file')
             ),
             null,
-            Text::plain('[SendDocument] non existent file exception test')
+            MediaCaption::fromString('[SendDocument] non existent file exception test')
         )->send($this->telegram);
     }
 
@@ -90,7 +91,7 @@ class SendDocumentTest extends TelegramTestCase
                 Url::fromString('https://bob')
             ),
             null,
-            Text::plain('[SendDocument] parse error test')
+            MediaCaption::fromString('[SendDocument] parse error test')
         )->send($this->telegram);
 
         self::assertFalse($sent->ok());
