@@ -1,7 +1,5 @@
 <?php namespace TelegramPro\Types;
 
-use TelegramPro\PollQuestion;
-
 /**
  * This object contains information about a poll.
  */

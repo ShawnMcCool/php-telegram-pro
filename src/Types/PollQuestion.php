@@ -1,4 +1,4 @@
-<?php namespace TelegramPro;
+<?php namespace TelegramPro\Types;
 
 final class PollQuestion
 {
