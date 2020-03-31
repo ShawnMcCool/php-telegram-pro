@@ -25,6 +25,9 @@ final class PhotoSize
         $this->fileSize = $fileSize;
     }
 
+    /**
+     * Construct with data received from the Telegram bot api.
+     */
     public static function fromApi($thumb): ?PhotoSize
     {
         if ( ! $thumb) return null;

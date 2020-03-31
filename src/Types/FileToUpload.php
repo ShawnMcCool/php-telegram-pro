@@ -2,6 +2,9 @@
 
 use CURLFile;
 
+/**
+ * Value object used by this SDK to track files and field names for generating api requests with nested objects containing files
+ */
 final class FileToUpload
 {
     private string $formFieldName;

@@ -532,6 +532,9 @@ class Message
         return $this->replyMarkup;
     }
 
+    /**
+     * Construct with data received from the Telegram bot api.
+     */
     public static function fromApi($message): ?Message
     {
         if ( ! $message) return null;
@@ -582,7 +585,7 @@ class Message
             Invoice::fromApi($message->invoice ?? null),
             SuccessfulPayment::fromApi($message->successful_payment ?? null),
             $message->connected_website ?? null,
-            PassportData::fromString($message->passport_data ?? null),
+            PassportData::fromApi($message->passport_data ?? null),
             InlineKeyboardMarkup::fromApi($message->reply_markup ?? null)
         );
     }

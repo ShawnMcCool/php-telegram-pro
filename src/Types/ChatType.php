@@ -1,5 +1,8 @@
 <?php namespace TelegramPro\Types;
 
+/**
+ * Type of chat, can be either “private”, “group”, “supergroup” or “channel”
+ */
 final class ChatType
 {
     private string $type;

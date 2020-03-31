@@ -38,7 +38,6 @@ final class User
         $this->supportsInlineQueries = $supportsInlineQueries;
     }
 
-
     /**
      * Unique identifier for this user or bot
      */
@@ -111,6 +110,9 @@ final class User
         return $this->supportsInlineQueries;
     }
 
+    /**
+     * Construct with data received from the Telegram bot api.
+     */
     public static function fromApi($user): ?User
     {
         if ( ! $user) return null;

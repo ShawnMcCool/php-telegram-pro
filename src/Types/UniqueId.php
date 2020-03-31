@@ -2,6 +2,9 @@
 
 use Ramsey\Uuid\Uuid;
 
+/**
+ * Sometimes you just need a perfectly unique id.
+ */
 final class UniqueId
 {
     private string $uuid;

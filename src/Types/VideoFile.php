@@ -1,5 +1,8 @@
 <?php namespace TelegramPro\Types;
 
+/**
+ * @inheritDoc
+ */
 final class VideoFile extends InputFile
 {
     public static function fromFileId(FileId $fileId): VideoFile

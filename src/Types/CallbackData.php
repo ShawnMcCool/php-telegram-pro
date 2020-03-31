@@ -22,6 +22,9 @@ final class CallbackData
         return $this->toString();
     }
 
+    /**
+     * Construct with data received from the Telegram bot api.
+     */
     public static function fromApi(?string $data): ?self
     {
         if (is_null($data)) {

@@ -1,6 +1,5 @@
 <?php namespace TelegramPro\Types;
 
-
 /**
  * This object represents a chat.
  * https://core.telegram.org/bots/api#chat
@@ -54,6 +53,9 @@ final class Chat
         $this->canSetStickerSet = $canSetStickerSet;
     }
 
+    /**
+     * Construct with data received from the Telegram bot api.
+     */
     public static function fromApi($chat): ?Chat
     {
         if ( ! $chat) return null;

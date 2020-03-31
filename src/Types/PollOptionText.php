@@ -1,5 +1,8 @@
 <?php namespace TelegramPro\Types;
 
+/**
+ * Poll option text, 1-100 characters
+ */
 final class PollOptionText
 {
     private string $text;
@@ -19,6 +22,9 @@ final class PollOptionText
         return $this->toString();
     }
 
+    /**
+     * Construct with data received from the Telegram bot api.
+     */
     public static function fromApi($pollOptionText): ?self
     {
         if (is_null($pollOptionText)) {

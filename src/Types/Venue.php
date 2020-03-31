@@ -25,6 +25,9 @@ final class Venue
         $this->foursquareType = $foursquareType;
     }
 
+    /**
+     * Construct with data received from the Telegram bot api.
+     */
     public static function fromApi($venue): ?Venue
     {
         if ( ! $venue) return null;

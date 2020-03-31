@@ -1,5 +1,8 @@
 <?php namespace TelegramPro\Types;
 
+/**
+ * Contains information about Telegram Passport data shared with the bot by the user.
+ */
 final class PassportData
 {
     private ArrayOfEncryptedPassportElements $data;
@@ -13,7 +16,10 @@ final class PassportData
         $this->credentials = $credentials;
     }
 
-    public static function fromString($passportData): ?PassportData
+    /**
+     * Construct with data received from the Telegram bot api.
+     */
+    public static function fromApi($passportData): ?PassportData
     {
         if ( ! $passportData) return null;
         
@@ -21,5 +27,21 @@ final class PassportData
             ArrayOfEncryptedPassportElements::fromApi($passportData->data),
             EncryptedCredentials::fromApi($passportData->credentials)
         );
+    }
+
+    /**
+     * Array with information about documents and other Telegram Passport elements that was shared with the bot
+     */
+    public function data(): ArrayOfEncryptedPassportElements
+    {
+        return $this->data;
+    }
+
+    /**
+     * Encrypted credentials required to decrypt the data
+     */
+    public function credentials(): EncryptedCredentials
+    {
+        return $this->credentials;
     }
 }

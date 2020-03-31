@@ -19,6 +19,9 @@ final class InlineKeyboardMarkup implements ReplyMarkup
         return $this->inlineKeyboard;
     }
 
+    /**
+     * Construct with data received from the Telegram bot api.
+     */
     public static function fromApi($replyMarkup): ?InlineKeyboardMarkup
     {
         if ( ! $replyMarkup) return null;

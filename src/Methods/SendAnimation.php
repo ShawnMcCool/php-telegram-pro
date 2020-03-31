@@ -1,6 +1,5 @@
 <?php namespace TelegramPro\Methods;
 
-use TelegramPro\Types\Text;
 use TelegramPro\Api\Telegram;
 use TelegramPro\Types\ChatId;
 use TelegramPro\Types\PhotoFile;

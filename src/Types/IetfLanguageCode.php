@@ -1,5 +1,9 @@
 <?php namespace TelegramPro\Types;
 
+/**
+ * Optional. IETF language tag of the user's language
+ * https://en.wikipedia.org/wiki/IETF_language_tag
+ */
 final class IetfLanguageCode
 {
     private static $languageCodeJson = '[

@@ -72,16 +72,25 @@ class InputFile implements JsonSerializable
         return $this->fileId ?? $this->url ?? "attach://{$this->id}";
     }
 
+    /**
+     * Identifier for this file, which can be used to download or reuse the file
+     */
     public static function fromFileId(FileId $fileId): InputFile
     {
         return new static($fileId, null, null);
     }
 
+    /**
+     * An HTTP URL for Telegram to get a file from the Internet
+     */
     public static function fromUrl(Url $url): InputFile
     {
         return new static(null, $url, null);
     }
 
+    /**
+     * Upload a local file at the given path
+     */
     public static function fromFilePath(FilePath $filePath): InputFile
     {
         return new static(null, null, $filePath);

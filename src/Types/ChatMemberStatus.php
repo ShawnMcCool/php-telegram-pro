@@ -22,6 +22,9 @@ final class ChatMemberStatus
         return $this->type;
     }
 
+    /**
+     * Construct with data received from the Telegram bot api.
+     */
     public static function fromApi(?string $type): ?self
     {
         if (is_null($type)) {

@@ -1,5 +1,8 @@
 <?php namespace TelegramPro\Types;
 
+/**
+ * This object represents a file uploaded to Telegram Passport. Currently all Telegram Passport files are in JPEG format when decrypted and don't exceed 10MB.
+ */
 final class PassportFile
 {
     private FileId $fileId;
@@ -19,6 +22,9 @@ final class PassportFile
         $this->fileDate = $fileDate;
     }
 
+    /**
+     * Construct with data received from the Telegram bot api.
+     */
     public static function fromApi($file): ?PassportFile
     {
         return new static(
@@ -27,5 +33,37 @@ final class PassportFile
             $file->file_size,
             Date::fromApi($file->file_date)
         );
+    }
+
+    /**
+     * Identifier for this file, which can be used to download or reuse the file
+     */
+    public function fileId(): FileId
+    {
+        return $this->fileId;
+    }
+
+    /**
+     * Unique identifier for this file, which is supposed to be the same over time and for different bots. Can't be used to download or reuse the file.
+     */
+    public function fileUniqueId(): FileUniqueId
+    {
+        return $this->fileUniqueId;
+    }
+
+    /**
+     * File size
+     */
+    public function fileSize(): int
+    {
+        return $this->fileSize;
+    }
+
+    /**
+     * Unix time when the file was uploaded
+     */
+    public function fileDate(): Date
+    {
+        return $this->fileDate;
     }
 }

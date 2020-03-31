@@ -37,6 +37,9 @@ final class Animation
         $this->fileSize = $fileSize;
     }
 
+    /**
+     * Construct with data received from the Telegram bot api.
+     */
     public static function fromApi($animation): ?Animation
     {
         if ( ! $animation) return null;
@@ -63,7 +66,7 @@ final class Animation
     }
 
     /**
-     * 	Unique identifier for this file, which is supposed to be the same over time and for different bots. Can't be used to download or reuse the file.
+     * Unique identifier for this file, which is supposed to be the same over time and for different bots. Can't be used to download or reuse the file.
      */
     public function fileUniqueId(): FileUniqueId
     {

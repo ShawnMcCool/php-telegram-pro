@@ -49,7 +49,7 @@ final class CallbackQuery
     }
 
     /**
-     * 	Unique identifier for this query
+     * Unique identifier for this query
      */
     public function id(): CallbackQueryId
     {
@@ -89,7 +89,7 @@ final class CallbackQuery
     }
 
     /**
-     * 	Optional. Data associated with the callback button. Be aware that a bad client can send arbitrary data in this field.
+     *	Optional. Data associated with the callback button. Be aware that a bad client can send arbitrary data in this field.
      */
     public function data(): ?string
     {

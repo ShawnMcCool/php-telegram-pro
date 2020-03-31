@@ -28,6 +28,9 @@ final class Document
         $this->fileSize = $fileSize;
     }
 
+    /**
+     * Construct with data received from the Telegram bot api.
+     */
     public static function fromApi($document): ?Document
     {
         if ( ! $document) return null;

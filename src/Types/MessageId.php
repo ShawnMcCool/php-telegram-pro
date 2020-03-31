@@ -2,6 +2,7 @@
 
 use TelegramPro\PrimitiveTypes\StringObject;
 
-final class MessageId extends StringObject
-{
-}
+/**
+ * Unique message identifier inside a chat
+ */
+final class MessageId extends StringObject {}

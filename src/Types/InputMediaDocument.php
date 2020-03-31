@@ -2,9 +2,10 @@
 
 namespace TelegramPro\Types;
 
-use CURLFile;
-
-final class InputMediaDocument
+/**
+ * Represents a general file to be sent.
+ */
+final class InputMediaDocument implements InputMedia
 {
     /**
      * Type of the result, must be document
@@ -39,33 +40,47 @@ final class InputMediaDocument
         $this->parseMode = $parseMode;
     }
 
-    public function toApi(string $mediaKey): array
+    public function toApi(): array
     {
         return array_filter(
             [
                 'type' => $this->type,
-                'media' => $this->apiString($mediaKey),
-                'thumb' => $this->thumb->toFiles(),
                 'caption' => $this->caption,
                 'parse_mode' => $this->parseMode,
             ]
         );
     }
 
-    /**
-     * Generate an object to send a local file through Curl to Telegram.
-     */
-    public function toFile(): ?CURLFile
+    public function filesToUpload(): array
     {
-        return $this->media->filePath()
-            ? new CURLFile($this->media->filePath())
-            : null;
+        return [
+            'media' => $this->media,
+            'thumb' => $this->thumb,
+        ];
     }
 
-    private function apiString(string $mediaKey = ''): string
+    /**
+     * @inheritDoc
+     */
+    public function jsonSerialize()
     {
-        return $this->media->fileId()
-            ?? $this->media->url()
-            ?? "attach://{$mediaKey}";
+        return $this->toApi();
+    }
+
+    /**
+     * Construct an InputMediaPhoto from a file.
+     */
+    public static function fromDocumentFile(
+        InputFile $media,
+        ?ThumbnailFile $thumb = null,
+        ?MediaCaption $caption = null,
+        ?ParseMode $parseMode = null
+    ): self {
+        return new static(
+            $media,
+            $thumb,
+            $caption,
+            $parseMode
+        );
     }
 }

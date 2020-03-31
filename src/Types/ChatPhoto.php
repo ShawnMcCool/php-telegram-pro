@@ -22,6 +22,9 @@ final class ChatPhoto
         $this->bigFileUniqueId = $bigFileUniqueId;
     }
 
+    /**
+     * Construct with data received from the Telegram bot api.
+     */
     public static function fromApi($photo): ?ChatPhoto
     {
         if ( ! $photo) return null;

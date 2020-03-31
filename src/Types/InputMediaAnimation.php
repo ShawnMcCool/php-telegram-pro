@@ -1,15 +1,16 @@
 <?php namespace TelegramPro\Types;
 
-use CURLFile;
-
-final class InputMediaAnimation
+/**
+ * Represents an animation file (GIF or H.264/MPEG-4 AVC video without sound) to be sent.
+ */
+final class InputMediaAnimation implements InputMedia
 {
     /**
      * Type of the result, must be animation
      */
     private string $type = 'animation';
     /**
-     * 	File to send. Pass a file_id to send a file that exists on the Telegram servers (recommended), pass an HTTP URL for Telegram to get a file from the Internet, or pass “attach://<file_attach_name>” to upload a new one using multipart/form-data under <file_attach_name> name. More info on Sending Files »
+     *    File to send. Pass a file_id to send a file that exists on the Telegram servers (recommended), pass an HTTP URL for Telegram to get a file from the Internet, or pass “attach://<file_attach_name>” to upload a new one using multipart/form-data under <file_attach_name> name. More info on Sending Files »
      */
     private AnimationFile $media;
     /**
@@ -33,7 +34,7 @@ final class InputMediaAnimation
      */
     private ?int $height;
     /**
-     * 	Optional. Animation duration
+     *    Optional. Animation duration
      */
     private ?int $duration;
 
@@ -55,36 +56,56 @@ final class InputMediaAnimation
         $this->duration = $duration;
     }
 
-    public function toApi(string $mediaKey): array
+    public function toApi(): array
     {
         return array_filter(
             [
                 'type' => $this->type,
-                'media' => $this->apiString($mediaKey),
-                'thumb' => $this->thumb ? $this->thumb->inputMediaLocation('thumb') : null,
                 'caption' => $this->caption,
                 'parse_mode' => $this->parseMode,
                 'width' => $this->width,
                 'height' => $this->height,
-                'duration' => $this->duration
+                'duration' => $this->duration,
             ]
         );
     }
 
-    /**
-     * Generate an object to send a local file through Curl to Telegram.
-     */
-    public function toFile(): ?CURLFile
+    public function filesToUpload(): array
     {
-        return $this->media->filePath()
-            ? new CURLFile($this->media->filePath())
-            : null;
+        return [
+            'media' => $this->media,
+            'thumb' => $this->thumb,
+        ];
     }
 
-    private function apiString(string $mediaKey = ''): string
+    /**
+     * @inheritDoc
+     */
+    public function jsonSerialize()
     {
-        return $this->media->fileId()
-            ?? $this->media->url()
-            ?? "attach://{$mediaKey}";
+        $this->toApi();
     }
+
+    /**
+     * Construct an InputMediaAnimation from a file.
+     */
+    public static function fromAnimationFile(
+        AnimationFile $media,
+        ?ThumbnailFile $thumb = null,
+        ?MediaCaption $caption = null,
+        ?ParseMode $parseMode = null,
+        ?int $width = null,
+        ?int $height = null,
+        ?int $duration = null
+    ): self {
+        return new static(
+            $media,
+            $thumb,
+            $caption,
+            $parseMode,
+            $width,
+            $height,
+            $duration
+        );
+    } 
 }

@@ -28,6 +28,9 @@ final class VideoNote
         $this->fileSize = $fileSize;
     }
 
+    /**
+     * Construct with data received from the Telegram bot api.
+     */
     public static function fromApi($videoNote): ?VideoNote
     {
         if ( ! $videoNote) return null;

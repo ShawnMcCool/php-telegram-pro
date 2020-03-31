@@ -401,7 +401,7 @@ final class UpdateTest extends TelegramTestCase
         $query = $update->inlineQuery();
 
         $this->sameValue('134567890097', $query->id());
-        self::assertSame('inline query', $query->query());
+        $this->sameValue('inline query', $query->query());
         self::assertSame('', $query->offset());
 
         # InlineQuery - From

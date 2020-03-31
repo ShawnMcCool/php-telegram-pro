@@ -34,6 +34,9 @@ final class InlineKeyboardButton
         $this->pay = $pay;
     }
 
+    /**
+     * Construct with data received from the Telegram bot api.
+     */
     public static function fromApi($inlineKeyboardButton): InlineKeyboardButton
     {
         return new static(

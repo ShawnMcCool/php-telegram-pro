@@ -16,6 +16,9 @@ final class PollOption
         $this->voterCount = $voterCount;
     }
 
+    /**
+     * Construct with data received from the Telegram bot api.
+     */
     public static function fromApi($option): PollOption
     {
         return new static(

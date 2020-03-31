@@ -1,5 +1,8 @@
 <?php namespace TelegramPro\Types;
 
+/**
+ * This object represents a sticker.
+ */
 final class Sticker
 {
     private FileId $fileId;
@@ -37,6 +40,9 @@ final class Sticker
         $this->fileSize = $fileSize;
     }
 
+    /**
+     * Construct with data received from the Telegram bot api.
+     */
     public static function fromApi($sticker): ?Sticker
     {
         if ( ! $sticker) return null;
@@ -53,5 +59,85 @@ final class Sticker
             MaskPosition::fromApi($sticker->mask_position),
             $sticker->file_size
         );
+    }
+
+    /**
+     * Identifier for this file, which can be used to download or reuse the file
+     */
+    public function fileId(): FileId
+    {
+        return $this->fileId;
+    }
+
+    /**
+     * Unique identifier for this file, which is supposed to be the same over time and for different bots. Can't be used to download or reuse the file.
+     */
+    public function fileUniqueId(): FileUniqueId
+    {
+        return $this->fileUniqueId;
+    }
+
+    /**
+     * Sticker width
+     */
+    public function width(): int
+    {
+        return $this->width;
+    }
+
+    /**
+     * Sticker height
+     */
+    public function height(): int
+    {
+        return $this->height;
+    }
+
+    /**
+     * True, if the sticker is animated
+     */
+    public function isAnimated(): bool
+    {
+        return $this->isAnimated;
+    }
+
+    /**
+     * Optional. Sticker thumbnail in the .WEBP or .JPG format
+     */
+    public function thumb(): ?PhotoSize
+    {
+        return $this->thumb;
+    }
+
+    /**
+     * Optional. Emoji associated with the sticker
+     */
+    public function emoji(): ?string
+    {
+        return $this->emoji;
+    }
+
+    /**
+     * Optional. Name of the sticker set to which the sticker belongs
+     */
+    public function setName(): ?string
+    {
+        return $this->setName;
+    }
+
+    /**
+     * Optional. For mask stickers, the position where the mask should be placed
+     */
+    public function maskPosition(): ?MaskPosition
+    {
+        return $this->maskPosition;
+    }
+
+    /**
+     * Optional. File size
+     */
+    public function fileSize(): ?int
+    {
+        return $this->fileSize;
     }
 }

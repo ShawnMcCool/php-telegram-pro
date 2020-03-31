@@ -1,5 +1,8 @@
 <?php namespace TelegramPro\Types;
 
+/**
+ * @inheritDoc
+ */
 final class PhotoFile extends InputFile
 {
     /**

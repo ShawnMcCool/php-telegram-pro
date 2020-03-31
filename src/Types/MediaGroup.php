@@ -1,5 +1,8 @@
 <?php namespace TelegramPro\Types;
 
+/**
+ * A value object representing a media group for the sendMediaGroup method.
+ */
 final class MediaGroup
 {
     private array $mediaGroup ;

@@ -1,15 +1,16 @@
 <?php namespace TelegramPro\Types;
 
-use CURLFile;
-
-final class InputMediaAudio
+/**
+ * Represents an audio file to be treated as music to be sent.
+ */
+final class InputMediaAudio implements InputMedia
 {
     /**
      * Type of the result, must be audio
      */
     private string $type = 'audio';
     /**
-     * 	File to send. Pass a file_id to send a file that exists on the Telegram servers (recommended), pass an HTTP URL for Telegram to get a file from the Internet, or pass “attach://<file_attach_name>” to upload a new one using multipart/form-data under <file_attach_name> name. More info on Sending Files »
+     *    File to send. Pass a file_id to send a file that exists on the Telegram servers (recommended), pass an HTTP URL for Telegram to get a file from the Internet, or pass “attach://<file_attach_name>” to upload a new one using multipart/form-data under <file_attach_name> name. More info on Sending Files »
      */
     private AudioFile $media;
     /**
@@ -25,7 +26,7 @@ final class InputMediaAudio
      */
     private ?ParseMode $parseMode;
     /**
-     * 	Optional. Animation duration
+     *    Optional. Animation duration
      */
     private ?int $duration;
     /**
@@ -51,17 +52,15 @@ final class InputMediaAudio
         $this->caption = $caption;
         $this->parseMode = $parseMode;
         $this->duration = $duration;
-        $this->performer = performer;
+        $this->performer = $performer;
         $this->title = $title;
     }
 
-    public function toApi(string $mediaKey): array
+    public function toApi(): array
     {
         return array_filter(
             [
                 'type' => $this->type,
-                'media' => $this->apiString($mediaKey),
-                'thumb' => $this->thumb->toFiles(),
                 'caption' => $this->caption,
                 'parse_mode' => $this->parseMode,
                 'duration' => $this->duration,
@@ -71,20 +70,42 @@ final class InputMediaAudio
         );
     }
 
-    /**
-     * Generate an object to send a local file through Curl to Telegram.
-     */
-    public function toFile(): ?CURLFile
+    public function filesToUpload(): array
     {
-        return $this->media->filePath()
-            ? new CURLFile($this->media->filePath())
-            : null;
+        return [
+            'media' => $this->media,
+            'thumb' => $this->thumb,
+        ];
     }
 
-    private function apiString(string $mediaKey = ''): string
+    /**
+     * @inheritDoc
+     */
+    public function jsonSerialize()
     {
-        return $this->media->fileId()
-            ?? $this->media->url()
-            ?? "attach://{$mediaKey}";
+        return $this->toApi();
+    }
+
+    /**
+     * Construct an InputMediaAudio from a file.
+     */
+    public static function fromAudioFile(
+        AudioFile $media,
+        ?ThumbnailFile $thumb = null,
+        ?MediaCaption $caption = null,
+        ?ParseMode $parseMode = null,
+        ?int $duration = null,
+        ?int $performer = null,
+        ?int $title = null
+    ): self {
+        return new static(
+            $media,
+            $thumb,
+            $caption,
+            $parseMode,
+            $duration,
+            $performer,
+            $title
+        );
     }
 }

@@ -98,6 +98,9 @@ final class Video
         return $this->fileSize;
     }
 
+    /**
+     * Construct with data received from the Telegram bot api.
+     */
     public static function fromApi($video): ?Video
     {
         if ( ! $video) return null;

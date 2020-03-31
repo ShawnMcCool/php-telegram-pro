@@ -33,7 +33,10 @@ final class Audio
         $this->fileSize = $fileSize;
         $this->thumb = $thumb;
     }
-
+    
+    /**
+     * Construct with data received from the Telegram bot api.
+     */
     public static function fromApi($audio): ?Audio
     {
         if ( ! $audio) return null;

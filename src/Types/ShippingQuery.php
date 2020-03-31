@@ -1,5 +1,8 @@
 <?php namespace TelegramPro\Types;
 
+/**
+ * This object contains information about an incoming shipping query.
+ */
 final class ShippingQuery
 {
     private ShippingQueryId $id;
@@ -19,6 +22,9 @@ final class ShippingQuery
         $this->shippingAddress = $shippingAddress;
     }
 
+    /**
+     * Construct with data received from the Telegram bot api.
+     */
     public static function fromApi($shippingQuery): ?ShippingQuery
     {
         if ( ! $shippingQuery) return null;
@@ -29,5 +35,37 @@ final class ShippingQuery
             $shippingQuery->invoice_payload,
             ShippingAddress::fromApi($shippingQuery->shipping_address)
         );
+    }
+
+    /**
+     * Unique query identifier
+     */
+    public function id(): ShippingQueryId
+    {
+        return $this->id;
+    }
+
+    /**
+     * User who sent the query
+     */
+    public function from(): User
+    {
+        return $this->from;
+    }
+
+    /**
+     * Bot specified invoice payload
+     */
+    public function invoicePayload(): string
+    {
+        return $this->invoicePayload;
+    }
+
+    /**
+     * User specified shipping address
+     */
+    public function shippingAddress(): ShippingAddress
+    {
+        return $this->shippingAddress;
     }
 }

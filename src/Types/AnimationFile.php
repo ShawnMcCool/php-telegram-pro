@@ -1,5 +1,8 @@
 <?php namespace TelegramPro\Types;
 
+/**
+ * @inheritDoc
+ */
 final class AnimationFile extends InputFile
 {
     public static function fromFileId(FileId $fileId): AnimationFile

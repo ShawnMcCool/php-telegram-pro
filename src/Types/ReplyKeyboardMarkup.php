@@ -54,4 +54,9 @@ final class ReplyKeyboardMarkup implements ReplyMarkup
     {
         return $this->selective;
     }
+    
+    function toParameter(): ArrayOfInlineKeyboardRows
+    {
+        return $this->keyboard;
+    }
 }

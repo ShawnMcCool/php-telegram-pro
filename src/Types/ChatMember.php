@@ -45,8 +45,7 @@ final class ChatMember
         ?bool $canSendPolls,
         ?bool $canSendOtherMessages,
         ?bool $canAddWebPagePreviews
-    )
-    {
+    ) {
         $this->user = $user;
         $this->status = $status;
         $this->customTitle = $customTitle;
@@ -75,7 +74,7 @@ final class ChatMember
     {
         return $this->user;
     }
-    
+
     /**
      * The member's status in the chat. Can be “creator”, “administrator”, “member”, “restricted”, “left” or “kicked”
      */
@@ -157,7 +156,7 @@ final class ChatMember
     }
 
     /**
-     * 	Optional. Administrators and restricted only. True, if the user is allowed to invite new users to the chat
+     * Optional. Administrators and restricted only. True, if the user is allowed to invite new users to the chat
      */
     public function canInviteUsers(): ?bool
     {

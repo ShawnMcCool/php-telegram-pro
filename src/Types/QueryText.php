@@ -1,9 +1,11 @@
 <?php namespace TelegramPro\Types;
 
+use JsonSerializable;
+
 /**
- * The actual UTF-8 text of a message, 0-4096 characters
+ * Text of the query (up to 256 characters)
  */
-final class MessageText
+final class QueryText implements JsonSerializable
 {
     private string $text;
 
@@ -22,6 +24,14 @@ final class MessageText
         return $this->toString();
     }
 
+    public static function fromString(string $text): self
+    {
+        if (strlen($text) > 256) {
+            throw new MessageTextIsTooLong("Query text '{$text}' can not be longer than 256 characters.");
+        }
+        return new static($text);
+    }
+
     /**
      * Construct with data received from the Telegram bot api.
      */
@@ -34,12 +44,11 @@ final class MessageText
         return static::fromString($text);
     }
 
-    public static function fromString(string $string): self
+    /**
+     * @inheritDoc
+     */
+    public function jsonSerialize()
     {
-        if (strlen($string) > 4096) {
-            throw new MessageTextIsTooLong("Message text '{$string}' can not be longer than 4096 bytes.");
-        }
-        
-        return new static($string);
+        return $this->toString();
     }
 }

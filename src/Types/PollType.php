@@ -1,5 +1,8 @@
 <?php namespace TelegramPro\Types;
 
+/**
+ * Poll type, “quiz” or “regular”, defaults to “regular”
+ */
 final class PollType
 {
     private string $type;
@@ -19,7 +22,10 @@ final class PollType
         return $this->type;
     }
 
-    public static function fromString(string $type)
+    /**
+     * Construct with data received from the Telegram bot api.
+     */
+    public static function fromApi(string $type)
     {
         if ( ! in_array($type, ['regular', 'quiz'])) {
             throw new PollTypeNotSupported($type);

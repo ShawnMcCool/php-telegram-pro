@@ -25,6 +25,9 @@ final class Voice
         $this->fileSize = $fileSize;
     }
 
+    /**
+     * Construct with data received from the Telegram bot api.
+     */
     public static function fromApi($voice): ?Voice
     {
         if ( ! $voice) return null;

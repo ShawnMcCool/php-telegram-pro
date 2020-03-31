@@ -19,6 +19,9 @@ final class PollAnswer
         $this->optionIds = $optionIds;
     }
 
+    /**
+     * Construct with data received from the Telegram bot api.
+     */
     public static function fromApi($pollAnswer): ?PollAnswer
     {
         if ( ! $pollAnswer) return null;

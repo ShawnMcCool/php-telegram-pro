@@ -25,6 +25,9 @@ final class Contact
         $this->vcard = $vcard;
     }
 
+    /**
+     * Construct with data received from the Telegram bot api.
+     */
     public static function fromApi($contact): ?Contact
     {
         if ( ! $contact) return null;

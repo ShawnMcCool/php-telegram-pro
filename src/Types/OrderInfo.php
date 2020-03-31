@@ -1,5 +1,8 @@
 <?php namespace TelegramPro\Types;
 
+/**
+ * This object represents information about an order.
+ */
 final class OrderInfo
 {
     private ?string $name;
@@ -18,7 +21,10 @@ final class OrderInfo
         $this->email = $email;
         $this->shippingAddress = $shippingAddress;
     }
-
+    
+    /**
+     * Construct with data received from the Telegram bot api.
+     */
     public static function fromApi($orderInfo): ?OrderInfo
     {
         if ( ! $orderInfo) return null;
@@ -29,5 +35,37 @@ final class OrderInfo
             $orderInfo->email,
             ShippingAddress::fromApi($orderInfo->shipping_address)
         );
+    }
+
+    /**
+     * Optional. User name
+     */
+    public function name(): ?string
+    {
+        return $this->name;
+    }
+
+    /**
+     * Optional. User's phone number
+     */
+    public function phoneNumber(): ?string
+    {
+        return $this->phoneNumber;
+    }
+
+    /**
+     * Optional. User email
+     */
+    public function email(): ?string
+    {
+        return $this->email;
+    }
+
+    /**
+     * Optional. User shipping address
+     */
+    public function shippingAddress(): ?ShippingAddress
+    {
+        return $this->shippingAddress;
     }
 }

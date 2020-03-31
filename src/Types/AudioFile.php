@@ -1,8 +1,11 @@
 <?php namespace TelegramPro\Types;
 
+/**
+ * @inheritDoc
+ */
 final class AudioFile extends InputFile
 {
-    public static function fromFileId(FileId $fileId): AudioFile
+    public static function fromFileId(FileId $fileId): self
     {
         return new static($fileId, null, null);
     }

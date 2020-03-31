@@ -1,5 +1,8 @@
 <?php namespace TelegramPro\Types;
 
+/**
+ * Poll question, 1-255 characters
+ */
 final class PollQuestion
 {
     private string $question;
@@ -19,6 +22,9 @@ final class PollQuestion
         return $this->toString();
     }
 
+    /**
+     * Construct with data received from the Telegram bot api.
+     */
     public static function fromApi(?string $question): ?self
     {
         if (is_null($question)) {

@@ -60,7 +60,7 @@ final class InputMediaPhoto implements InputMedia
     }
 
     /**
-     * Construct an InputMediaPhoto from a Telegram file id.
+     * Construct an InputMediaPhoto from a file.
      */
     public static function fromPhotoFile(
         PhotoFile $photo,

@@ -16,7 +16,8 @@ Since this SDK uses an object model that mirrors the telegram data structures we
     - a completely fleshed out object graph
         - no magic objects
         - no need to look up the telegram documentation to construct requests or consume responses
+        - documentation is integrated into objects
     - add design decisions document
         - create structures that match the telegram api as accurately as possible
         - turn primitives into objects when invariants can be guarded or if it makes the sdk more usable
-        
+        - fromApi() is how you construct objects from telegram. this is true even if it's just a wrapper object for a string. If you need to generate an object from string and it only contains a fromApi() constructor then create a new fromString() constructor. Superficially it may seem that they're the same but they're not.

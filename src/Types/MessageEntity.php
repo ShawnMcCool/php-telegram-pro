@@ -75,7 +75,10 @@ final class MessageEntity
     {
         return $this->language;
     }
-    
+
+    /**
+     * Construct with data received from the Telegram bot api.
+     */
     public static function fromApi($entity): MessageEntity
     {
         return new static(

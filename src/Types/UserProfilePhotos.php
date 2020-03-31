@@ -15,7 +15,10 @@ final class UserProfilePhotos
         $this->totalCount = $totalCount;
         $this->photos = $photos;
     }
-
+    
+    /**
+     * Construct with data received from the Telegram bot api.
+     */
     public static function fromApi($userProfilePhotos): ?self
     {
         return new static(
@@ -24,11 +27,17 @@ final class UserProfilePhotos
         );
     }
 
+    /**
+     * Total number of profile pictures the target user has
+     */
     public function totalCount(): int
     {
         return $this->totalCount;
     }
 
+    /**
+     * Requested profile pictures (in up to 4 sizes each)
+     */
     public function photos(): ArrayOfArrayOfPhotoSizes
     {
         return $this->photos;

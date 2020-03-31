@@ -2,6 +2,9 @@
 
 use JsonSerializable;
 
+/**
+ * Caption for media 0-1024 characters
+ */
 final class MediaCaption implements JsonSerializable
 {
     private string $caption;

@@ -34,6 +34,9 @@ final class ChatPermissions
         $this->canPinMessages = $canPinMessages;
     }
 
+    /**
+     * Construct with data received from the Telegram bot api.
+     */
     public static function fromApi($permissions): ?ChatPermissions
     {
         if ( ! $permissions) return null;
@@ -75,7 +78,7 @@ final class ChatPermissions
     }
 
     /**
-     * 	Optional. True, if the user is allowed to send animations, games, stickers and use inline bots, implies can_send_media_messages
+     * Optional. True, if the user is allowed to send animations, games, stickers and use inline bots, implies can_send_media_messages
      */
     public function canSendOtherMessages(): bool
     {
@@ -99,7 +102,7 @@ final class ChatPermissions
     }
 
     /**
-     * 	Optional. True, if the user is allowed to invite new users to the chat
+     * Optional. True, if the user is allowed to invite new users to the chat
      */
     public function canInviteUsers(): bool
     {

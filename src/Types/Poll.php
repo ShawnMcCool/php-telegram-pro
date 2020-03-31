@@ -37,6 +37,9 @@ final class Poll
         $this->correctOptionId = $correctOptionId;
     }
 
+    /**
+     * Construct with data received from the Telegram bot api.
+     */
     public static function fromApi($poll): ?Poll
     {
         if ( ! $poll) return null;
@@ -48,7 +51,7 @@ final class Poll
             $poll->total_voter_count,
             $poll->is_closed,
             $poll->is_anonymous,
-            PollType::fromString($poll->type),
+            PollType::fromApi($poll->type),
             $poll->allows_multiple_answers,
             PollOptionId::fromInt($poll->correct_option_id)
         );

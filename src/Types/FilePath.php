@@ -1,5 +1,8 @@
 <?php namespace TelegramPro\Types;
 
+/**
+ * Path to a file available locally
+ */
 final class FilePath
 {
     private string $filePath;

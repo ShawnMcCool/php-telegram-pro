@@ -2,7 +2,6 @@
 
 use TelegramPro\Types\Url;
 use Tests\TelegramTestCase;
-use TelegramPro\Types\Text;
 use TelegramPro\Types\Message;
 use TelegramPro\Types\FilePath;
 use TelegramPro\Types\AudioFile;
