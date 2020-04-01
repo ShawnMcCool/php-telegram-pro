@@ -1,7 +1,6 @@
 <?php namespace Tests\Api\Methods;
 
 use Tests\TelegramTestCase;
-use TelegramPro\Types\Text;
 use TelegramPro\Types\Message;
 use TelegramPro\Types\MessageText;
 use TelegramPro\Methods\SendMessage;

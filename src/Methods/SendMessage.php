@@ -1,15 +1,15 @@
 <?php namespace TelegramPro\Methods;
 
 use TelegramPro\Api\Telegram;
+use TelegramPro\Types\ChatId;
 use TelegramPro\Types\MessageId;
 use TelegramPro\Types\ParseMode;
 use TelegramPro\Types\ReplyMarkup;
 use TelegramPro\Types\MessageText;
-use TelegramPro\Api\CurlParameters;
 
 final class SendMessage implements Method
 {
-    private $chatId;
+    private ChatId $chatId;
     private MessageText $text;
     private ParseMode $parseMode;
     private ?bool $disableWebPagePreview;
@@ -18,7 +18,7 @@ final class SendMessage implements Method
     private ?ReplyMarkup $replyMarkup;
 
     private function __construct(
-        $chatId,
+        ChatId $chatId,
         MessageText $text,
         ParseMode $parseMode,
         ?bool $disableWebPagePreview,
@@ -35,21 +35,21 @@ final class SendMessage implements Method
         $this->replyMarkup = $replyMarkup;
     }
 
-    function toCurlParameters(string $botToken): CurlParameters
+    function toRequest(): Request
     {
-        return Request::json('sendMessage')
-                      ->withParameters(
-                          [
-                              'chat_id' => $this->chatId,
-                              'text' => $this->text,
-                              'parse_mode' => $this->parseMode,
-                              'disable_web_page_preview' => $this->disableWebPagePreview,
-                              'disable_notification' => $this->disableNotification,
-                              'reply_to_message_id' => $this->replyToMessageId,
-                              'reply_markup' => $this->replyMarkup ? $this->replyMarkup->toParameter() : null, // toParameter
-                          ]
-                      )
-                      ->toCurlParameters($botToken);
+        return Request::json(
+            'sendMessage'
+        )->withParameters(
+            [
+                'chat_id' => $this->chatId,
+                'text' => $this->text,
+                'parse_mode' => $this->parseMode,
+                'disable_web_page_preview' => $this->disableWebPagePreview,
+                'disable_notification' => $this->disableNotification,
+                'reply_to_message_id' => $this->replyToMessageId,
+                'reply_markup' => $this->replyMarkup ? $this->replyMarkup->toParameter() : null, // toParameter
+            ]
+        );
     }
 
     public function send(Telegram $telegramApi): SendMessageResponse
@@ -60,7 +60,7 @@ final class SendMessage implements Method
     }
 
     public static function parameters(
-        $chatId,
+        ChatId $chatId,
         MessageText $text,
         ?ParseMode $parseMode = null,
         ?bool $disableWebPagePreview = null,

@@ -1,5 +1,4 @@
-<?php
-namespace TelegramPro\Api;
+<?php namespace TelegramPro\Api;
 
 use TelegramPro\Methods\Method;
 

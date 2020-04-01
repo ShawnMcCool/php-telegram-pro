@@ -2,7 +2,11 @@
 
 use TelegramPro\Methods\Method;
 
-final class TelegramApi implements Telegram
+/**
+ * This object sends requests to the Telegram API using HTTP with Curl.
+ * It then returns the response so that the Method object can construct a response object.
+ */
+final class TelegramHttpRequest implements Telegram
 {
     private string $botToken;
 
@@ -13,17 +17,17 @@ final class TelegramApi implements Telegram
 
     public function send(Method $method)
     {
-        $parameters = $method->toCurlParameters($this->botToken);
-        
+        $parameters = $method->toRequest()->toCurlParameters($this->botToken);
+            
         $curl = curl_init($parameters->url());
         curl_setopt_array($curl, $parameters->optionArray());
         $response = curl_exec($curl);
         curl_close($curl);
-        
+
         return $response;
     }
 
-    public static function botToken(string $botToken): TelegramApi
+    public static function botToken(string $botToken): self
     {
         return new static($botToken);
     }

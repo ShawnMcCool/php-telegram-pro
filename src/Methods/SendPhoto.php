@@ -6,7 +6,6 @@ use TelegramPro\Types\PhotoFile;
 use TelegramPro\Types\MessageId;
 use TelegramPro\Types\ParseMode;
 use TelegramPro\Types\ReplyMarkup;
-use TelegramPro\Api\CurlParameters;
 use TelegramPro\Types\MediaCaption;
 
 final class SendPhoto implements Method
@@ -38,23 +37,24 @@ final class SendPhoto implements Method
         $this->replyMarkup = $replyMarkup;
     }
 
-    function toCurlParameters(string $botToken): CurlParameters
+    function toRequest(): Request
     {
-        return Request::multipartFormData('sendPhoto')
-                      ->withParameters(
-                          [
-                              'chat_id' => $this->chatId,
-                              'caption' => $this->caption,
-                              'parse_mode' => $this->parseMode,
-                              'disable_web_page_preview' => $this->disableNotification,
-                              'reply_to_message_id' => $this->replyToMessageId,
-                              'reply_markup' => $this->replyMarkup ? $this->replyMarkup->toParameter() : null, // toParameter
-                          ]
-                      )->withFiles(
-                [
-                    'photo' => $this->photo,
-                ]
-            )->toCurlParameters($botToken);
+        return Request::multipartFormData(
+            'sendPhoto'
+        )->withParameters(
+            [
+                'chat_id' => $this->chatId,
+                'caption' => $this->caption,
+                'parse_mode' => $this->parseMode,
+                'disable_web_page_preview' => $this->disableNotification,
+                'reply_to_message_id' => $this->replyToMessageId,
+                'reply_markup' => $this->replyMarkup ? $this->replyMarkup->toParameter() : null, // toParameter
+            ]
+        )->withFiles(
+            [
+                'photo' => $this->photo,
+            ]
+        );
     }
 
     function send(Telegram $telegramApi): SendPhotoResponse

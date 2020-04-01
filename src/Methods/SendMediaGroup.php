@@ -4,7 +4,6 @@ use TelegramPro\Api\Telegram;
 use TelegramPro\Types\ChatId;
 use TelegramPro\Types\MessageId;
 use TelegramPro\Types\MediaGroup;
-use TelegramPro\Api\CurlParameters;
 
 final class SendMediaGroup implements Method
 {
@@ -25,18 +24,20 @@ final class SendMediaGroup implements Method
         $this->replyToMessageId = $replyToMessageId;
     }
 
-    function toCurlParameters(string $botToken): CurlParameters
+    function toRequest(): Request
     {
-        return Request::multipartFormData('sendMediaGroup')
-                      ->withParameters(
-                          [
-                              'chat_id' => $this->chatId,
-                              'media' => $this->mediaGroup->toApi(),
-                              'disable_notification' => $this->disableNotification,
-                              'reply_to_message_id' => $this->replyToMessageId,
-                          ]
-                      )->withFiles($this->mediaGroup->filesToUpload())
-                      ->toCurlParameters($botToken);
+        return Request::multipartFormData(
+            'sendMediaGroup'
+        )->withParameters(
+            [
+                'chat_id' => $this->chatId,
+                'media' => $this->mediaGroup->toApi(),
+                'disable_notification' => $this->disableNotification,
+                'reply_to_message_id' => $this->replyToMessageId,
+            ]
+        )->withFiles(
+            $this->mediaGroup->filesToUpload()
+        );
     }
 
     function send(Telegram $telegramApi): SendMediaGroupResponse

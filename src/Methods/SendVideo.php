@@ -7,7 +7,6 @@ use TelegramPro\Types\VideoFile;
 use TelegramPro\Types\MessageId;
 use TelegramPro\Types\ParseMode;
 use TelegramPro\Types\ReplyMarkup;
-use TelegramPro\Api\CurlParameters;
 use TelegramPro\Types\MediaCaption;
 
 final class SendVideo implements Method
@@ -53,28 +52,29 @@ final class SendVideo implements Method
         $this->replyMarkup = $replyMarkup;
     }
 
-    function toCurlParameters(string $botToken): CurlParameters
+    function toRequest(): Request
     {
-        return Request::multipartFormData('sendVideo')
-                      ->withParameters(
-                          [
-                              'chat_id' => $this->chatId,
-                              'duration' => $this->duration,
-                              'width' => $this->width,
-                              'height' => $this->height,
-                              'caption' => $this->caption,
-                              'parse_mode' => $this->parseMode,
-                              'supports_streaming' => $this->supportsStreaming,
-                              'disable_notification' => $this->disableNotification,
-                              'reply_to_message_id' => $this->replyToMessageId,
-                              'reply_markup' => $this->replyMarkup ? $this->replyMarkup->toParameter() : null, // toParameter
-                          ]
-                      )->withFiles(
-                [
-                    'video' => $this->video,
-                    'thumb' => $this->thumb,
-                ]
-            )->toCurlParameters($botToken);
+        return Request::multipartFormData(
+            'sendVideo'
+        )->withParameters(
+            [
+                'chat_id' => $this->chatId,
+                'duration' => $this->duration,
+                'width' => $this->width,
+                'height' => $this->height,
+                'caption' => $this->caption,
+                'parse_mode' => $this->parseMode,
+                'supports_streaming' => $this->supportsStreaming,
+                'disable_notification' => $this->disableNotification,
+                'reply_to_message_id' => $this->replyToMessageId,
+                'reply_markup' => $this->replyMarkup ? $this->replyMarkup->toParameter() : null, // toParameter
+            ]
+        )->withFiles(
+            [
+                'video' => $this->video,
+                'thumb' => $this->thumb,
+            ]
+        );
     }
 
     function send(Telegram $telegramApi): SendVideoResponse

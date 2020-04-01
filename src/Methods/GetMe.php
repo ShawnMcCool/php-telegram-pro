@@ -1,16 +1,15 @@
 <?php namespace TelegramPro\Methods;
 
 use TelegramPro\Api\Telegram;
-use TelegramPro\Api\CurlParameters;
 
 final class GetMe implements Method
 {
     private function __construct() {}
 
-    function toCurlParameters(string $botToken): CurlParameters
+    function toRequest(): Request
     {
-        return Request::queryString('getMe')
-                      ->toCurlParameters($botToken);
+        return Request::queryString('getMe');
+
     }
 
     public function send(Telegram $telegramApi): GetMeResponse

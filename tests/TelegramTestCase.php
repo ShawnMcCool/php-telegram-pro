@@ -5,7 +5,7 @@ use Tests\Api\BotTestConfig;
 use TelegramPro\Api\Telegram;
 use PHPUnit\Framework\TestCase;
 use TelegramPro\Methods\Method;
-use TelegramPro\Api\TelegramApi;
+use TelegramPro\Api\TelegramHttpRequest;
 
 class TelegramTestCase extends TestCase
 {
@@ -19,7 +19,7 @@ class TelegramTestCase extends TestCase
 
         $this->config = BotTestConfig::fromConfigFile('.bot-test-config');
 
-        $this->telegram = TelegramApi::botToken(
+        $this->telegram = TelegramHttpRequest::botToken(
             $this->config->token()
         );
 

@@ -21,7 +21,6 @@ final class Request
 
     public function withParameters(array $parameterArray): self
     {
-
         $this->parameters = $parameterArray;
         return $this;
     }
@@ -43,6 +42,22 @@ final class Request
                 CURLOPT_POSTFIELDS => $this->parameters(),
                 CURLOPT_SSL_VERIFYPEER => false,
             ]
+        );
+    }
+
+    /**
+     * Return JSON encoded object for sending to Telegram as a response to an update.
+     * https://core.telegram.org/bots/faq#how-can-i-make-requests-in-response-to-updates
+     */
+    public function toJson(): string
+    {
+        return json_encode(
+            array_merge(
+                [
+                    'method' => $this->method,
+                ],
+                $this->parameters()
+            )
         );
     }
 

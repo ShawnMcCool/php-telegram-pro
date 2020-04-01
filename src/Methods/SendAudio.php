@@ -7,7 +7,6 @@ use TelegramPro\Types\AudioFile;
 use TelegramPro\Types\MessageId;
 use TelegramPro\Types\ParseMode;
 use TelegramPro\Types\ReplyMarkup;
-use TelegramPro\Api\CurlParameters;
 use TelegramPro\Types\MediaCaption;
 
 final class SendAudio implements Method
@@ -50,26 +49,27 @@ final class SendAudio implements Method
         $this->replyMarkup = $replyMarkup;
     }
 
-    function toCurlParameters(string $botToken): CurlParameters
+    function toRequest(): Request
     {
-        return Request::multipartFormData('sendAudio')
-                      ->withParameters(
-                          [
-                              'chat_id' => $this->chatId,
-                              'caption' => $this->caption,
-                              'parse_mode' => $this->parseMode,
-                              'duration' => $this->duration,
-                              'performer' => $this->performer,
-                              'disable_notification' => $this->disableNotification,
-                              'reply_to_message_id' => $this->replyToMessageId,
-                              'reply_markup' => $this->replyMarkup ? $this->replyMarkup->toParameter() : null, // toParameter
-                          ])
-                      ->withFiles(
-                          [
-                              'audio' => $this->audio,
-                              'thumb' => $this->thumb,
-                          ])
-                      ->toCurlParameters($botToken);
+        return Request::multipartFormData(
+            'sendAudio'
+        )->withParameters(
+            [
+                'chat_id' => $this->chatId,
+                'caption' => $this->caption,
+                'parse_mode' => $this->parseMode,
+                'duration' => $this->duration,
+                'performer' => $this->performer,
+                'disable_notification' => $this->disableNotification,
+                'reply_to_message_id' => $this->replyToMessageId,
+                'reply_markup' => $this->replyMarkup ? $this->replyMarkup->toParameter() : null, // toParameter
+            ]
+        )->withFiles(
+            [
+                'audio' => $this->audio,
+                'thumb' => $this->thumb,
+            ]
+        );
     }
 
     function send(Telegram $telegramApi): SendAudioResponse

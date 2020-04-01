@@ -5,7 +5,6 @@ use TelegramPro\Types\ChatId;
 use TelegramPro\Types\PhotoFile;
 use TelegramPro\Types\MessageId;
 use TelegramPro\Types\ReplyMarkup;
-use TelegramPro\Api\CurlParameters;
 use TelegramPro\Types\VideoNoteFile;
 
 final class SendVideoNote implements Method
@@ -39,25 +38,25 @@ final class SendVideoNote implements Method
         $this->replyMarkup = $replyMarkup;
     }
 
-    function toCurlParameters(string $botToken): CurlParameters
+    function toRequest(): Request
     {
-        return Request::multipartFormData('sendVideoNote')
-                      ->withParameters(
-                          [
-                              'chat_id' => $this->chatId,
-                              'duration' => $this->duration,
-                              'length' => $this->length,
-                              'disable_notification' => $this->disableNotification,
-                              'reply_to_message_id' => $this->replyToMessageId,
-                              'reply_markup' => $this->replyMarkup ? $this->replyMarkup->toParameter() : null, // toParameter
-                          ]
-                      )->withFiles(
-                [
-                    'video_note' => $this->videoNote,
-                    'thumb' => $this->thumb,
-                ]
-            )
-                      ->toCurlParameters($botToken);
+        return Request::multipartFormData(
+            'sendVideoNote'
+        )->withParameters(
+            [
+                'chat_id' => $this->chatId,
+                'duration' => $this->duration,
+                'length' => $this->length,
+                'disable_notification' => $this->disableNotification,
+                'reply_to_message_id' => $this->replyToMessageId,
+                'reply_markup' => $this->replyMarkup ? $this->replyMarkup->toParameter() : null, // toParameter
+            ]
+        )->withFiles(
+            [
+                'video_note' => $this->videoNote,
+                'thumb' => $this->thumb,
+            ]
+        );
     }
 
     function send(Telegram $telegramApi): SendVideoNoteResponse

@@ -6,7 +6,6 @@ use TelegramPro\Types\VoiceFile;
 use TelegramPro\Types\MessageId;
 use TelegramPro\Types\ParseMode;
 use TelegramPro\Types\ReplyMarkup;
-use TelegramPro\Api\CurlParameters;
 use TelegramPro\Types\MediaCaption;
 
 final class SendVoice implements Method
@@ -40,25 +39,25 @@ final class SendVoice implements Method
         $this->replyMarkup = $replyMarkup;
     }
 
-    function toCurlParameters(string $botToken): CurlParameters
+    function toRequest(): Request
     {
-        return Request::multipartFormData('sendVoice')
-                      ->withParameters(
-                          [
-                              'chat_id' => $this->chatId,
-                              'caption' => $this->caption,
-                              'parse_mode' => $this->parseMode,
-                              'duration' => $this->duration,
-                              'disable_notification' => $this->disableNotification,
-                              'reply_to_message_id' => $this->replyToMessageId,
-                              'reply_markup' => $this->replyMarkup ? $this->replyMarkup->toParameter() : null, // toParameter
-                          ]
-                      )->withFiles(
-                [
-                    'voice' => $this->voice,
-                ]
-            )
-                      ->toCurlParameters($botToken);
+        return Request::multipartFormData(
+            'sendVoice'
+        )->withParameters(
+            [
+                'chat_id' => $this->chatId,
+                'caption' => $this->caption,
+                'parse_mode' => $this->parseMode,
+                'duration' => $this->duration,
+                'disable_notification' => $this->disableNotification,
+                'reply_to_message_id' => $this->replyToMessageId,
+                'reply_markup' => $this->replyMarkup ? $this->replyMarkup->toParameter() : null, // toParameter
+            ]
+        )->withFiles(
+            [
+                'voice' => $this->voice,
+            ]
+        );
     }
 
     function send(Telegram $telegramApi): SendVoiceResponse

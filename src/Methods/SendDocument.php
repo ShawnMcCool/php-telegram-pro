@@ -7,7 +7,6 @@ use TelegramPro\Types\MessageId;
 use TelegramPro\Types\ParseMode;
 use TelegramPro\Types\ReplyMarkup;
 use TelegramPro\Types\DocumentFile;
-use TelegramPro\Api\CurlParameters;
 use TelegramPro\Types\MediaCaption;
 
 final class SendDocument implements Method
@@ -42,25 +41,25 @@ final class SendDocument implements Method
         $this->replyMarkup = $replyMarkup;
     }
 
-    function toCurlParameters(string $botToken): CurlParameters
+    function toRequest(): Request
     {
-        return Request::multipartFormData('sendDocument')
-                      ->withParameters(
-                          [
-                              'chat_id' => $this->chatId,
-                              'caption' => $this->caption,
-                              'parse_mode' => $this->parseMode,
-                              'disable_web_page_preview' => $this->disableNotification,
-                              'reply_to_message_id' => $this->replyToMessageId,
-                              'reply_markup' => $this->replyMarkup ? $this->replyMarkup->toParameter() : null, // toParameter
-                          ])
-                      ->withFiles(
-                          [
-                              'document' => $this->document,
-                              'thumb' => $this->thumb,
-
-                          ])
-                      ->toCurlParameters($botToken);
+        return Request::multipartFormData(
+            'sendDocument'
+        )->withParameters(
+            [
+                'chat_id' => $this->chatId,
+                'caption' => $this->caption,
+                'parse_mode' => $this->parseMode,
+                'disable_web_page_preview' => $this->disableNotification,
+                'reply_to_message_id' => $this->replyToMessageId,
+                'reply_markup' => $this->replyMarkup ? $this->replyMarkup->toParameter() : null, // toParameter
+            ]
+        )->withFiles(
+            [
+                'document' => $this->document,
+                'thumb' => $this->thumb,
+            ]
+        );
     }
 
     function send(Telegram $telegramApi): SendPhotoResponse

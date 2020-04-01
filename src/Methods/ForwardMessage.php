@@ -3,7 +3,6 @@
 use TelegramPro\Api\Telegram;
 use TelegramPro\Types\ChatId;
 use TelegramPro\Types\MessageId;
-use TelegramPro\Api\CurlParameters;
 
 final class ForwardMessage implements Method
 {
@@ -24,18 +23,18 @@ final class ForwardMessage implements Method
         $this->disableNotification = $disableNotification;
     }
 
-    function toCurlParameters(string $botToken): CurlParameters
+    function toRequest(): Request
     {
-        return Request::json('forwardMessage')
-                      ->withParameters(
-                          [
-                              'chat_id' => $this->chatId,
-                              'from_chat_id' => $this->fromChatId,
-                              'disable_notifications' => $this->disableNotification,
-                              'message_id' => $this->messageId,
-                          ]
-                      )
-                      ->toCurlParameters($botToken);
+        return Request::json(
+            'forwardMessage'
+        )->withParameters(
+            [
+                'chat_id' => $this->chatId,
+                'from_chat_id' => $this->fromChatId,
+                'disable_notifications' => $this->disableNotification,
+                'message_id' => $this->messageId,
+            ]
+        );
     }
 
     public function send(Telegram $telegramApi): ForwardMessageResponse
