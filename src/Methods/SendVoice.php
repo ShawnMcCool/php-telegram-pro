@@ -2,11 +2,11 @@
 
 use TelegramPro\Api\Telegram;
 use TelegramPro\Types\ChatId;
-use TelegramPro\Types\VoiceFile;
 use TelegramPro\Types\MessageId;
 use TelegramPro\Types\ParseMode;
 use TelegramPro\Types\ReplyMarkup;
 use TelegramPro\Types\MediaCaption;
+use TelegramPro\Methods\FileUploads\VoiceFile;
 
 final class SendVoice implements Method
 {

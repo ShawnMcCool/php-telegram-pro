@@ -2,14 +2,14 @@
 
 use Tests\TelegramTestCase;
 use TelegramPro\Types\FilePath;
-use TelegramPro\Types\AudioFile;
-use TelegramPro\Types\AudioFileNotSupported;
+use TelegramPro\Methods\FileUploads\AudioInputFile;
+use TelegramPro\Methods\FileUploads\AudioFileNotSupported;
 
 class AudioFileTest extends TelegramTestCase
 {
     function testCanRepresentMp3Files()
     {
-        $audio = AudioFile::fromFilePath(
+        $audio = AudioInputFile::fromFilePath(
             FilePath::fromString($this->media->mp3())
         );
         
@@ -21,7 +21,7 @@ class AudioFileTest extends TelegramTestCase
 
     function testCanRepresentM4aFiles()
     {
-        $audio = AudioFile::fromFilePath(
+        $audio = AudioInputFile::fromFilePath(
             FilePath::fromString(
                 $this->media->m4a()
             )
@@ -37,7 +37,7 @@ class AudioFileTest extends TelegramTestCase
     {
         $this->expectException(AudioFileNotSupported::class);
         
-        AudioFile::fromFilePath(
+        AudioInputFile::fromFilePath(
             FilePath::fromString(
                 $this->media->image()
             )

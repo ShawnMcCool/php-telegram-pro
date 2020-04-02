@@ -5,11 +5,11 @@ use Tests\TelegramTestCase;
 use TelegramPro\Types\Text;
 use TelegramPro\Types\Message;
 use TelegramPro\Types\FilePath;
-use TelegramPro\Types\DocumentFile;
 use TelegramPro\Types\MediaCaption;
 use TelegramPro\Methods\MethodError;
 use TelegramPro\Methods\SendDocument;
 use TelegramPro\Types\CanNotOpenFile;
+use TelegramPro\Methods\FileUploads\DocumentFile;
 
 class SendDocumentTest extends TelegramTestCase
 {

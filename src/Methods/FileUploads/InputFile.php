@@ -1,6 +1,11 @@
-<?php namespace TelegramPro\Types;
+<?php namespace TelegramPro\Methods\FileUploads;
 
 use JsonSerializable;
+use TelegramPro\Types\Url;
+use TelegramPro\Types\FileId;
+use TelegramPro\Types\FilePath;
+use TelegramPro\Types\UniqueId;
+use TelegramPro\Types\FileToUpload;
 
 /**
  * This object represents the contents of a file to be uploaded. Must be posted using multipart/form-data in the usual way that files are uploaded via the browser.
@@ -67,9 +72,14 @@ class InputFile implements JsonSerializable
             : null;
     }
 
-    public function inputFileString(): string
+    public function mediaString(): string
     {
         return $this->fileId ?? $this->url ?? "attach://{$this->id}";
+    }
+    
+    public function __toString()
+    {
+        return $this->mediaString();
     }
 
     /**
@@ -101,6 +111,6 @@ class InputFile implements JsonSerializable
      */
     public function jsonSerialize()
     {
-        return $this->inputFileString();
+        return $this->mediaString();
     }
 }

@@ -1,4 +1,7 @@
-<?php namespace TelegramPro\Types;
+<?php namespace TelegramPro\Methods\FileUploads;
+
+use TelegramPro\Types\FileId;
+use TelegramPro\Types\FilePath;
 
 /**
  * @inheritDoc

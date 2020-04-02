@@ -2,12 +2,12 @@
 
 use TelegramPro\Api\Telegram;
 use TelegramPro\Types\ChatId;
-use TelegramPro\Types\PhotoFile;
 use TelegramPro\Types\MessageId;
 use TelegramPro\Types\ParseMode;
 use TelegramPro\Types\ReplyMarkup;
 use TelegramPro\Types\MediaCaption;
-use TelegramPro\Types\AnimationFile;
+use TelegramPro\Methods\FileUploads\AnimationFile;
+use TelegramPro\Methods\FileUploads\InputPhotoFile;
 
 final class SendAnimation implements Method
 {
@@ -18,7 +18,7 @@ final class SendAnimation implements Method
     private ?int $duration;
     private ?int $width;
     private ?int $height;
-    private ?PhotoFile $thumb;
+    private ?InputPhotoFile $thumb;
     private ?bool $disableNotification;
     private ?MessageId $replyToMessageId;
     private ?ReplyMarkup $replyMarkup;
@@ -31,7 +31,7 @@ final class SendAnimation implements Method
         ?int $duration,
         ?int $width,
         ?int $height,
-        ?PhotoFile $thumb,
+        ?InputPhotoFile $thumb,
         ?bool $disableNotification,
         ?MessageId $replyToMessageId,
         ?ReplyMarkup $replyMarkup
@@ -88,7 +88,7 @@ final class SendAnimation implements Method
         ?int $duration = null,
         ?int $width = null,
         ?int $height = null,
-        ?PhotoFile $thumb = null,
+        ?InputPhotoFile $thumb = null,
         ?bool $disableNotification = null,
         ?MessageId $replyToMessageId = null,
         ?ReplyMarkup $replyMarkup = null

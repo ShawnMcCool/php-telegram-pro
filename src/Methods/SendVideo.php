@@ -2,12 +2,12 @@
 
 use TelegramPro\Api\Telegram;
 use TelegramPro\Types\ChatId;
-use TelegramPro\Types\PhotoFile;
-use TelegramPro\Types\VideoFile;
 use TelegramPro\Types\MessageId;
 use TelegramPro\Types\ParseMode;
 use TelegramPro\Types\ReplyMarkup;
 use TelegramPro\Types\MediaCaption;
+use TelegramPro\Methods\FileUploads\VideoFile;
+use TelegramPro\Methods\FileUploads\InputPhotoFile;
 
 final class SendVideo implements Method
 {
@@ -18,7 +18,7 @@ final class SendVideo implements Method
     private ?int $duration;
     private ?int $width;
     private ?int $height;
-    private ?PhotoFile $thumb;
+    private ?InputPhotoFile $thumb;
     private ?bool $supportsStreaming;
     private ?bool $disableNotification;
     private ?MessageId $replyToMessageId;
@@ -32,7 +32,7 @@ final class SendVideo implements Method
         ?int $duration,
         ?int $width,
         ?int $height,
-        ?PhotoFile $thumb,
+        ?InputPhotoFile $thumb,
         ?bool $supportsStreaming,
         ?bool $disableNotification,
         ?MessageId $replyToMessageId,
@@ -92,7 +92,7 @@ final class SendVideo implements Method
         ?int $duration = null,
         ?int $width = null,
         ?int $height = null,
-        ?PhotoFile $thumb = null,
+        ?InputPhotoFile $thumb = null,
         ?bool $supportsStreaming = null,
         ?bool $disableNotification = null,
         ?MessageId $replyToMessageId = null,

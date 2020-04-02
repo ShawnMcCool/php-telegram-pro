@@ -1,12 +1,12 @@
-<?php namespace TelegramPro\Types;
+<?php namespace TelegramPro\Methods\FileUploads;
 
 use TelegramPro\TelegramProException;
 
-final class VideoFileNotSupported extends TelegramProException
+final class VoiceFileNotSupported extends TelegramProException
 {
     public static function formatNotSupported(string $filePath, string $mimeType): self
     {
-        return new static("'{$filePath}' is reporting '{$mimeType}' but we need .MP4 format.");
+        return new static("'{$filePath}' is reporting '{$mimeType}' but we need .OGG format.");
     }
 
     public static function fileSizeIsGreaterThan50Megabyte(string $filePath)

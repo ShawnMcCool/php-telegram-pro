@@ -1,4 +1,9 @@
-<?php namespace TelegramPro\Types;
+<?php namespace TelegramPro\Methods;
+
+use TelegramPro\Types\InputMediaPhoto;
+use TelegramPro\Types\InputMediaVideo;
+use TelegramPro\Methods\FileUploads\InputFile;
+use TelegramPro\Methods\FileUploads\InputMedia;
 
 /**
  * A value object representing a media group for the sendMediaGroup method.

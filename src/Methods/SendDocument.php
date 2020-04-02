@@ -2,18 +2,18 @@
 
 use TelegramPro\Api\Telegram;
 use TelegramPro\Types\ChatId;
-use TelegramPro\Types\PhotoFile;
 use TelegramPro\Types\MessageId;
 use TelegramPro\Types\ParseMode;
 use TelegramPro\Types\ReplyMarkup;
-use TelegramPro\Types\DocumentFile;
 use TelegramPro\Types\MediaCaption;
+use TelegramPro\Methods\FileUploads\DocumentFile;
+use TelegramPro\Methods\FileUploads\InputPhotoFile;
 
 final class SendDocument implements Method
 {
     private ChatId $chatId;
     private DocumentFile $document;
-    private ?PhotoFile $thumb;
+    private ?InputPhotoFile $thumb;
     private MediaCaption $caption;
     private ?ParseMode $parseMode;
     private ?bool $disableNotification;
@@ -23,7 +23,7 @@ final class SendDocument implements Method
     public function __construct(
         ChatId $chatId,
         DocumentFile $document,
-        ?PhotoFile $thumb,
+        ?InputPhotoFile $thumb,
         ?MediaCaption $caption,
         ?ParseMode $parseMode,
         ?bool $disableNotification,
@@ -72,7 +72,7 @@ final class SendDocument implements Method
     public static function parameters(
         ChatId $chatId,
         DocumentFile $document,
-        ?PhotoFile $thumb,
+        ?InputPhotoFile $thumb,
         ?MediaCaption $caption = null,
         ?ParseMode $parseMode = null,
         ?bool $disableNotification = null,

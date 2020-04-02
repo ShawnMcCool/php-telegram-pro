@@ -1,21 +1,25 @@
-<?php namespace TelegramPro\Types;
+<?php namespace TelegramPro\Methods\FileUploads;
+
+use TelegramPro\Types\Url;
+use TelegramPro\Types\FileId;
+use TelegramPro\Types\FilePath;
 
 /**
  * @inheritDoc
  */
-final class AudioFile extends InputFile
+final class AudioInputFile extends InputFile
 {
     public static function fromFileId(FileId $fileId): self
     {
         return new static($fileId, null, null);
     }
 
-    public static function fromUrl(Url $url): AudioFile
+    public static function fromUrl(Url $url): AudioInputFile
     {
         return new static(null, $url, null);
     }
 
-    public static function fromFilePath(FilePath $filePath): AudioFile
+    public static function fromFilePath(FilePath $filePath): AudioInputFile
     {
         if (bytesToMegabytes(filesize($filePath)) > 50) {
             throw AudioFileNotSupported::fileSizeIsGreaterThan50Megabyte($filePath);

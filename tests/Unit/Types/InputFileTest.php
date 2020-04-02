@@ -1,11 +1,11 @@
 <?php namespace Tests\Unit\Types;
 
+use TelegramPro\Types\Url;
 use Tests\TelegramTestCase;
 use TelegramPro\Types\FileId;
-use TelegramPro\Types\Url;
 use TelegramPro\Types\FilePath;
-use TelegramPro\Types\InputFile;
 use TelegramPro\Types\CanNotValidateUrl;
+use TelegramPro\Methods\FileUploads\InputFile;
 
 class InputFileTest extends TelegramTestCase
 {

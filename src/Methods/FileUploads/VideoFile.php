@@ -1,4 +1,8 @@
-<?php namespace TelegramPro\Types;
+<?php namespace TelegramPro\Methods\FileUploads;
+
+use TelegramPro\Types\Url;
+use TelegramPro\Types\FileId;
+use TelegramPro\Types\FilePath;
 
 /**
  * @inheritDoc
@@ -24,7 +28,7 @@ final class VideoFile extends InputFile
         if ( ! static::isValidMimeType($filePath)) {
             throw VideoFileNotSupported::formatNotSupported($filePath, mime_content_type($filePath));
         }
-
+        
         return new static(null, null, $filePath);
     }
 
@@ -41,6 +45,6 @@ final class VideoFile extends InputFile
     
     public function __toString()
     {
-        return $this->inputFileString();
+        return $this->mediaString();
     }
 }

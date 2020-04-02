@@ -2,36 +2,36 @@
 
 use TelegramPro\Api\Telegram;
 use TelegramPro\Types\ChatId;
-use TelegramPro\Types\PhotoFile;
-use TelegramPro\Types\AudioFile;
 use TelegramPro\Types\MessageId;
 use TelegramPro\Types\ParseMode;
 use TelegramPro\Types\ReplyMarkup;
 use TelegramPro\Types\MediaCaption;
+use TelegramPro\Methods\FileUploads\InputPhotoFile;
+use TelegramPro\Methods\FileUploads\AudioInputFile;
 
 final class SendAudio implements Method
 {
     private ChatId $chatId;
-    private AudioFile $audio;
+    private AudioInputFile $audio;
     private ?MediaCaption $caption;
     private ?ParseMode $parseMode;
     private ?int $duration;
     private ?string $performer;
     private ?string $title;
-    private ?PhotoFile $thumb;
+    private ?InputPhotoFile $thumb;
     private ?bool $disableNotification;
     private ?MessageId $replyToMessageId;
     private ?ReplyMarkup $replyMarkup;
 
     public function __construct(
         ChatId $chatId,
-        AudioFile $audio,
+        AudioInputFile $audio,
         ?MediaCaption $caption,
         ?ParseMode $parseMode,
         ?int $duration,
         ?string $performer,
         ?string $title,
-        ?PhotoFile $thumb,
+        ?InputPhotoFile $thumb,
         ?bool $disableNotification,
         ?MessageId $replyToMessageId,
         ?ReplyMarkup $replyMarkup
@@ -81,13 +81,13 @@ final class SendAudio implements Method
 
     public static function parameters(
         ChatId $chatId,
-        AudioFile $audio,
+        AudioInputFile $audio,
         ?MediaCaption $caption = null,
         ?ParseMode $parseMode = null,
         ?int $duration = null,
         ?string $performer = null,
         ?string $title = null,
-        ?PhotoFile $thumb = null,
+        ?InputPhotoFile $thumb = null,
         ?bool $disableNotification = null,
         ?MessageId $replyToMessageId = null,
         ?ReplyMarkup $replyMarkup = null

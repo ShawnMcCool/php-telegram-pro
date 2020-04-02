@@ -2,10 +2,10 @@
 
 use TelegramPro\Api\Telegram;
 use TelegramPro\Types\ChatId;
-use TelegramPro\Types\PhotoFile;
 use TelegramPro\Types\MessageId;
 use TelegramPro\Types\ReplyMarkup;
-use TelegramPro\Types\VideoNoteFile;
+use TelegramPro\Methods\FileUploads\VideoNoteFile;
+use TelegramPro\Methods\FileUploads\InputPhotoFile;
 
 final class SendVideoNote implements Method
 {
@@ -13,7 +13,7 @@ final class SendVideoNote implements Method
     private VideoNoteFile $videoNote;
     private ?int $duration;
     private ?int $length;
-    private ?PhotoFile $thumb;
+    private ?InputPhotoFile $thumb;
     private ?bool $disableNotification;
     private ?MessageId $replyToMessageId;
     private ?ReplyMarkup $replyMarkup;
@@ -23,7 +23,7 @@ final class SendVideoNote implements Method
         VideoNoteFile $videoNote,
         ?int $duration,
         ?int $length,
-        ?PhotoFile $thumb,
+        ?InputPhotoFile $thumb,
         ?bool $disableNotification,
         ?MessageId $replyToMessageId,
         ?ReplyMarkup $replyMarkup
@@ -71,7 +71,7 @@ final class SendVideoNote implements Method
         VideoNoteFile $videoNote,
         ?int $duration = null,
         ?int $length = null,
-        ?PhotoFile $thumb = null,
+        ?InputPhotoFile $thumb = null,
         ?bool $disableNotification = null,
         ?MessageId $replyToMessageId = null,
         ?ReplyMarkup $replyMarkup = null

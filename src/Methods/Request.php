@@ -1,7 +1,7 @@
 <?php namespace TelegramPro\Methods;
 
-use TelegramPro\Types\InputFile;
 use TelegramPro\Api\CurlParameters;
+use TelegramPro\Methods\FileUploads\InputFile;
 
 final class Request
 {
@@ -73,7 +73,7 @@ final class Request
                 $fileParameters[$file->fileToUpload()->formFieldName()] = $file->fileToUpload()->curlFile();
             }
 
-            $fileParameters[$fieldName] = $file->inputFileString();
+            $fileParameters[$fieldName] = $file->mediaString();
         }
 
         return array_filter(

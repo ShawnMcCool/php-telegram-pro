@@ -1,15 +1,15 @@
 <?php namespace Tests\Api\Methods;
 
+use TelegramPro\Types\Url;
 use Tests\TelegramTestCase;
 use TelegramPro\Types\Text;
 use TelegramPro\Types\Message;
-use TelegramPro\Types\Url;
 use TelegramPro\Types\FilePath;
 use TelegramPro\Types\MediaCaption;
-use TelegramPro\Types\AnimationFile;
 use TelegramPro\Methods\MethodError;
 use TelegramPro\Types\CanNotOpenFile;
 use TelegramPro\Methods\SendAnimation;
+use TelegramPro\Methods\FileUploads\AnimationFile;
 
 class SendAnimationTest extends TelegramTestCase
 {

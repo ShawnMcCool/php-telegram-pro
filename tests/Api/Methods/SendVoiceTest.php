@@ -6,11 +6,11 @@ use TelegramPro\Types\Text;
 use TelegramPro\Types\FileId;
 use TelegramPro\Types\Message;
 use TelegramPro\Types\FilePath;
-use TelegramPro\Types\VoiceFile;
 use TelegramPro\Methods\SendVoice;
 use TelegramPro\Types\MediaCaption;
 use TelegramPro\Methods\MethodError;
 use TelegramPro\Types\CanNotOpenFile;
+use TelegramPro\Methods\FileUploads\VoiceFile;
 
 class SendVoiceTest extends TelegramTestCase
 {
