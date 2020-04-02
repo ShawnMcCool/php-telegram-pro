@@ -3,6 +3,7 @@
 use TelegramPro\Api\Telegram;
 use TelegramPro\Types\ChatId;
 use TelegramPro\Types\MessageId;
+use TelegramPro\Methods\FileUploads\FilesToUpload;
 
 final class SendMediaGroup implements Method
 {

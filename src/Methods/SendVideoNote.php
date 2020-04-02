@@ -5,6 +5,7 @@ use TelegramPro\Types\ChatId;
 use TelegramPro\Types\MessageId;
 use TelegramPro\Types\ReplyMarkup;
 use TelegramPro\Methods\FileUploads\VideoNoteFile;
+use TelegramPro\Methods\FileUploads\FilesToUpload;
 use TelegramPro\Methods\FileUploads\InputPhotoFile;
 
 final class SendVideoNote implements Method
@@ -45,6 +46,8 @@ final class SendVideoNote implements Method
         )->withParameters(
             [
                 'chat_id' => $this->chatId,
+                'video_note' => $this->videoNote,
+                'thumb' => $this->thumb,
                 'duration' => $this->duration,
                 'length' => $this->length,
                 'disable_notification' => $this->disableNotification,
@@ -52,10 +55,10 @@ final class SendVideoNote implements Method
                 'reply_markup' => $this->replyMarkup ? $this->replyMarkup->toParameter() : null, // toParameter
             ]
         )->withFiles(
-            [
-                'video_note' => $this->videoNote,
-                'thumb' => $this->thumb,
-            ]
+            FilesToUpload::list(
+                $this->videoNote->fileToUpload(),
+                $this->thumb ? $this->thumb->fileToUpload() : null
+            )
         );
     }
 

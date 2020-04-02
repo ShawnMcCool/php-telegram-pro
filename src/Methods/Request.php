@@ -1,7 +1,8 @@
 <?php namespace TelegramPro\Methods;
 
 use TelegramPro\Api\CurlParameters;
-use TelegramPro\Methods\FileUploads\InputFile;
+use TelegramPro\Types\FileToUpload;
+use TelegramPro\Methods\FileUploads\FilesToUpload;
 
 final class Request
 {
@@ -9,7 +10,7 @@ final class Request
     private string $requestType;
 
     private array $parameters = [];
-    private array $files = [];
+    private FilesToUpload $filesToUpload;
 
     private function __construct(
         string $method,
@@ -17,6 +18,7 @@ final class Request
     ) {
         $this->method = $method;
         $this->requestType = $requestType;
+        $this->filesToUpload = FilesToUpload::empty();
     }
 
     public function withParameters(array $parameterArray): self
@@ -25,9 +27,9 @@ final class Request
         return $this;
     }
 
-    public function withFiles(array $files): self
+    public function withFiles(?FilesToUpload $files = null): self
     {
-        $this->files = $files;
+        $this->filesToUpload->merge($files);
         return $this;
     }
 
@@ -65,17 +67,12 @@ final class Request
     {
         $fileParameters = [];
 
-        /** @var InputFile $file */
-        foreach ($this->files as $fieldName => $file) {
+        /** @var FileToUpload $file */
+        foreach ($this->filesToUpload as $file) {
             if ( ! $file) continue;
-
-            if ($file->fileToUpload()) {
-                $fileParameters[$file->fileToUpload()->formFieldName()] = $file->fileToUpload()->curlFile();
-            }
-
-            $fileParameters[$fieldName] = $file->mediaString();
+            $fileParameters[$file->formFieldName()] = $file->curlFile();
         }
-
+        
         return array_filter(
             array_merge(
                 $this->parameters,

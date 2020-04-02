@@ -7,6 +7,7 @@ use TelegramPro\Types\ParseMode;
 use TelegramPro\Types\ReplyMarkup;
 use TelegramPro\Types\MediaCaption;
 use TelegramPro\Methods\FileUploads\DocumentFile;
+use TelegramPro\Methods\FileUploads\FilesToUpload;
 use TelegramPro\Methods\FileUploads\InputPhotoFile;
 
 final class SendDocument implements Method
@@ -48,6 +49,8 @@ final class SendDocument implements Method
         )->withParameters(
             [
                 'chat_id' => $this->chatId,
+                'document' => $this->document,
+                'thumb' => $this->thumb,
                 'caption' => $this->caption,
                 'parse_mode' => $this->parseMode,
                 'disable_web_page_preview' => $this->disableNotification,
@@ -55,10 +58,10 @@ final class SendDocument implements Method
                 'reply_markup' => $this->replyMarkup ? $this->replyMarkup->toParameter() : null, // toParameter
             ]
         )->withFiles(
-            [
-                'document' => $this->document,
-                'thumb' => $this->thumb,
-            ]
+            FilesToUpload::list(
+                $this->document->fileToUpload(),
+                $this->thumb ? $this->thumb->fileToUpload() : null
+            )
         );
     }
 

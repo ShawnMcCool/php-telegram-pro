@@ -50,24 +50,9 @@ class InputFile implements JsonSerializable
         $this->id = UniqueId::new();
     }
 
-    public function fileId(): ?FileId
-    {
-        return $this->fileId;
-    }
-
-    public function url(): ?Url
-    {
-        return $this->url;
-    }
-
-    public function filePath(): ?FilePath
-    {
-        return $this->filePath;
-    }
-
     public function fileToUpload(): ?FileToUpload
     {
-        return $this->filePath()
+        return $this->filePath
             ? FileToUpload::fromFilePath($this->id, $this->filePath)
             : null;
     }

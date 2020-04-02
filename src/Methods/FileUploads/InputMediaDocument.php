@@ -31,7 +31,7 @@ final class InputMediaDocument implements InputMediaFile, JsonSerializable
     }
 
     /**
-     * Construct with data received from the Telegram bot api.
+     * @internal Construct with data received from the Telegram bot api.
      */
     public function toApi(): array
     {

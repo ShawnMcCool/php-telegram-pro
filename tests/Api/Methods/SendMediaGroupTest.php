@@ -13,11 +13,11 @@ use TelegramPro\Methods\MediaGroup;
 use TelegramPro\Types\MediaCaption;
 use TelegramPro\Methods\MethodError;
 use TelegramPro\Types\CanNotOpenFile;
-use TelegramPro\Types\InputMediaPhoto;
-use TelegramPro\Types\InputMediaVideo;
 use TelegramPro\Methods\SendMediaGroup;
 use TelegramPro\Methods\FileUploads\VideoFile;
 use TelegramPro\Methods\FileUploads\InputPhotoFile;
+use TelegramPro\Methods\FileUploads\InputMediaPhoto;
+use TelegramPro\Methods\FileUploads\InputMediaVideo;
 
 class SendMediaGroupTest extends TelegramTestCase
 {
@@ -26,16 +26,12 @@ class SendMediaGroupTest extends TelegramTestCase
         $sent = SendMediaGroup::parameters(
             $this->config->chatId(),
             MediaGroup::items(
-                InputMediaPhoto::fromPhotoFile(
-                    InputPhotoFile::fromFilePath(
-                        FilePath::fromString($this->media->image())
-                    ),
+                InputMediaPhoto::fromFilePath(
+                    FilePath::fromString($this->media->image()),
                     MediaCaption::fromString('[SendMediaGroup] send image with file path')
                 ),
-                InputMediaVideo::fromVideoFile(
-                    VideoFile::fromFilePath(
-                        FilePath::fromString($this->media->video())
-                    ),
+                InputMediaVideo::fromFilePath(
+                    FilePath::fromString($this->media->video()),
                     MediaCaption::fromString('[SendMediaGroup] send video with file path')
                 )
             )
@@ -51,16 +47,12 @@ class SendMediaGroupTest extends TelegramTestCase
         $sent = SendMediaGroup::parameters(
             $this->config->chatId(),
             MediaGroup::items(
-                InputMediaPhoto::fromPhotoFile(
-                    InputPhotoFile::fromUrl(
-                        Url::fromString($this->media->imageUrl())
-                    ),
+                InputMediaPhoto::fromUrl(
+                    Url::fromString($this->media->imageUrl()),
                     MediaCaption::fromString('[SendMediaGroup] send image with url')
                 ),
-                InputMediaVideo::fromVideoFile(
-                    VideoFile::fromUrl(
-                        Url::fromString($this->media->videoUrl())
-                    ),
+                InputMediaVideo::fromUrl(
+                    Url::fromString($this->media->videoUrl()),
                     MediaCaption::fromString('[SendMediaGroup] send video with url')
                 )
             )
@@ -83,6 +75,7 @@ class SendMediaGroupTest extends TelegramTestCase
         )->send($this->telegram);
 
         /** @var PhotoSize $sentPhoto */
+        $this->isOk($sent);
         $sentPhoto = $sent->result()->photo()[0];
 
         $sent = SendVideo::parameters(
@@ -94,17 +87,18 @@ class SendMediaGroupTest extends TelegramTestCase
         )->send($this->telegram);
 
         /** @var Video $sentPhoto */
+        $this->isOk($sent);
         $sentVideo = $sent->result()->video();
 
         $sent = SendMediaGroup::parameters(
             $this->config->chatId(),
             MediaGroup::items(
-                InputMediaPhoto::fromPhotoFile(
-                    InputPhotoFile::fromFileId($sentPhoto->fileId()),
+                InputMediaPhoto::fromFileId(
+                    $sentPhoto->fileId(),
                     MediaCaption::fromString('[SendMediaGroup] send media group with file id 3/4')
                 ),
-                InputMediaVideo::fromVideoFile(
-                    VideoFile::fromFileId($sentVideo->fileId()),
+                InputMediaVideo::fromFileId(
+                    $sentVideo->fileId(),
                     MediaCaption::fromString('[SendMediaGroup] send media group with file id 4/4')
                 )
             )
@@ -121,15 +115,11 @@ class SendMediaGroupTest extends TelegramTestCase
         SendMediaGroup::parameters(
             $this->config->chatId(),
             MediaGroup::items(
-                InputMediaPhoto::fromPhotoFile(
-                    InputPhotoFile::fromFilePath(
-                        FilePath::fromString('non existent file')
-                    )
+                InputMediaPhoto::fromFilePath(
+                    FilePath::fromString('non existent file')
                 ),
-                InputMediaPhoto::fromPhotoFile(
-                    InputPhotoFile::fromFilePath(
-                        FilePath::fromString('non existent file')
-                    )
+                InputMediaPhoto::fromFilePath(
+                    FilePath::fromString('non existent file')
                 )
             )
         )->send($this->telegram);
@@ -140,15 +130,11 @@ class SendMediaGroupTest extends TelegramTestCase
         $sent = SendMediaGroup::parameters(
             $this->config->chatId(),
             MediaGroup::items(
-                InputMediaPhoto::fromPhotoFile(
-                    InputPhotoFile::fromUrl(
-                        Url::fromString('http://non.existent.url')
-                    )
+                InputMediaPhoto::fromUrl(
+                    Url::fromString('http://non.existent.url')
                 ),
-                InputMediaPhoto::fromPhotoFile(
-                    InputPhotoFile::fromUrl(
-                        Url::fromString('http://non.existent.url')
-                    )
+                InputMediaPhoto::fromUrl(
+                    Url::fromString('http://non.existent.url')
                 )
             )
         )->send($this->telegram);

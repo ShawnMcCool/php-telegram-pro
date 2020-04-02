@@ -78,8 +78,8 @@ final class InputMediaPhoto implements InputMediaFile, JsonSerializable
      */
     public static function fromFileId(
         FileId $fileId,
-        ?MediaCaption $caption,
-        ?ParseMode $parseMode
+        ?MediaCaption $caption = null,
+        ?ParseMode $parseMode = null
     ): self {
         return new static(
             InputPhotoFile::fromFileId($fileId),
@@ -99,8 +99,8 @@ final class InputMediaPhoto implements InputMediaFile, JsonSerializable
      */
     public static function fromUrl(
         Url $url,
-        ?MediaCaption $caption,
-        ?ParseMode $parseMode
+        ?MediaCaption $caption = null,
+        ?ParseMode $parseMode = null
     ): self {
         return new static(
             InputPhotoFile::fromUrl($url),
@@ -122,8 +122,8 @@ final class InputMediaPhoto implements InputMediaFile, JsonSerializable
      */
     public static function fromFilePath(
         FilePath $filePath,
-        ?MediaCaption $caption,
-        ?ParseMode $parseMode
+        ?MediaCaption $caption = null,
+        ?ParseMode $parseMode = null
     ): self {
         return new static(
             InputPhotoFile::fromFilePath($filePath),

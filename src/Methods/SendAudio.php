@@ -6,6 +6,7 @@ use TelegramPro\Types\MessageId;
 use TelegramPro\Types\ParseMode;
 use TelegramPro\Types\ReplyMarkup;
 use TelegramPro\Types\MediaCaption;
+use TelegramPro\Methods\FileUploads\FilesToUpload;
 use TelegramPro\Methods\FileUploads\InputPhotoFile;
 use TelegramPro\Methods\FileUploads\AudioInputFile;
 
@@ -56,6 +57,8 @@ final class SendAudio implements Method
         )->withParameters(
             [
                 'chat_id' => $this->chatId,
+                'audio' => $this->audio,
+                'thumb' => $this->thumb,
                 'caption' => $this->caption,
                 'parse_mode' => $this->parseMode,
                 'duration' => $this->duration,
@@ -65,10 +68,10 @@ final class SendAudio implements Method
                 'reply_markup' => $this->replyMarkup ? $this->replyMarkup->toParameter() : null, // toParameter
             ]
         )->withFiles(
-            [
-                'audio' => $this->audio,
-                'thumb' => $this->thumb,
-            ]
+            FilesToUpload::list(
+                $this->audio->fileToUpload(),
+                $this->thumb ? $this->thumb->fileToUpload() : null
+            )
         );
     }
 

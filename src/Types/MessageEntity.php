@@ -77,7 +77,7 @@ final class MessageEntity
     }
 
     /**
-     * Construct with data received from the Telegram bot api.
+     * @internal Construct with data received from the Telegram bot api.
      */
     public static function fromApi($entity): MessageEntity
     {

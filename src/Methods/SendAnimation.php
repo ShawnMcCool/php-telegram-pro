@@ -7,6 +7,7 @@ use TelegramPro\Types\ParseMode;
 use TelegramPro\Types\ReplyMarkup;
 use TelegramPro\Types\MediaCaption;
 use TelegramPro\Methods\FileUploads\AnimationFile;
+use TelegramPro\Methods\FileUploads\FilesToUpload;
 use TelegramPro\Methods\FileUploads\InputPhotoFile;
 
 final class SendAnimation implements Method
@@ -56,6 +57,8 @@ final class SendAnimation implements Method
         )->withParameters(
             [
                 'chat_id' => $this->chatId,
+                'animation' => $this->animation,
+                'thumb' => $this->thumb,
                 'duration' => $this->duration,
                 'width' => $this->width,
                 'height' => $this->height,
@@ -66,10 +69,10 @@ final class SendAnimation implements Method
                 'reply_markup' => $this->replyMarkup ? $this->replyMarkup->toParameter() : null,
             ]
         )->withFiles(
-            [
-                'animation' => $this->animation,
-                'thumb' => $this->thumb,
-            ]
+            FilesToUpload::list(
+                $this->animation->fileToUpload(),
+                $this->thumb ? $this->thumb->fileToUpload() : null
+            )
         );
     }
 

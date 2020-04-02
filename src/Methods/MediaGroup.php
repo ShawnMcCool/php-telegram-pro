@@ -1,16 +1,17 @@
 <?php namespace TelegramPro\Methods;
 
-use TelegramPro\Types\InputMediaPhoto;
-use TelegramPro\Types\InputMediaVideo;
 use TelegramPro\Methods\FileUploads\InputFile;
-use TelegramPro\Methods\FileUploads\InputMedia;
+use TelegramPro\Methods\FileUploads\FilesToUpload;
+use TelegramPro\Methods\FileUploads\InputMediaFile;
+use TelegramPro\Methods\FileUploads\InputMediaPhoto;
+use TelegramPro\Methods\FileUploads\InputMediaVideo;
 
 /**
  * A value object representing a media group for the sendMediaGroup method.
  */
 final class MediaGroup
 {
-    private array $mediaGroup ;
+    private array $mediaGroup;
 
     public function __construct(array $mediaGroup)
     {
@@ -23,32 +24,33 @@ final class MediaGroup
 
         /**
          * @var int $key
-         * @var InputMedia $media
+         * @var InputMediaFile $media
          */
         foreach ($this->mediaGroup as $key => $media) {
             $mediaArray[] = $media->toApi();
         }
-
+        
         return json_encode($mediaArray);
     }
 
-    public function filesToUpload(): array
+    public function filesToUpload(): FilesToUpload
     {
         $mediaArray = [];
         
-        /** @var InputMedia $media */
+        /** @var InputMediaFile $media */
         foreach ($this->mediaGroup as $media) {
+            
             /** @var InputFile $file */
-            foreach ($media->filesToUpload() as $field => $file) {
+            foreach ($media->filesToUpload() as  $file) {
                 if ( ! $file) continue;
                 $mediaArray[] = $file;
             }
         }
         
-        return $mediaArray;
+        return FilesToUpload::fromArray($mediaArray);
     }
 
-    public static function items(InputMedia ...$items)
+    public static function items(InputMediaFile ...$items)
     {
         if (count($items) < 2) {
             throw CanNotGroupMediaFiles::mediaGroupsMustHaveTwoOrMoreItems();

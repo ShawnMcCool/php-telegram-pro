@@ -1,11 +1,13 @@
 <?php namespace TelegramPro\Methods\FileUploads;
 
+use ArrayIterator;
+use IteratorAggregate;
 use TelegramPro\Types\FileToUpload;
 
 /**
  * A collection class for FileToUpload objects
  */
-final class FilesToUpload
+final class FilesToUpload implements IteratorAggregate
 {
     private array $files;
 
@@ -14,10 +16,15 @@ final class FilesToUpload
         $this->files = $files;
     }
 
-    public static function list(?FileToUpload ...$files)
+    public function merge(?FilesToUpload $that): void
     {
-        return new static(
-            array_filter($files)
+        if (is_null($that)) {
+            return;
+        }
+        
+        $this->files = array_merge(
+            $this->files,
+            $that->files
         );
     }
 
@@ -27,5 +34,32 @@ final class FilesToUpload
     public function files(): array
     {
         return $this->files;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getIterator()
+    {
+        return new ArrayIterator($this->files);
+    }
+
+    public static function list(?FileToUpload ...$files): self
+    {
+        return new static(
+            array_filter($files)
+        );
+    }
+
+    public static function fromArray(array $mediaArray): self
+    {
+        return new static(
+            array_filter($mediaArray)
+        );
+    }
+
+    public static function empty()
+    {
+        return new static([]);
     }
 }

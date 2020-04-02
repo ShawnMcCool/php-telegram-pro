@@ -68,7 +68,7 @@ class SendAudioTest extends TelegramTestCase
     {
         $this->expectException(CanNotOpenFile::class);
 
-        $sent = SendAudio::parameters(
+        SendAudio::parameters(
             $this->config->chatId(),
             AudioInputFile::fromFilePath(
                 FilePath::fromString('non existent file')

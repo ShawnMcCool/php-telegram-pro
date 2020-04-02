@@ -103,9 +103,9 @@ final class InputMediaVideo implements InputMediaFile, JsonSerializable
      */
     public static function fromFileId(
         FileId $fileId,
-        ?ThumbnailInputFile $thumb = null,
         ?MediaCaption $caption = null,
         ?ParseMode $parseMode = null,
+        ?ThumbnailInputFile $thumb = null,
         ?int $width = null,
         ?int $height = null,
         ?int $duration = null,
@@ -139,9 +139,9 @@ final class InputMediaVideo implements InputMediaFile, JsonSerializable
      */
     public static function fromUrl(
         Url $url,
-        ?ThumbnailInputFile $thumb = null,
         ?MediaCaption $caption = null,
         ?ParseMode $parseMode = null,
+        ?ThumbnailInputFile $thumb = null,
         ?int $width = null,
         ?int $height = null,
         ?int $duration = null,
@@ -178,9 +178,9 @@ final class InputMediaVideo implements InputMediaFile, JsonSerializable
      */
     public static function fromFilePath(
         FilePath $filePath,
-        ?ThumbnailInputFile $thumb = null,
         ?MediaCaption $caption = null,
         ?ParseMode $parseMode = null,
+        ?ThumbnailInputFile $thumb = null,
         ?int $width = null,
         ?int $height = null,
         ?int $duration = null,

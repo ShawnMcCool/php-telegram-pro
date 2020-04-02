@@ -26,7 +26,7 @@ final class Contact
     }
 
     /**
-     * Construct with data received from the Telegram bot api.
+     * @internal Construct with data received from the Telegram bot api.
      */
     public static function fromApi($contact): ?Contact
     {

@@ -7,6 +7,7 @@ use TelegramPro\Types\ParseMode;
 use TelegramPro\Types\ReplyMarkup;
 use TelegramPro\Types\MediaCaption;
 use TelegramPro\Methods\FileUploads\VideoFile;
+use TelegramPro\Methods\FileUploads\FilesToUpload;
 use TelegramPro\Methods\FileUploads\InputPhotoFile;
 
 final class SendVideo implements Method
@@ -62,6 +63,8 @@ final class SendVideo implements Method
                 'duration' => $this->duration,
                 'width' => $this->width,
                 'height' => $this->height,
+                'video' => $this->video,
+                'thumb' => $this->thumb,
                 'caption' => $this->caption,
                 'parse_mode' => $this->parseMode,
                 'supports_streaming' => $this->supportsStreaming,
@@ -70,10 +73,10 @@ final class SendVideo implements Method
                 'reply_markup' => $this->replyMarkup ? $this->replyMarkup->toParameter() : null, // toParameter
             ]
         )->withFiles(
-            [
-                'video' => $this->video,
-                'thumb' => $this->thumb,
-            ]
+            FilesToUpload::list(
+                $this->video->fileToUpload(),
+                $this->thumb ? $this->thumb->fileToUpload() : null,
+            )
         );
     }
 

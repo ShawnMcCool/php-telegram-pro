@@ -23,7 +23,7 @@ final class MessageText
     }
 
     /**
-     * Construct with data received from the Telegram bot api.
+     * @internal Construct with data received from the Telegram bot api.
      */
     public static function fromApi(?string $text): ?self
     {
@@ -34,6 +34,13 @@ final class MessageText
         return static::fromString($text);
     }
 
+    /**
+     * Construct message text from a string
+     * 
+     * @param string $string
+     * @return static
+     * @throws MessageTextIsTooLong
+     */
     public static function fromString(string $string): self
     {
         if (strlen($string) > 4096) {

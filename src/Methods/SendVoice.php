@@ -7,6 +7,7 @@ use TelegramPro\Types\ParseMode;
 use TelegramPro\Types\ReplyMarkup;
 use TelegramPro\Types\MediaCaption;
 use TelegramPro\Methods\FileUploads\VoiceFile;
+use TelegramPro\Methods\FileUploads\FilesToUpload;
 
 final class SendVoice implements Method
 {
@@ -46,6 +47,7 @@ final class SendVoice implements Method
         )->withParameters(
             [
                 'chat_id' => $this->chatId,
+                'voice' => $this->voice,
                 'caption' => $this->caption,
                 'parse_mode' => $this->parseMode,
                 'duration' => $this->duration,
@@ -54,9 +56,9 @@ final class SendVoice implements Method
                 'reply_markup' => $this->replyMarkup ? $this->replyMarkup->toParameter() : null, // toParameter
             ]
         )->withFiles(
-            [
-                'voice' => $this->voice,
-            ]
+            FilesToUpload::list(
+                $this->voice->fileToUpload()
+            )
         );
     }
 

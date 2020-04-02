@@ -3,7 +3,7 @@
 use JsonSerializable;
 
 /**
- * Caption for media 0-1024 characters
+ * Caption for media (0-1024 characters)
  */
 final class MediaCaption implements JsonSerializable
 {
@@ -24,6 +24,15 @@ final class MediaCaption implements JsonSerializable
         return $this->toString();
     }
 
+    /**
+     * Create a media caption.
+     * 
+     * @param string $caption caption text for the media
+     * 
+     * @return MediaCaption
+     * 
+     * @throws MessageTextIsTooLong
+     */
     public static function fromString(string $caption): MediaCaption
     {
         if (strlen($caption) > 1024) {
@@ -32,6 +41,9 @@ final class MediaCaption implements JsonSerializable
         return new static($caption);
     }
 
+    /**
+     * @internal Construct with data received from the Telegram bot api.
+     */
     public static function fromApi(?string $caption): ?MediaCaption
     {
         if (is_null($caption)) {
