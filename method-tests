@@ -1,4 +1,0 @@
-#!/bin/bash
-
-R=$(ls -1 tests/Api/Methods | smenu -r -c -d -m"Telegram Method Tests" -T -n20)
-bin/phpunit ./tests/Api/Methods/$R

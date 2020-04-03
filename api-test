@@ -1,0 +1,25 @@
+#!/bin/zsh
+
+PREVIOUS_OPTION_CACHE_FILE=.previous_method_test_option
+
+# Load "previous" option
+PREVIOUS=""
+if [[ -a ${PREVIOUS_OPTION_CACHE_FILE} ]]; then
+    PREVIOUS="\"Previous: $(cat .previous_method_test_option)\"\n"
+fi
+
+# Create Menu
+OPTIONS="${PREVIOUS}All\n$(ls -1 tests/Api/Methods)"
+R=$(echo ${OPTIONS} | smenu -r -c -d -m"Telegram Method Tests" -n20)
+
+# Store "previous" option
+echo $R > .previous_method_test_option
+
+# Clear "PREVIOUS" string
+R=$(echo ${R} | sed -e 's/Previous: //g')
+
+# Expand 'All' option into full folder
+if [[ "$R" == "All" ]]; then R=""; fi
+
+# Execute Tests
+bin/phpunit ./tests/Api/Methods/${R}
