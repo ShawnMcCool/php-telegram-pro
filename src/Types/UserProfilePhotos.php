@@ -3,7 +3,7 @@
 /**
  * This object represent a user's profile pictures.
  */
-final class UserProfilePhotos
+final class UserProfilePhotos implements ApiReadType
 {
     private int $totalCount;
     private ArrayOfArrayOfPhotoSizes $photos;

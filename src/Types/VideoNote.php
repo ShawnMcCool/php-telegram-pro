@@ -3,7 +3,7 @@
 /**
  * This object represents a video message (available in Telegram apps as of v.4.0).
  */
-final class VideoNote
+final class VideoNote implements ApiReadType
 {
     private FileId $fileId;
     private FileUniqueId $fileUniqueId;
@@ -36,8 +36,8 @@ final class VideoNote
         if ( ! $videoNote) return null;
 
         return new static(
-            FileId::fromString($videoNote->file_id),
-            FileUniqueId::fromString($videoNote->file_unique_id),
+            FileId::fromApi($videoNote->file_id),
+            FileUniqueId::fromApi($videoNote->file_unique_id),
             $videoNote->length,
             $videoNote->duration,
             PhotoSize::fromApi($videoNote->thumb),

@@ -3,7 +3,7 @@
 use TelegramPro\Api\Telegram;
 use TelegramPro\Types\ChatId;
 use TelegramPro\Types\MessageId;
-use TelegramPro\Types\ReplyMarkup;
+use TelegramPro\Methods\Keyboards\ReplyMarkup;
 use TelegramPro\Methods\FileUploads\VideoNoteFile;
 use TelegramPro\Methods\FileUploads\FilesToUpload;
 use TelegramPro\Methods\FileUploads\InputPhotoFile;

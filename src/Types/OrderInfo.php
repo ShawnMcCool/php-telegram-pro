@@ -3,7 +3,7 @@
 /**
  * This object represents information about an order.
  */
-final class OrderInfo
+final class OrderInfo implements ApiReadType
 {
     private ?string $name;
     private ?string $phoneNumber;

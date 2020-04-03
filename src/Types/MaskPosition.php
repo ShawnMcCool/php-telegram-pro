@@ -3,7 +3,7 @@
 /**
  * This object describes the position on faces where a mask should be placed by default.
  */
-final class MaskPosition
+final class MaskPosition implements ApiReadType
 {
     private string $point;
     private float $xShift;

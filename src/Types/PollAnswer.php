@@ -3,7 +3,7 @@
 /**
  * This object represents an answer of a user in a non-anonymous poll.
  */
-final class PollAnswer
+final class PollAnswer implements ApiReadType
 {
     private PollId $pollId;
     private User $user;
@@ -27,7 +27,7 @@ final class PollAnswer
         if ( ! $pollAnswer) return null;
 
         return new static(
-            PollId::fromString($pollAnswer->poll_id),
+            PollId::fromApi($pollAnswer->poll_id),
             User::fromApi($pollAnswer->user),
             ArrayOfPollOptionIds::fromApi($pollAnswer->option_ids)
         );

@@ -1,4 +1,7 @@
-<?php namespace TelegramPro\Types;
+<?php namespace TelegramPro\Methods;
+
+use TelegramPro\Types\ChatId;
+use TelegramPro\Types\Seconds;
 
 /**
  * Contains information about why a request was unsuccessful.

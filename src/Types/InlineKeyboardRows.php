@@ -3,7 +3,7 @@
 /**
  * array of inline keyboard rows is an interesting way for Telegram to say an "inline keyboard"
  */
-final class ArrayOfInlineKeyboardRows extends ArrayOfItems
+final class ArrayOfInlineKeyboardRows extends ArrayOfApiTypes implements ApiReadType
 {
     static function fromApi($items): ArrayOfInlineKeyboardRows
     {

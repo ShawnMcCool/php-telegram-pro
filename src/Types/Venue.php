@@ -3,7 +3,7 @@
 /**
  * This object represents a venue.
  */
-final class Venue
+final class Venue implements ApiReadType
 {
     private Location $location;
     private string $title;

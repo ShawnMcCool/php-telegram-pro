@@ -1,6 +1,6 @@
 <?php namespace TelegramPro\Types;
 
-final class ArrayOfMessageEntities extends ArrayOfItems
+final class ArrayOfMessageEntities extends ArrayOfApiTypes implements ApiReadType
 {
     static function fromApi($items): ArrayOfMessageEntities
     {

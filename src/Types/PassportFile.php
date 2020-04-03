@@ -3,7 +3,7 @@
 /**
  * This object represents a file uploaded to Telegram Passport. Currently all Telegram Passport files are in JPEG format when decrypted and don't exceed 10MB.
  */
-final class PassportFile
+final class PassportFile implements ApiReadType
 {
     private FileId $fileId;
     private FileUniqueId $fileUniqueId;
@@ -28,8 +28,8 @@ final class PassportFile
     public static function fromApi($file): ?PassportFile
     {
         return new static(
-            FileId::fromString($file->file_id),
-            FileUniqueId::fromString($file->file_unique_id),
+            FileId::fromApi($file->file_id),
+            FileUniqueId::fromApi($file->file_unique_id),
             $file->file_size,
             Date::fromApi($file->file_date)
         );

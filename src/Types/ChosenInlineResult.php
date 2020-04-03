@@ -3,7 +3,7 @@
 /**
  * Optional. The result of an inline query that was chosen by a user and sent to their chat partner. Please see our documentation on the feedback collecting for details on how to enable these updates for your bot.
  */
-final class ChosenInlineResult
+final class ChosenInlineResult implements ApiReadType
 {
     private ResultId $resultId;
     private User $from;
@@ -33,10 +33,10 @@ final class ChosenInlineResult
         if ( ! $chosenInlineResult) return null;
 
         return new static(
-            ResultId::fromString($chosenInlineResult->result_id),
+            ResultId::fromApi($chosenInlineResult->result_id),
             User::fromApi($chosenInlineResult->from),
             Location::fromApi($chosenInlineResult->location ?? null),
-            MessageId::fromString($chosenInlineResult->inline_message_id),
+            MessageId::fromApi($chosenInlineResult->inline_message_id),
             $chosenInlineResult->query,
         );
     }

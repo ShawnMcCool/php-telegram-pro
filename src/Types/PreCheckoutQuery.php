@@ -3,7 +3,7 @@
 /**
  * This object contains information about an incoming pre-checkout query.
  */
-final class PreCheckoutQuery
+final class PreCheckoutQuery implements ApiReadType
 {
     private PreCheckoutQueryId $id;
     private User $from;
@@ -39,9 +39,9 @@ final class PreCheckoutQuery
         if ( ! $preCheckoutQuery) return null;
 
         return new static(
-            PreCheckoutQueryId::fromString($preCheckoutQuery->id),
+            PreCheckoutQueryId::fromApi($preCheckoutQuery->id),
             User::fromApi($preCheckoutQuery->from),
-            Currency::fromString($preCheckoutQuery->currency),
+            Currency::fromApi($preCheckoutQuery->currency),
             $preCheckoutQuery->total_amount,
             $preCheckoutQuery->invoice_payload,
             $preCheckoutQuery->shipping_option_id,

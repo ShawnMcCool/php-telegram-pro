@@ -3,7 +3,7 @@
 /**
  * This object represents a shipping address.
  */
-final class ShippingAddress
+final class ShippingAddress implements ApiReadType
 {
     private CountryCode $countryCode;
     private string $state;

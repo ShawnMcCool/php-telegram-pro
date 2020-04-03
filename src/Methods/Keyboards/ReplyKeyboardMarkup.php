@@ -1,4 +1,6 @@
-<?php namespace TelegramPro\Types;
+<?php namespace TelegramPro\Methods\Keyboards;
+
+use TelegramPro\Types\ArrayOfInlineKeyboardRows;
 
 /**
  * This object represents a custom keyboard with reply options (see Introduction to bots for details and examples).

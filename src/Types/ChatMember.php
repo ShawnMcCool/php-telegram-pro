@@ -1,9 +1,11 @@
 <?php namespace TelegramPro\Types;
 
+use Exception;
+
 /**
  * This object contains information about one member of a chat.
  */
-final class ChatMember
+final class ChatMember implements ApiReadType
 {
     private User $user;
     private ChatMemberStatus $status;
@@ -217,5 +219,13 @@ final class ChatMember
     public function canAddWebPagePreviews(): ?bool
     {
         return $this->canAddWebPagePreviews;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public static function fromApi($data): ?self
+    {
+        throw new Exception('not implemented');
     }
 }

@@ -3,7 +3,7 @@
 /**
  * This object represents a voice note.
  */
-final class Voice
+final class Voice implements ApiReadType
 {
     private FileId $fileId;
     private ?FileUniqueId $fileUniqueId;
@@ -33,8 +33,8 @@ final class Voice
         if ( ! $voice) return null;
 
         return new static(
-            FileId::fromString($voice->file_id),
-            FileUniqueId::fromString($voice->file_unique_id ?? null),
+            FileId::fromApi($voice->file_id),
+            FileUniqueId::fromApi($voice->file_unique_id ?? null),
             $voice->duration,
             $voice->mime_type ?? null,
             $voice->file_size ?? null

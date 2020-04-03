@@ -3,7 +3,7 @@
 /**
  * This object represents an animation file (GIF or H.264/MPEG-4 AVC video without sound).
  */
-final class Animation
+final class Animation implements ApiReadType
 {
     private FileId $fileId;
     private FileUniqueId $fileUniqueId;
@@ -45,8 +45,8 @@ final class Animation
         if ( ! $animation) return null;
 
         return new static(
-            FileId::fromString($animation->file_id),
-            FileUniqueId::fromString($animation->file_unique_id),
+            FileId::fromApi($animation->file_id),
+            FileUniqueId::fromApi($animation->file_unique_id),
             $animation->width,
             $animation->height,
             $animation->duration,

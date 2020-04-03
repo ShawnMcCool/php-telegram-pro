@@ -1,7 +1,7 @@
 <?php namespace TelegramPro\Methods;
 
 use TelegramPro\Api\CurlParameters;
-use TelegramPro\Types\FileToUpload;
+use TelegramPro\Methods\FileUploads\FileToUpload;
 use TelegramPro\Methods\FileUploads\FilesToUpload;
 
 final class Request

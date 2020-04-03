@@ -3,7 +3,7 @@
 /**
  * This object represents a point on the map.
  */
-final class Location
+final class Location implements ApiReadType
 {
     private float $longitude;
     private float $latitude;
@@ -16,6 +16,9 @@ final class Location
         $this->latitude = $latitude;
     }
 
+    /**
+     * @inheritDoc
+     */
     public static function fromApi($location): ?Location
     {
         if ( ! $location) return null;

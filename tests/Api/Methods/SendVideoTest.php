@@ -3,12 +3,12 @@
 use TelegramPro\Types\Url;
 use Tests\TelegramTestCase;
 use TelegramPro\Types\Message;
-use TelegramPro\Types\FilePath;
 use TelegramPro\Methods\SendVideo;
 use TelegramPro\Types\MediaCaption;
 use TelegramPro\Methods\MethodError;
-use TelegramPro\Types\CanNotOpenFile;
+use TelegramPro\Methods\FileUploads\FilePath;
 use TelegramPro\Methods\FileUploads\VideoFile;
+use TelegramPro\Methods\FileUploads\CanNotOpenFile;
 
 class SendVideoTest extends TelegramTestCase
 {

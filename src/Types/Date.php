@@ -5,7 +5,7 @@ use DateTimeImmutable;
 /**
  * Dates from the Telegram api are represented in Unix time.
  */
-final class Date
+final class Date implements ApiReadType
 {
     private DateTimeImmutable $dateTime;
 

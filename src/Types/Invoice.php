@@ -3,7 +3,7 @@
 /**
  * This object contains basic information about an invoice.
  */
-final class Invoice
+final class Invoice implements ApiReadType
 {
     private string $title;
     private string $description;
@@ -36,7 +36,7 @@ final class Invoice
             $invoice->title,
             $invoice->description,
             $invoice->start_parameter,
-            Currency::fromString($invoice->currency),
+            Currency::fromApi($invoice->currency),
             $invoice->total_amount
         );
     }

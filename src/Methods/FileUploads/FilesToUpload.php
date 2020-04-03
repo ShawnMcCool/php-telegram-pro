@@ -2,7 +2,6 @@
 
 use ArrayIterator;
 use IteratorAggregate;
-use TelegramPro\Types\FileToUpload;
 
 /**
  * A collection class for FileToUpload objects

@@ -3,7 +3,7 @@
 /**
  * Poll question, 1-255 characters
  */
-final class PollQuestion
+final class PollQuestion implements ApiReadType
 {
     private string $question;
 
@@ -25,7 +25,7 @@ final class PollQuestion
     /**
      * @internal Construct with data received from the Telegram bot api.
      */
-    public static function fromApi(?string $question): ?self
+    public static function fromApi($question): ?self
     {
         if (is_null($question)) {
             return null;

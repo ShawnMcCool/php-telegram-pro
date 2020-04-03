@@ -3,11 +3,11 @@
 use TelegramPro\Types\Url;
 use Tests\TelegramTestCase;
 use TelegramPro\Types\Message;
-use TelegramPro\Types\FilePath;
 use TelegramPro\Methods\SendAudio;
 use TelegramPro\Types\MediaCaption;
 use TelegramPro\Methods\MethodError;
-use TelegramPro\Types\CanNotOpenFile;
+use TelegramPro\Methods\FileUploads\FilePath;
+use TelegramPro\Methods\FileUploads\CanNotOpenFile;
 use TelegramPro\Methods\FileUploads\AudioInputFile;
 
 class SendAudioTest extends TelegramTestCase

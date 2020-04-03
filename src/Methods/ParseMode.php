@@ -1,4 +1,4 @@
-<?php namespace TelegramPro\Types;
+<?php namespace TelegramPro\Methods;
 
 /**
  * Send Markdown or HTML, if you want Telegram apps to show bold, italic, fixed-width text or inline URLs in the media caption.

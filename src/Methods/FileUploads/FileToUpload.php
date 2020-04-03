@@ -1,4 +1,4 @@
-<?php namespace TelegramPro\Types;
+<?php namespace TelegramPro\Methods\FileUploads;
 
 use CURLFile;
 

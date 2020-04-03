@@ -3,7 +3,7 @@
 /**
  * This object represents a sticker.
  */
-final class Sticker
+final class Sticker implements ApiReadType
 {
     private FileId $fileId;
     private FileUniqueId $fileUniqueId;

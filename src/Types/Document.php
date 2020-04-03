@@ -3,7 +3,7 @@
 /**
  * This object represents a general file (as opposed to photos, voice messages and audio files).
  */
-final class Document
+final class Document implements ApiReadType
 {
     private FileId $fileId;
     private ?FileUniqueId $fileUniqueId;
@@ -36,8 +36,8 @@ final class Document
         if ( ! $document) return null;
 
         return new static(
-            FileId::fromString($document->file_id),
-            FileUniqueId::fromString($document->file_unique_id ?? null),
+            FileId::fromApi($document->file_id),
+            FileUniqueId::fromApi($document->file_unique_id ?? null),
             PhotoSize::fromApi($document->thumb ?? null),
             $document->file_name ?? null,
             $document->mime_type ?? null,

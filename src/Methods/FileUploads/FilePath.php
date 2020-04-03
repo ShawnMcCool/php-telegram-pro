@@ -1,4 +1,4 @@
-<?php namespace TelegramPro\Types;
+<?php namespace TelegramPro\Methods\FileUploads;
 
 /**
  * Path to a file available locally

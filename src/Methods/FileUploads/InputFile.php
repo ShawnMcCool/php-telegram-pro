@@ -3,9 +3,7 @@
 use JsonSerializable;
 use TelegramPro\Types\Url;
 use TelegramPro\Types\FileId;
-use TelegramPro\Types\FilePath;
 use TelegramPro\Types\UniqueId;
-use TelegramPro\Types\FileToUpload;
 
 /**
  * This object represents the contents of a file to be uploaded. Must be posted using multipart/form-data in the usual way that files are uploaded via the browser.

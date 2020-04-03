@@ -2,7 +2,6 @@
 
 use TelegramPro\Types\Url;
 use TelegramPro\Types\FileId;
-use TelegramPro\Types\FilePath;
 
 final class VoiceFile extends InputFile
 {

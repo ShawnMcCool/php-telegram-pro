@@ -3,7 +3,7 @@
 /**
  * ISO 3166-1 alpha-2 country code
  */
-final class CountryCode
+final class CountryCode implements ApiReadType
 {
     private static $countryCodes = [
         [
@@ -2298,7 +2298,7 @@ final class CountryCode
     /**
      * @internal Construct with data received from the Telegram bot api.
      */
-    public static function fromApi(?string $code): ?self
+    public static function fromApi($code): ?self
     {
         if ( ! $code) {
             return null;

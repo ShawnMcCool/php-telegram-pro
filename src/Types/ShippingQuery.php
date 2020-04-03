@@ -3,7 +3,7 @@
 /**
  * This object contains information about an incoming shipping query.
  */
-final class ShippingQuery
+final class ShippingQuery implements ApiReadType
 {
     private ShippingQueryId $id;
     private User $from;
@@ -30,7 +30,7 @@ final class ShippingQuery
         if ( ! $shippingQuery) return null;
 
         return new static(
-            ShippingQueryId::fromString($shippingQuery->id),
+            ShippingQueryId::fromApi($shippingQuery->id),
             User::fromApi($shippingQuery->from),
             $shippingQuery->invoice_payload,
             ShippingAddress::fromApi($shippingQuery->shipping_address)

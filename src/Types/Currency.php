@@ -4,7 +4,7 @@
  * Three-letter ISO 4217 currency code, see more on currencies
  * https://core.telegram.org/bots/payments#supported-currencies
  */
-final class Currency
+final class Currency implements ApiReadType
 {
     private static string $validCurrenciesJson = '{
   "AED": {
@@ -1117,7 +1117,7 @@ final class Currency
         return $this->toString();
     }
 
-    public static function fromString(?string $code): ?Currency
+    public static function fromApi($code): ?Currency
     {
         if ( ! static::codeIsValid($code)) {
             throw new CurrencyIsNotSupported($code);

@@ -4,12 +4,12 @@ use TelegramPro\Types\Url;
 use Tests\TelegramTestCase;
 use TelegramPro\Types\Text;
 use TelegramPro\Types\Message;
-use TelegramPro\Types\FilePath;
 use TelegramPro\Types\PhotoSize;
 use TelegramPro\Methods\SendPhoto;
 use TelegramPro\Types\MediaCaption;
 use TelegramPro\Methods\MethodError;
-use TelegramPro\Types\CanNotOpenFile;
+use TelegramPro\Methods\FileUploads\FilePath;
+use TelegramPro\Methods\FileUploads\CanNotOpenFile;
 use TelegramPro\Methods\FileUploads\InputPhotoFile;
 
 class SendPhotoTest extends TelegramTestCase

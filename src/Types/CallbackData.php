@@ -3,7 +3,7 @@
 /**
  * Optional. Data associated with the callback button. Be aware that a bad client can send arbitrary data in this field.
  */
-final class CallbackData
+final class CallbackData implements ApiReadType
 {
     private string $data;
 
@@ -25,7 +25,7 @@ final class CallbackData
     /**
      * @internal Construct with data received from the Telegram bot api.
      */
-    public static function fromApi(?string $data): ?self
+    public static function fromApi($data): ?self
     {
         if (is_null($data)) {
             return null;

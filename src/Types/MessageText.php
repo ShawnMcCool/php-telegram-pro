@@ -3,7 +3,7 @@
 /**
  * The actual UTF-8 text of a message, 0-4096 characters
  */
-final class MessageText
+final class MessageText implements ApiReadType
 {
     private string $text;
 
@@ -25,7 +25,7 @@ final class MessageText
     /**
      * @internal Construct with data received from the Telegram bot api.
      */
-    public static function fromApi(?string $text): ?self
+    public static function fromApi($text): ?self
     {
         if (is_null($text)) {
             return null;

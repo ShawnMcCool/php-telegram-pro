@@ -3,7 +3,7 @@
 /**
  * This object represents one button of an inline keyboard. You must use exactly one of the optional fields.
  */
-final class InlineKeyboardButton
+final class InlineKeyboardButton implements ApiReadType
 {
     private string $text;
     private ?Url $url;

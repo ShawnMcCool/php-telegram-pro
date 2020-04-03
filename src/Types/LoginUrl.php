@@ -5,7 +5,7 @@
  * Telegram apps support these buttons as of version 5.7.
  * Sample bot: @discussbot
  */
-final class LoginUrl
+final class LoginUrl implements ApiReadType
 {
     private Url $url;
     private ?string $forwardText;
@@ -24,6 +24,9 @@ final class LoginUrl
         $this->requestWriteAccess = $requestWriteAccess;
     }
 
+    /**
+     * @inheritDoc
+     */
     public static function fromApi($loginUrl): ?LoginUrl
     {
         if ( ! $loginUrl) return null;

@@ -3,7 +3,7 @@
 /**
  * Type of chat, can be either “private”, “group”, “supergroup” or “channel”
  */
-final class ChatType
+final class ChatReadType implements ApiReadType
 {
     private string $type;
 
@@ -22,7 +22,10 @@ final class ChatType
         return $this->type;
     }
 
-    public static function fromString(string $type)
+    /**
+     * @inheritDoc
+     */
+    public static function fromApi($type): ?self
     {
         if ( ! in_array($type, ['private', 'group', 'supergroup', 'channel'])) {
             throw new ChatTypeNotSupported($type);
@@ -31,22 +34,22 @@ final class ChatType
         return new static ($type);
     }
 
-    public static function private(): ChatType
+    public static function private(): ChatReadType
     {
         return new static('private');
     }
 
-    public static function group(): ChatType
+    public static function group(): ChatReadType
     {
         return new static('group');
     }
 
-    public static function supergroup(): ChatType
+    public static function supergroup(): ChatReadType
     {
         return new static('supergroup');
     }
 
-    public static function channel(): ChatType
+    public static function channel(): ChatReadType
     {
         return new static('channel');
     }

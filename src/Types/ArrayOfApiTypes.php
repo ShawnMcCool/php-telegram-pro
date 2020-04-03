@@ -7,7 +7,7 @@ use ArrayIterator;
 use IteratorAggregate;
 use TelegramPro\Collections\Collection;
 
-abstract class ArrayOfItems implements Countable, IteratorAggregate, ArrayAccess
+abstract class ArrayOfApiTypes implements Countable, IteratorAggregate, ArrayAccess
 {
     private Collection $items;
 

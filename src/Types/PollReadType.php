@@ -3,7 +3,7 @@
 /**
  * Poll type, “quiz” or “regular”, defaults to “regular”
  */
-final class PollType
+final class PollReadType implements ApiReadType
 {
     private string $type;
 
@@ -25,7 +25,7 @@ final class PollType
     /**
      * @internal Construct with data received from the Telegram bot api.
      */
-    public static function fromApi(string $type)
+    public static function fromApi($type): self
     {
         if ( ! in_array($type, ['regular', 'quiz'])) {
             throw new PollTypeNotSupported($type);

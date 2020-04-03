@@ -1,6 +1,8 @@
 <?php namespace TelegramPro\Types;
 
-final class Url
+use TelegramPro\Methods\CanNotValidateUrl;
+
+final class Url implements ApiReadType
 {
     private string $url;
 
@@ -19,12 +21,20 @@ final class Url
         return $this->toString();
     }
 
+    /**
+     * @inheritDoc
+     */
+    public static function fromApi($data): ?self
+    {
+        return static::fromString($data);
+    }
+
     public static function fromString(?string $url): ?Url
     {
         if (is_null($url)) {
             return null;
         }
-        
+
         if (filter_var($url, FILTER_VALIDATE_URL) === FALSE) {
             throw new CanNotValidateUrl($url);
         }

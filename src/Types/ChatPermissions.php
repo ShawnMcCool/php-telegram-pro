@@ -3,7 +3,7 @@
 /**
  * Describes actions that a non-administrator user is allowed to take in a chat.
  */
-final class ChatPermissions
+final class ChatPermissions implements ApiReadType
 {
     private bool $canSendMessages;
     private bool $canSendMediaMessages;

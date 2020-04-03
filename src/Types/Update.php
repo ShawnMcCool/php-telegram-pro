@@ -4,7 +4,7 @@
  * This object represents an incoming update.
  * At most one of the optional parameters can be present in any given update.
  */
-final class Update
+final class Update implements ApiReadType
 {
     private UpdateId $updateId;
     private ?Message $message;
@@ -50,7 +50,7 @@ final class Update
     /**
      * @internal Construct with data received from the Telegram bot api.
      */
-    public static function fromApi(string $json): Update
+    public static function fromApi($json): Update
     {
         $update = json_decode($json);
         

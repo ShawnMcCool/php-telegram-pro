@@ -3,7 +3,7 @@
 /**
  * This object contains information about one answer option in a poll.
  */
-final class PollOption
+final class PollOption implements ApiReadType
 {
     private PollOptionText $text;
     private int $voterCount;

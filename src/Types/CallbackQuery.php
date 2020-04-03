@@ -5,7 +5,7 @@
  *
  * NOTE: After the user presses a callback button, Telegram clients will display a progress bar until you call answerCallbackQuery. It is, therefore, necessary to react by calling answerCallbackQuery even if no notification to the user is needed (e.g., without specifying any of the optional parameters).
  */
-final class CallbackQuery
+final class CallbackQuery implements ApiReadType
 {
     private CallbackQueryId $id;
     private User $from;
@@ -33,15 +33,18 @@ final class CallbackQuery
         $this->gameShortName = $gameShortName;
     }
 
+    /**
+     * @inheritDoc
+     */
     public static function fromApi($callbackQuery): ?CallbackQuery
     {
         if ( ! $callbackQuery) return null;
 
         return new static(
-            CallbackQueryId::fromString($callbackQuery->id),
+            CallbackQueryId::fromApi($callbackQuery->id),
             User::fromApi($callbackQuery->from),
             Message::fromApi($callbackQuery->message ?? null),
-            MessageId::fromString($callbackQuery->inline_message_id ?? null),
+            MessageId::fromApi($callbackQuery->inline_message_id ?? null),
             ChatId::fromInt($callbackQuery->chat_instance ?? null),
             $callbackQuery->data ?? null,
             $callbackQuery->game_short_name ?? null

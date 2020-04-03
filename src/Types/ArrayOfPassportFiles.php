@@ -1,6 +1,6 @@
 <?php namespace TelegramPro\Types;
 
-final class ArrayOfPassportFiles extends ArrayOfItems
+final class ArrayOfPassportFiles extends ArrayOfApiTypes implements ApiReadType
 {
     public static function fromApi($items): ArrayOfPassportFiles
     {

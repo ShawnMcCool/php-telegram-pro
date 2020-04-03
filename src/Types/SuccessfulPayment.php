@@ -3,7 +3,7 @@
 /**
  * This object contains basic information about a successful payment.
  */
-final class SuccessfulPayment
+final class SuccessfulPayment implements ApiReadType
 {
     private Currency $currency;
     private int $totalAmount;
@@ -39,10 +39,10 @@ final class SuccessfulPayment
         if ( ! $successfulPayment) return null;
 
         return new static(
-            Currency::fromString($successfulPayment->currency),
+            Currency::fromApi($successfulPayment->currency),
             $successfulPayment->total_amount,
             $successfulPayment->invoice_payment,
-            ShippingOptionId::fromString($successfulPayment->shipping_option_id),
+            ShippingOptionId::fromApi($successfulPayment->shipping_option_id),
             OrderInfo::fromApi($successfulPayment->order_info),
             $successfulPayment->telegram_payment_charge_id,
             $successfulPayment->provider_payment_charge_id,

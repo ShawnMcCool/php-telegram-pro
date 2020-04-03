@@ -23,13 +23,13 @@ abstract class IntegerObject
     {
         return $this->toString();
     }
-
+    
     public static function fromInt(?int $integer): ?self
     {
         if (is_null($integer)) {
             return null;
         }
-        
+
         return new static($integer);
     }
 }

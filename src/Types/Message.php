@@ -4,7 +4,7 @@
  * This object represents a message.
  * https://core.telegram.org/bots/api#message
  */
-class Message
+class Message implements ApiReadType
 {
     private MessageId $messageId;
     private ?User $from;
@@ -540,13 +540,13 @@ class Message
         if ( ! $message) return null;
 
         return new static(
-            MessageId::fromString($message->message_id),
+            MessageId::fromApi($message->message_id),
             User::fromApi($message->from ?? null),
             Date::fromApi($message->date),
             Chat::fromApi($message->chat),
             User::fromApi($message->forward_from ?? null),
             Chat::fromApi($message->forward_from_chat ?? null),
-            MessageId::fromString($message->forward_from_message_id ?? null),
+            MessageId::fromApi($message->forward_from_message_id ?? null),
             $message->forward_signature ?? null,
             $message->forward_sender_name ?? null,
             Date::fromApi($message->forward_date ?? null),

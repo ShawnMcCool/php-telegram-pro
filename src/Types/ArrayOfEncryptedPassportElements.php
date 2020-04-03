@@ -1,6 +1,6 @@
 <?php namespace TelegramPro\Types;
 
-final class ArrayOfEncryptedPassportElements extends ArrayOfItems
+final class ArrayOfEncryptedPassportElements extends ArrayOfApiTypes implements ApiReadType
 {
     static function fromApi($items): ArrayOfEncryptedPassportElements
     {

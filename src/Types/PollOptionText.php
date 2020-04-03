@@ -3,7 +3,7 @@
 /**
  * Poll option text, 1-100 characters
  */
-final class PollOptionText
+final class PollOptionText implements ApiReadType
 {
     private string $text;
 

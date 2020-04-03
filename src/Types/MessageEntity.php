@@ -3,17 +3,17 @@
 /**
  * This object represents one special entity in a text message. For example, hashtags, usernames, URLs, etc.
  */
-final class MessageEntity
+final class MessageEntity implements ApiReadType
 {
     private int $offset;
     private int $length;
-    private MessageEntityType $type;
+    private MessageEntityReadType $type;
     private ?Url $url;
     private ?User $user;
     private ?ProgrammingLanguage $language;
 
     public function __construct(
-        MessageEntityType $type,
+        MessageEntityReadType $type,
         int $offset,
         int $length,
         ?Url $url,
@@ -47,7 +47,7 @@ final class MessageEntity
     /**
      * Type of the entity. Can be “mention” (@username), “hashtag” (#hashtag), “cashtag” ($USD), “bot_command” (/start@jobs_bot), “url” (https://telegram.org), “email” (do-not-reply@telegram.org), “phone_number” (+1-212-555-0123), “bold” (bold text), “italic” (italic text), “underline” (underlined text), “strikethrough” (strikethrough text), “code” (monowidth string), “pre” (monowidth block), “text_link” (for clickable text URLs), “text_mention” (for users without usernames)
      */
-    public function type(): MessageEntityType
+    public function type(): MessageEntityReadType
     {
         return $this->type;
     }
@@ -82,12 +82,12 @@ final class MessageEntity
     public static function fromApi($entity): MessageEntity
     {
         return new static(
-            MessageEntityType::fromString($entity->type),
+            MessageEntityReadType::fromApi($entity->type),
             $entity->offset,
             $entity->length,
             Url::fromString($entity->url ?? null),
             User::fromApi($entity->user ?? null),
-            ProgrammingLanguage::fromString($entity->language ?? null)
+            ProgrammingLanguage::fromApi($entity->language ?? null)
         );
     }
 }

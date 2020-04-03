@@ -4,7 +4,7 @@
  * Optional. IETF language tag of the user's language
  * https://en.wikipedia.org/wiki/IETF_language_tag
  */
-final class IetfLanguageCode
+final class SpokenLanguage implements ApiReadType
 {
     private static $languageCodeJson = '[
   {
@@ -940,14 +940,17 @@ final class IetfLanguageCode
         return $this->code;
     }
 
-    public static function fromApi(?string $code): ?self
+    /**
+     * @inheritDoc
+     */
+    public static function fromApi($code): ?self
     {
         if ( ! $code) {
             return null;
         }
         
         if ( ! static::isValidCode($code)) {
-            throw new IetfLanguageCodeNotSupported($code);
+            throw new SpokenLanguageCodeNotSupported($code);
         }
         
         return new static($code);

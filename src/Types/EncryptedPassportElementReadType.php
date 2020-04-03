@@ -3,7 +3,7 @@
 /**
  * Element type. One of “personal_details”, “passport”, “driver_license”, “identity_card”, “internal_passport”, “address”, “utility_bill”, “bank_statement”, “rental_agreement”, “passport_registration”, “temporary_registration”, “phone_number”, “email”.
  */
-final class EncryptedPassportElementType
+final class EncryptedPassportElementReadType implements ApiReadType
 {
     private string $type;
 
@@ -22,7 +22,7 @@ final class EncryptedPassportElementType
         return $this->toString();
     }
 
-    public static function fromString(string $type)
+    public static function fromApi($type): self
     {
         $validTypes = [
             'personal_details', 'passport', 'driver_license', 'identity_card', 'internal_passport',

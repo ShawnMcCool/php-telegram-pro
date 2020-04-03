@@ -3,7 +3,7 @@
 /**
  * This object represents a phone contact.
  */
-final class Contact
+final class Contact implements ApiReadType
 {
     private string $phoneNumber;
     private string $firstName;

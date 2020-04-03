@@ -3,7 +3,7 @@
 /*
  * This object represents an audio file to be treated as music by the Telegram clients.
  */
-final class Audio
+final class Audio implements ApiReadType
 {
     private FileId $fileId;
     private ?FileUniqueId $fileUniqueId;
@@ -42,8 +42,8 @@ final class Audio
         if ( ! $audio) return null;
         
         return new static(
-            FileId::fromString($audio->file_id),
-            FileUniqueId::fromString($audio->file_unique_id ?? null),
+            FileId::fromApi($audio->file_id),
+            FileUniqueId::fromApi($audio->file_unique_id ?? null),
             $audio->duration,
             $audio->performer ?? null,
             $audio->title ?? null,

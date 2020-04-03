@@ -3,8 +3,7 @@
 use JsonSerializable;
 use TelegramPro\Types\Url;
 use TelegramPro\Types\FileId;
-use TelegramPro\Types\FilePath;
-use TelegramPro\Types\ParseMode;
+use TelegramPro\Methods\ParseMode;
 use TelegramPro\Types\MediaCaption;
 
 /**

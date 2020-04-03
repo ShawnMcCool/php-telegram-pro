@@ -2,10 +2,10 @@
 
 use Tests\TelegramTestCase;
 use TelegramPro\Types\Message;
-use TelegramPro\Types\FilePath;
-use TelegramPro\Types\CanNotOpenFile;
 use TelegramPro\Methods\SendVideoNote;
+use TelegramPro\Methods\FileUploads\FilePath;
 use TelegramPro\Methods\FileUploads\VideoNoteFile;
+use TelegramPro\Methods\FileUploads\CanNotOpenFile;
 
 class SendVideoNoteTest extends TelegramTestCase
 {

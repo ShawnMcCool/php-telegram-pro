@@ -3,7 +3,7 @@
 /**
  * The member's status in the chat. Can be “creator”, “administrator”, “member”, “restricted”, “left” or “kicked”
  */
-final class ChatMemberStatus
+final class ChatMemberStatus implements ApiReadType
 {
     private string $type;
 
@@ -25,7 +25,7 @@ final class ChatMemberStatus
     /**
      * @internal Construct with data received from the Telegram bot api.
      */
-    public static function fromApi(?string $type): ?self
+    public static function fromApi($type): ?self
     {
         if (is_null($type)) {
             return null;

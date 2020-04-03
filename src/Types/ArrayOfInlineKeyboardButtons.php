@@ -1,6 +1,6 @@
 <?php namespace TelegramPro\Types;
 
-final class ArrayOfInlineKeyboardButtons extends ArrayOfItems
+final class ArrayOfInlineKeyboardButtons extends ArrayOfApiTypes implements ApiReadType
 {
     public static function fromApi($items): ArrayOfInlineKeyboardButtons
     {

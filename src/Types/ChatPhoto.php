@@ -3,7 +3,7 @@
 /**
  * This object represents a chat photo.
  */
-final class ChatPhoto
+final class ChatPhoto implements ApiReadType
 {
     private FileId $smallFileId;
     private FileUniqueId $smallFileUniqueId;
@@ -30,10 +30,10 @@ final class ChatPhoto
         if ( ! $photo) return null;
 
         return new static(
-            FileId::fromString($photo->small_file_id),
-            FileUniqueId::fromString($photo->small_file_unique_id),
-            FileId::fromString($photo->big_file_id),
-            FileUniqueId::fromString($photo->big_file_unique_id)
+            FileId::fromApi($photo->small_file_id),
+            FileUniqueId::fromApi($photo->small_file_unique_id),
+            FileId::fromApi($photo->big_file_id),
+            FileUniqueId::fromApi($photo->big_file_unique_id)
         );
     }
 

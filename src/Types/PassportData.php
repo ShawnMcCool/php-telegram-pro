@@ -3,7 +3,7 @@
 /**
  * Contains information about Telegram Passport data shared with the bot by the user.
  */
-final class PassportData
+final class PassportData implements ApiReadType
 {
     private ArrayOfEncryptedPassportElements $data;
     private EncryptedCredentials $credentials;

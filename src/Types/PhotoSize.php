@@ -3,7 +3,7 @@
 /**
  * This object represents one size of a photo or a file / sticker thumbnail.
  */
-final class PhotoSize
+final class PhotoSize implements ApiReadType
 {
     private FileId $fileId;
     private FileUniqueId $fileUniqueId;
@@ -33,8 +33,8 @@ final class PhotoSize
         if ( ! $thumb) return null;
         
         return new static(
-            FileId::fromString($thumb->file_id),
-            FileUniqueId::fromString($thumb->file_unique_id),
+            FileId::fromApi($thumb->file_id),
+            FileUniqueId::fromApi($thumb->file_unique_id),
             $thumb->width,
             $thumb->height,
             $thumb->file_size

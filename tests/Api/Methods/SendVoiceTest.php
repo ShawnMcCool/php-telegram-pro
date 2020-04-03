@@ -5,12 +5,12 @@ use Tests\TelegramTestCase;
 use TelegramPro\Types\Text;
 use TelegramPro\Types\FileId;
 use TelegramPro\Types\Message;
-use TelegramPro\Types\FilePath;
 use TelegramPro\Methods\SendVoice;
 use TelegramPro\Types\MediaCaption;
 use TelegramPro\Methods\MethodError;
-use TelegramPro\Types\CanNotOpenFile;
+use TelegramPro\Methods\FileUploads\FilePath;
 use TelegramPro\Methods\FileUploads\VoiceFile;
+use TelegramPro\Methods\FileUploads\CanNotOpenFile;
 
 class SendVoiceTest extends TelegramTestCase
 {
@@ -61,7 +61,7 @@ class SendVoiceTest extends TelegramTestCase
         $sent = SendVoice::parameters(
             $this->config->chatId(),
             VoiceFile::fromFileId(
-                FileId::fromString($voiceId)
+                FileId::fromApi($voiceId)
             ),
             MediaCaption::fromString('[SendVoice] send voice with file id 2/2 ' . $num)
         )->send($this->telegram);

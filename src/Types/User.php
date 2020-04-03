@@ -4,14 +4,14 @@
  * This object represents a Telegram user or bot.
  * https://core.telegram.org/bots/api#user
  */
-final class User
+final class User implements ApiReadType
 {
     private UserId $userId;
     private ?bool $isBot;
     private string $firstName;
     private ?string $lastName;
     private ?string $username;
-    private ?IetfLanguageCode $languageCode;
+    private ?SpokenLanguage $languageCode;
     private ?bool $canJoinGroups;
     private ?bool $canReadAllGroupMessages;
     private ?bool $supportsInlineQueries;
@@ -22,7 +22,7 @@ final class User
         string $firstName,
         ?string $lastName,
         ?string $username,
-        ?IetfLanguageCode $languageCode,
+        ?SpokenLanguage $languageCode,
         ?bool $canJoinGroups,
         ?bool $canReadAllGroupMessages,
         ?bool $supportsInlineQueries
@@ -81,7 +81,7 @@ final class User
     /**
      * Optional. IETF language tag of the user's language
      */
-    public function languageCode(): ?IetfLanguageCode
+    public function languageCode(): ?SpokenLanguage
     {
         return $this->languageCode;
     }
@@ -123,7 +123,7 @@ final class User
             $user->first_name,
             $user->last_name ?? null,
             $user->username ?? null,
-            IetfLanguageCode::fromApi($user->language_code ?? null),
+            SpokenLanguage::fromApi($user->language_code ?? null),
             $user->can_join_groups ?? null,
             $user->can_read_all_group_messages ?? null,
             $user->supports_inline_queries ?? null

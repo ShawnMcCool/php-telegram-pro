@@ -8,7 +8,7 @@ class CurrencyTest extends TelegramTestCase
 {
     function testCanMakeValidCurrency()
     {
-        $currency = Currency::fromString('EUR');
+        $currency = Currency::fromApi('EUR');
         
         self::assertInstanceOf(Currency::class, $currency);
         self::assertSame('EUR', $currency->toString());
@@ -17,6 +17,6 @@ class CurrencyTest extends TelegramTestCase
     function testCanThrowOnBadCurrency()
     {
         $this->expectException(CurrencyIsNotSupported::class);
-        Currency::fromString('SMORF');
+        Currency::fromApi('SMORF');
     }
 }

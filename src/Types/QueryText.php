@@ -5,7 +5,7 @@ use JsonSerializable;
 /**
  * Text of the query (up to 256 characters)
  */
-final class QueryText implements JsonSerializable
+final class QueryText implements JsonSerializable, ApiReadType
 {
     private string $text;
 
@@ -35,7 +35,7 @@ final class QueryText implements JsonSerializable
     /**
      * @internal Construct with data received from the Telegram bot api.
      */
-    public static function fromApi(?string $text): ?self
+    public static function fromApi($text): ?self
     {
         if (is_null($text)) {
             return null;

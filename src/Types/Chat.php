@@ -4,10 +4,10 @@
  * This object represents a chat.
  * https://core.telegram.org/bots/api#chat
  */
-final class Chat
+final class Chat implements ApiReadType
 {
     private ChatId $chatId;
-    private ChatType $type;
+    private ChatReadType $type;
     private ?string $title;
     private ?string $username;
     private ?string $firstName;
@@ -23,7 +23,7 @@ final class Chat
 
     public function __construct(
         ChatId $chatId,
-        ChatType $type,
+        ChatReadType $type,
         ?string $title,
         ?string $username,
         ?string $firstName,
@@ -62,7 +62,7 @@ final class Chat
         
         return new static(
             ChatId::fromInt($chat->id),
-            ChatType::fromString($chat->type),
+            ChatReadType::fromApi($chat->type),
             $chat->title ?? null,
             $chat->username ?? null,
             $chat->first_name ?? null,
@@ -89,7 +89,7 @@ final class Chat
     /**
      * Type of chat, can be either “private”, “group”, “supergroup” or “channel”
      */
-    public function type(): ChatType
+    public function type(): ChatReadType
     {
         return $this->type;
     }

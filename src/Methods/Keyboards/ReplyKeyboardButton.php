@@ -1,4 +1,6 @@
-<?php namespace TelegramPro\Types;
+<?php namespace TelegramPro\Methods\Keyboards;
+
+use TelegramPro\Types\KeyboardButtonPollReadType;
 
 /**
  * This object represents one button of the reply keyboard. For simple text buttons String can be used instead of this object to specify text of the button. Optional fields request_contact, request_location, and request_poll are mutually exclusive.
@@ -11,13 +13,13 @@ final class ReplyKeyboardButton
     private string $text;
     private ?bool $requestContact;
     private ?bool $requestLocation;
-    private ?KeyboardButtonPollType $requestPoll;
+    private ?KeyboardButtonPollReadType $requestPoll;
 
     public function __construct(
         string $text,
         ?bool $requestContact,
         ?bool $requestLocation,
-        ?KeyboardButtonPollType $requestPoll
+        ?KeyboardButtonPollReadType $requestPoll
     )
     {
         $this->text = $text;
@@ -53,7 +55,7 @@ final class ReplyKeyboardButton
     /**
      * Optional. If specified, the user will be asked to create a poll and send it to the bot when the button is pressed. Available in private chats only
      */
-    public function requestPoll(): ?KeyboardButtonPollType
+    public function requestPoll(): ?KeyboardButtonPollReadType
     {
         return $this->requestPoll;
     }

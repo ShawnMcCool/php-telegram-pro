@@ -3,7 +3,7 @@
 /**
  * This object represents a video file.
  */
-final class Video
+final class Video implements ApiReadType
 {
     private FileId $fileId;
     private FileUniqueId $fileUniqueId;
@@ -106,8 +106,8 @@ final class Video
         if ( ! $video) return null;
 
         return new static(
-            FileId::fromString($video->file_id),
-            FileUniqueId::fromString($video->file_unique_id),
+            FileId::fromApi($video->file_id),
+            FileUniqueId::fromApi($video->file_unique_id),
             $video->width,
             $video->height,
             $video->duration,
