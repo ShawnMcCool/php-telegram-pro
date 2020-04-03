@@ -18,7 +18,7 @@ final class TelegramHttpRequest implements Telegram
     public function send(Method $method)
     {
         $parameters = $method->toRequest()->toCurlParameters($this->botToken);
-            
+        
         $curl = curl_init($parameters->url());
         curl_setopt_array($curl, $parameters->optionArray());
         $response = curl_exec($curl);
