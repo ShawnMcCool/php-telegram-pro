@@ -1,9 +1,9 @@
 <?php namespace TelegramPro\Methods\FileUploads;
 
 use JsonSerializable;
-use TelegramPro\Types\Url;
 use TelegramPro\Types\FileId;
-use TelegramPro\Types\UniqueId;
+use TelegramPro\Methods\Types\Url;
+use TelegramPro\Methods\Types\UniqueId;
 
 /**
  * This object represents the contents of a file to be uploaded. Must be posted using multipart/form-data in the usual way that files are uploaded via the browser.

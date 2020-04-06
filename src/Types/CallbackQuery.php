@@ -15,7 +15,7 @@ final class CallbackQuery implements ApiReadType
     private ?string $data;
     private ?GameShortName $gameShortName;
 
-    public function __construct(
+    private function __construct(
         CallbackQueryId $id,
         User $from,
         ?Message $message,

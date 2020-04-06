@@ -11,7 +11,7 @@ final class Voice implements ApiReadType
     private ?string $mimeType;
     private ?int $fileSize;
 
-    public function __construct(
+    private function __construct(
         FileId $fileId,
         ?FileUniqueId $fileUniqueId,
         int $duration,

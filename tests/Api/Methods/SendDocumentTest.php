@@ -1,12 +1,12 @@
 <?php namespace Tests\Api\Methods;
 
-use TelegramPro\Types\Url;
 use Tests\TelegramTestCase;
 use TelegramPro\Types\Text;
 use TelegramPro\Types\Message;
-use TelegramPro\Types\MediaCaption;
+use TelegramPro\Methods\Types\Url;
 use TelegramPro\Methods\MethodError;
 use TelegramPro\Methods\SendDocument;
+use TelegramPro\Methods\Types\MediaCaption;
 use TelegramPro\Methods\FileUploads\FilePath;
 use TelegramPro\Methods\FileUploads\DocumentFile;
 use TelegramPro\Methods\FileUploads\CanNotOpenFile;

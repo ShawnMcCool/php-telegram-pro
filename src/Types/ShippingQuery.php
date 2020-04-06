@@ -10,7 +10,7 @@ final class ShippingQuery implements ApiReadType
     private string $invoicePayload;
     private ShippingAddress $shippingAddress;
 
-    public function __construct(
+    private function __construct(
         ShippingQueryId $id,
         User $from,
         string $invoicePayload,

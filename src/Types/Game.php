@@ -1,5 +1,7 @@
 <?php namespace TelegramPro\Types;
 
+use TelegramPro\Methods\Types\MessageText;
+
 /**
  * This object represents a game. Use BotFather to create and edit games, their short names will act as unique identifiers.
  */
@@ -12,12 +14,12 @@ final class Game implements ApiReadType
     private ArrayOfMessageEntities $textEntities;
     private ?Animation $animation;
 
-    public function __construct(
+    private function __construct(
         string $title,
         string $description,
         ArrayOfPhotoSizes $photos,
         ?MessageText $text,
-        ArrayOfMessageEntities $textEntities, // of MessageEntity
+        ArrayOfMessageEntities $textEntities,
         ?Animation $animation
     ) {
         $this->title = $title;

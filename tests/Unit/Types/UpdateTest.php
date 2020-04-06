@@ -6,9 +6,9 @@ use TelegramPro\Types\Update;
 use TelegramPro\Types\ChatId;
 use TelegramPro\Types\UserId;
 use TelegramPro\Types\UpdateId;
-use TelegramPro\Types\ChatReadType;
 use TelegramPro\Types\MessageId;
 use TelegramPro\Types\MessageEntity;
+use TelegramPro\Methods\Types\ChatType;
 
 final class UpdateTest extends TelegramTestCase
 {
@@ -34,7 +34,7 @@ final class UpdateTest extends TelegramTestCase
 
         self::assertSame('Test Lastname', $chat->lastName());
         $this->sameValue(ChatId::fromInt(1111111), $chat->chatId());
-        $this->sameValue(ChatReadType::private(), $chat->type());
+        $this->sameValue(ChatType::private(), $chat->type());
         self::assertSame('Test Firstname', $chat->firstName());
         self::assertSame('Testusername', $chat->username());
 
@@ -68,7 +68,7 @@ final class UpdateTest extends TelegramTestCase
 
         self::assertSame('Test Lastname', $chat->lastName());
         $this->sameValue(ChatId::fromInt(1111111), $chat->chatId());
-        $this->sameValue(ChatReadType::private(), $chat->type());
+        $this->sameValue(ChatType::private(), $chat->type());
         self::assertSame('Test Firstname', $chat->firstName());
         self::assertSame('Testusername', $chat->username());
 
@@ -109,7 +109,7 @@ final class UpdateTest extends TelegramTestCase
 
         self::assertSame('Test Lastname', $chat->lastName());
         $this->sameValue(ChatId::fromInt(1111111), $chat->chatId());
-        $this->sameValue(ChatReadType::private(), $chat->type());
+        $this->sameValue(ChatType::private(), $chat->type());
         self::assertSame('Test Firstname', $chat->firstName());
         self::assertSame('Testusername', $chat->username());
 
@@ -128,7 +128,7 @@ final class UpdateTest extends TelegramTestCase
         $fromChat = $message->forwardFromChat();
 
         $this->sameValue(ChatId::fromInt(-10000000000), $fromChat->chatId());
-        $this->sameValue(ChatReadType::channel(), $fromChat->type());
+        $this->sameValue(ChatType::channel(), $fromChat->type());
         self::assertSame('Test channel', $fromChat->title());
     }
 

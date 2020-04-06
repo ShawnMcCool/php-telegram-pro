@@ -3,7 +3,8 @@
 use TelegramPro\Api\Telegram;
 use TelegramPro\Types\ChatId;
 use TelegramPro\Types\MessageId;
-use TelegramPro\Types\MediaCaption;
+use TelegramPro\Methods\Types\ParseMode;
+use TelegramPro\Methods\Types\MediaCaption;
 use TelegramPro\Methods\Keyboards\ReplyMarkup;
 use TelegramPro\Methods\FileUploads\VoiceFile;
 use TelegramPro\Methods\FileUploads\FilesToUpload;

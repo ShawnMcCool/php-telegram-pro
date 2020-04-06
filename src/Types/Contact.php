@@ -11,7 +11,7 @@ final class Contact implements ApiReadType
     private ?UserId $userId;
     private ?string $vcard;
 
-    public function __construct(
+    private function __construct(
         string $phoneNumber,
         string $firstName,
         ?string $lastName,

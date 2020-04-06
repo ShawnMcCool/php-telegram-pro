@@ -11,7 +11,7 @@ final class Venue implements ApiReadType
     private ?string $foursquareId;
     private ?string $foursquareType;
 
-    public function __construct(
+    private function __construct(
         Location $location,
         string $title,
         string $address,

@@ -2,9 +2,9 @@
 
 abstract class StringObject
 {
-    private string $string;
+    protected string $string;
 
-    private function __construct(string $string)
+    protected function __construct(string $string)
     {
         $this->string = $string;
     }

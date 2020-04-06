@@ -2,9 +2,9 @@
 
 use Tests\TelegramTestCase;
 use TelegramPro\Types\Message;
-use TelegramPro\Types\MessageText;
 use TelegramPro\Methods\SendMessage;
 use TelegramPro\Methods\ForwardMessage;
+use TelegramPro\Methods\Types\MessageText;
 
 class ForwardMessageTest extends TelegramTestCase
 {

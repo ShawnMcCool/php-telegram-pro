@@ -4,7 +4,7 @@
  * Three-letter ISO 4217 currency code, see more on currencies
  * https://core.telegram.org/bots/payments#supported-currencies
  */
-final class Currency implements ApiReadType
+final class Currency extends ApiReadString
 {
     private static string $validCurrenciesJson = '{
   "AED": {
@@ -1100,41 +1100,27 @@ final class Currency implements ApiReadType
     "max_amount": "17311250"
   }
 }';
-    private string $code;
 
-    private function __construct(string $code)
+    public function symbol(): string
     {
-        $this->code = $code;
+        return utf8_decode(
+            $this->findRecord($this->string)->symbol
+        );
     }
 
-    public function toString(): string
+    private function findRecord(string $threeLetterCode)
     {
-        return $this->code;
-    }
+        $currencies = json_decode(static::$validCurrenciesJson, true);
 
-    public function __toString()
-    {
-        return $this->toString();
-    }
+        $currency = collect($currencies)
+            ->first(
+                fn($currency) => $currency->code == strtoupper($threeLetterCode)
+            );
 
-    public static function fromApi($code): ?Currency
-    {
-        if ( ! static::codeIsValid($code)) {
-            throw new CurrencyIsNotSupported($code);
+        if ( ! $currency) {
+            throw new CouldNotFindCurrencyUsingCode($threeLetterCode);
         }
 
-        return new static($code);
-    }
-
-    private static function codeIsValid(?string $code)
-    {
-        $codes = json_decode(static::$validCurrenciesJson, true);
-
-        $found = array_filter(
-            $codes, function ($codeRow) use ($code) {
-            return $code == $codeRow['code'];
-        });
-
-        return count($found) > 0;
+        return $currency;
     }
 }

@@ -1,7 +1,7 @@
 <?php namespace TelegramPro\Methods\FileUploads;
 
-use TelegramPro\Types\Url;
 use TelegramPro\Types\FileId;
+use TelegramPro\Methods\Types\Url;
 
 final class VoiceFile extends InputFile
 {

@@ -16,7 +16,7 @@ final class Sticker implements ApiReadType
     private ?MaskPosition $maskPosition;
     private ?int $fileSize;
 
-    public function __construct(
+    private function __construct(
         FileId $fileId,
         FileUniqueId $fileUniqueId,
         int $width,

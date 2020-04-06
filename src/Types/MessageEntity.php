@@ -7,13 +7,13 @@ final class MessageEntity implements ApiReadType
 {
     private int $offset;
     private int $length;
-    private MessageEntityReadType $type;
+    private MessageEntityType $type;
     private ?Url $url;
     private ?User $user;
     private ?ProgrammingLanguage $language;
 
-    public function __construct(
-        MessageEntityReadType $type,
+    private function __construct(
+        MessageEntityType $type,
         int $offset,
         int $length,
         ?Url $url,
@@ -47,7 +47,7 @@ final class MessageEntity implements ApiReadType
     /**
      * Type of the entity. Can be “mention” (@username), “hashtag” (#hashtag), “cashtag” ($USD), “bot_command” (/start@jobs_bot), “url” (https://telegram.org), “email” (do-not-reply@telegram.org), “phone_number” (+1-212-555-0123), “bold” (bold text), “italic” (italic text), “underline” (underlined text), “strikethrough” (strikethrough text), “code” (monowidth string), “pre” (monowidth block), “text_link” (for clickable text URLs), “text_mention” (for users without usernames)
      */
-    public function type(): MessageEntityReadType
+    public function type(): MessageEntityType
     {
         return $this->type;
     }
@@ -82,7 +82,7 @@ final class MessageEntity implements ApiReadType
     public static function fromApi($entity): MessageEntity
     {
         return new static(
-            MessageEntityReadType::fromApi($entity->type),
+            MessageEntityType::fromApi($entity->type),
             $entity->offset,
             $entity->length,
             Url::fromString($entity->url ?? null),

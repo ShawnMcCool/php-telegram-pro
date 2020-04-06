@@ -8,7 +8,7 @@ final class Location implements ApiReadType
     private float $longitude;
     private float $latitude;
 
-    public function __construct(
+    private function __construct(
         float $longitude,
         float $latitude
     ) {

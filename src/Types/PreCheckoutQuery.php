@@ -13,7 +13,7 @@ final class PreCheckoutQuery implements ApiReadType
     private ?string $shippingOptionId;
     private ?OrderInfo $orderInfo;
 
-    public function __construct(
+    private function __construct(
         PreCheckoutQueryId $id,
         User $from,
         Currency $currency,

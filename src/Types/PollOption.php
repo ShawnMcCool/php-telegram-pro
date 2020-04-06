@@ -8,7 +8,7 @@ final class PollOption implements ApiReadType
     private PollOptionText $text;
     private int $voterCount;
 
-    public function __construct(
+    private function __construct(
         PollOptionText $text,
         int $voterCount
     ) {

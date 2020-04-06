@@ -1,8 +1,14 @@
 <?php namespace TelegramPro\Types;
 
+/**
+ * Contains multiple message entities (which format text elements)
+ */
 final class ArrayOfMessageEntities extends ArrayOfApiTypes implements ApiReadType
 {
-    static function fromApi($items): ArrayOfMessageEntities
+    /**
+     * @inheritDoc
+     */
+    public static function fromApi($items): ArrayOfMessageEntities
     {
         return new static(
             collect(

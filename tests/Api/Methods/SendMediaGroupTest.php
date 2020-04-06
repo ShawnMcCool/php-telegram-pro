@@ -1,17 +1,17 @@
 <?php namespace Tests\Api\Methods;
 
-use TelegramPro\Types\Url;
 use Tests\TelegramTestCase;
 use TelegramPro\Types\Text;
 use TelegramPro\Types\Video;
 use TelegramPro\Types\Message;
 use TelegramPro\Types\PhotoSize;
+use TelegramPro\Methods\Types\Url;
 use TelegramPro\Methods\SendPhoto;
 use TelegramPro\Methods\SendVideo;
-use TelegramPro\Methods\MediaGroup;
-use TelegramPro\Types\MediaCaption;
 use TelegramPro\Methods\MethodError;
 use TelegramPro\Methods\SendMediaGroup;
+use TelegramPro\Methods\Types\MediaGroup;
+use TelegramPro\Methods\Types\MediaCaption;
 use TelegramPro\Methods\FileUploads\FilePath;
 use TelegramPro\Methods\FileUploads\VideoFile;
 use TelegramPro\Methods\FileUploads\CanNotOpenFile;

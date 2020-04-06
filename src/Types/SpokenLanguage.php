@@ -4,7 +4,7 @@
  * Optional. IETF language tag of the user's language
  * https://en.wikipedia.org/wiki/IETF_language_tag
  */
-final class SpokenLanguage implements ApiReadType
+final class SpokenLanguage extends ApiReadString
 {
     private static $languageCodeJson = '[
   {
@@ -928,40 +928,24 @@ final class SpokenLanguage implements ApiReadType
     "alpha3-b": "zul"
   }
 ]';
-    private string $code;
 
-    private function __construct(string $code)
+    public function englishName(): string
     {
-        $this->code = $code;
+        return $this->findRecord($this->string)->English;
     }
 
-    public function toString(): string
+    private function findRecord(string $twoLetterCode)
     {
-        return $this->code;
-    }
+        $language = collect(
+            json_decode(static::$languageCodeJson, true)
+        )->first(
+            fn($language) => $language->alpha2 == strtoupper($twoLetterCode)
+        );
 
-    /**
-     * @inheritDoc
-     */
-    public static function fromApi($code): ?self
-    {
-        if ( ! $code) {
-            return null;
+        if ( ! $language) {
+            throw new CouldNotFindLanguageUsingCode($twoLetterCode);
         }
-        
-        if ( ! static::isValidCode($code)) {
-            throw new SpokenLanguageCodeNotSupported($code);
-        }
-        
-        return new static($code);
-    }
 
-    private static function isValidCode($code): bool
-    {
-        return collect(
-                json_decode(static::$languageCodeJson)
-            )->filter(
-                fn($record) => $record->alpha2 == $code
-            )->count() > 0;
+        return $language;
     }
 }

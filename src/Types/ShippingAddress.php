@@ -12,7 +12,7 @@ final class ShippingAddress implements ApiReadType
     private string $streetLine2;
     private string $postalCode;
 
-    public function __construct(
+    private function __construct(
         CountryCode $countryCode,
         string $state,
         string $city,

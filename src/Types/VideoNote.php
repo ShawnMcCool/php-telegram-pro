@@ -12,7 +12,7 @@ final class VideoNote implements ApiReadType
     private ?PhotoSize $thumb;
     private ?int $fileSize;
 
-    public function __construct(
+    private function __construct(
         FileId $fileId,
         FileUniqueId $fileUniqueId,
         int $length,

@@ -1,14 +1,14 @@
 <?php namespace Tests\Unit\Types;
 
 use Tests\TelegramTestCase;
-use TelegramPro\Types\Currency;
-use TelegramPro\Types\CurrencyIsNotSupported;
+use TelegramPro\Methods\Types\Currency;
+use TelegramPro\Methods\Types\CurrencyIsNotSupported;
 
 class CurrencyTest extends TelegramTestCase
 {
     function testCanMakeValidCurrency()
     {
-        $currency = Currency::fromApi('EUR');
+        $currency = Currency::fromString('EUR');
         
         self::assertInstanceOf(Currency::class, $currency);
         self::assertSame('EUR', $currency->toString());
@@ -17,6 +17,6 @@ class CurrencyTest extends TelegramTestCase
     function testCanThrowOnBadCurrency()
     {
         $this->expectException(CurrencyIsNotSupported::class);
-        Currency::fromApi('SMORF');
+        Currency::fromString('SMORF');
     }
 }

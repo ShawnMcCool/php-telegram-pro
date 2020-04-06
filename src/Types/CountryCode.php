@@ -3,7 +3,7 @@
 /**
  * ISO 3166-1 alpha-2 country code
  */
-final class CountryCode implements ApiReadType
+final class CountryCode extends ApiReadString
 {
     private static $countryCodes = [
         [
@@ -2283,40 +2283,25 @@ final class CountryCode implements ApiReadType
         ],
     ];
 
-    private string $code;
-
-    private function __construct(string $code)
+    public function name(): string
     {
-        $this->code = $code;
+        return utf8_decode(
+            $this->findRecord($this->string)->name
+        );
     }
 
-    public function toString(): string
+    private function findRecord(string $twoLetterCode)
     {
-        return $this->code;
-    }
+        $country = collect(
+            static::$countryCodes
+        )->first(
+            fn($country) => $country->alpha2 == strtoupper($twoLetterCode)
+        );
 
-    /**
-     * @internal Construct with data received from the Telegram bot api.
-     */
-    public static function fromApi($code): ?self
-    {
-        if ( ! $code) {
-            return null;
+        if ( ! $country) {
+            throw new CouldNotFindCountryUsingCode($twoLetterCode);
         }
 
-        if ( ! static::isValidCode($code)) {
-            throw new CountryCodeNotSupported($code);
-        }
-
-        return new static($code);
-    }
-
-    private static function isValidCode($code): bool
-    {
-        return collect(
-                static::$countryCodes
-            )->filter(
-                fn($country) => strtolower($country['alpha2']) == strtolower($code)
-            )->count() > 0;
+        return $country;
     }
 }

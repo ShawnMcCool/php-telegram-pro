@@ -12,7 +12,7 @@ final class LoginUrl implements ApiReadType
     private ?string $botUsername;
     private ?bool $requestWriteAccess;
 
-    public function __construct(
+    private function __construct(
         Url $url,
         ?string $forwardText,
         ?string $botUsername,

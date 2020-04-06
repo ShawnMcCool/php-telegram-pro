@@ -14,7 +14,7 @@ final class Audio implements ApiReadType
     private ?int $fileSize;
     private ?PhotoSize $thumb;
 
-    public function __construct(
+    private function __construct(
         FileId $fileId,
         ?FileUniqueId $fileUniqueId,
         int $duration,

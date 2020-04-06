@@ -1,5 +1,7 @@
 - ui should always be typed
 - fix 'curl attachment' concept in nested request (return curlfile arrays/collections instead)
+- ensure that constructors are private when appropriate
+- ensure a clean read / write model separation
 
 # documentation
 

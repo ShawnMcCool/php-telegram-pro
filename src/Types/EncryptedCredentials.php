@@ -10,7 +10,7 @@ final class EncryptedCredentials implements ApiReadType
     private string $hash;
     private string $secret;
 
-    public function __construct(
+    private function __construct(
         string $data,
         string $hash,
         string $secret

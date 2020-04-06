@@ -1,8 +1,14 @@
 <?php namespace TelegramPro\Types;
 
+/**
+ * Contains a list of poll options identifiers
+ */
 final class ArrayOfPollOptionIds extends ArrayOfApiTypes implements ApiReadType
 {
-    static function fromApi($items): ArrayOfPollOptionIds
+    /**
+     * @inheritDoc
+     */
+    public static function fromApi($items): ArrayOfPollOptionIds
     {
         return new static(
             collect(

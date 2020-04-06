@@ -1,17 +1,8 @@
 <?php namespace TelegramPro\Types;
 
-use TelegramPro\PrimitiveTypes\StringObject;
-
 /**
  * Unique poll identifier
  */
-final class PollId extends StringObject implements ApiReadType
+final class PollId extends ApiReadString
 {
-    /**
-     * @inheritDoc
-     */
-    public static function fromApi($data): ?self
-    {
-        return static::fromString($data);
-    }
 }

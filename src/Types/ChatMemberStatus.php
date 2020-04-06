@@ -22,6 +22,36 @@ final class ChatMemberStatus implements ApiReadType
         return $this->type;
     }
 
+    public function isCreator(): bool
+    {
+        return $this->type == 'creator';
+    }
+
+    public function isAdministrator(): bool
+    {
+        return $this->type == 'administrator';
+    }
+
+    public function isMember(): bool
+    {
+        return $this->type == 'member';
+    }
+
+    public function isRestricted(): bool
+    {
+        return $this->type == 'restricted';
+    }
+
+    public function isLeft(): bool
+    {
+        return $this->type == 'left';
+    }
+
+    public function isKicked(): bool
+    {
+        return $this->type == 'kicked';
+    }
+
     /**
      * @internal Construct with data received from the Telegram bot api.
      */
@@ -30,11 +60,8 @@ final class ChatMemberStatus implements ApiReadType
         if (is_null($type)) {
             return null;
         }
-        
-        if ( ! in_array($type, ['creator', 'administrator', 'member', 'restricted', 'left', 'kicked'])) {
-            throw new ChatTypeNotSupported($type);
-        }
 
         return new static ($type);
     }
+
 }

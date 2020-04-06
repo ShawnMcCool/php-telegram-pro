@@ -1,11 +1,13 @@
 <?php namespace TelegramPro\Types;
 
+use TelegramPro\Methods\Types\EncryptedPassportElementType;
+
 /**
  * Contains information about documents or other Telegram Passport elements shared with the bot by the user.
  */
 final class EncryptedPassportElement implements ApiReadType
 {
-    private EncryptedPassportElementReadType $type;
+    private EncryptedPassportElementType $type;
     private ?string $data;
     private ?string $phoneNumber;
     private ?string $email;
@@ -16,8 +18,8 @@ final class EncryptedPassportElement implements ApiReadType
     private ArrayOfPassportFiles $translation;
     private string $hash;
 
-    public function __construct(
-        EncryptedPassportElementReadType $type,
+    private function __construct(
+        EncryptedPassportElementType $type,
         ?string $data,
         ?string $phoneNumber,
         ?string $email,
@@ -46,7 +48,7 @@ final class EncryptedPassportElement implements ApiReadType
     public static function fromApi($encryptedPassportElement): EncryptedPassportElement
     {
         return new static(
-            EncryptedPassportElementReadType::fromApi($encryptedPassportElement->type),
+            EncryptedPassportElementType::fromApi($encryptedPassportElement->type),
             $encryptedPassportElement->data,
             $encryptedPassportElement->phone_number,
             $encryptedPassportElement->email,
@@ -62,7 +64,7 @@ final class EncryptedPassportElement implements ApiReadType
     /**
      * 	Element type. One of “personal_details”, “passport”, “driver_license”, “identity_card”, “internal_passport”, “address”, “utility_bill”, “bank_statement”, “rental_agreement”, “passport_registration”, “temporary_registration”, “phone_number”, “email”.
      */
-    public function type(): EncryptedPassportElementReadType
+    public function type(): EncryptedPassportElementType
     {
         return $this->type;
     }

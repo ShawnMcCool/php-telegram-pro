@@ -1,7 +1,13 @@
 <?php namespace TelegramPro\Types;
 
+/**
+ * Contains multiple Passport Files
+ */
 final class ArrayOfPassportFiles extends ArrayOfApiTypes implements ApiReadType
 {
+    /**
+     * @inheritDoc
+     */
     public static function fromApi($items): ArrayOfPassportFiles
     {
         return new static(

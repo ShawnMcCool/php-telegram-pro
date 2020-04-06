@@ -27,7 +27,7 @@ final class ChatMember implements ApiReadType
     private ?bool $canSendOtherMessages;
     private ?bool $canAddWebPagePreviews;
 
-    public function __construct(
+    private function __construct(
         User $user,
         ChatMemberStatus $status,
         ?string $customTitle,

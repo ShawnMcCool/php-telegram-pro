@@ -1,8 +1,14 @@
 <?php namespace TelegramPro\Types;
 
+/**
+ * Contains a list of available photo sizes for a single photo
+ */
 final class ArrayOfPhotoSizes extends ArrayOfApiTypes implements ApiReadType
 {
-    static function fromApi($items): ArrayOfPhotoSizes
+    /**
+     * @inheritDoc
+     */
+    public static function fromApi($items): ArrayOfPhotoSizes
     {
         return new static(
             collect(

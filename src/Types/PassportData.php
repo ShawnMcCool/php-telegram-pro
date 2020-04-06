@@ -8,7 +8,7 @@ final class PassportData implements ApiReadType
     private ArrayOfEncryptedPassportElements $data;
     private EncryptedCredentials $credentials;
 
-    public function __construct(
+    private function __construct(
         ArrayOfEncryptedPassportElements $data,
         EncryptedCredentials $credentials
     ) {

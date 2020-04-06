@@ -10,7 +10,7 @@ final class OrderInfo implements ApiReadType
     private ?string $email;
     private ?ShippingAddress $shippingAddress;
 
-    public function __construct(
+    private function __construct(
         ?string $name,
         ?string $phoneNumber,
         ?string $email,

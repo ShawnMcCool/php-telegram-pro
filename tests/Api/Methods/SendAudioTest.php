@@ -1,11 +1,11 @@
 <?php namespace Tests\Api\Methods;
 
-use TelegramPro\Types\Url;
 use Tests\TelegramTestCase;
 use TelegramPro\Types\Message;
+use TelegramPro\Methods\Types\Url;
 use TelegramPro\Methods\SendAudio;
-use TelegramPro\Types\MediaCaption;
 use TelegramPro\Methods\MethodError;
+use TelegramPro\Methods\Types\MediaCaption;
 use TelegramPro\Methods\FileUploads\FilePath;
 use TelegramPro\Methods\FileUploads\CanNotOpenFile;
 use TelegramPro\Methods\FileUploads\AudioInputFile;

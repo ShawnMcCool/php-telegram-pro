@@ -14,7 +14,7 @@ final class ChatPermissions implements ApiReadType
     private bool $canInviteUsers;
     private bool $canPinMessages;
 
-    public function __construct(
+    private function __construct(
         bool $canSendMessages,
         bool $canSendMediaMessages,
         bool $canSendPolls,

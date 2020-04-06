@@ -32,7 +32,7 @@ class Message implements ApiReadType
     private ?Video $video;
     private ?Voice $voice;
     private ?VideoNote $videoNote;
-    private ?MediaCaption $caption;
+    private ?string $caption;
     private ?Contact $contact;
     private ?Location $location;
     private ?Venue $venue;
@@ -54,7 +54,7 @@ class Message implements ApiReadType
     private ?PassportData $passportData;
     private ?InlineKeyboardMarkup $replyMarkup;
 
-    public function __construct(
+    private function __construct(
         MessageId $messageId,
         ?User $from,
         Date $date,
@@ -81,7 +81,7 @@ class Message implements ApiReadType
         ?Video $video,
         ?Voice $voice,
         ?VideoNote $videoNote,
-        ?MediaCaption $caption,
+        ?string $caption,
         ?Contact $contact,
         ?Location $location,
         ?Venue $venue,
@@ -364,7 +364,7 @@ class Message implements ApiReadType
     /**
      * Optional. Caption for the animation, audio, document, photo, video or voice, 0-1024 characters
      */
-    public function caption(): ?MediaCaption
+    public function caption(): ?string
     {
         return $this->caption;
     }
@@ -554,7 +554,7 @@ class Message implements ApiReadType
             Date::fromApi($message->edit_date ?? null),
             $message->media_group_id ?? null,
             $message->author_signature ?? null,
-            MessageText::fromApi($message->text ?? null),
+            $message->text ?? null,
             ArrayOfMessageEntities::fromApi($message->entities ?? null),
             ArrayOfMessageEntities::fromApi($message->caption_entities ?? null),
             Audio::fromApi($message->audio ?? null),
@@ -566,7 +566,7 @@ class Message implements ApiReadType
             Video::fromApi($message->video ?? null),
             Voice::fromApi($message->voice ?? null),
             VideoNote::fromApi($message->video_note ?? null),
-            MediaCaption::fromApi($message->caption ?? null),
+            $message->caption ?? null,
             Contact::fromApi($message->contact ?? null),
             Location::fromApi($message->location ?? null),
             Venue::fromApi($message->venue ?? null),

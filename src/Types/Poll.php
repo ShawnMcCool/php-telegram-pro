@@ -15,7 +15,7 @@ final class Poll
     private bool $allowsMultipleAnswers;
     private ?PollOptionId $correctOptionId;
 
-    public function __construct(
+    private function __construct(
         PollId $id,
         PollQuestion $question,
         ArrayOfPollOptions $options,

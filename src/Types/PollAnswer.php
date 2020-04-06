@@ -9,7 +9,7 @@ final class PollAnswer implements ApiReadType
     private User $user;
     private ArrayOfPollOptionIds $optionIds;
 
-    public function __construct(
+    private function __construct(
         PollId $pollId,
         User $user,
         ArrayOfPollOptionIds $optionIds

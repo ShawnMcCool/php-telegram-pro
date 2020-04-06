@@ -15,7 +15,7 @@ final class Animation implements ApiReadType
     private ?string $mimeType;
     private ?string $fileSize;
 
-    public function __construct(
+    private function __construct(
         FileId $fileId,
         FileUniqueId $fileUniqueId,
         int $width,

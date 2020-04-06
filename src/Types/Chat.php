@@ -1,5 +1,4 @@
 <?php namespace TelegramPro\Types;
-
 /**
  * This object represents a chat.
  * https://core.telegram.org/bots/api#chat
@@ -7,7 +6,7 @@
 final class Chat implements ApiReadType
 {
     private ChatId $chatId;
-    private ChatReadType $type;
+    private ChatType $type;
     private ?string $title;
     private ?string $username;
     private ?string $firstName;
@@ -21,9 +20,9 @@ final class Chat implements ApiReadType
     private ?string $stickerSetName;
     private ?bool $canSetStickerSet;
 
-    public function __construct(
+    private function __construct(
         ChatId $chatId,
-        ChatReadType $type,
+        ChatType $type,
         ?string $title,
         ?string $username,
         ?string $firstName,
@@ -62,7 +61,7 @@ final class Chat implements ApiReadType
         
         return new static(
             ChatId::fromInt($chat->id),
-            ChatReadType::fromApi($chat->type),
+            ChatType::fromApi($chat->type),
             $chat->title ?? null,
             $chat->username ?? null,
             $chat->first_name ?? null,
@@ -89,7 +88,7 @@ final class Chat implements ApiReadType
     /**
      * Type of chat, can be either “private”, “group”, “supergroup” or “channel”
      */
-    public function type(): ChatReadType
+    public function type(): ChatType
     {
         return $this->type;
     }

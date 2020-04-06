@@ -10,7 +10,7 @@ final class MaskPosition implements ApiReadType
     private float $yShift;
     private float $scale;
 
-    public function __construct(
+    private function __construct(
         string $point,
         float $xShift,
         float $yShift,

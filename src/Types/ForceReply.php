@@ -15,7 +15,7 @@ final class ForceReply implements ApiReadType
     private bool $forceReply;
     private ?bool $selective;
 
-    public function __construct(
+    private function __construct(
         bool $forceReply,
         ?bool $selective
     ) {

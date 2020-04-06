@@ -11,7 +11,7 @@ final class Invoice implements ApiReadType
     private Currency $currency;
     private int $totalAmount;
 
-    public function __construct(
+    private function __construct(
         string $title,
         string $description,
         string $startParameter,

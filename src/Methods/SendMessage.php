@@ -3,7 +3,8 @@
 use TelegramPro\Api\Telegram;
 use TelegramPro\Types\ChatId;
 use TelegramPro\Types\MessageId;
-use TelegramPro\Types\MessageText;
+use TelegramPro\Methods\Types\ParseMode;
+use TelegramPro\Methods\Types\MessageText;
 use TelegramPro\Methods\Keyboards\ReplyMarkup;
 
 final class SendMessage implements Method

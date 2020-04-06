@@ -10,7 +10,7 @@ final class ChatPhoto implements ApiReadType
     private FileId $bigFileId;
     private FileUniqueId $bigFileUniqueId;
 
-    public function __construct(
+    private function __construct(
         FileId $smallFileId,
         FileUniqueId $smallFileUniqueId,
         FileId $bigFileId,

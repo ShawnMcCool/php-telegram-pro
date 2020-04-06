@@ -1,36 +1,14 @@
 <?php namespace TelegramPro\Types;
 
-/**
- * Poll type, “quiz” or “regular”, defaults to “regular”
- */
-final class PollReadType implements ApiReadType
+final class PollReadType extends ApiReadString
 {
-    private string $type;
-
-    private function __construct(string $type)
+    public function isRegular(): bool
     {
-        $this->type = $type;
+        return $this->string == 'regular';
     }
 
-    public function __toString()
+    public function isQuiz(): bool
     {
-        return $this->toString();
-    }
-
-    public function toString(): string
-    {
-        return $this->type;
-    }
-
-    /**
-     * @internal Construct with data received from the Telegram bot api.
-     */
-    public static function fromApi($type): self
-    {
-        if ( ! in_array($type, ['regular', 'quiz'])) {
-            throw new PollTypeNotSupported($type);
-        }
-
-        return new static ($type);
+        return $this->string == 'quiz';
     }
 }

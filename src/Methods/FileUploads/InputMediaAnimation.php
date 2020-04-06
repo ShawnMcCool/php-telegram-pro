@@ -1,10 +1,10 @@
 <?php namespace TelegramPro\Methods\FileUploads;
 
 use JsonSerializable;
-use TelegramPro\Types\Url;
 use TelegramPro\Types\FileId;
-use TelegramPro\Methods\ParseMode;
-use TelegramPro\Types\MediaCaption;
+use TelegramPro\Methods\Types\Url;
+use TelegramPro\Methods\Types\ParseMode;
+use TelegramPro\Methods\Types\MediaCaption;
 
 /**
  * Represents an animation file (GIF or H.264/MPEG-4 AVC video without sound) to be sent.

@@ -4,7 +4,7 @@ abstract class IntegerObject
 {
     private int $integer;
 
-    private function __construct(int $integer)
+    protected function __construct(int $integer)
     {
         $this->integer = $integer;
     }

@@ -10,7 +10,7 @@ final class PassportFile implements ApiReadType
     private int $fileSize;
     private Date $fileDate;
 
-    public function __construct(
+    private function __construct(
         FileId $fileId,
         FileUniqueId $fileUniqueId,
         int $fileSize,

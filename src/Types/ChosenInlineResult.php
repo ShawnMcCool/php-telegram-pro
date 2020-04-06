@@ -11,7 +11,7 @@ final class ChosenInlineResult implements ApiReadType
     private MessageId $inlineMessageId;
     private string $query;
 
-    public function __construct(
+    private function __construct(
         ResultId $resultId,
         User $from,
         ?Location $location,

@@ -13,7 +13,7 @@ final class SuccessfulPayment implements ApiReadType
     private string $telegramPaymentChargeId;
     private string $providerPaymentChargeId;
 
-    public function __construct(
+    private function __construct(
         Currency $currency,
         int $totalAmount,
         string $invoicePayload,
