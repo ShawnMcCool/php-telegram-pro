@@ -10,7 +10,7 @@ final class PreCheckoutQuery implements ApiReadType
     private Currency $currency;
     private int $totalAmount;
     private string $invoicePayload;
-    private ?string $shippingOptionId;
+    private ?ShippingOptionId $shippingOptionId;
     private ?OrderInfo $orderInfo;
 
     private function __construct(
@@ -19,7 +19,7 @@ final class PreCheckoutQuery implements ApiReadType
         Currency $currency,
         int $totalAmount,
         string $invoicePayload,
-        ?string $shippingOptionId,
+        ?ShippingOptionId $shippingOptionId,
         ?OrderInfo $orderInfo
     ) {
         $this->id = $id;
@@ -44,7 +44,7 @@ final class PreCheckoutQuery implements ApiReadType
             Currency::fromApi($preCheckoutQuery->currency),
             $preCheckoutQuery->total_amount,
             $preCheckoutQuery->invoice_payload,
-            $preCheckoutQuery->shipping_option_id,
+            ShippingOptionId::fromApi($preCheckoutQuery->shipping_option_id ?? null),
             OrderInfo::fromApi($preCheckoutQuery->order_info)
         );
     }
@@ -92,7 +92,7 @@ final class PreCheckoutQuery implements ApiReadType
     /**
      * Optional. Identifier of the shipping option chosen by the user
      */
-    public function shippingOptionId(): ?string
+    public function shippingOptionId(): ?ShippingOptionId
     {
         return $this->shippingOptionId;
     }

@@ -1,7 +1,5 @@
 <?php namespace TelegramPro\Types;
 
-use TelegramPro\Methods\Types\QueryText;
-
 /**
  * Optional. If set, pressing the button will prompt the user to select one of their chats, open that chat and insert the bot‘s username and the specified inline query in the input field. Can be empty, in which case just the bot’s username will be inserted.
  * Note: This offers an easy way for users to start using your bot in inline mode when they are currently in a private chat with it. Especially useful when combined with switch_pm… actions – in this case the user will be automatically returned to the chat they switched from, skipping the chat selection screen.
@@ -11,14 +9,14 @@ final class InlineQuery implements ApiReadType
     private InlineQueryId $id;
     private User $from;
     private ?Location $location;
-    private QueryText $query;
+    private string $query;
     private string $offset;
 
     private function __construct(
         InlineQueryId $id,
         User $from,
         ?Location $location,
-        QueryText $query,
+        string $query,
         string $offset
     ) {
         $this->id = $id;
@@ -39,7 +37,7 @@ final class InlineQuery implements ApiReadType
             InlineQueryId::fromApi($inlineQuery->id),
             User::fromApi($inlineQuery->from),
             Location::fromApi($inlineQuery->location ?? null),
-            QueryText::fromApi($inlineQuery->query),
+            $inlineQuery->query,
             $inlineQuery->offset
         );
     }
@@ -71,7 +69,7 @@ final class InlineQuery implements ApiReadType
     /**
      * Text of the query (up to 256 characters)
      */
-    public function query(): QueryText
+    public function query(): string
     {
         return $this->query;
     }

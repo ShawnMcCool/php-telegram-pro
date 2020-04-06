@@ -3,50 +3,25 @@
 /**
  * Type of chat, can be either “private”, “group”, “supergroup” or “channel”
  */
-final class ChatType implements ApiReadType
+final class ChatType extends ApiReadString
 {
-    private string $type;
-
-    private function __construct(string $type)
-    {
-        $this->type = $type;
-    }
-
-    public function __toString()
-    {
-        return $this->toString();
-    }
-
-    public function toString(): string
-    {
-        return $this->type;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public static function fromApi($type): ?self
-    {
-        return new static ($type);
-    }
-
     public function isPrivate(): bool
     {
-        return $this->type == 'private';
+        return $this->string == 'private';
     }
 
     public function isGroup(): bool
     {
-        return $this->type == 'group';
+        return $this->string == 'group';
     }
 
     public function isSupergroup(): bool
     {
-        return $this->type == 'supergroup';
+        return $this->string == 'supergroup';
     }
 
     public function isChannel(): bool
     {
-        return $this->type == 'channel';
+        return $this->string == 'channel';
     }
 }

@@ -19,6 +19,7 @@ Since this SDK uses an object model that mirrors the telegram data structures we
         - no magic objects
         - no need to look up the telegram documentation to construct requests or consume responses
         - documentation is integrated into objects
+        - separation between read / write models
     - add design decisions document
         - create structures that match the telegram api as accurately as possible
         - turn primitives into objects when invariants can be guarded or if it makes the sdk more usable

@@ -3,65 +3,35 @@
 /**
  * The member's status in the chat. Can be “creator”, “administrator”, “member”, “restricted”, “left” or “kicked”
  */
-final class ChatMemberStatus implements ApiReadType
+final class ChatMemberStatus extends ApiReadString
 {
-    private string $type;
-
-    private function __construct(string $type)
-    {
-        $this->type = $type;
-    }
-
-    public function __toString()
-    {
-        return $this->toString();
-    }
-
-    public function toString(): string
-    {
-        return $this->type;
-    }
-
     public function isCreator(): bool
     {
-        return $this->type == 'creator';
+        return $this->string == 'creator';
     }
 
     public function isAdministrator(): bool
     {
-        return $this->type == 'administrator';
+        return $this->string == 'administrator';
     }
 
     public function isMember(): bool
     {
-        return $this->type == 'member';
+        return $this->string == 'member';
     }
 
     public function isRestricted(): bool
     {
-        return $this->type == 'restricted';
+        return $this->string == 'restricted';
     }
 
     public function isLeft(): bool
     {
-        return $this->type == 'left';
+        return $this->string == 'left';
     }
 
     public function isKicked(): bool
     {
-        return $this->type == 'kicked';
+        return $this->string == 'kicked';
     }
-
-    /**
-     * @internal Construct with data received from the Telegram bot api.
-     */
-    public static function fromApi($type): ?self
-    {
-        if (is_null($type)) {
-            return null;
-        }
-
-        return new static ($type);
-    }
-
 }

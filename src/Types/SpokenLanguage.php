@@ -943,7 +943,7 @@ final class SpokenLanguage extends ApiReadString
         );
 
         if ( ! $language) {
-            throw new CouldNotFindLanguageUsingCode($twoLetterCode);
+            throw new CanNotFindLanguageUsingCode($twoLetterCode);
         }
 
         return $language;

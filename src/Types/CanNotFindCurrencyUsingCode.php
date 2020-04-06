@@ -2,4 +2,4 @@
 
 use TelegramPro\TelegramProException;
 
-final class CouldNotFindCurrencyUsingCode extends TelegramProException {}
+final class CanNotFindCurrencyUsingCode extends TelegramProException {}

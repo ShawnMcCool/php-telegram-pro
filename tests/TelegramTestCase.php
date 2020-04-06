@@ -17,26 +17,26 @@ class TelegramTestCase extends TestCase
     {
         parent::setUp();
 
-        $this->config = BotTestConfig::fromConfigFile('.bot-test-config');
+        $this->config = BotTestConfig::fromConfigFile('/vagrant/.bot-test-config');
 
         $this->telegram = TelegramHttpRequest::botToken(
             $this->config->token()
         );
 
         $this->media = TestMedia::paths(
-            'tests/Media/Images',
+            '/vagrant/tests/Media/Images',
             'https://homepages.cae.wisc.edu/~ece533/images/boat.png',
-            'tests/Media/Audio/audio.mp3',
-            'tests/Media/Audio/audio.m4a',
+            '/vagrant/tests/Media/Audio/audio.mp3',
+            '/vagrant/tests/Media/Audio/audio.m4a',
             'https://file-examples.com/wp-content/uploads/2017/11/file_example_MP3_700KB.mp3',
-            'tests/Media/Documents/the-comedy-of-errors_william-shakespeare.txt',
-            'tests/Media/Videos/big-buck-bunny-trailer.m4v',
+            '/vagrant/tests/Media/Documents/the-comedy-of-errors_william-shakespeare.txt',
+            '/vagrant/tests/Media/Videos/big-buck-bunny-trailer.m4v',
             'https://www.sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4',
-            'tests/Media/Animations/spinning-woman.gif',
+            '/vagrant/tests/Media/Animations/spinning-woman.gif',
             'https://www.sample-videos.com/gif/3.gif',
-            'tests/Media/Voice/hurdy-sample.ogg',
+            '/vagrant/tests/Media/Voice/hurdy-sample.ogg',
             'https://upload.wikimedia.org/wikipedia/commons/a/a3/HurdySample.ogg',
-            'tests/Media/VideoNotes/golden-ratio-240px.mp4'
+            '/vagrant/tests/Media/VideoNotes/golden-ratio-240px.mp4'
         );
     }
 

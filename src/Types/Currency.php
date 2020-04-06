@@ -1110,15 +1110,14 @@ final class Currency extends ApiReadString
 
     private function findRecord(string $threeLetterCode)
     {
-        $currencies = json_decode(static::$validCurrenciesJson, true);
-
-        $currency = collect($currencies)
-            ->first(
-                fn($currency) => $currency->code == strtoupper($threeLetterCode)
-            );
+        $currency = collect(
+            json_decode(static::$validCurrenciesJson, true)
+        )->first(
+            fn($currency) => $currency->code == strtoupper($threeLetterCode)
+        );
 
         if ( ! $currency) {
-            throw new CouldNotFindCurrencyUsingCode($threeLetterCode);
+            throw new CanNotFindCurrencyUsingCode($threeLetterCode);
         }
 
         return $currency;

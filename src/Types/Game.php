@@ -1,7 +1,5 @@
 <?php namespace TelegramPro\Types;
 
-use TelegramPro\Methods\Types\MessageText;
-
 /**
  * This object represents a game. Use BotFather to create and edit games, their short names will act as unique identifiers.
  */
@@ -10,7 +8,7 @@ final class Game implements ApiReadType
     private string $title;
     private string $description;
     private ArrayOfPhotoSizes $photos;
-    private ?MessageText $text;
+    private ?string $text;
     private ArrayOfMessageEntities $textEntities;
     private ?Animation $animation;
 
@@ -18,7 +16,7 @@ final class Game implements ApiReadType
         string $title,
         string $description,
         ArrayOfPhotoSizes $photos,
-        ?MessageText $text,
+        ?string $text,
         ArrayOfMessageEntities $textEntities,
         ?Animation $animation
     ) {
@@ -41,7 +39,7 @@ final class Game implements ApiReadType
             $game->title,
             $game->description,
             ArrayOfPhotoSizes::fromApi($game->photos),
-            MessageText::fromApi($game->text),
+            $game->text,
             ArrayOfMessageEntities::fromApi($game->text_entities),
             Animation::fromApi($game->animation)
         );
@@ -74,7 +72,7 @@ final class Game implements ApiReadType
     /**
      * Optional. Brief description of the game or high scores included in the game message. Can be automatically edited to include current high scores for the game when the bot calls setGameScore, or manually edited using editMessageText. 0-4096 characters.
      */
-    public function text(): ?MessageText
+    public function text(): ?string
     {
         return $this->text;
     }

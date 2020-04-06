@@ -2299,7 +2299,7 @@ final class CountryCode extends ApiReadString
         );
 
         if ( ! $country) {
-            throw new CouldNotFindCountryUsingCode($twoLetterCode);
+            throw new CanNotFindCountryUsingCode($twoLetterCode);
         }
 
         return $country;

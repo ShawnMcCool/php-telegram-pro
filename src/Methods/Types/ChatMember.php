@@ -1,11 +1,14 @@
-<?php namespace TelegramPro\Types;
+<?php namespace TelegramPro\Methods\Types;
 
 use Exception;
+use TelegramPro\Types\Date;
+use TelegramPro\Types\User;
+use TelegramPro\Types\ChatMemberStatus;
 
 /**
  * This object contains information about one member of a chat.
  */
-final class ChatMember implements ApiReadType
+final class ChatMember 
 {
     private User $user;
     private ChatMemberStatus $status;
