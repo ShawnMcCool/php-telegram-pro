@@ -13,8 +13,8 @@
         <testsuite name="unit">
             <directory suffix="Test.php">./tests/Unit</directory>
         </testsuite>
-        <testsuite name="api">
-            <directory suffix="Test.php">./tests/Api</directory>
+        <testsuite name="methods">
+            <directory suffix="Test.php">./tests/Bot</directory>
         </testsuite>
     </testsuites>
 </phpunit>

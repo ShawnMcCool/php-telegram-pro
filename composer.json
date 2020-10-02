@@ -4,7 +4,7 @@
   "authors": [
     {
       "name": "Shawn McCool",
-      "email": "shawnmc@gmail.com",
+      "email": "shawn@mccool.email",
       "homepage": "https://shawnmc.cool/"
     }
   ],
@@ -13,7 +13,7 @@
     "ext-json": "*",
     "ext-curl": "*",
     "ext-fileinfo": "*",
-    "ramsey/uuid": "^4.0"
+    "ramsey/uuid": "^3"
   },
   "require-dev": {
     "phpunit/phpunit": "^8.3@dev",
@@ -24,7 +24,7 @@
   },
   "autoload": {
     "psr-4": {
-      "TelegramPro\\": "src/"
+      "TelegramPro\\": "src"
     },
     "files": [
       "src/functions.php"

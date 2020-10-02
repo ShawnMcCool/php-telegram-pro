@@ -1,8 +1,8 @@
 <?php namespace TelegramPro\Api;
 
-use TelegramPro\Methods\Method;
+use TelegramPro\Bot\Methods\Request;
 
 interface Telegram
 {
-    public function send(Method $method);
+    public function send(Request $request);
 }

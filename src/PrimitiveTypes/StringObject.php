@@ -1,6 +1,9 @@
 <?php namespace TelegramPro\PrimitiveTypes;
 
-abstract class StringObject
+use TelegramPro\Bot\Types\ApiReadType;
+use TelegramPro\Bot\Methods\Types\ApiWriteType;
+
+abstract class StringObject implements ApiReadType, ApiWriteType
 {
     protected string $string;
 
@@ -9,21 +12,26 @@ abstract class StringObject
         $this->string = $string;
     }
 
-    public function __toString(): string
-    {
-        return $this->toString();
-    }
-
     public function toString(): string
     {
         return $this->string;
     }
-
+    
     public static function fromString(?string $string): ?self
     {
         if (is_null($string)) {
             return null;
         }
         return new static($string);
+    }
+
+    public function toApi()
+    {
+        return $this->string;
+    }
+
+    public static function fromApi($string): ?self
+    {
+        return static::fromString($string);
     }
 }

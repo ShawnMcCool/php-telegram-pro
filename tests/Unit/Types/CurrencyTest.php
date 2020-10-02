@@ -1,8 +1,8 @@
 <?php namespace Tests\Unit\Types;
 
 use Tests\TelegramTestCase;
-use TelegramPro\Methods\Types\Currency;
-use TelegramPro\Methods\Types\CurrencyIsNotSupported;
+use TelegramPro\Bot\Methods\Types\Currency;
+use TelegramPro\Bot\Methods\Types\CurrencyIsNotSupported;
 
 class CurrencyTest extends TelegramTestCase
 {

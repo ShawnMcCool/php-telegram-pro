@@ -1,10 +1,10 @@
 <?php namespace Tests;
 
 use Tests\Terminal\Ansi;
-use Tests\Api\BotTestConfig;
+use Tests\Bot\BotTestConfig;
 use TelegramPro\Api\Telegram;
 use PHPUnit\Framework\TestCase;
-use TelegramPro\Methods\Method;
+use TelegramPro\Bot\Methods\Method;
 use TelegramPro\Api\TelegramHttpRequest;
 
 class TelegramTestCase extends TestCase

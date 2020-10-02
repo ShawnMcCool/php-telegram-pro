@@ -2,13 +2,13 @@
 
 use Tests\ExampleWebhooks;
 use Tests\TelegramTestCase;
-use TelegramPro\Types\Update;
-use TelegramPro\Types\ChatId;
-use TelegramPro\Types\UserId;
-use TelegramPro\Types\UpdateId;
-use TelegramPro\Types\MessageId;
-use TelegramPro\Types\MessageEntity;
-use TelegramPro\Methods\Types\ChatType;
+use TelegramPro\Bot\Types\Update;
+use TelegramPro\Bot\Types\ChatId;
+use TelegramPro\Bot\Types\UserId;
+use TelegramPro\Bot\Types\UpdateId;
+use TelegramPro\Bot\Types\MessageId;
+use TelegramPro\Bot\Types\MessageEntity;
+use TelegramPro\Bot\Methods\Types\ChatType;
 
 final class UpdateTest extends TelegramTestCase
 {
@@ -26,7 +26,7 @@ final class UpdateTest extends TelegramTestCase
 
         self::assertNotNull($message);
         self::assertSame(1441645532, $message->date()->toUnixTimestamp());
-        $this->sameValue(MessageId::fromApi('1365'), $message->messageId());
+        $this->sameValue(MessageId::fromApi('1365'), $message->messageId()->toInteger());
         self::assertSame('/start', $message->text());
 
         # Message - Chat
@@ -34,7 +34,7 @@ final class UpdateTest extends TelegramTestCase
 
         self::assertSame('Test Lastname', $chat->lastName());
         $this->sameValue(ChatId::fromInt(1111111), $chat->chatId());
-        $this->sameValue(ChatType::private(), $chat->type());
+        $this->sameValue(ChatType::private()->toApi(), $chat->type()->toApi());
         self::assertSame('Test Firstname', $chat->firstName());
         self::assertSame('Testusername', $chat->username());
 
@@ -59,7 +59,7 @@ final class UpdateTest extends TelegramTestCase
 
         self::assertNotNull($message);
         self::assertSame(1441645532, $message->date()->toUnixTimestamp());
-        $this->sameValue(MessageId::fromApi('1365'), $message->messageId());
+        $this->sameValue(MessageId::fromApi('1365'), $message->messageId()->toInteger());
         self::assertSame(1441645550, $message->forwardDate()->toUnixTimestamp());
         self::assertSame('/start', $message->text());
 
@@ -68,7 +68,7 @@ final class UpdateTest extends TelegramTestCase
 
         self::assertSame('Test Lastname', $chat->lastName());
         $this->sameValue(ChatId::fromInt(1111111), $chat->chatId());
-        $this->sameValue(ChatType::private(), $chat->type());
+        $this->sameValue(ChatType::private()->toApi(), $chat->type()->toApi());
         self::assertSame('Test Firstname', $chat->firstName());
         self::assertSame('Testusername', $chat->username());
 
@@ -100,7 +100,7 @@ final class UpdateTest extends TelegramTestCase
 
         self::assertNotNull($message);
         self::assertSame(1441645532, $message->date()->toUnixTimestamp());
-        $this->sameValue(MessageId::fromApi('1365'), $message->messageId());
+        $this->sameValue(MessageId::fromApi('1365'), $message->messageId()->toInteger());
         self::assertSame(1441645550, $message->forwardDate()->toUnixTimestamp());
         self::assertSame('/start', $message->text());
 
@@ -109,7 +109,7 @@ final class UpdateTest extends TelegramTestCase
 
         self::assertSame('Test Lastname', $chat->lastName());
         $this->sameValue(ChatId::fromInt(1111111), $chat->chatId());
-        $this->sameValue(ChatType::private(), $chat->type());
+        $this->sameValue(ChatType::private()->toApi(), $chat->type()->toApi());
         self::assertSame('Test Firstname', $chat->firstName());
         self::assertSame('Testusername', $chat->username());
 
@@ -128,7 +128,7 @@ final class UpdateTest extends TelegramTestCase
         $fromChat = $message->forwardFromChat();
 
         $this->sameValue(ChatId::fromInt(-10000000000), $fromChat->chatId());
-        $this->sameValue(ChatType::channel(), $fromChat->type());
+        $this->sameValue(ChatType::channel()->toApi(), $fromChat->type()->toApi());
         self::assertSame('Test channel', $fromChat->title());
     }
 
@@ -144,7 +144,7 @@ final class UpdateTest extends TelegramTestCase
 
         self::assertNotNull($message);
         self::assertSame(1441645532, $message->date()->toUnixTimestamp());
-        $this->sameValue(1365, $message->messageId());
+        $this->sameValue(1365, $message->messageId()->toInteger());
         self::assertSame('/start', $message->text());
 
         # Message - Chat
@@ -152,7 +152,7 @@ final class UpdateTest extends TelegramTestCase
 
         self::assertSame('Test Lastname', $chat->lastName());
         $this->sameValue(1111111, $chat->chatId());
-        $this->sameValue('private', $chat->type());
+        $this->sameValue('private', $chat->type()->toString());
         self::assertSame('Test Firstname', $chat->firstName());
         self::assertSame('Testusername', $chat->username());
 
@@ -169,7 +169,7 @@ final class UpdateTest extends TelegramTestCase
 
         self::assertNotNull($replyToMessage);
         self::assertSame(1441645000, $replyToMessage->date()->toUnixTimestamp());
-        $this->sameValue(1334, $replyToMessage->messageId());
+        $this->sameValue(1334, $replyToMessage->messageId()->toInteger());
         self::assertSame('Original', $replyToMessage->text());
 
         # Reply To Message - Chat
@@ -177,7 +177,7 @@ final class UpdateTest extends TelegramTestCase
 
         self::assertSame('Reply Lastname', $replyToMessageChat->lastName());
         $this->sameValue(1111112, $replyToMessageChat->chatId());
-        $this->sameValue('private', $replyToMessageChat->type());
+        $this->sameValue('private', $replyToMessageChat->type()->toString());
         self::assertSame('Reply Firstname', $replyToMessageChat->firstName());
         self::assertSame('Testusername', $replyToMessageChat->username());
     }
@@ -195,7 +195,7 @@ final class UpdateTest extends TelegramTestCase
 
         self::assertNotNull($message);
         self::assertSame(1441645532, $message->date()->toUnixTimestamp());
-        $this->sameValue(1365, $message->messageId());
+        $this->sameValue(1365, $message->messageId()->toInteger());
         self::assertSame('Edited text', $message->text());
         self::assertSame(1441646600, $message->editDate()->toUnixTimestamp());
 
@@ -204,7 +204,7 @@ final class UpdateTest extends TelegramTestCase
 
         self::assertSame('Test Lastname', $chat->lastName());
         $this->sameValue(1111111, $chat->chatId());
-        $this->sameValue('private', $chat->type());
+        $this->sameValue('private', $chat->type()->toString());
         self::assertSame('Test Firstname', $chat->firstName());
         self::assertSame('Testusername', $chat->username());
 
@@ -229,7 +229,7 @@ final class UpdateTest extends TelegramTestCase
 
         self::assertNotNull($message);
         self::assertSame(1441645532, $message->date()->toUnixTimestamp());
-        $this->sameValue(1365, $message->messageId());
+        $this->sameValue(1365, $message->messageId()->toInteger());
         self::assertSame('Bold and italics', $message->text());
 
         # Message - Chat
@@ -237,7 +237,7 @@ final class UpdateTest extends TelegramTestCase
 
         self::assertSame('Test Lastname', $chat->lastName());
         $this->sameValue(1111111, $chat->chatId());
-        $this->sameValue('private', $chat->type());
+        $this->sameValue('private', $chat->type()->toString());
         self::assertSame('Test Firstname', $chat->firstName());
         self::assertSame('Testusername', $chat->username());
 
@@ -257,14 +257,14 @@ final class UpdateTest extends TelegramTestCase
         /** @var MessageEntity $one */
         $one = $entities[0];
 
-        $this->sameValue('italic', $one->type());
+        $this->sameValue('italic', $one->type()->toString());
         self::assertSame(9, $one->offset());
         self::assertSame(7, $one->length());
 
         /** @var MessageEntity $two */
         $two = $entities[1];
 
-        $this->sameValue('bold', $two->type());
+        $this->sameValue('bold', $two->type()->toString());
         self::assertSame(0, $two->offset());
         self::assertSame(4, $two->length());
     }
@@ -281,7 +281,7 @@ final class UpdateTest extends TelegramTestCase
 
         self::assertNotNull($message);
         self::assertSame(1441645532, $message->date()->toUnixTimestamp());
-        $this->sameValue(1365, $message->messageId());
+        $this->sameValue(1365, $message->messageId()->toInteger());
         self::assertNull($message->text());
 
         # Message - Chat
@@ -289,7 +289,7 @@ final class UpdateTest extends TelegramTestCase
 
         self::assertSame('Test Lastname', $chat->lastName());
         $this->sameValue(1111111, $chat->chatId());
-        $this->sameValue('private', $chat->type());
+        $this->sameValue('private', $chat->type()->toString());
         self::assertSame('Test Firstname', $chat->firstName());
         self::assertSame('Testusername', $chat->username());
 
@@ -304,7 +304,7 @@ final class UpdateTest extends TelegramTestCase
         # Message - Audio
         $audio = $message->audio();
 
-        $this->sameValue('AwADBAADbXXXXXXXXXXXGBdhD2l6_XX', $audio->fileId());
+        $this->sameValue('AwADBAADbXXXXXXXXXXXGBdhD2l6_XX', $audio->fileId()->toString());
         self::assertSame(243, $audio->duration());
         self::assertSame('audio/mpeg', $audio->mimeType());
         self::assertSame(3897500, $audio->fileSize());
@@ -323,14 +323,14 @@ final class UpdateTest extends TelegramTestCase
 
         self::assertNotNull($message);
         self::assertSame(1441645532, $message->date()->toUnixTimestamp());
-        $this->sameValue(1365, $message->messageId());
+        $this->sameValue(1365, $message->messageId()->toInteger());
 
         # Message - Chat
         $chat = $message->chat();
 
         self::assertSame('Test Lastname', $chat->lastName());
         $this->sameValue(1111111, $chat->chatId());
-        $this->sameValue('private', $chat->type());
+        $this->sameValue('private', $chat->type()->toString());
         self::assertSame('Test Firstname', $chat->firstName());
         self::assertSame('Testusername', $chat->username());
 
@@ -345,7 +345,7 @@ final class UpdateTest extends TelegramTestCase
         # Message - Voice
         $voice = $message->voice();
 
-        $this->sameValue('AwADBAADbXXXXXXXXXXXGBdhD2l6_XX', $voice->fileId());
+        $this->sameValue('AwADBAADbXXXXXXXXXXXGBdhD2l6_XX', $voice->fileId()->toString());
         self::assertSame(5, $voice->duration());
         self::assertSame('audio/ogg', $voice->mimeType());
         self::assertSame(23000, $voice->fileSize());
@@ -363,14 +363,14 @@ final class UpdateTest extends TelegramTestCase
 
         self::assertNotNull($message);
         self::assertSame(1441645532, $message->date()->toUnixTimestamp());
-        $this->sameValue(1365, $message->messageId());
+        $this->sameValue(1365, $message->messageId()->toInteger());
 
         # Message - Chat
         $chat = $message->chat();
 
         self::assertSame('Test Lastname', $chat->lastName());
         $this->sameValue(1111111, $chat->chatId());
-        $this->sameValue('private', $chat->type());
+        $this->sameValue('private', $chat->type()->toString());
         self::assertSame('Test Firstname', $chat->firstName());
         self::assertSame('Testusername', $chat->username());
 
@@ -385,7 +385,7 @@ final class UpdateTest extends TelegramTestCase
         # Message - Document
         $document = $message->document();
 
-        $this->sameValue('AwADBAADbXXXXXXXXXXXGBdhD2l6_XX', $document->fileId());
+        $this->sameValue('AwADBAADbXXXXXXXXXXXGBdhD2l6_XX', $document->fileId()->toString());
         self::assertSame('Testfile.pdf', $document->fileName());
         self::assertSame('application/pdf', $document->mimeType());
         self::assertSame(536392, $document->fileSize());
@@ -400,7 +400,7 @@ final class UpdateTest extends TelegramTestCase
         # Update - InlineQuery
         $query = $update->inlineQuery();
 
-        $this->sameValue('134567890097', $query->id());
+        $this->sameValue('134567890097', $query->id()->toString());
         $this->sameValue('inline query', $query->query());
         self::assertSame('', $query->offset());
 
@@ -422,9 +422,9 @@ final class UpdateTest extends TelegramTestCase
         # Update - ChosenInlineResult
         $inlineResult = $update->chosenInlineResult();
 
-        $this->sameValue('12', $inlineResult->resultId());
+        $this->sameValue('12', $inlineResult->resultId()->toString());
         self::assertSame('inline query', $inlineResult->query());
-        $this->sameValue('1234csdbsk4839', $inlineResult->inlineMessageId());
+        $this->sameValue('1234csdbsk4839', $inlineResult->inlineMessageId()->toString());
 
         # InlineQuery - From
         $from = $inlineResult->from();
@@ -444,9 +444,9 @@ final class UpdateTest extends TelegramTestCase
         # Update - CallbackQuery
         $callbackQuery = $update->callbackQuery();
         
-        $this->sameValue('4382bfdwdsb323b2d9', $callbackQuery->id());
+        $this->sameValue('4382bfdwdsb323b2d9', $callbackQuery->id()->toString());
         self::assertSame('Data from button callback', $callbackQuery->data());
-        $this->sameValue('1234csdbsk4839', $callbackQuery->inlineMessageId());
+        $this->sameValue('1234csdbsk4839', $callbackQuery->inlineMessageId()->toString());
 
         # InlineQuery - From
         $from = $callbackQuery->from();
