@@ -10,15 +10,12 @@ use TelegramPro\Bot\Methods\FileUploads\DocumentFile;
 use TelegramPro\Bot\Methods\FileUploads\FilesToUpload;
 use TelegramPro\Bot\Methods\FileUploads\InputPhotoFile;
 
-/**
- * @deprecated 
- */
 final class SendDocument implements Method
 {
     private ChatId $chatId;
     private DocumentFile $document;
     private ?InputPhotoFile $thumb;
-    private MediaCaption $caption;
+    private ?MediaCaption $caption;
     private ?ParseMode $parseMode;
     private ?bool $disableNotification;
     private ?MessageId $replyToMessageId;
@@ -53,12 +50,12 @@ final class SendDocument implements Method
             [
                 'chat_id' => $this->chatId,
                 'document' => $this->document,
-                'thumb' => $this->thumb,
-                'caption' => $this->caption,
-                'parse_mode' => $this->parseMode,
+                'thumb' => optional($this->thumb),
+                'caption' => optional($this->caption),
+                'parse_mode' => optional($this->parseMode),
                 'disable_web_page_preview' => $this->disableNotification,
                 'reply_to_message_id' => $this->replyToMessageId,
-                'reply_markup' => $this->replyMarkup ? $this->replyMarkup->toParameter() : null, // toParameter
+                'reply_markup' => optional($this->replyMarkup),
             ]
         )->withFiles(
             FilesToUpload::list(
@@ -68,10 +65,10 @@ final class SendDocument implements Method
         );
     }
 
-    function send(Telegram $telegramApi): SendPhotoResponse
+    function send(Telegram $telegramApi): SendDocumentResponse
     {
         return SendDocumentResponse::fromApi(
-            $telegramApi->send($this)
+            $telegramApi->send($this->request())
         );
     }
 
