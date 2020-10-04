@@ -6,22 +6,20 @@ use TelegramPro\Api\Telegram;
 use PHPUnit\Framework\TestCase;
 use TelegramPro\Bot\Methods\Method;
 use TelegramPro\Api\TelegramHttpRequest;
+use TelegramPro\Bot\RateLimiting\BlockingRateLimiter;
 
 class TelegramTestCase extends TestCase
 {
     protected Telegram $telegram;
     protected BotTestConfig $config;
     protected TestMedia $media;
+    private BlockingRateLimiter $rateLimiter;
 
     protected function setUp(): void
     {
         parent::setUp();
 
         $this->config = BotTestConfig::fromConfigFile('/vagrant/.bot-test-config');
-
-        $this->telegram = TelegramHttpRequest::botToken(
-            $this->config->token()
-        );
 
         $this->media = TestMedia::paths(
             '/vagrant/tests/Media/Images',
@@ -38,11 +36,23 @@ class TelegramTestCase extends TestCase
             'https://upload.wikimedia.org/wikipedia/commons/a/a3/HurdySample.ogg',
             '/vagrant/tests/Media/VideoNotes/golden-ratio-240px.mp4'
         );
+
+        if ( ! isset($_GLOBALS['rate_limited_telegram'])) {
+            $_GLOBALS['rate_limited_telegram'] = new BlockingRateLimiter(
+                TelegramHttpRequest::botToken(
+                    $this->config->token()
+                )
+            );
+        }
+
+        $this->telegram = $_GLOBALS['rate_limited_telegram'];
     }
 
-    protected function call(Method $method)
+    protected function send(Method $method)
     {
-        $this->telegram->send($method);
+        $method->send(
+            $this->telegram
+        );
     }
 
     protected function isOk($response)
@@ -57,16 +67,5 @@ class TelegramTestCase extends TestCase
     protected function sameValue(string $one, string $two)
     {
         self::assertSame($one, $two);
-    }
-
-    public static function tearDownAfterClass(): void
-    {
-        parent::tearDownAfterClass();
-//        echo Ansi::cyan('Sleeping.');
-//        sleep(1);
-//        echo Ansi::cyan('.');
-//        sleep(1);
-//        echo Ansi::cyan('.');
-//        sleep(1);
     }
 }

@@ -32,9 +32,9 @@ final class ForwardMessage implements Method
             'forwardMessage'
         )->withParameters(
             [
-                'chat_id' => $this->chatId,
-                'from_chat_id' => $this->fromChatId,
-                'message_id' => $this->messageId,
+                'chat_id' => $this->chatId->toApi(),
+                'from_chat_id' => $this->fromChatId->toApi(),
+                'message_id' => $this->messageId->toApi(),
                 'disable_notifications' => optional($this->disableNotification),
             ]
         );

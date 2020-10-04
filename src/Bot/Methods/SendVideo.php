@@ -59,8 +59,8 @@ final class SendVideo implements Method
             'sendVideo'
         )->withParameters(
             [
-                'chat_id' => $this->chatId,
-                'video' => $this->video,
+                'chat_id' => $this->chatId->toApi(),
+                'video' => $this->video->toApi(),
                 'caption' => optional($this->caption),
                 'parse_mode' => optional($this->parseMode),
                 'duration' => $this->duration,

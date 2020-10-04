@@ -7,42 +7,38 @@ use TelegramPro\Bot\Types\LivePeriod;
 use TelegramPro\Bot\Methods\SendLocation;
 use TelegramPro\Bot\Methods\Types\Message;
 use TelegramPro\Bot\Methods\Types\MethodError;
-use TelegramPro\Bot\Types\LivePeriodIsNotValid;
+use TelegramPro\Bot\Methods\StopMessageLiveLocation;
 
-class SendLocationTest extends TelegramTestCase
+class StopMessageLiveLocationTest extends TelegramTestCase
 {
-    function testSendLocation()
+    function testCanStopLiveLocation()
     {
-        $response = SendLocation::parameters(
-            $this->config->chatId(),
-            Latitude::fromFloat(90.0),
-            Longitude::fromFloat(180)
-        )->send($this->telegram);
-
-        $this->isOk($response);
-        self::assertInstanceOf(Message::class, $response->sentMessage());
-    }
-
-    function testLivePeriodMustBeBetween60And864000()
-    {
-        $this->expectException(LivePeriodIsNotValid::class);
-
-        SendLocation::parameters(
+        $locationResponse = SendLocation::parameters(
             $this->config->chatId(),
             Latitude::fromFloat(90.0),
             Longitude::fromFloat(180),
-            LivePeriod::fromInt(32)
+            LivePeriod::fromInt(86400)
         )->send($this->telegram);
+
+        $this->isOk($locationResponse);
+
+        $stopLocationResponse = StopMessageLiveLocation::parameters(
+            $this->config->chatId(),
+            $locationResponse->sentMessage()->messageId()
+        )->send($this->telegram);
+
+        self::assertInstanceOf(Message::class, $stopLocationResponse->sentMessage());
     }
 
     function testCanParseError()
     {
         $response = SendLocation::parameters(
             $this->config->chatId(),
-            Latitude::fromFloat(0.0),
-            Longitude::fromFloat(180)
+            Latitude::fromFloat(90.0),
+            Longitude::fromFloat(180),
+            LivePeriod::fromInt(86400)
         )->send($this->telegram);
-        
+
         self::assertFalse($response->ok());
         self::assertInstanceOf(MethodError::class, $response->error());
         self::assertSame('400', $response->error()->code());

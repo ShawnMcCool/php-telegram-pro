@@ -14,7 +14,7 @@ class SendDocumentTest extends TelegramTestCase
 {
     function testSendDocumentFileWithFilePath()
     {
-        $sent = SendDocument::parameters(
+        $response = SendDocument::parameters(
             $this->config->chatId(),
             DocumentFile::fromFilePath(
                 FilePath::fromString($this->media->document())
@@ -23,13 +23,13 @@ class SendDocumentTest extends TelegramTestCase
             MediaCaption::fromString('[SendDocument] send document with file path')
         )->send($this->telegram);
 
-        $this->isOk($sent);
-        self::assertInstanceOf(Message::class, $sent->botInformation());
+        $this->isOk($response);
+        self::assertInstanceOf(Message::class, $response->sentMessage());
     }
 
     function testSendDocumentWithUrl()
     {
-        $sent = SendDocument::parameters(
+        $response = SendDocument::parameters(
             $this->config->chatId(),
             DocumentFile::fromUrl(
                 Url::fromString($this->media->imageUrl())
@@ -38,15 +38,15 @@ class SendDocumentTest extends TelegramTestCase
             MediaCaption::fromString('[SendDocument] send document with url')
         )->send($this->telegram);
 
-        $this->isOk($sent);
-        self::assertInstanceOf(Message::class, $sent->botInformation());
+        $this->isOk($response);
+        self::assertInstanceOf(Message::class, $response->sentMessage());
     }
 
     function testSendDocumentWithFileId()
     {
         $num = rand(0, 32767);
 
-        $sent = SendDocument::parameters(
+        $response = SendDocument::parameters(
             $this->config->chatId(),
             DocumentFile::fromFilePath(
                 FilePath::fromString($this->media->document())
@@ -55,24 +55,24 @@ class SendDocumentTest extends TelegramTestCase
             MediaCaption::fromString('[SendDocument] send document with file id 1/2 ' . $num)
         )->send($this->telegram);
 
-        $documentId = $sent->botInformation()->document()->fileId();
+        $documentId = $response->sentMessage()->document()->fileId();
 
-        $sent = SendDocument::parameters(
+        $response = SendDocument::parameters(
             $this->config->chatId(),
             DocumentFile::fromFileId($documentId),
             null,
             MediaCaption::fromString('[SendDocument] send photo with file id 2/2 ' . $num)
         )->send($this->telegram);
 
-        $this->isOk($sent);
-        self::assertInstanceOf(Message::class, $sent->botInformation());
+        $this->isOk($response);
+        self::assertInstanceOf(Message::class, $response->sentMessage());
     }
 
     function testCanNotSendNonExistentFile()
     {
         $this->expectException(CanNotOpenFile::class);
 
-        $sent = SendDocument::parameters(
+        $response = SendDocument::parameters(
             $this->config->chatId(),
             DocumentFile::fromFilePath(
                 FilePath::fromString('non existent file')
@@ -84,7 +84,7 @@ class SendDocumentTest extends TelegramTestCase
 
     function testCanParseError()
     {
-        $sent = SendDocument::parameters(
+        $response = SendDocument::parameters(
             $this->config->chatId(),
             DocumentFile::fromUrl(
                 Url::fromString('https://bob')
@@ -93,9 +93,9 @@ class SendDocumentTest extends TelegramTestCase
             MediaCaption::fromString('[SendDocument] parse error test')
         )->send($this->telegram);
 
-        self::assertFalse($sent->ok());
-        self::assertInstanceOf(MethodError::class, $sent->error());
-        self::assertSame('400', $sent->error()->code());
-        self::assertNotEmpty($sent->error()->description());
+        self::assertFalse($response->ok());
+        self::assertInstanceOf(MethodError::class, $response->error());
+        self::assertSame('400', $response->error()->code());
+        self::assertNotEmpty($response->error()->description());
     }
 }

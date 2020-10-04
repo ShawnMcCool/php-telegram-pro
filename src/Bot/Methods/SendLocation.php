@@ -42,9 +42,9 @@ final class SendLocation implements Method
             'sendLocation'
         )->withParameters(
             [
-                'chat_id' => $this->chatId,
+                'chat_id' => $this->chatId->toApi(),
                 'latitude' => $this->latitude->toApi(),
-                'longitude' => $this->latitude->toApi(),
+                'longitude' => optional($this->latitude),
                 'live_period' => optional($this->livePeriod),
                 'disable_web_page_preview' => $this->disableNotification,
                 'reply_to_message_id' => optional($this->replyToMessageId),

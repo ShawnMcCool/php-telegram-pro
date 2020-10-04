@@ -14,7 +14,7 @@ class SendVideoTest extends TelegramTestCase
 {
     function testSendVideoWithFilePath()
     {
-        $sent = SendVideo::parameters(
+        $response = SendVideo::parameters(
             $this->config->chatId(),
             VideoFile::fromFilePath(
                 FilePath::fromString($this->media->video())
@@ -22,13 +22,13 @@ class SendVideoTest extends TelegramTestCase
             MediaCaption::fromString('[SendVideo] send video with file path')
         )->send($this->telegram);
 
-        $this->isOk($sent);
-        self::assertInstanceOf(Message::class, $sent->botInformation());
+        $this->isOk($response);
+        self::assertInstanceOf(Message::class, $response->sentMessage());
     }
 
     function testSendVideoWithUrl()
     {
-        $sent = SendVideo::parameters(
+        $response = SendVideo::parameters(
             $this->config->chatId(),
             VideoFile::fromUrl(
                 Url::fromString($this->media->videoUrl())
@@ -36,15 +36,15 @@ class SendVideoTest extends TelegramTestCase
             MediaCaption::fromString('[SendVideo] send video with url')
         )->send($this->telegram);
 
-        $this->isOk($sent);
-        self::assertInstanceOf(Message::class, $sent->botInformation());
+        $this->isOk($response);
+        self::assertInstanceOf(Message::class, $response->sentMessage());
     }
 
     function testSendVideoWithFileId()
     {
         $num = rand(0, 32767);
 
-        $sent = SendVideo::parameters(
+        $response = SendVideo::parameters(
             $this->config->chatId(),
             VideoFile::fromUrl(
                 Url::fromString($this->media->videoUrl())
@@ -52,23 +52,23 @@ class SendVideoTest extends TelegramTestCase
             MediaCaption::fromString('[SendVideo] send video with file id 1/2 ' . $num)
         )->send($this->telegram);
         
-        $sent = SendVideo::parameters(
+        $response = SendVideo::parameters(
             $this->config->chatId(),
             VideoFile::fromFileId(
-                $sent->botInformation()->video()->fileId()
+                $response->sentMessage()->video()->fileId()
             ),
             MediaCaption::fromString('[SendVideo] send video with file id 2/2 ' . $num)
         )->send($this->telegram);
 
-        $this->isOk($sent);
-        self::assertInstanceOf(Message::class, $sent->botInformation());
+        $this->isOk($response);
+        self::assertInstanceOf(Message::class, $response->sentMessage());
     }
 
     function testCanNotSendNonExistentFile()
     {
         $this->expectException(CanNotOpenFile::class);
 
-        $sent = SendVideo::parameters(
+        SendVideo::parameters(
             $this->config->chatId(),
             VideoFile::fromFilePath(
                 FilePath::fromString('non existent file')
@@ -79,7 +79,7 @@ class SendVideoTest extends TelegramTestCase
 
     function testCanParseError()
     {
-        $sent = SendVideo::parameters(
+        $response = SendVideo::parameters(
             $this->config->chatId(),
             VideoFile::fromUrl(
                 Url::fromString('https://bob')
@@ -87,9 +87,9 @@ class SendVideoTest extends TelegramTestCase
             MediaCaption::fromString('[SendVideo] parse error test')
         )->send($this->telegram);
 
-        self::assertFalse($sent->ok());
-        self::assertInstanceOf(MethodError::class, $sent->error());
-        self::assertSame('400', $sent->error()->code());
-        self::assertNotEmpty($sent->error()->description());
+        self::assertFalse($response->ok());
+        self::assertInstanceOf(MethodError::class, $response->error());
+        self::assertSame('400', $response->error()->code());
+        self::assertNotEmpty($response->error()->description());
     }
 }

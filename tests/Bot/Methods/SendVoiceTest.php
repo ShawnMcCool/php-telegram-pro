@@ -15,7 +15,7 @@ class SendVoiceTest extends TelegramTestCase
 {
     function testSendVoiceFileWithFilePath()
     {
-        $sent = SendVoice::parameters(
+        $response = SendVoice::parameters(
             $this->config->chatId(),
             VoiceFile::fromFilePath(
                 FilePath::fromString($this->media->voice())
@@ -23,13 +23,13 @@ class SendVoiceTest extends TelegramTestCase
             MediaCaption::fromString('[SendVoice] send voice with file path')
         )->send($this->telegram);
 
-        $this->isOk($sent);
-        self::assertInstanceOf(Message::class, $sent->botInformation());
+        $this->isOk($response);
+        self::assertInstanceOf(Message::class, $response->sentMessage());
     }
 
     function testSendVoiceWithUrl()
     {
-        $sent = SendVoice::parameters(
+        $response = SendVoice::parameters(
             $this->config->chatId(),
             VoiceFile::fromUrl(
                 Url::fromString($this->media->voiceUrl())
@@ -37,15 +37,15 @@ class SendVoiceTest extends TelegramTestCase
             MediaCaption::fromString('[SendVoice] send voice with url')
         )->send($this->telegram);
 
-        $this->isOk($sent);
-        self::assertInstanceOf(Message::class, $sent->botInformation());
+        $this->isOk($response);
+        self::assertInstanceOf(Message::class, $response->sentMessage());
     }
 
     function testSendVoiceWithFileId()
     {
         $num = rand(0, 32767);
 
-        $sent = SendVoice::parameters(
+        $response = SendVoice::parameters(
             $this->config->chatId(),
             VoiceFile::fromFilePath(
                 FilePath::fromString($this->media->voice())
@@ -53,11 +53,11 @@ class SendVoiceTest extends TelegramTestCase
             MediaCaption::fromString('[SendVoice] send voice with file id 1/2 ' . $num)
         )->send($this->telegram);
 
-        $this->isOk($sent);
+        $this->isOk($response);
         
-        $voiceId = $sent->botInformation()->voice()->fileId();
+        $voiceId = $response->sentMessage()->voice()->fileId();
         
-        $sent = SendVoice::parameters(
+        $response = SendVoice::parameters(
             $this->config->chatId(),
             VoiceFile::fromFileId(
                 $voiceId
@@ -65,15 +65,15 @@ class SendVoiceTest extends TelegramTestCase
             MediaCaption::fromString('[SendVoice] send voice with file id 2/2 ' . $num)
         )->send($this->telegram);
 
-        $this->isOk($sent);
-        self::assertInstanceOf(Message::class, $sent->botInformation());
+        $this->isOk($response);
+        self::assertInstanceOf(Message::class, $response->sentMessage());
     }
 
     function testCanNotSendNonExistentFile()
     {
         $this->expectException(CanNotOpenFile::class);
 
-        $sent = SendVoice::parameters(
+        $response = SendVoice::parameters(
             $this->config->chatId(),
             VoiceFile::fromFilePath(
                 FilePath::fromString('non existent file')
@@ -84,7 +84,7 @@ class SendVoiceTest extends TelegramTestCase
 
     function testCanParseError()
     {
-        $sent = SendVoice::parameters(
+        $response = SendVoice::parameters(
             $this->config->chatId(),
             VoiceFile::fromUrl(
                 Url::fromString('https://bob')
@@ -92,9 +92,9 @@ class SendVoiceTest extends TelegramTestCase
             MediaCaption::fromString('[SendVoice] parse error test')
         )->send($this->telegram);
 
-        self::assertFalse($sent->ok());
-        self::assertInstanceOf(MethodError::class, $sent->error());
-        self::assertSame('400', $sent->error()->code());
-        self::assertNotEmpty($sent->error()->description());
+        self::assertFalse($response->ok());
+        self::assertInstanceOf(MethodError::class, $response->error());
+        self::assertSame('400', $response->error()->code());
+        self::assertNotEmpty($response->error()->description());
     }
 }

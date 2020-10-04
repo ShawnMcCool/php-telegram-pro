@@ -56,8 +56,8 @@ final class SendAudio implements Method
             'sendAudio'
         )->withParameters(
             [
-                'chat_id' => $this->chatId,
-                'audio' => $this->audio,
+                'chat_id' => $this->chatId->toApi(),
+                'audio' => $this->audio->toApi(),
                 'thumb' => optional($this->thumb),
                 'caption' => optional($this->caption),
                 'parse_mode' => optional($this->parseMode),

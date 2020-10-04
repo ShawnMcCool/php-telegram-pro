@@ -3,20 +3,23 @@
 use TelegramPro\Bot\Types\ArrayOfMessages;
 use TelegramPro\Bot\Methods\Types\MethodError;
 
+/**
+ * On success, an array of the sent Messages is returned.
+ */
 final class SendMediaGroupResponse implements Response
 {
     private bool $ok;
-    private ArrayOfMessages $result;
+    private ArrayOfMessages $sentMessages;
     private ?MethodError $error;
 
     public function __construct(
         bool $ok,
-        ArrayOfMessages $result,
+        ArrayOfMessages $sentMessages,
         ?MethodError $error
     ) {
         $this->ok = $ok;
         $this->error = $error;
-        $this->result = $result;
+        $this->sentMessages = $sentMessages;
     }
 
     public function ok(): bool
@@ -24,9 +27,9 @@ final class SendMediaGroupResponse implements Response
         return $this->ok;
     }
 
-    public function botInformation(): ArrayOfMessages
+    public function sentMessages(): ArrayOfMessages
     {
-        return $this->result;
+        return $this->sentMessages;
     }
 
     public function error(): ?MethodError

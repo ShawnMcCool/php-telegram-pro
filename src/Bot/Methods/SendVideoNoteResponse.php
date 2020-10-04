@@ -3,19 +3,22 @@
 use TelegramPro\Bot\Methods\Types\Message;
 use TelegramPro\Bot\Methods\Types\MethodError;
 
+/**
+ * On success, the sent Message is returned.
+ */
 final class SendVideoNoteResponse implements Response
 {
     private bool $ok;
-    private ?Message $result;
+    private ?Message $sentMessage;
     private ?MethodError $error;
 
     public function __construct(
         bool $ok,
-        ?Message $result,
+        ?Message $sentMessage,
         ?MethodError $error
     ) {
         $this->ok = $ok;
-        $this->result = $result;
+        $this->sentMessage = $sentMessage;
         $this->error = $error;
     }
 
@@ -24,9 +27,9 @@ final class SendVideoNoteResponse implements Response
         return $this->ok;
     }
 
-    public function botInformation(): ?Message
+    public function sentMessage(): ?Message
     {
-        return $this->result;
+        return $this->sentMessage;
     }
 
     public function error(): ?MethodError

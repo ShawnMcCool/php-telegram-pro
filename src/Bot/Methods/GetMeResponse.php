@@ -9,16 +9,16 @@ use TelegramPro\Bot\Methods\Types\MethodError;
 final class GetMeResponse implements Response
 {
     private bool $ok;
-    private ?User $result;
+    private ?User $botInformation;
     private ?MethodError $error;
 
     public function __construct(
         bool $ok,
-        ?User $result,
+        ?User $botInformation,
         ?MethodError $error
     ) {
         $this->ok = $ok;
-        $this->result = $result;
+        $this->botInformation = $botInformation;
         $this->error = $error;
     }
 
@@ -29,7 +29,7 @@ final class GetMeResponse implements Response
 
     public function botInformation(): ?User
     {
-        return $this->result;
+        return $this->botInformation;
     }
 
     public function error(): ?MethodError

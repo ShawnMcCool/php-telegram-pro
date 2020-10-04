@@ -16,7 +16,8 @@ class SendMessageTest extends TelegramTestCase
         )->send($this->telegram);
 
         $this->isOk($response);
-        self::assertInstanceOf(Message::class, $response->botInformation());
+
+        self::assertInstanceOf(Message::class, $response->sentMessage());
     }
 
     function testSendMarkdownMessage()
@@ -27,19 +28,19 @@ class SendMessageTest extends TelegramTestCase
         )->send($this->telegram);
 
         $this->isOk($response);
-        self::assertInstanceOf(Message::class, $response->botInformation());
+        self::assertInstanceOf(Message::class, $response->sentMessage());
     }
 
     function testCanParseError()
     {
-        $sent = SendMessage::parameters(
+        $response = SendMessage::parameters(
             $this->config->wrongGroupId(),
             MessageText::fromString('[SendMessage] can parse error')
         )->send($this->telegram);
 
-        self::assertFalse($sent->ok());
-        self::assertInstanceOf(MethodError::class, $sent->error());
-        self::assertSame('400', $sent->error()->code());
-        self::assertNotEmpty($sent->error()->description());
+        self::assertFalse($response->ok());
+        self::assertInstanceOf(MethodError::class, $response->error());
+        self::assertSame('400', $response->error()->code());
+        self::assertNotEmpty($response->error()->description());
     }
 }

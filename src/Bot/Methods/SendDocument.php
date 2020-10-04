@@ -48,8 +48,8 @@ final class SendDocument implements Method
             'sendDocument'
         )->withParameters(
             [
-                'chat_id' => $this->chatId,
-                'document' => $this->document,
+                'chat_id' => $this->chatId->toApi(),
+                'document' => $this->document->toApi(),
                 'thumb' => optional($this->thumb),
                 'caption' => optional($this->caption),
                 'parse_mode' => optional($this->parseMode),

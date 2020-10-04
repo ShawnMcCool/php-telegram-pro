@@ -8,26 +8,26 @@ use TelegramPro\Bot\Methods\Types\MessageText;
 
 class ForwardMessageTest extends TelegramTestCase
 {
-    function testForwardMessage()
+    function testCanForwardMessage()
     {
         $messageText = '[ForwardMessage] can forward message ' . rand(0, 32767);
 
-        $sent = SendMessage::parameters(
+        $response = SendMessage::parameters(
             $this->config->chatId(),
             MessageText::fromString($messageText)
         )->send($this->telegram);
 
-        $this->isOk($sent);
-        self::assertInstanceOf(Message::class, $sent->botInformation());
+        $this->isOk($response);
+        self::assertInstanceOf(Message::class, $response->sentMessage());
 
         $forwarded = ForwardMessage::parameters(
             $this->config->chatId(),
             $this->config->chatId(),
-            $sent->botInformation()->messageId()
+            $response->sentMessage()->messageId()
         )->send($this->telegram);
 
         $this->isOk($forwarded);
-        self::assertInstanceOf(Message::class, $forwarded->botInformation());
-        self::assertSame($messageText, $forwarded->botInformation()->text());
+        self::assertInstanceOf(Message::class, $forwarded->sentMessage());
+        self::assertSame($messageText, $forwarded->sentMessage()->text());
     }
 }

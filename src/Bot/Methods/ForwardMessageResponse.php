@@ -9,16 +9,16 @@ use TelegramPro\Bot\Methods\Types\MethodError;
 final class ForwardMessageResponse implements Response
 {
     private bool $ok;
-    private ?Message $result;
+    private ?Message $sentMessage;
     private ?MethodError $error;
 
     public function __construct(
         bool $ok,
-        ?Message $result,
+        ?Message $sentMessage,
         ?MethodError $error
     ) {
         $this->ok = $ok;
-        $this->result = $result;
+        $this->sentMessage = $sentMessage;
         $this->error = $error;
     }
 
@@ -27,9 +27,9 @@ final class ForwardMessageResponse implements Response
         return $this->ok;
     }
 
-    public function botInformation(): ?Message
+    public function sentMessage(): ?Message
     {
-        return $this->result;
+        return $this->sentMessage;
     }
 
     public function error(): ?MethodError

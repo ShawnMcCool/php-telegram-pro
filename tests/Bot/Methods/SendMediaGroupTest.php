@@ -22,7 +22,7 @@ class SendMediaGroupTest extends TelegramTestCase
 {
     function testSendMediaGroupWithFilePath()
     {
-        $sent = SendMediaGroup::parameters(
+        $response = SendMediaGroup::parameters(
             $this->config->chatId(),
             MediaGroup::items(
                 InputMediaPhoto::fromFilePath(
@@ -36,15 +36,15 @@ class SendMediaGroupTest extends TelegramTestCase
             )
         )->send($this->telegram);
 
-        $this->isOk($sent);
+        $this->isOk($response);
         
-        self::assertCount(2, $sent->botInformation());
-        self::assertInstanceOf(Message::class, $sent->botInformation()->get(0));
+        self::assertCount(2, $response->sentMessages());
+        self::assertInstanceOf(Message::class, $response->sentMessages()->get(0));
     }
 
     function testSendMediaGroupWithUrl()
     {
-        $sent = SendMediaGroup::parameters(
+        $response = SendMediaGroup::parameters(
             $this->config->chatId(),
             MediaGroup::items(
                 InputMediaPhoto::fromUrl(
@@ -58,15 +58,15 @@ class SendMediaGroupTest extends TelegramTestCase
             )
         )->send($this->telegram);
 
-        $this->isOk($sent);
-        self::assertCount(2, $sent->botInformation());
+        $this->isOk($response);
+        self::assertCount(2, $response->sentMessages());
     }
 
     function testSendMediaGroupWithFileId()
     {
         $num = rand(0, 32767);
 
-        $sent = SendPhoto::parameters(
+        $response = SendPhoto::parameters(
             $this->config->chatId(),
             InputPhotoFile::fromFilePath(
                 FilePath::fromString($this->media->image())
@@ -74,11 +74,11 @@ class SendMediaGroupTest extends TelegramTestCase
             MediaCaption::fromString('[SendMediaGroup] send media group with file id 1/4 ' . $num)
         )->send($this->telegram);
 
-        /** @var PhotoSize $sentPhoto */
-        $this->isOk($sent);
-        $sentPhoto = $sent->botInformation()->photo()[0];
+        /** @var PhotoSize $responsePhoto */
+        $this->isOk($response);
+        $responsePhoto = $response->sentMessage()->photo()[0];
 
-        $sent = SendVideo::parameters(
+        $response = SendVideo::parameters(
             $this->config->chatId(),
             VideoFile::fromFilePath(
                 FilePath::fromString($this->media->video())
@@ -86,26 +86,26 @@ class SendMediaGroupTest extends TelegramTestCase
             MediaCaption::fromString('[SendMediaGroup] send media group with file id 2/4 ' . $num)
         )->send($this->telegram);
 
-        /** @var Video $sentPhoto */
-        $this->isOk($sent);
-        $sentVideo = $sent->botInformation()->video();
+        /** @var Video $responsePhoto */
+        $this->isOk($response);
+        $responseVideo = $response->sentMessage()->video();
 
-        $sent = SendMediaGroup::parameters(
+        $response = SendMediaGroup::parameters(
             $this->config->chatId(),
             MediaGroup::items(
                 InputMediaPhoto::fromFileId(
-                    $sentPhoto->fileId(),
+                    $responsePhoto->fileId(),
                     MediaCaption::fromString('[SendMediaGroup] send media group with file id 3/4')
                 ),
                 InputMediaVideo::fromFileId(
-                    $sentVideo->fileId(),
+                    $responseVideo->fileId(),
                     MediaCaption::fromString('[SendMediaGroup] send media group with file id 4/4')
                 )
             )
         )->send($this->telegram);
 
-        $this->isOk($sent);
-        self::assertCount(2, $sent->botInformation());
+        $this->isOk($response);
+        self::assertCount(2, $response->sentMessages());
     }
 
     function testCanNotSendNonExistentFile()
@@ -127,7 +127,7 @@ class SendMediaGroupTest extends TelegramTestCase
 
     function testCanParseError()
     {
-        $sent = SendMediaGroup::parameters(
+        $response = SendMediaGroup::parameters(
             $this->config->chatId(),
             MediaGroup::items(
                 InputMediaPhoto::fromUrl(
@@ -139,9 +139,9 @@ class SendMediaGroupTest extends TelegramTestCase
             )
         )->send($this->telegram);
 
-        self::assertFalse($sent->ok());
-        self::assertInstanceOf(MethodError::class, $sent->error());
-        self::assertSame('400', $sent->error()->code());
-        self::assertNotEmpty($sent->error()->description());
+        self::assertFalse($response->ok());
+        self::assertInstanceOf(MethodError::class, $response->error());
+        self::assertSame('400', $response->error()->code());
+        self::assertNotEmpty($response->error()->description());
     }
 }

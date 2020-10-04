@@ -46,8 +46,8 @@ final class SendVoice implements Method
             'sendVoice'
         )->withParameters(
             [
-                'chat_id' => $this->chatId,
-                'voice' => $this->voice,
+                'chat_id' => $this->chatId->toApi(),
+                'voice' => $this->voice->toApi(),
                 'caption' => optional($this->caption),
                 'parse_mode' => optional($this->parseMode),
                 'duration' => $this->duration,

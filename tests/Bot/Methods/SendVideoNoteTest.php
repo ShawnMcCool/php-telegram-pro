@@ -11,35 +11,35 @@ class SendVideoNoteTest extends TelegramTestCase
 {
     function testSendVideoNoteWithFilePath()
     {
-        $sent = SendVideoNote::parameters(
+        $response = SendVideoNote::parameters(
             $this->config->chatId(),
             VideoNoteFile::fromFilePath(
                 FilePath::fromString($this->media->videoNote())
             )
         )->send($this->telegram);
 
-        $this->isOk($sent);
-        self::assertInstanceOf(Message::class, $sent->botInformation());
+        $this->isOk($response);
+        self::assertInstanceOf(Message::class, $response->sentMessage());
     }
 
     function testSendVideoNoteWithFileId()
     {
-        $sent = SendVideoNote::parameters(
+        $response = SendVideoNote::parameters(
             $this->config->chatId(),
             VideoNoteFile::fromFilePath(
                 FilePath::fromString($this->media->videoNote())
             )
         )->send($this->telegram);
         
-        $sent = SendVideoNote::parameters(
+        $response = SendVideoNote::parameters(
             $this->config->chatId(),
             VideoNoteFile::fromFileId(
-                $sent->botInformation()->videoNote()->fileId()
+                $response->sentMessage()->videoNote()->fileId()
             )
         )->send($this->telegram);
 
-        $this->isOk($sent);
-        self::assertInstanceOf(Message::class, $sent->botInformation());
+        $this->isOk($response);
+        self::assertInstanceOf(Message::class, $response->sentMessage());
     }
 
     function testCanNotSendNonExistentFile()

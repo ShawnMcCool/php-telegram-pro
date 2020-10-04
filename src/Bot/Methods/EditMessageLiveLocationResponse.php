@@ -4,21 +4,21 @@ use TelegramPro\Bot\Methods\Types\Message;
 use TelegramPro\Bot\Methods\Types\MethodError;
 
 /**
- * On success, the sent Message is returned.
+ * On success, if the edited message was sent by the bot, the edited Message is returned, otherwise True is returned.
  */
-final class SendVoiceResponse implements Response
+final class EditMessageLiveLocationResponse implements Response
 {
     private bool $ok;
-    private ?Message $sentMessage;
+    private ?Message $editedMessage;
     private ?MethodError $error;
 
     public function __construct(
         bool $ok,
-        ?Message $sentMessage,
+        ?Message $editedMessage,
         ?MethodError $error
     ) {
         $this->ok = $ok;
-        $this->sentMessage = $sentMessage;
+        $this->editedMessage = $editedMessage;
         $this->error = $error;
     }
 
@@ -27,9 +27,9 @@ final class SendVoiceResponse implements Response
         return $this->ok;
     }
 
-    public function sentMessage(): ?Message
+    public function editedMessage(): ?Message
     {
-        return $this->sentMessage;
+        return $this->editedMessage;
     }
 
     public function error(): ?MethodError
@@ -39,8 +39,7 @@ final class SendVoiceResponse implements Response
 
     public static function fromApi(string $jsonResponse): self
     {
-        $response = json_decode($jsonResponse);
-
+       $response = json_decode($jsonResponse);
         return new static(
             $response->ok,
             Message::fromApi($response->result ?? null),

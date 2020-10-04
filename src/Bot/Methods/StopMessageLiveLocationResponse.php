@@ -6,7 +6,7 @@ use TelegramPro\Bot\Methods\Types\MethodError;
 /**
  * On success, the sent Message is returned.
  */
-final class SendVoiceResponse implements Response
+final class StopMessageLiveLocationResponse implements Response
 {
     private bool $ok;
     private ?Message $sentMessage;

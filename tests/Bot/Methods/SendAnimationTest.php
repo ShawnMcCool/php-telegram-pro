@@ -14,7 +14,7 @@ class SendAnimationTest extends TelegramTestCase
 {
     function testSendAnimationWithFilePath()
     {
-        $sent = SendAnimation::parameters(
+        $response = SendAnimation::parameters(
             $this->config->chatId(),
             AnimationFile::fromFilePath(
                 FilePath::fromString($this->media->animation())
@@ -22,13 +22,13 @@ class SendAnimationTest extends TelegramTestCase
             MediaCaption::fromString('[SendAnimation] send animation with file path')
         )->send($this->telegram);
 
-        $this->isOk($sent);
-        self::assertInstanceOf(Message::class, $sent->botInformation());
+        $this->isOk($response);
+        self::assertInstanceOf(Message::class, $response->sentMessage());
     }
 
     function testSendAnimationWithUrl()
     {
-        $sent = SendAnimation::parameters(
+        $response = SendAnimation::parameters(
             $this->config->chatId(),
             AnimationFile::fromUrl(
                 Url::fromString($this->media->animationUrl())
@@ -36,15 +36,15 @@ class SendAnimationTest extends TelegramTestCase
             MediaCaption::fromString('[SendAnimation] send animation with url')
         )->send($this->telegram);
 
-        $this->isOk($sent);
-        self::assertInstanceOf(Message::class, $sent->botInformation());
+        $this->isOk($response);
+        self::assertInstanceOf(Message::class, $response->sentMessage());
     }
 
     function testSendAnimationWithFileId()
     {
         $num = rand(0, 32767);
 
-        $sent = SendAnimation::parameters(
+        $response = SendAnimation::parameters(
             $this->config->chatId(),
             AnimationFile::fromUrl(
                 Url::fromString($this->media->animationUrl())
@@ -52,23 +52,23 @@ class SendAnimationTest extends TelegramTestCase
             MediaCaption::fromString('[SendAnimation] send animation with file id 1/2 ' . $num)
         )->send($this->telegram);
 
-        $sent = SendAnimation::parameters(
+        $response = SendAnimation::parameters(
             $this->config->chatId(),
             AnimationFile::fromFileId(
-                $sent->botInformation()->animation()->fileId()
+                $response->sentMessage()->animation()->fileId()
             ),
             MediaCaption::fromString('[SendAnimation] send animation with file id 2/2 ' . $num)
         )->send($this->telegram);
 
-        $this->isOk($sent);
-        self::assertInstanceOf(Message::class, $sent->botInformation());
+        $this->isOk($response);
+        self::assertInstanceOf(Message::class, $response->sentMessage());
     }
 
     function testCanNotSendNonExistentFile()
     {
         $this->expectException(CanNotOpenFile::class);
 
-        $sent = SendAnimation::parameters(
+        $response = SendAnimation::parameters(
             $this->config->chatId(),
             AnimationFile::fromFilePath(FilePath::fromString('non existent file')),
             MediaCaption::fromString('[SendAnimation] file does not exist error')
@@ -77,15 +77,15 @@ class SendAnimationTest extends TelegramTestCase
 
     function testCanParseError()
     {
-        $sent = SendAnimation::parameters(
+        $response = SendAnimation::parameters(
             $this->config->chatId(),
             AnimationFile::fromUrl(Url::fromString('https://bob')),
             MediaCaption::fromString('[SendAnimation] parse error test')
         )->send($this->telegram);
 
-        self::assertFalse($sent->ok());
-        self::assertInstanceOf(MethodError::class, $sent->error());
-        self::assertSame('400', $sent->error()->code());
-        self::assertNotEmpty($sent->error()->description());
+        self::assertFalse($response->ok());
+        self::assertInstanceOf(MethodError::class, $response->error());
+        self::assertSame('400', $response->error()->code());
+        self::assertNotEmpty($response->error()->description());
     }
 }

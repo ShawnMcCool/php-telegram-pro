@@ -45,7 +45,7 @@ final class SendVideoNote implements Method
             'sendVideoNote'
         )->withParameters(
             [
-                'chat_id' => $this->chatId,
+                'chat_id' => $this->chatId->toApi(),
                 'video_note' => $this->videoNote->toApi(),
                 'thumb' => optional($this->thumb),
                 'duration' => $this->duration,

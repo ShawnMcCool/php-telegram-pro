@@ -56,8 +56,8 @@ final class SendAnimation implements Method
             'sendAnimation'
         )->withParameters(
             [
-                'chat_id' => $this->chatId,
-                'animation' => $this->animation,
+                'chat_id' => $this->chatId->toApi(),
+                'animation' => $this->animation->toApi(),
                 'caption' => optional($this->caption),
                 'parse_mode' => optional($this->parseMode),
                 'duration' => optional($this->duration),

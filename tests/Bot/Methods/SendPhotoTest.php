@@ -15,7 +15,7 @@ class SendPhotoTest extends TelegramTestCase
 {
     function testSendPhotoWithFilePath()
     {
-        $sent = SendPhoto::parameters(
+        $response = SendPhoto::parameters(
             $this->config->chatId(),
             InputPhotoFile::fromFilePath(
                 FilePath::fromString($this->media->image())
@@ -23,13 +23,13 @@ class SendPhotoTest extends TelegramTestCase
             MediaCaption::fromString('[SendPhoto] send photo with file path')
         )->send($this->telegram);
 
-        $this->isOk($sent);
-        self::assertInstanceOf(Message::class, $sent->botInformation());
+        $this->isOk($response);
+        self::assertInstanceOf(Message::class, $response->sentMessage());
     }
     
     function testSendPhotoWithUrl()
     {
-        $sent = SendPhoto::parameters(
+        $response = SendPhoto::parameters(
             $this->config->chatId(),
             InputPhotoFile::fromUrl(
                 Url::fromString('https://homepages.cae.wisc.edu/~ece533/images/boat.png')
@@ -37,15 +37,15 @@ class SendPhotoTest extends TelegramTestCase
             MediaCaption::fromString('[SendPhoto] send photo with url')
         )->send($this->telegram);
 
-        $this->isOk($sent);
-        self::assertInstanceOf(Message::class, $sent->botInformation());
+        $this->isOk($response);
+        self::assertInstanceOf(Message::class, $response->sentMessage());
     }
 
     function testSendPhotoWithFileId()
     {
         $num = rand(0, 32767);
         
-        $sent = SendPhoto::parameters(
+        $response = SendPhoto::parameters(
             $this->config->chatId(),
             InputPhotoFile::fromFilePath(
                 FilePath::fromString($this->media->image())
@@ -54,23 +54,23 @@ class SendPhotoTest extends TelegramTestCase
         )->send($this->telegram);
 
         /** @var PhotoSize $photoSize */
-        $photoSize = $sent->botInformation()->photo()[0];
+        $photoSize = $response->sentMessage()->photo()[0];
 
-        $sent = SendPhoto::parameters(
+        $response = SendPhoto::parameters(
             $this->config->chatId(),
             InputPhotoFile::fromFileId($photoSize->fileId()),
             MediaCaption::fromString('[SendPhoto] send photo with file id 2/2 ' . $num)
         )->send($this->telegram);
         
-        $this->isOk($sent);
-        self::assertInstanceOf(Message::class, $sent->botInformation());
+        $this->isOk($response);
+        self::assertInstanceOf(Message::class, $response->sentMessage());
     }
 
     function testCanNotSendNonExistentFile()
     {
         $this->expectException(CanNotOpenFile::class);
 
-        $sent = SendPhoto::parameters(
+        $response = SendPhoto::parameters(
             $this->config->chatId(),
             InputPhotoFile::fromFilePath(
                 FilePath::fromString('non existent file')
@@ -81,7 +81,7 @@ class SendPhotoTest extends TelegramTestCase
 
     function testCanParseError()
     {
-        $sent = SendPhoto::parameters(
+        $response = SendPhoto::parameters(
             $this->config->chatId(),
             InputPhotoFile::fromUrl(
                 Url::fromString('https://bob')
@@ -89,9 +89,9 @@ class SendPhotoTest extends TelegramTestCase
             MediaCaption::fromString('[SendPhoto] parse error test')
         )->send($this->telegram);
         
-        self::assertFalse($sent->ok());
-        self::assertInstanceOf(MethodError::class, $sent->error());
-        self::assertSame('400', $sent->error()->code());
-        self::assertNotEmpty($sent->error()->description());
+        self::assertFalse($response->ok());
+        self::assertInstanceOf(MethodError::class, $response->error());
+        self::assertSame('400', $response->error()->code());
+        self::assertNotEmpty($response->error()->description());
     }
 }

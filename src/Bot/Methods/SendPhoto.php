@@ -44,8 +44,8 @@ final class SendPhoto implements Method
             'sendPhoto'
         )->withParameters(
             [
-                'chat_id' => $this->chatId,
-                'photo' => $this->photo,
+                'chat_id' => $this->chatId->toApi(),
+                'photo' => $this->photo->toApi(),
                 'caption' => optional($this->caption),
                 'parse_mode' => optional($this->parseMode),
                 'disable_web_page_preview' => $this->disableNotification,

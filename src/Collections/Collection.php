@@ -1,9 +1,7 @@
 <?php namespace TelegramPro\Collections;
 
 use Countable;
-use Exception;
 use ArrayAccess;
-use Traversable;
 use ArrayIterator;
 use JsonSerializable;
 use IteratorAggregate;
@@ -36,7 +34,7 @@ class Collection implements Countable, ArrayAccess, IteratorAggregate, JsonSeria
             $f($i);
         }
     }
-
+    
     public function equals(Collection $that, callable $func = null): bool
     {
         if (is_null($func)) {
@@ -114,12 +112,17 @@ class Collection implements Countable, ArrayAccess, IteratorAggregate, JsonSeria
 
     public function tail(): Collection
     {
-        return new static(array_slice($this->items, 1));
+        return $this->slice(1);
+    }
+
+    public function slice($offset, $length = null): self
+    {
+        return new static(array_slice($this->items, $offset, $length));
     }
 
     public function merge(Collection $that)
     {
-        return new static(array_merge((array)$this, ...$that));
+        return new static(array_merge((array) $this, ...$that));
     }
 
     public function reverse(): Collection
@@ -199,21 +202,6 @@ class Collection implements Countable, ArrayAccess, IteratorAggregate, JsonSeria
         );
     }
 
-    public static function of(array $items): Collection
-    {
-        return new static($items);
-    }
-
-    public static function empty(): Collection
-    {
-        return new static;
-    }
-
-    public static function list(...$items): Collection
-    {
-        return new static($items);
-    }
-
     /**
      * @inheritDoc
      */
@@ -228,5 +216,36 @@ class Collection implements Countable, ArrayAccess, IteratorAggregate, JsonSeria
     public function getIterator()
     {
         return new ArrayIterator($this->items);
+    }
+
+    public static function of(array $items): Collection
+    {
+        return new static($items);
+    }
+
+    public static function empty(): Collection
+    {
+        return new static;
+    }
+
+    public static function list(...$items): Collection
+    {
+        return new static($items);
+    }
+    
+        public function unique(?callable $f = null)
+    {
+        if (is_null($f)) {
+            return new static(array_values(array_unique($this->items)));
+        }
+
+        $hashTable = new MutableDictionary();
+
+        $this->each(function($item) use ($hashTable, $f) {
+            $hash = $f($item);
+            $hashTable->add($hash, $item);
+        });
+
+        return $hashTable->toCollection();
     }
 }
