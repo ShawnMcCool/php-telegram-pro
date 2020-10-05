@@ -5,18 +5,20 @@ use TelegramPro\Bot\Types\ChatId;
 use TelegramPro\Bot\Types\Latitude;
 use TelegramPro\Bot\Types\MessageId;
 use TelegramPro\Bot\Types\Longitude;
-use TelegramPro\Bot\Types\LivePeriod;
 use TelegramPro\Bot\Methods\Keyboards\ReplyMarkup;
 
 /**
- * Use this method to send point on the map. On success, the sent Message is returned.
+ * Use this method to send information about a venue. On success, the sent Message is returned.
  */
-final class SendLocation implements Method
+final class SendVenue implements Method
 {
     private ChatId $chatId;
     private Latitude $latitude;
     private Longitude $longitude;
-    private ?LivePeriod $livePeriod;
+    private string $title;
+    private string $address;
+    private ?string $foursquareId;
+    private ?string $foursquareType;
     private ?bool $disableNotification;
     private ?MessageId $replyToMessageId;
     private ?ReplyMarkup $replyMarkup;
@@ -25,7 +27,10 @@ final class SendLocation implements Method
         ChatId $chatId,
         Latitude $latitude,
         Longitude $longitude,
-        ?LivePeriod $livePeriod,
+        string $title,
+        string $address,
+        ?string $foursquareId,
+        ?string $foursquareType,
         ?bool $disableNotification,
         ?MessageId $replyToMessageId,
         ?ReplyMarkup $replyMarkup
@@ -33,7 +38,10 @@ final class SendLocation implements Method
         $this->chatId = $chatId;
         $this->latitude = $latitude;
         $this->longitude = $longitude;
-        $this->livePeriod = $livePeriod;
+        $this->title = $title;
+        $this->address = $address;
+        $this->foursquareId = $foursquareId;
+        $this->foursquareType = $foursquareType;
         $this->disableNotification = $disableNotification;
         $this->replyToMessageId = $replyToMessageId;
         $this->replyMarkup = $replyMarkup;
@@ -48,17 +56,20 @@ final class SendLocation implements Method
                 'chat_id' => $this->chatId->toApi(),
                 'latitude' => $this->latitude->toApi(),
                 'longitude' => optional($this->latitude),
-                'live_period' => optional($this->livePeriod),
-                'disable_web_page_preview' => $this->disableNotification,
+                'title' => $this->title,
+                'address' => $this->address,
+                'foursquareId' => $this->foursquareId,
+                'foursquareType' => $this->foursquareType,
+                'disable_notification' => $this->disableNotification,
                 'reply_to_message_id' => optional($this->replyToMessageId),
                 'reply_markup' => optional($this->replyMarkup),
             ]
         );
     }
 
-    function send(Telegram $telegramApi): SendLocationResponse
+    function send(Telegram $telegramApi): SendVenueResponse
     {
-        return SendLocationResponse::fromApi(
+        return SendVenueResponse::fromApi(
             $telegramApi->send($this->request())
         );
     }
@@ -67,7 +78,10 @@ final class SendLocation implements Method
         ChatId $chatId,
         Latitude $latitude,
         Longitude $longitude,
-        ?LivePeriod $livePeriod = null,
+        string $title,
+        string $address,
+        ?string $foursquareId = null,
+        ?string $foursquareType = null,
         ?bool $disableNotification = null,
         ?MessageId $replyToMessageId = null,
         ?ReplyMarkup $replyMarkup = null
@@ -76,10 +90,13 @@ final class SendLocation implements Method
             $chatId,
             $latitude,
             $longitude,
-            $livePeriod,
+            $title,
+            $address,
+            $foursquareId,
+            $foursquareType,
             $disableNotification,
             $replyToMessageId,
-            $replyMarkup
+            $replyMarkup,
         );
     }
 }

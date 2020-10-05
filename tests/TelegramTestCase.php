@@ -13,7 +13,6 @@ class TelegramTestCase extends TestCase
     protected Telegram $telegram;
     protected BotTestConfig $config;
     protected TestMedia $media;
-    private BlockingRateLimiter $rateLimiter;
 
     protected function setUp(): void
     {

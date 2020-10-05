@@ -2,12 +2,16 @@
 
 use Exception;
 use TelegramPro\Bot\Types\ChatId;
+use TelegramPro\Bot\Types\Latitude;
+use TelegramPro\Bot\Types\Longitude;
 
 final class BotTestConfig
 {
     private string $token;
     private ChatId $chatId;
     private ChatId $wrongGroupId;
+    private ?Latitude $latitude;
+    private ?Longitude $longitude;
 
     private function __construct(
         string $token,
@@ -17,6 +21,8 @@ final class BotTestConfig
         $this->token = $token;
         $this->chatId = $chatId;
         $this->wrongGroupId = $wrongGroupId;
+        $this->latitude = Latitude::fromFloat(50.010083);
+        $this->longitude = Longitude::fromFloat(-110.113006);
     }
 
     public function token(): string
@@ -34,6 +40,16 @@ final class BotTestConfig
         return $this->wrongGroupId;
     }
 
+    public function latitude(): ?Latitude
+    {
+        return $this->latitude;
+    }
+
+    public function longitude(): ?Longitude
+    {
+        return $this->longitude;
+    }
+    
     public static function fromConfigFile($filePath): BotTestConfig
     {
         if ( ! file_exists($filePath)) {

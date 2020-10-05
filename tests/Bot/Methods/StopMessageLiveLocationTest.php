@@ -15,8 +15,8 @@ class StopMessageLiveLocationTest extends TelegramTestCase
     {
         $locationResponse = SendLocation::parameters(
             $this->config->chatId(),
-            Latitude::fromFloat(90.0),
-            Longitude::fromFloat(180),
+            Latitude::fromFloat(45.0),
+            Longitude::fromFloat(90),
             LivePeriod::fromInt(86400)
         )->send($this->telegram);
 
@@ -26,7 +26,7 @@ class StopMessageLiveLocationTest extends TelegramTestCase
             $this->config->chatId(),
             $locationResponse->sentMessage()->messageId()
         )->send($this->telegram);
-
+        
         self::assertInstanceOf(Message::class, $stopLocationResponse->sentMessage());
     }
 
