@@ -31,7 +31,7 @@ final class StopMessageLiveLocation implements Method
     function request(): Request
     {
         return Request::multipartFormData(
-            'StopMessageLiveLocation'
+            'stopMessageLiveLocation'
         )->withParameters(
             [
                 'chat_id' => optional($this->chatId),

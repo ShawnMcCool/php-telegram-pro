@@ -1,20 +1,24 @@
 <?php namespace Tests\Bot\Methods;
 
 use Tests\TelegramTestCase;
+use TelegramPro\Bot\Types\ChatId;
+use TelegramPro\Bot\Types\Latitude;
+use TelegramPro\Bot\Types\Longitude;
 use TelegramPro\Bot\Methods\SendVenue;
+use TelegramPro\Bot\Methods\SendContact;
 use TelegramPro\Bot\Methods\Types\Message;
 use TelegramPro\Bot\Methods\Types\MethodError;
+use TelegramPro\Bot\Methods\Types\PhoneNumber;
 
-class SendVenueTest extends TelegramTestCase
+class SendContactTest extends TelegramTestCase
 {
     function testSendLocation()
     {
-        $response = SendVenue::parameters(
+        $response = SendContact::parameters(
             $this->config->chatId(),
-            $this->config->latitude(),
-            $this->config->longitude(),
-            'my cool venue',
-            '123 road street'
+            PhoneNumber::fromString('+612341234'),
+            'first name',
+            'last name'
         )->send($this->telegram);
 
         $this->isOk($response);
@@ -23,15 +27,13 @@ class SendVenueTest extends TelegramTestCase
 
     function testCanParseError()
     {
-        $response = SendVenue::parameters(
+        $response = SendContact::parameters(
             $this->config->wrongGroupId(),
-            $this->config->latitude(),
-            $this->config->longitude(),
-            '',
-            '',
-            '',
-            ''
+            PhoneNumber::fromString('+612341234'),
+            'first name',
+            'last name'
         )->send($this->telegram);
+
 
         self::assertFalse($response->ok());
         self::assertInstanceOf(MethodError::class, $response->error());

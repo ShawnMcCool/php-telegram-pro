@@ -39,7 +39,7 @@ final class EditMessageLiveLocation implements Method
     function request(): Request
     {
         return Request::multipartFormData(
-            'EditMessageLiveLocation'
+            'editMessageLiveLocation'
         )->withParameters(
             [
                 'latitude' => $this->latitude->toApi(),

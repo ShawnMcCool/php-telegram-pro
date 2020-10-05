@@ -31,13 +31,13 @@ final class Venue implements ApiReadType
     public static function fromApi($venue): ?Venue
     {
         if ( ! $venue) return null;
-
+        
         return new static(
             Location::fromApi($venue->location),
             $venue->title,
             $venue->address,
-            $venue->foursquare_id,
-            $venue->foursquare_type
+            $venue->foursquare_id ?? null,
+            $venue->foursquare_type ?? null
         );
     }
 

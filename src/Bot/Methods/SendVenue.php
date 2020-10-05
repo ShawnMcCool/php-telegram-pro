@@ -50,7 +50,7 @@ final class SendVenue implements Method
     function request(): Request
     {
         return Request::multipartFormData(
-            'sendLocation'
+            'sendVenue'
         )->withParameters(
             [
                 'chat_id' => $this->chatId->toApi(),

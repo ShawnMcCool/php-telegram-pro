@@ -3,6 +3,7 @@
 use Tests\TelegramTestCase;
 use TelegramPro\Bot\Types\Latitude;
 use TelegramPro\Bot\Types\Longitude;
+use TelegramPro\Bot\Types\MessageId;
 use TelegramPro\Bot\Types\LivePeriod;
 use TelegramPro\Bot\Methods\SendLocation;
 use TelegramPro\Bot\Methods\Types\Message;
@@ -15,13 +16,13 @@ class StopMessageLiveLocationTest extends TelegramTestCase
     {
         $locationResponse = SendLocation::parameters(
             $this->config->chatId(),
-            Latitude::fromFloat(45.0),
-            Longitude::fromFloat(90),
-            LivePeriod::fromInt(86400)
+            Latitude::fromFloat(90),
+            Longitude::fromFloat(-180),
+            LivePeriod::fromInt(400)
         )->send($this->telegram);
 
         $this->isOk($locationResponse);
-
+        
         $stopLocationResponse = StopMessageLiveLocation::parameters(
             $this->config->chatId(),
             $locationResponse->sentMessage()->messageId()
@@ -32,13 +33,11 @@ class StopMessageLiveLocationTest extends TelegramTestCase
 
     function testCanParseError()
     {
-        $response = SendLocation::parameters(
+        $response = StopMessageLiveLocation::parameters(
             $this->config->chatId(),
-            Latitude::fromFloat(90.0),
-            Longitude::fromFloat(180),
-            LivePeriod::fromInt(86400)
+            MessageId::fromInt(123)
         )->send($this->telegram);
-
+        
         self::assertFalse($response->ok());
         self::assertInstanceOf(MethodError::class, $response->error());
         self::assertSame('400', $response->error()->code());
