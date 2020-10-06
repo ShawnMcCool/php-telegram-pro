@@ -1,6 +1,8 @@
 <?php namespace TelegramPro\Bot\Types;
 
-final class PollReadType extends \TelegramPro\PrimitiveTypes\StringObject
+use TelegramPro\PrimitiveTypes\StringObject;
+
+final class PollType extends StringObject
 {
     public function isRegular(): bool
     {

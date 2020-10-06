@@ -35,7 +35,6 @@ abstract class IntegerObject implements ApiReadType, ApiWriteType
     public static function fromInt(?int $integer): ?self
     {
         if ( ! is_integer($integer)) {
-            
             return null;
         }
 

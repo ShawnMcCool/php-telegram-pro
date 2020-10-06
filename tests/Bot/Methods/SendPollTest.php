@@ -1,36 +1,40 @@
 <?php namespace Tests\Bot\Methods;
 
 use Tests\TelegramTestCase;
-use TelegramPro\Bot\Methods\SendContact;
+use TelegramPro\Bot\Methods\SendPoll;
 use TelegramPro\Bot\Methods\Types\Message;
+use TelegramPro\Bot\Types\ArrayOfPollOptions;
 use TelegramPro\Bot\Methods\Types\MethodError;
 use TelegramPro\Bot\Methods\Types\PhoneNumber;
 
-class SendContactTest extends TelegramTestCase
+class SendPollTest extends TelegramTestCase
 {
-    function testSendLocation()
+    function testSendPoll()
     {
-        $response = SendContact::parameters(
+        $response = SendPoll::parameters(
             $this->config->chatId(),
-            PhoneNumber::fromString('+612341234'),
-            'first name',
-            'last name'
+            'Is this a poll?',
+            ArrayOfPollOptions::fromArray(
+                [
+                    'yes', 'no', 'maybe',
+                ]
+            )
         )->send($this->telegram);
 
         $this->isOk($response);
         self::assertInstanceOf(Message::class, $response->sentMessage());
-        self::assertSame('+612341234', $response->sentMessage()->contact()->phoneNumber());
-        self::assertSame('first name', $response->sentMessage()->contact()->firstName());
-        self::assertSame('last name', $response->sentMessage()->contact()->lastName());
     }
 
     function testCanParseError()
     {
-        $response = SendContact::parameters(
+        $response = SendPoll::parameters(
             $this->config->wrongGroupId(),
-            PhoneNumber::fromString('+612341234'),
-            'first name',
-            'last name'
+            'Is this a poll?',
+            ArrayOfPollOptions::fromArray(
+                [
+                    'yes', 'no', 'maybe',
+                ]
+            )
         )->send($this->telegram);
 
         self::assertFalse($response->ok());

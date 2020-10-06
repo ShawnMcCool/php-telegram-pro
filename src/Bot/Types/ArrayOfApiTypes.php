@@ -10,7 +10,7 @@ use TelegramPro\Bot\Methods\Types\Message;
 
 abstract class ArrayOfApiTypes implements Countable, IteratorAggregate, ArrayAccess
 {
-    private Collection $items;
+    protected Collection $items;
 
     protected function __construct(Collection $messages)
     {

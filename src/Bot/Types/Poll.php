@@ -11,7 +11,7 @@ final class Poll
     private int $totalVoterCount;
     private bool $isClosed;
     private bool $isAnonymous;
-    private PollReadType $type;
+    private PollType $type;
     private bool $allowsMultipleAnswers;
     private ?PollOptionId $correctOptionId;
 
@@ -22,7 +22,7 @@ final class Poll
         int $totalVoterCount,
         bool $isClosed,
         bool $isAnonymous,
-        PollReadType $type,
+        PollType $type,
         bool $allowsMultipleAnswers,
         ?PollOptionId $correctOptionId
     ) {
@@ -51,9 +51,9 @@ final class Poll
             $poll->total_voter_count,
             $poll->is_closed,
             $poll->is_anonymous,
-            PollReadType::fromApi($poll->type),
+            PollType::fromApi($poll->type),
             $poll->allows_multiple_answers,
-            PollOptionId::fromInt($poll->correct_option_id)
+            PollOptionId::fromInt($poll->correct_option_id ?? null)
         );
     }
 
@@ -108,7 +108,7 @@ final class Poll
     /**
      * Poll type, currently can be “regular” or “quiz”
      */
-    public function type(): PollReadType
+    public function type(): PollType
     {
         return $this->type;
     }
