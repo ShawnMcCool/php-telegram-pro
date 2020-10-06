@@ -23,6 +23,9 @@ class SendContactTest extends TelegramTestCase
 
         $this->isOk($response);
         self::assertInstanceOf(Message::class, $response->sentMessage());
+        self::assertSame('+612341234', $response->sentMessage()->contact()->phoneNumber());
+        self::assertSame('first name', $response->sentMessage()->contact()->firstName());
+        self::assertSame('last name', $response->sentMessage()->contact()->lastName());
     }
 
     function testCanParseError()
@@ -33,8 +36,7 @@ class SendContactTest extends TelegramTestCase
             'first name',
             'last name'
         )->send($this->telegram);
-
-
+        
         self::assertFalse($response->ok());
         self::assertInstanceOf(MethodError::class, $response->error());
         self::assertSame('400', $response->error()->code());
