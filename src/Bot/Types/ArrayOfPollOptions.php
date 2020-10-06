@@ -2,6 +2,7 @@
 
 use TelegramPro\Collections\Collection;
 use TelegramPro\Bot\Methods\Types\ApiWriteType;
+use TelegramPro\Bot\Methods\Types\PollOptionText;
 
 /**
  * Contains a list of poll options
@@ -22,13 +23,19 @@ final class ArrayOfPollOptions extends ArrayOfApiTypes implements ApiReadType, A
         );
     }
 
-    public static function fromArray(array $pollOptions): self
+    public static function list(PollOptionText ...$options): self
     {
-        return new static(Collection::of($pollOptions));
+        return new static(Collection::of($options));
     }
     
     function toApi()
     {
-        return json_encode($this->items->toArray());
+        $options = $this
+            ->items
+            ->map(
+                fn(PollOptionText $option) => $option->toApi()
+            )->toArray();
+        
+        return json_encode($options);
     }
 }

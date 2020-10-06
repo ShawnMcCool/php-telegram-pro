@@ -6,6 +6,7 @@ use TelegramPro\Bot\Methods\Types\Message;
 use TelegramPro\Bot\Types\ArrayOfPollOptions;
 use TelegramPro\Bot\Methods\Types\MethodError;
 use TelegramPro\Bot\Methods\Types\PhoneNumber;
+use TelegramPro\Bot\Methods\Types\PollOptionText;
 
 class SendPollTest extends TelegramTestCase
 {
@@ -14,10 +15,10 @@ class SendPollTest extends TelegramTestCase
         $response = SendPoll::parameters(
             $this->config->chatId(),
             'Is this a poll?',
-            ArrayOfPollOptions::fromArray(
-                [
-                    'yes', 'no', 'maybe',
-                ]
+            ArrayOfPollOptions::list(
+                PollOptionText::fromString('yes'),
+                PollOptionText::fromString('no'),
+                PollOptionText::fromString('maybe')
             )
         )->send($this->telegram);
 
@@ -30,10 +31,10 @@ class SendPollTest extends TelegramTestCase
         $response = SendPoll::parameters(
             $this->config->wrongGroupId(),
             'Is this a poll?',
-            ArrayOfPollOptions::fromArray(
-                [
-                    'yes', 'no', 'maybe',
-                ]
+            ArrayOfPollOptions::list(
+                PollOptionText::fromString('yes'),
+                PollOptionText::fromString('no'),
+                PollOptionText::fromString('maybe')
             )
         )->send($this->telegram);
 

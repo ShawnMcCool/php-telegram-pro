@@ -1,5 +1,7 @@
 <?php namespace TelegramPro\Bot\Types;
 
+use TelegramPro\Bot\Methods\Types\PollOptionText;
+
 /**
  * This object contains information about one answer option in a poll.
  */

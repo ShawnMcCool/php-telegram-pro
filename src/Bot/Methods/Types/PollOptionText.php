@@ -1,31 +1,13 @@
 <?php namespace TelegramPro\Bot\Methods\Types;
 
+use TelegramPro\PrimitiveTypes\StringObject;
+
 /**
  * Poll option text, 1-100 characters
  */
-final class PollOptionText
+final class PollOptionText extends StringObject
 {
-    private string $text;
-
-    private function __construct(string $text)
-    {
-        $this->text = $text;
-    }
-
-    public function toString(): string
-    {
-        return $this->text;
-    }
-
-    public function __toString()
-    {
-        return $this->toString();
-    }
-
-    /**
-     * @internal Construct with data received from the Telegram bot api.
-     */
-    public static function fromApi($pollOptionText): ?self
+    public static function fromString($pollOptionText): ?self
     {
         if (is_null($pollOptionText)) {
             return null;
