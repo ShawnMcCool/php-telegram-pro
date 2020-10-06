@@ -1,10 +1,10 @@
 <?php namespace Tests\Bot\Methods;
 
 use Tests\TelegramTestCase;
-use TelegramPro\Bot\Types\ChatId;
 use TelegramPro\Bot\Types\Latitude;
 use TelegramPro\Bot\Types\Longitude;
 use TelegramPro\Bot\Types\LivePeriod;
+use TelegramPro\Bot\Methods\Types\ChatId;
 use TelegramPro\Bot\Methods\SendLocation;
 use TelegramPro\Bot\Methods\Types\Message;
 use TelegramPro\Bot\Methods\Types\MethodError;

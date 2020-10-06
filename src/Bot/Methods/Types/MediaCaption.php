@@ -1,6 +1,5 @@
 <?php namespace TelegramPro\Bot\Methods\Types;
 
-use TelegramPro\Bot\Types\ApiReadType;
 use TelegramPro\PrimitiveTypes\StringObject;
 
 /**

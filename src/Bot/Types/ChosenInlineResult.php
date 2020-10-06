@@ -1,6 +1,8 @@
 <?php namespace TelegramPro\Bot\Types;
 
 use TelegramPro\Bot\Methods\Types\User;
+use TelegramPro\Bot\Methods\Types\Location;
+use TelegramPro\Bot\Methods\Types\ApiReadType;
 
 /**
  * Optional. The result of an inline query that was chosen by a user and sent to their chat partner. Please see our documentation on the feedback collecting for details on how to enable these updates for your bot.

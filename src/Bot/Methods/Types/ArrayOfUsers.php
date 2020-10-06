@@ -1,6 +1,6 @@
-<?php namespace TelegramPro\Bot\Types;
+<?php namespace TelegramPro\Bot\Methods\Types;
 
-use TelegramPro\Bot\Methods\Types\User;
+use TelegramPro\Bot\Types\ArrayOfApiTypes;
 
 /**
  * Contains a list of users

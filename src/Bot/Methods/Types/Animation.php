@@ -1,4 +1,8 @@
-<?php namespace TelegramPro\Bot\Types;
+<?php namespace TelegramPro\Bot\Methods\Types;
+
+use TelegramPro\Bot\Types\FileId;
+use TelegramPro\Bot\Types\PhotoSize;
+use TelegramPro\Bot\Types\FileUniqueId;
 
 /**
  * This object represents an animation file (GIF or H.264/MPEG-4 AVC video without sound).

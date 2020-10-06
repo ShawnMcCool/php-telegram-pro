@@ -1,5 +1,7 @@
 <?php namespace TelegramPro\Bot\Types;
 
+use TelegramPro\Bot\Methods\Types\ApiReadType;
+
 /**
  * This object represents information about an order.
  */

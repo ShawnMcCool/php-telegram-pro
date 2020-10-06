@@ -1,7 +1,5 @@
 <?php namespace TelegramPro\Bot\Methods\Types;
 
-use TelegramPro\Bot\Types\ApiReadType;
-
 /**
  * Optional. IETF language tag of the user's language
  * https://en.wikipedia.org/wiki/IETF_language_tag

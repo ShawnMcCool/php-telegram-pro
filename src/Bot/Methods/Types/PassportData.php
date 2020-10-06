@@ -1,4 +1,7 @@
-<?php namespace TelegramPro\Bot\Types;
+<?php namespace TelegramPro\Bot\Methods\Types;
+
+use TelegramPro\Bot\Types\EncryptedCredentials;
+use TelegramPro\Bot\Types\ArrayOfEncryptedPassportElements;
 
 /**
  * Contains information about Telegram Passport data shared with the bot by the user.

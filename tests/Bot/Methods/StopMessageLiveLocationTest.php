@@ -3,10 +3,10 @@
 use Tests\TelegramTestCase;
 use TelegramPro\Bot\Types\Latitude;
 use TelegramPro\Bot\Types\Longitude;
-use TelegramPro\Bot\Types\MessageId;
 use TelegramPro\Bot\Types\LivePeriod;
 use TelegramPro\Bot\Methods\SendLocation;
 use TelegramPro\Bot\Methods\Types\Message;
+use TelegramPro\Bot\Methods\Types\MessageId;
 use TelegramPro\Bot\Methods\Types\MethodError;
 use TelegramPro\Bot\Methods\StopMessageLiveLocation;
 

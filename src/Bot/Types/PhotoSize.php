@@ -1,5 +1,7 @@
 <?php namespace TelegramPro\Bot\Types;
 
+use TelegramPro\Bot\Methods\Types\ApiReadType;
+
 /**
  * This object represents one size of a photo or a file / sticker thumbnail.
  */

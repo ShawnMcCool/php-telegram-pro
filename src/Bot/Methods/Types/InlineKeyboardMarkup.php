@@ -1,4 +1,6 @@
-<?php namespace TelegramPro\Bot\Types;
+<?php namespace TelegramPro\Bot\Methods\Types;
+
+use TelegramPro\Bot\Types\ArrayOfInlineKeyboardRows;
 
 /**
  * This object represents an inline keyboard that appears right next to the message it belongs to.

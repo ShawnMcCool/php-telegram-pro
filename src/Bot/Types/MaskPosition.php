@@ -1,5 +1,7 @@
 <?php namespace TelegramPro\Bot\Types;
 
+use TelegramPro\Bot\Methods\Types\ApiReadType;
+
 /**
  * This object describes the position on faces where a mask should be placed by default.
  */

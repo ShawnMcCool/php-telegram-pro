@@ -1,7 +1,5 @@
 <?php namespace TelegramPro\Bot\Methods\Types;
 
-use TelegramPro\Bot\Types\ApiReadType;
-
 final class Url implements ApiReadType, ApiWriteType
 {
     private string $url;

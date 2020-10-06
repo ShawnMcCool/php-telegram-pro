@@ -1,7 +1,5 @@
 <?php namespace TelegramPro\Bot\Methods\Types;
 
-use TelegramPro\Bot\Types\ApiReadType;
-
 /**
  * Optional. Data associated with the callback button. Be aware that a bad client can send arbitrary data in this field.
  */

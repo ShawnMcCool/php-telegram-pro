@@ -1,6 +1,7 @@
-<?php namespace TelegramPro\Bot\Types;
-use TelegramPro\Bot\Methods\Types\Url;
-use TelegramPro\Bot\Methods\Types\Message;
+<?php namespace TelegramPro\Bot\Methods\Types;
+use TelegramPro\Bot\Types\ChatType;
+use TelegramPro\Bot\Types\ChatPhoto;
+use TelegramPro\Bot\Types\ChatPermissions;
 
 /**
  * This object represents a chat.

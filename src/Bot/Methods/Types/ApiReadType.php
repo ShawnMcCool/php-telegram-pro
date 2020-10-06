@@ -1,4 +1,4 @@
-<?php namespace TelegramPro\Bot\Types;
+<?php namespace TelegramPro\Bot\Methods\Types;
 
 
 interface ApiReadType

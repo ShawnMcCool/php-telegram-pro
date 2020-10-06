@@ -1,10 +1,10 @@
 <?php namespace TelegramPro\Bot\Methods;
 
 use TelegramPro\Api\Telegram;
-use TelegramPro\Bot\Types\ChatId;
 use TelegramPro\Bot\Types\Latitude;
-use TelegramPro\Bot\Types\MessageId;
 use TelegramPro\Bot\Types\Longitude;
+use TelegramPro\Bot\Methods\Types\ChatId;
+use TelegramPro\Bot\Methods\Types\MessageId;
 use TelegramPro\Bot\Methods\Keyboards\ReplyMarkup;
 
 /**

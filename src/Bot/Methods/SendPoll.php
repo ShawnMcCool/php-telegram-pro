@@ -1,15 +1,15 @@
 <?php namespace TelegramPro\Bot\Methods;
 
 use TelegramPro\Api\Telegram;
-use TelegramPro\Bot\Types\ChatId;
-use TelegramPro\Bot\Types\PollType;
-use TelegramPro\Bot\Types\MessageId;
-use TelegramPro\Bot\Types\PollOptionId;
+use TelegramPro\Bot\Methods\Types\ChatId;
+use TelegramPro\Bot\Methods\Types\PollType;
+use TelegramPro\Bot\Methods\Types\MessageId;
 use TelegramPro\Bot\Methods\Types\ParseMode;
-use TelegramPro\Bot\Types\ArrayOfPollOptions;
+use TelegramPro\Bot\Methods\Types\PollOptionId;
 use TelegramPro\Bot\Methods\Types\PollCloseDate;
 use TelegramPro\Bot\Methods\Types\PollOpenPeriod;
 use TelegramPro\Bot\Methods\Keyboards\ReplyMarkup;
+use TelegramPro\Bot\Methods\Types\ArrayOfPollOptions;
 
 /**
  * Use this method to send a native poll.

@@ -3,10 +3,9 @@
 use Tests\TelegramTestCase;
 use TelegramPro\Bot\Methods\SendPoll;
 use TelegramPro\Bot\Methods\Types\Message;
-use TelegramPro\Bot\Types\ArrayOfPollOptions;
 use TelegramPro\Bot\Methods\Types\MethodError;
-use TelegramPro\Bot\Methods\Types\PhoneNumber;
 use TelegramPro\Bot\Methods\Types\PollOptionText;
+use TelegramPro\Bot\Methods\Types\ArrayOfPollOptions;
 
 class SendPollTest extends TelegramTestCase
 {

@@ -1,8 +1,13 @@
-<?php namespace TelegramPro\Bot\Types;
+<?php namespace TelegramPro\Bot\Methods\Types;
 
 /*
  * This object represents an audio file to be treated as music by the Telegram clients.
  */
+
+use TelegramPro\Bot\Types\FileId;
+use TelegramPro\Bot\Types\PhotoSize;
+use TelegramPro\Bot\Types\FileUniqueId;
+
 final class Audio implements ApiReadType
 {
     private FileId $fileId;

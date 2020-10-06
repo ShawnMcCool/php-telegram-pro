@@ -1,6 +1,6 @@
 <?php namespace TelegramPro\PrimitiveTypes;
 
-use TelegramPro\Bot\Types\ApiReadType;
+use TelegramPro\Bot\Methods\Types\ApiReadType;
 use TelegramPro\Bot\Methods\Types\ApiWriteType;
 
 abstract class IntegerObject implements ApiReadType, ApiWriteType

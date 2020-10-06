@@ -1,5 +1,6 @@
 <?php namespace TelegramPro\Bot\Types;
 
+use TelegramPro\Bot\Methods\Types\ApiReadType;
 use TelegramPro\Bot\Methods\Types\PollOptionText;
 
 /**

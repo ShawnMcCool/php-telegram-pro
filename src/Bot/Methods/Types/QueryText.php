@@ -1,7 +1,6 @@
 <?php namespace TelegramPro\Bot\Methods\Types;
 
 use JsonSerializable;
-use TelegramPro\Bot\Types\ApiReadType;
 
 /**
  * Text of the query (up to 256 characters)

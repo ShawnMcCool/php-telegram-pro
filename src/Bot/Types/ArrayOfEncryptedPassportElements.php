@@ -1,5 +1,7 @@
 <?php namespace TelegramPro\Bot\Types;
 
+use TelegramPro\Bot\Methods\Types\ApiReadType;
+
 /**
  * Contains multiple encrypted passport elements
  */

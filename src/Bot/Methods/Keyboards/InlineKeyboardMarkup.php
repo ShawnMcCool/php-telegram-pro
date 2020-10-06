@@ -1,6 +1,6 @@
 <?php namespace TelegramPro\Bot\Methods\Keyboards;
 
-use TelegramPro\Bot\Types\ApiReadType;
+use TelegramPro\Bot\Methods\Types\ApiReadType;
 use TelegramPro\Bot\Types\ArrayOfInlineKeyboardRows;
 
 /**

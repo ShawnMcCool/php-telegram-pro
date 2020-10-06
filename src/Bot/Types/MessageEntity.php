@@ -2,6 +2,7 @@
 
 use TelegramPro\Bot\Methods\Types\Url;
 use TelegramPro\Bot\Methods\Types\User;
+use TelegramPro\Bot\Methods\Types\ApiReadType;
 
 /**
  * This object represents one special entity in a text message. For example, hashtags, usernames, URLs, etc.

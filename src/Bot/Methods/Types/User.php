@@ -1,7 +1,6 @@
 <?php namespace TelegramPro\Bot\Methods\Types;
 
 use TelegramPro\Bot\Types\UserId;
-use TelegramPro\Bot\Types\ApiReadType;
 use TelegramPro\Bot\Types\SpokenLanguage;
 
 /**

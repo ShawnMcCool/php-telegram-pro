@@ -1,8 +1,8 @@
-<?php namespace TelegramPro\Bot\Types;
+<?php namespace TelegramPro\Bot\Methods\Types;
 
+use TelegramPro\Bot\Types\PollOption;
 use TelegramPro\Collections\Collection;
-use TelegramPro\Bot\Methods\Types\ApiWriteType;
-use TelegramPro\Bot\Methods\Types\PollOptionText;
+use TelegramPro\Bot\Types\ArrayOfApiTypes;
 
 /**
  * Contains a list of poll options

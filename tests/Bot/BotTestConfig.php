@@ -1,9 +1,9 @@
 <?php namespace Tests\Bot;
 
 use Exception;
-use TelegramPro\Bot\Types\ChatId;
 use TelegramPro\Bot\Types\Latitude;
 use TelegramPro\Bot\Types\Longitude;
+use TelegramPro\Bot\Methods\Types\ChatId;
 
 final class BotTestConfig
 {

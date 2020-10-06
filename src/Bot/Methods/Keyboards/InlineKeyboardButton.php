@@ -2,8 +2,8 @@
 
 use TelegramPro\Bot\Types\LoginUrl;
 use TelegramPro\Bot\Methods\Types\Url;
-use TelegramPro\Bot\Types\ApiReadType;
 use TelegramPro\Bot\Types\CallbackGame;
+use TelegramPro\Bot\Methods\Types\ApiReadType;
 use TelegramPro\Bot\Methods\Types\CallbackData;
 
 /**

@@ -1,4 +1,4 @@
-<?php namespace TelegramPro\Bot\Types;
+<?php namespace TelegramPro\Bot\Methods\Types;
 
 /**
  * This object represents a game. Use BotFather to create and edit games, their short names will act as unique identifiers.

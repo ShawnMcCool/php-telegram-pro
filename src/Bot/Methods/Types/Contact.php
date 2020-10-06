@@ -1,4 +1,6 @@
-<?php namespace TelegramPro\Bot\Types;
+<?php namespace TelegramPro\Bot\Methods\Types;
+
+use TelegramPro\Bot\Types\UserId;
 
 /**
  * This object represents a phone contact.

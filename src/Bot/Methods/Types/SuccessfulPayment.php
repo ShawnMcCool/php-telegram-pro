@@ -1,4 +1,8 @@
-<?php namespace TelegramPro\Bot\Types;
+<?php namespace TelegramPro\Bot\Methods\Types;
+
+use TelegramPro\Bot\Types\Currency;
+use TelegramPro\Bot\Types\OrderInfo;
+use TelegramPro\Bot\Types\ShippingOptionId;
 
 /**
  * This object contains basic information about a successful payment.

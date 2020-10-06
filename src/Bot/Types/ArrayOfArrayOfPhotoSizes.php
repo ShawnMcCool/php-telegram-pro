@@ -1,5 +1,8 @@
 <?php namespace TelegramPro\Bot\Types;
 
+use TelegramPro\Bot\Methods\Types\ApiReadType;
+use TelegramPro\Bot\Methods\Types\ArrayOfPhotoSizes;
+
 /**
  * Contains photo size information for multiple photos
  */

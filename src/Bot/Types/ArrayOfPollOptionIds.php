@@ -1,5 +1,8 @@
 <?php namespace TelegramPro\Bot\Types;
 
+use TelegramPro\Bot\Methods\Types\ApiReadType;
+use TelegramPro\Bot\Methods\Types\PollOptionId;
+
 /**
  * Contains a list of poll options identifiers
  */

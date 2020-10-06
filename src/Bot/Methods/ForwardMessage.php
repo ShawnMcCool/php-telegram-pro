@@ -1,8 +1,8 @@
 <?php namespace TelegramPro\Bot\Methods;
 
 use TelegramPro\Api\Telegram;
-use TelegramPro\Bot\Types\ChatId;
-use TelegramPro\Bot\Types\MessageId;
+use TelegramPro\Bot\Methods\Types\ChatId;
+use TelegramPro\Bot\Methods\Types\MessageId;
 
 /**
  * Use this method to forward messages of any kind. On success, the sent Message is returned.

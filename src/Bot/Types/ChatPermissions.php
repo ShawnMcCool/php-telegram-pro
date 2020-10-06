@@ -1,5 +1,7 @@
 <?php namespace TelegramPro\Bot\Types;
 
+use TelegramPro\Bot\Methods\Types\ApiReadType;
+
 /**
  * Describes actions that a non-administrator user is allowed to take in a chat.
  */

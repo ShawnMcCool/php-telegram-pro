@@ -1,6 +1,8 @@
 <?php namespace TelegramPro\Bot\Types;
 
 use TelegramPro\Bot\Methods\Types\User;
+use TelegramPro\Bot\Methods\Types\Location;
+use TelegramPro\Bot\Methods\Types\ApiReadType;
 
 /**
  * Optional. If set, pressing the button will prompt the user to select one of their chats, open that chat and insert the bot‘s username and the specified inline query in the input field. Can be empty, in which case just the bot’s username will be inserted.

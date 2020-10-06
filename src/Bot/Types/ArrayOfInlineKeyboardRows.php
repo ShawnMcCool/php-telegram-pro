@@ -1,5 +1,7 @@
 <?php namespace TelegramPro\Bot\Types;
 
+use TelegramPro\Bot\Methods\Types\ApiReadType;
+
 /**
  * array of inline keyboard rows is an interesting way for Telegram to say an "inline keyboard"
  */

@@ -1,4 +1,7 @@
-<?php namespace TelegramPro\Bot\Types;
+<?php namespace TelegramPro\Bot\Methods\Types;
+
+use TelegramPro\Bot\Types\PhotoSize;
+use TelegramPro\Bot\Types\ArrayOfApiTypes;
 
 /**
  * Contains a list of available photo sizes for a single photo

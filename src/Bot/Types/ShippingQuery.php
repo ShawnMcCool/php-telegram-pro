@@ -1,6 +1,7 @@
 <?php namespace TelegramPro\Bot\Types;
 
 use TelegramPro\Bot\Methods\Types\User;
+use TelegramPro\Bot\Methods\Types\ApiReadType;
 
 /**
  * This object contains information about an incoming shipping query.

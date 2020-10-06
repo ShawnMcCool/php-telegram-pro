@@ -1,15 +1,15 @@
 <?php namespace Tests\Bot\Methods;
 
 use Tests\TelegramTestCase;
-use TelegramPro\Bot\Types\Video;
-use TelegramPro\Bot\Methods\Types\Message;
 use TelegramPro\Bot\Types\PhotoSize;
 use TelegramPro\Bot\Methods\Types\Url;
 use TelegramPro\Bot\Methods\SendPhoto;
 use TelegramPro\Bot\Methods\SendVideo;
-use TelegramPro\Bot\Methods\Types\MethodError;
+use TelegramPro\Bot\Methods\Types\Video;
+use TelegramPro\Bot\Methods\Types\Message;
 use TelegramPro\Bot\Methods\SendMediaGroup;
 use TelegramPro\Bot\Methods\Types\MediaGroup;
+use TelegramPro\Bot\Methods\Types\MethodError;
 use TelegramPro\Bot\Methods\Types\MediaCaption;
 use TelegramPro\Bot\Methods\FileUploads\FilePath;
 use TelegramPro\Bot\Methods\FileUploads\VideoFile;

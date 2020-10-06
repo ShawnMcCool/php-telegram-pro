@@ -1,29 +1,29 @@
-<?php namespace TelegramPro\Bot\Types;
+<?php namespace TelegramPro\Bot\Methods\Types;
+
+use TelegramPro\Bot\Types\FileId;
+use TelegramPro\Bot\Types\FileUniqueId;
 
 /**
- * This object represents a general file (as opposed to photos, voice messages and audio files).
+ * This object represents a voice note.
  */
-final class Document implements ApiReadType
+final class Voice implements ApiReadType
 {
     private FileId $fileId;
     private ?FileUniqueId $fileUniqueId;
-    private ?PhotoSize $thumb;
-    private ?string $fileName;
+    private int $duration;
     private ?string $mimeType;
     private ?int $fileSize;
 
     private function __construct(
         FileId $fileId,
         ?FileUniqueId $fileUniqueId,
-        ?PhotoSize $thumb,
-        ?string $fileName,
+        int $duration,
         ?string $mimeType,
         ?int $fileSize
     ) {
         $this->fileId = $fileId;
         $this->fileUniqueId = $fileUniqueId;
-        $this->thumb = $thumb;
-        $this->fileName = $fileName;
+        $this->duration = $duration;
         $this->mimeType = $mimeType;
         $this->fileSize = $fileSize;
     }
@@ -31,17 +31,16 @@ final class Document implements ApiReadType
     /**
      * @internal Construct with data received from the Telegram bot api.
      */
-    public static function fromApi($document): ?Document
+    public static function fromApi($voice): ?Voice
     {
-        if ( ! $document) return null;
+        if ( ! $voice) return null;
 
         return new static(
-            FileId::fromApi($document->file_id),
-            FileUniqueId::fromApi($document->file_unique_id ?? null),
-            PhotoSize::fromApi($document->thumb ?? null),
-            $document->file_name ?? null,
-            $document->mime_type ?? null,
-            $document->file_size ?? null
+            FileId::fromApi($voice->file_id),
+            FileUniqueId::fromApi($voice->file_unique_id ?? null),
+            $voice->duration,
+            $voice->mime_type ?? null,
+            $voice->file_size ?? null
         );
     }
 
@@ -56,25 +55,17 @@ final class Document implements ApiReadType
     /**
      * Unique identifier for this file, which is supposed to be the same over time and for different bots. Can't be used to download or reuse the file.
      */
-    public function fileUniqueId(): ?FileUniqueId
+    public function fileUniqueId(): ?string
     {
         return $this->fileUniqueId;
     }
 
     /**
-     * Optional. Document thumbnail as defined by sender
+     * Duration of the audio in seconds as defined by sender
      */
-    public function thumb(): ?PhotoSize
+    public function duration(): int
     {
-        return $this->thumb;
-    }
-
-    /**
-     * Optional. Original filename as defined by sender
-     */
-    public function fileName(): ?string
-    {
-        return $this->fileName;
+        return $this->duration;
     }
 
     /**

@@ -3,12 +3,12 @@
 use Tests\ExampleWebhooks;
 use Tests\TelegramTestCase;
 use TelegramPro\Bot\Types\Update;
-use TelegramPro\Bot\Types\ChatId;
 use TelegramPro\Bot\Types\UserId;
 use TelegramPro\Bot\Types\UpdateId;
-use TelegramPro\Bot\Types\MessageId;
 use TelegramPro\Bot\Types\MessageEntity;
+use TelegramPro\Bot\Methods\Types\ChatId;
 use TelegramPro\Bot\Methods\Types\ChatType;
+use TelegramPro\Bot\Methods\Types\MessageId;
 
 final class UpdateTest extends TelegramTestCase
 {

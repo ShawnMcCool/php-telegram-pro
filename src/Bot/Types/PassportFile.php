@@ -1,5 +1,8 @@
 <?php namespace TelegramPro\Bot\Types;
 
+use TelegramPro\Bot\Methods\Types\Date;
+use TelegramPro\Bot\Methods\Types\ApiReadType;
+
 /**
  * This object represents a file uploaded to Telegram Passport. Currently all Telegram Passport files are in JPEG format when decrypted and don't exceed 10MB.
  */

@@ -1,6 +1,8 @@
 <?php namespace TelegramPro\Bot\Types;
 
+use TelegramPro\Bot\Methods\Types\Poll;
 use TelegramPro\Bot\Methods\Types\Message;
+use TelegramPro\Bot\Methods\Types\ApiReadType;
 
 /**
  * This object represents an incoming update. This is the "read" side of the Telegram API. The write side is represented by "Methods".

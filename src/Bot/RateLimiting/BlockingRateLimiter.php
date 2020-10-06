@@ -1,9 +1,9 @@
 <?php namespace TelegramPro\Bot\RateLimiting;
 
 use TelegramPro\Api\Telegram;
-use TelegramPro\Bot\Types\ChatId;
 use TelegramPro\Bot\Methods\Request;
 use TelegramPro\Collections\Dictionary;
+use TelegramPro\Bot\Methods\Types\ChatId;
 
 /**
  * @todo this class was spiked and forgotten so that the full test suite could

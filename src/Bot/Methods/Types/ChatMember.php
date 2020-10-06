@@ -1,7 +1,6 @@
 <?php namespace TelegramPro\Bot\Methods\Types;
 
 use Exception;
-use TelegramPro\Bot\Types\Date;
 use TelegramPro\Bot\Types\User;
 use TelegramPro\Bot\Types\ChatMemberStatus;
 

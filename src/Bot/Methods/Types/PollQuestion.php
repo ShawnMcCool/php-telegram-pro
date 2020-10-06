@@ -1,32 +1,9 @@
 <?php namespace TelegramPro\Bot\Methods\Types;
 
-use TelegramPro\Bot\Types\ApiReadType;
+use TelegramPro\PrimitiveTypes\StringObject;
 
-/**
- * Poll question, 1-255 characters
- */
-final class PollQuestion implements ApiReadType
+final class PollQuestion extends StringObject
 {
-    private string $question;
-
-    private function __construct(string $question)
-    {
-        $this->question = $question;
-    }
-
-    public function toString(): string
-    {
-        return $this->question;
-    }
-
-    public function __toString()
-    {
-        return $this->toString();
-    }
-
-    /**
-     * @internal Construct with data received from the Telegram bot api.
-     */
     public static function fromApi($question): ?self
     {
         if (is_null($question)) {

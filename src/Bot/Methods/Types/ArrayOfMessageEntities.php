@@ -1,4 +1,7 @@
-<?php namespace TelegramPro\Bot\Types;
+<?php namespace TelegramPro\Bot\Methods\Types;
+
+use TelegramPro\Bot\Types\MessageEntity;
+use TelegramPro\Bot\Types\ArrayOfApiTypes;
 
 /**
  * Contains multiple message entities (which format text elements)

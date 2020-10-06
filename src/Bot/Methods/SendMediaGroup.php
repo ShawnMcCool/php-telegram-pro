@@ -1,8 +1,8 @@
 <?php namespace TelegramPro\Bot\Methods;
 
 use TelegramPro\Api\Telegram;
-use TelegramPro\Bot\Types\ChatId;
-use TelegramPro\Bot\Types\MessageId;
+use TelegramPro\Bot\Methods\Types\ChatId;
+use TelegramPro\Bot\Methods\Types\MessageId;
 use TelegramPro\Bot\Methods\Types\MediaGroup;
 
 final class SendMediaGroup implements Method

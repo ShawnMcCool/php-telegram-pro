@@ -1,6 +1,7 @@
 <?php namespace TelegramPro\Bot\Types;
 
 use TelegramPro\Bot\Methods\Types\Message;
+use TelegramPro\Bot\Methods\Types\ApiReadType;
 
 /**
  * Contains multiple Messages

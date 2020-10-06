@@ -1,30 +1,5 @@
 <?php namespace TelegramPro\Bot\Methods\Types;
 
-use TelegramPro\Bot\Types\Game;
-use TelegramPro\Bot\Types\Poll;
-use TelegramPro\Bot\Types\Date;
-use TelegramPro\Bot\Types\Chat;
-use TelegramPro\Bot\Types\Voice;
-use TelegramPro\Bot\Types\Venue;
-use TelegramPro\Bot\Types\Video;
-use TelegramPro\Bot\Types\Audio;
-use TelegramPro\Bot\Types\ChatId;
-use TelegramPro\Bot\Types\Sticker;
-use TelegramPro\Bot\Types\Invoice;
-use TelegramPro\Bot\Types\Contact;
-use TelegramPro\Bot\Types\Location;
-use TelegramPro\Bot\Types\Document;
-use TelegramPro\Bot\Types\Animation;
-use TelegramPro\Bot\Types\MessageId;
-use TelegramPro\Bot\Types\VideoNote;
-use TelegramPro\Bot\Types\ApiReadType;
-use TelegramPro\Bot\Types\ArrayOfUsers;
-use TelegramPro\Bot\Types\PassportData;
-use TelegramPro\Bot\Types\ArrayOfPhotoSizes;
-use TelegramPro\Bot\Types\SuccessfulPayment;
-use TelegramPro\Bot\Types\InlineKeyboardMarkup;
-use TelegramPro\Bot\Types\ArrayOfMessageEntities;
-
 /**
  * This object represents a message.
  * https://core.telegram.org/bots/api#message

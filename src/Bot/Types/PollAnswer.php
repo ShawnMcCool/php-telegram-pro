@@ -1,6 +1,8 @@
 <?php namespace TelegramPro\Bot\Types;
 
 use TelegramPro\Bot\Methods\Types\User;
+use TelegramPro\Bot\Methods\Types\PollId;
+use TelegramPro\Bot\Methods\Types\ApiReadType;
 
 /**
  * This object represents an answer of a user in a non-anonymous poll.
