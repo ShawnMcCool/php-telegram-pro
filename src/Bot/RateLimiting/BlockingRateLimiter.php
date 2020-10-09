@@ -43,10 +43,6 @@ final class BlockingRateLimiter implements Telegram
 
     public function sendToChat(float $current, ChatId $chatId, Request $request)
     {
-        if ($this->lastSendTimestamp == 0) {
-            $this->lastSendTimestamp = $current - 1;
-        }
-
         if ( ! $this->chatTimeframes->has($chatId)) {
             $this->chatTimeframes = $this->chatTimeframes->add($chatId, new FrameCounter());
         }
@@ -63,13 +59,9 @@ final class BlockingRateLimiter implements Telegram
             ? $this->waitSecondsRateLimited($secondsUntilNextChatSend)
             : $this->waitSecondsRateLimited($secondsUntilNextMessageSend);
 
-        $timeframe->add();
+        $timeframe->add($current);
 
-        $this->lastSendTimestamp = $current;
-
-        $response = RateLimitedResponse::fromApi(
-            $this->telegram->send($request)
-        );
+        $response = $this->sendRequest($request, $current);
 
         # repeat until it goes through
         if ( ! $response->ok() && $response->error()->code() == '429') {
@@ -80,11 +72,6 @@ final class BlockingRateLimiter implements Telegram
         }
 
         return $response->json();
-    }
-
-    private function retry(Request $request)
-    {
-        return $this->send($request);
     }
 
     public function send(Request $request)
@@ -98,15 +85,16 @@ final class BlockingRateLimiter implements Telegram
         }
     }
 
+    private function retry(Request $request)
+    {
+        return $this->send($request);
+    }
+
     private function sendWithoutChat($current, Request $request)
     {
         $this->waitSecondsRateLimited($this->secondsToWaitForNextMessage($current));
 
-        $this->lastSendTimestamp = $current;
-
-        $response = RateLimitedResponse::fromApi(
-            $this->telegram->send($request)
-        );
+        $response = $this->sendRequest($request, $current);
 
         # repeat until it goes through
         if ( ! $response->ok() && $response->error()->code() == '429') {
@@ -136,5 +124,14 @@ final class BlockingRateLimiter implements Telegram
         $this->numberOfTelegramForcedThrottleDelays += 1;
         $this->totalSecondsOfRateLimitedThrottleDelay += $seconds;
         usleep($seconds * 1_000_000);
+    }
+
+    private function sendRequest(Request $request, float $current): RateLimitedResponse
+    {
+        $this->lastSendTimestamp = $current;
+        
+        return RateLimitedResponse::fromApi(
+            $this->telegram->send($request)
+        );
     }
 }
