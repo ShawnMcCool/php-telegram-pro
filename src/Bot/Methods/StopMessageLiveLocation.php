@@ -4,6 +4,8 @@ use TelegramPro\Api\Telegram;
 use TelegramPro\Bot\Methods\Types\ChatId;
 use TelegramPro\Bot\Types\InlineMessageId;
 use TelegramPro\Bot\Methods\Types\MessageId;
+use TelegramPro\Bot\Methods\Requests\Request;
+use TelegramPro\Bot\Methods\Requests\JsonRequest;
 use TelegramPro\Bot\Methods\Keyboards\ReplyMarkup;
 
 /**
@@ -30,7 +32,7 @@ final class StopMessageLiveLocation implements Method
 
     function request(): Request
     {
-        return Request::multipartFormData(
+        return JsonRequest::forMethod(
             'stopMessageLiveLocation'
         )->withParameters(
             [

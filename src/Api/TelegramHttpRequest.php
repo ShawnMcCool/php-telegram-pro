@@ -1,6 +1,6 @@
 <?php namespace TelegramPro\Api;
 
-use TelegramPro\Bot\Methods\Request;
+use TelegramPro\Bot\Methods\Requests\Request;
 
 /**
  * This object sends requests to the Telegram API using HTTP with Curl.
@@ -15,7 +15,7 @@ final class TelegramHttpRequest implements Telegram
         $this->botToken = $botToken;
     }
 
-    public function send(Request $request)
+    public function send(\TelegramPro\Bot\Methods\Requests\Request $request)
     {
         $parameters = $request->toCurlParameters($this->botToken);
 

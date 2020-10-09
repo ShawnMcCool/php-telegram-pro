@@ -4,10 +4,12 @@ use TelegramPro\Api\Telegram;
 use TelegramPro\Bot\Methods\Types\ChatId;
 use TelegramPro\Bot\Methods\Types\MessageId;
 use TelegramPro\Bot\Methods\Types\ParseMode;
+use TelegramPro\Bot\Methods\Requests\Request;
 use TelegramPro\Bot\Methods\Types\MediaCaption;
 use TelegramPro\Bot\Methods\Keyboards\ReplyMarkup;
 use TelegramPro\Bot\Methods\FileUploads\VoiceFile;
 use TelegramPro\Bot\Methods\FileUploads\FilesToUpload;
+use TelegramPro\Bot\Methods\Requests\MultipartFormRequest;
 
 final class SendVoice implements Method
 {
@@ -42,7 +44,7 @@ final class SendVoice implements Method
 
     function request(): Request
     {
-        return Request::multipartFormData(
+        return MultipartFormRequest::forMethod(
             'sendVoice'
         )->withParameters(
             [

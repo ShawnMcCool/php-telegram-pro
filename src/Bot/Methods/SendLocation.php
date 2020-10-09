@@ -6,6 +6,8 @@ use TelegramPro\Bot\Types\Longitude;
 use TelegramPro\Bot\Types\LivePeriod;
 use TelegramPro\Bot\Methods\Types\ChatId;
 use TelegramPro\Bot\Methods\Types\MessageId;
+use TelegramPro\Bot\Methods\Requests\Request;
+use TelegramPro\Bot\Methods\Requests\JsonRequest;
 use TelegramPro\Bot\Methods\Keyboards\ReplyMarkup;
 
 /**
@@ -41,7 +43,7 @@ final class SendLocation implements Method
 
     function request(): Request
     {
-        return Request::multipartFormData(
+        return JsonRequest::forMethod(
             'sendLocation'
         )->withParameters(
             [

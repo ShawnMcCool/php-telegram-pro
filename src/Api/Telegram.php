@@ -1,6 +1,6 @@
 <?php namespace TelegramPro\Api;
 
-use TelegramPro\Bot\Methods\Request;
+use TelegramPro\Bot\Methods\Requests\Request;
 
 interface Telegram
 {

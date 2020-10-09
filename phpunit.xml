@@ -9,11 +9,14 @@
          processIsolation="false"
          stopOnFailure="false"
          printerClass="Codedungeon\PHPUnitPrettyResultPrinter\Printer">
+    <extensions>
+        <extension class="Tests\DisplayThrottlingStatisticsAfterTesting"/>
+    </extensions>
     <testsuites>
         <testsuite name="unit">
             <directory suffix="Test.php">./tests/Unit</directory>
         </testsuite>
-        <testsuite name="methods">
+        <testsuite name="bot">
             <directory suffix="Test.php">./tests/Bot</directory>
         </testsuite>
     </testsuites>

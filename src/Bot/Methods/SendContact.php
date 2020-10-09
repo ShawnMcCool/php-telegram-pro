@@ -4,8 +4,10 @@ use TelegramPro\Api\Telegram;
 use TelegramPro\Bot\Methods\Types\VCard;
 use TelegramPro\Bot\Methods\Types\ChatId;
 use TelegramPro\Bot\Methods\Types\MessageId;
+use TelegramPro\Bot\Methods\Requests\Request;
 use TelegramPro\Bot\Methods\Types\PhoneNumber;
 use TelegramPro\Bot\Methods\Keyboards\ReplyMarkup;
+use TelegramPro\Bot\Methods\Requests\MultipartFormRequest;
 
 /**
  * Use this method to send phone contacts. On success, the sent Message is returned.
@@ -43,7 +45,7 @@ final class SendContact implements Method
 
     function request(): Request
     {
-        return Request::multipartFormData(
+        return MultipartFormRequest::forMethod(
             'sendContact'
         )->withParameters(
             [

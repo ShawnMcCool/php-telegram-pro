@@ -5,9 +5,11 @@ use TelegramPro\Bot\Methods\Types\ChatId;
 use TelegramPro\Bot\Methods\Types\PollType;
 use TelegramPro\Bot\Methods\Types\MessageId;
 use TelegramPro\Bot\Methods\Types\ParseMode;
+use TelegramPro\Bot\Methods\Requests\Request;
 use TelegramPro\Bot\Methods\Types\PollOptionId;
 use TelegramPro\Bot\Methods\Types\PollCloseDate;
 use TelegramPro\Bot\Methods\Types\PollOpenPeriod;
+use TelegramPro\Bot\Methods\Requests\JsonRequest;
 use TelegramPro\Bot\Methods\Keyboards\ReplyMarkup;
 use TelegramPro\Bot\Methods\Types\ArrayOfPollOptions;
 
@@ -69,7 +71,7 @@ final class SendPoll implements Method
 
     function request(): Request
     {
-        return Request::multipartFormData(
+        return JsonRequest::forMethod(
             'sendPoll'
         )->withParameters(
             [

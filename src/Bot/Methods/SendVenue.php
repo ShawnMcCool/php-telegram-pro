@@ -5,7 +5,10 @@ use TelegramPro\Bot\Types\Latitude;
 use TelegramPro\Bot\Types\Longitude;
 use TelegramPro\Bot\Methods\Types\ChatId;
 use TelegramPro\Bot\Methods\Types\MessageId;
+use TelegramPro\Bot\Methods\Requests\Request;
+use TelegramPro\Bot\Methods\Requests\JsonRequest;
 use TelegramPro\Bot\Methods\Keyboards\ReplyMarkup;
+use TelegramPro\Bot\Methods\Requests\MultipartFormRequest;
 
 /**
  * Use this method to send information about a venue. On success, the sent Message is returned.
@@ -49,7 +52,7 @@ final class SendVenue implements Method
 
     function request(): Request
     {
-        return Request::multipartFormData(
+        return JsonRequest::forMethod(
             'sendVenue'
         )->withParameters(
             [

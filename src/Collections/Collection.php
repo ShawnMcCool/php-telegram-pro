@@ -8,13 +8,7 @@ use IteratorAggregate;
 
 class Collection implements Countable, ArrayAccess, IteratorAggregate, JsonSerializable
 {
-    /** @var array */
-    protected $items;
-
-    /**
-     * Position for Iterator interface
-     */
-    private int $position = 0;
+    protected array $items;
 
     public function __construct(array $items = [])
     {

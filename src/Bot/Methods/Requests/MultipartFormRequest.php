@@ -1,23 +1,18 @@
-<?php namespace TelegramPro\Bot\Methods;
+<?php namespace TelegramPro\Bot\Methods\Requests;
 
 use TelegramPro\Api\CurlParameters;
 use TelegramPro\Bot\Methods\FileUploads\FileToUpload;
 use TelegramPro\Bot\Methods\FileUploads\FilesToUpload;
 
-final class Request
+final class MultipartFormRequest implements Request
 {
     private string $method;
-    private string $requestType;
-
     private array $parameters = [];
     private FilesToUpload $filesToUpload;
 
-    private function __construct(
-        string $method,
-        string $requestType
-    ) {
+    private function __construct(string $method)
+    {
         $this->method = $method;
-        $this->requestType = $requestType;
         $this->filesToUpload = FilesToUpload::empty();
     }
 
@@ -38,8 +33,9 @@ final class Request
         return new CurlParameters(
             "https://api.telegram.org/bot{$botToken}/{$this->method}",
             [
+                CURLOPT_HTTPHEADER => ['Content-Type: multipart/form-data'],
                 CURLOPT_HEADER => false,
-                CURLOPT_RETURNTRANSFER => 1,
+                CURLOPT_RETURNTRANSFER => true,
                 CURLOPT_POST => 1,
                 CURLOPT_POSTFIELDS => $this->parameters(),
                 CURLOPT_SSL_VERIFYPEER => false,
@@ -72,7 +68,7 @@ final class Request
             if ( ! $file) continue;
             $fileParameters[$file->formFieldName()] = $file->curlFile();
         }
-        
+
         return array_filter(
             array_merge(
                 $this->parameters,
@@ -81,23 +77,8 @@ final class Request
         );
     }
 
-    public static function queryString(string $method): self
+    public static function forMethod(string $method): self
     {
-        return new static($method, 'query-string');
-    }
-
-    public static function xWwwFormUrlencoded(string $method): self
-    {
-        return new static($method, 'application/x-www-form-urlencoded');
-    }
-
-    public static function multipartFormData(string $method): self
-    {
-        return new static($method, 'multipart/form-data');
-    }
-
-    public static function json(string $method): self
-    {
-        return new static($method, 'application/json');
+        return new static($method);
     }
 }

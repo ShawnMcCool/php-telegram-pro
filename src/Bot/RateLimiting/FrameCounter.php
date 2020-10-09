@@ -5,7 +5,7 @@ use TelegramPro\Collections\Collection;
 /**
  * A collection of timestamps
  */
-final class Timeframe
+final class FrameCounter
 {
     private Collection $timestamps;
 

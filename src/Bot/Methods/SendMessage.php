@@ -4,7 +4,9 @@ use TelegramPro\Api\Telegram;
 use TelegramPro\Bot\Methods\Types\ChatId;
 use TelegramPro\Bot\Methods\Types\MessageId;
 use TelegramPro\Bot\Methods\Types\ParseMode;
+use TelegramPro\Bot\Methods\Requests\Request;
 use TelegramPro\Bot\Methods\Types\MessageText;
+use TelegramPro\Bot\Methods\Requests\JsonRequest;
 use TelegramPro\Bot\Methods\Keyboards\ReplyMarkup;
 
 final class SendMessage implements Method
@@ -37,7 +39,7 @@ final class SendMessage implements Method
 
     function request(): Request
     {
-        return Request::json(
+        return JsonRequest::forMethod(
             'sendMessage'
         )->withParameters(
             [
@@ -47,7 +49,7 @@ final class SendMessage implements Method
                 'disable_web_page_preview' => optional($this->disableWebPagePreview),
                 'disable_notification' => optional($this->disableNotification),
                 'reply_to_message_id' => optional($this->replyToMessageId),
-                'reply_markup' => optional($this->replyMarkup)
+                'reply_markup' => optional($this->replyMarkup),
             ]
         );
     }

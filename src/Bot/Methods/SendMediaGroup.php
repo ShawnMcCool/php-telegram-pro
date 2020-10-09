@@ -3,7 +3,9 @@
 use TelegramPro\Api\Telegram;
 use TelegramPro\Bot\Methods\Types\ChatId;
 use TelegramPro\Bot\Methods\Types\MessageId;
+use TelegramPro\Bot\Methods\Requests\Request;
 use TelegramPro\Bot\Methods\Types\MediaGroup;
+use TelegramPro\Bot\Methods\Requests\MultipartFormRequest;
 
 final class SendMediaGroup implements Method
 {
@@ -26,7 +28,7 @@ final class SendMediaGroup implements Method
 
     function request(): Request
     {
-        return Request::multipartFormData(
+        return MultipartFormRequest::forMethod(
             'sendMediaGroup'
         )->withParameters(
             [

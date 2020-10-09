@@ -1,9 +1,9 @@
 <?php namespace TelegramPro\Bot\RateLimiting;
 
 use TelegramPro\Api\Telegram;
-use TelegramPro\Bot\Methods\Request;
 use TelegramPro\Collections\Dictionary;
 use TelegramPro\Bot\Methods\Types\ChatId;
+use TelegramPro\Bot\Methods\Requests\Request;
 
 /**
  * @todo this class was spiked and forgotten so that the full test suite could
@@ -12,13 +12,19 @@ use TelegramPro\Bot\Methods\Types\ChatId;
 final class BlockingRateLimiter implements Telegram
 {
     const MESSAGES_PER_SECOND_LIMIT = 1;
-    // what does this even mean
-    //const MULTIPLE_USER_BULK_MESSAGES_PER_SECOND_LIMIT = 30;
+    /**
+     * @todo look into this
+     * const MULTIPLE_USER_BULK_MESSAGES_PER_SECOND_LIMIT = 30;
+     **/
     const MESSAGES_TO_SAME_GROUP_PER_MINUTE_LIMIT = 20;
 
     private Telegram $telegram;
     private Dictionary $chatTimeframes;
     private float $lastSendTimestamp = 0;
+
+    private int $numberOfTelegramForcedThrottleDelays = 0;
+    private float $totalSecondsOfRateLimitedThrottleDelay = 0.0;
+    private float $totalSecondsOfTelegramForcedThrottleDelay = 0.0;
 
     public function __construct(Telegram $telegram)
     {
@@ -26,19 +32,26 @@ final class BlockingRateLimiter implements Telegram
         $this->chatTimeframes = Dictionary::empty();
     }
 
-    public function sendToChat(ChatId $chatId, Request $request)
+    public function limiterReport(): RateLimiterReport
     {
-        $current = microtime(true);
+        return new RateLimiterReport(
+            $this->numberOfTelegramForcedThrottleDelays,
+            $this->totalSecondsOfRateLimitedThrottleDelay,
+            $this->totalSecondsOfTelegramForcedThrottleDelay
+        );
+    }
 
+    public function sendToChat(float $current, ChatId $chatId, Request $request)
+    {
         if ($this->lastSendTimestamp == 0) {
             $this->lastSendTimestamp = $current - 1;
         }
 
         if ( ! $this->chatTimeframes->has($chatId)) {
-            $this->chatTimeframes = $this->chatTimeframes->add($chatId, new Timeframe());
+            $this->chatTimeframes = $this->chatTimeframes->add($chatId, new FrameCounter());
         }
 
-        /** @var Timeframe $timeframe */
+        /** @var FrameCounter $timeframe */
         $timeframe = $this->chatTimeframes->get($chatId);
 
         $secondsUntilNextChatSend = $timeframe->secondsUntilRateLimitClears($current, 20);
@@ -46,27 +59,32 @@ final class BlockingRateLimiter implements Telegram
         ##
         $secondsUntilNextMessageSend = $this->secondsToWaitForNextMessage($current);
 
-        if ($secondsUntilNextChatSend > $secondsUntilNextMessageSend) {
-            usleep($secondsUntilNextChatSend * 1_000_000);
-        } else {
-            usleep($secondsUntilNextMessageSend);
-        }
+        $secondsUntilNextChatSend > $secondsUntilNextMessageSend
+            ? $this->waitSecondsRateLimited($secondsUntilNextChatSend)
+            : $this->waitSecondsRateLimited($secondsUntilNextMessageSend);
 
         $timeframe->add();
 
         $this->lastSendTimestamp = $current;
-        $responseJson = $this->telegram->send($request);
+
         $response = RateLimitedResponse::fromApi(
-            $responseJson
+            $this->telegram->send($request)
         );
 
         # repeat until it goes through
         if ( ! $response->ok() && $response->error()->code() == '429') {
-            $waitTime = \regex\first('Too Many Requests: retry after (\d+)', $response->error()->description());
-            usleep($waitTime * 1_000_000);
-            return $this->sendToChat($chatId, $request);
+            $this->waitSecondsForceThrottled(
+                \regex\first('Too Many Requests: retry after (\d+)', $response->error()->description())
+            );
+            return $this->retry($request);
         }
-        return $responseJson;
+
+        return $response->json();
+    }
+
+    private function retry(Request $request)
+    {
+        return $this->send($request);
     }
 
     public function send(Request $request)
@@ -74,10 +92,7 @@ final class BlockingRateLimiter implements Telegram
         $parameters = json_decode($request->toJson());
 
         if (isset($parameters->chat_id) && ! is_null($parameters->chat_id)) {
-            return $this->sendToChat(
-                ChatId::fromInt($parameters->chat_id),
-                $request
-            );
+            return $this->sendToChat(microtime(true), ChatId::fromInt($parameters->chat_id), $request);
         } else {
             return $this->sendWithoutChat(microtime(true), $request);
         }
@@ -85,34 +100,41 @@ final class BlockingRateLimiter implements Telegram
 
     private function sendWithoutChat($current, Request $request)
     {
-        usleep($this->secondsToWaitForNextMessage($current));
+        $this->waitSecondsRateLimited($this->secondsToWaitForNextMessage($current));
 
         $this->lastSendTimestamp = $current;
 
-        $responseJson = $this->telegram->send($request);
-
         $response = RateLimitedResponse::fromApi(
-            $responseJson
+            $this->telegram->send($request)
         );
 
         # repeat until it goes through
         if ( ! $response->ok() && $response->error()->code() == '429') {
-            $waitTime = \regex\first('Too Many Requests: retry after (\d+)', $response->error()->description());
-            usleep($waitTime * 1_000_000);
-            return $this->sendWithoutChat(microtime(true), $request);
+            $this->waitSecondsForceThrottled(
+                \regex\first('Too Many Requests: retry after (\d+)', $response->error()->description())
+            );
+            return $this->retry($request);
         }
 
-        return $responseJson;
+        return $response->json();
     }
 
-    /**
-     * @param float $current
-     * @return float|int
-     */
-    private function secondsToWaitForNextMessage(float $current)
+    private function secondsToWaitForNextMessage(float $current): float
     {
         $timeSinceLastSend = $current - $this->lastSendTimestamp;
         return $timeSinceLastSend > 1 ? 1 : 1 - $timeSinceLastSend;
     }
 
+    private function waitSecondsRateLimited(float $seconds)
+    {
+        $this->totalSecondsOfRateLimitedThrottleDelay += $seconds;
+        usleep($seconds * 1_000_000);
+    }
+
+    private function waitSecondsForceThrottled(float $seconds)
+    {
+        $this->numberOfTelegramForcedThrottleDelays += 1;
+        $this->totalSecondsOfRateLimitedThrottleDelay += $seconds;
+        usleep($seconds * 1_000_000);
+    }
 }

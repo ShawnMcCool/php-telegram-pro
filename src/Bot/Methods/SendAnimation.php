@@ -4,11 +4,13 @@ use TelegramPro\Api\Telegram;
 use TelegramPro\Bot\Methods\Types\ChatId;
 use TelegramPro\Bot\Methods\Types\MessageId;
 use TelegramPro\Bot\Methods\Types\ParseMode;
+use TelegramPro\Bot\Methods\Requests\Request;
 use TelegramPro\Bot\Methods\Types\MediaCaption;
 use TelegramPro\Bot\Methods\Keyboards\ReplyMarkup;
 use TelegramPro\Bot\Methods\FileUploads\AnimationFile;
 use TelegramPro\Bot\Methods\FileUploads\FilesToUpload;
 use TelegramPro\Bot\Methods\FileUploads\InputPhotoFile;
+use TelegramPro\Bot\Methods\Requests\MultipartFormRequest;
 
 final class SendAnimation implements Method
 {
@@ -52,7 +54,7 @@ final class SendAnimation implements Method
 
     function request(): Request
     {
-        return Request::multipartFormData(
+        return MultipartFormRequest::forMethod(
             'sendAnimation'
         )->withParameters(
             [

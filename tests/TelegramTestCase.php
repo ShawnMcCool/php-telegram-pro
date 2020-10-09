@@ -10,9 +10,16 @@ use TelegramPro\Bot\RateLimiting\BlockingRateLimiter;
 
 class TelegramTestCase extends TestCase
 {
+    private static ?Telegram $telegramInstance = null;
+    
     protected Telegram $telegram;
     protected BotTestConfig $config;
     protected TestMedia $media;
+
+    public static function telegramInstance(): ?Telegram
+    {
+        return static::$telegramInstance;
+    }
 
     protected function setUp(): void
     {
@@ -35,16 +42,16 @@ class TelegramTestCase extends TestCase
             'https://upload.wikimedia.org/wikipedia/commons/a/a3/HurdySample.ogg',
             '/vagrant/tests/Media/VideoNotes/golden-ratio-240px.mp4'
         );
-
-        if ( ! isset($_GLOBALS['rate_limited_telegram'])) {
-            $_GLOBALS['rate_limited_telegram'] = new BlockingRateLimiter(
+        
+        if ( ! isset(static::$telegramInstance)) {
+            static::$telegramInstance = new BlockingRateLimiter(
                 TelegramHttpRequest::botToken(
                     $this->config->token()
                 )
             );
         }
-
-        $this->telegram = $_GLOBALS['rate_limited_telegram'];
+        
+        $this->telegram = static::telegramInstance();
     }
 
     protected function send(Method $method)

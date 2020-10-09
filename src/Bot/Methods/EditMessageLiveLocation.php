@@ -6,10 +6,12 @@ use TelegramPro\Bot\Types\Longitude;
 use TelegramPro\Bot\Methods\Types\ChatId;
 use TelegramPro\Bot\Types\InlineMessageId;
 use TelegramPro\Bot\Methods\Types\MessageId;
+use TelegramPro\Bot\Methods\Requests\Request;
 use TelegramPro\Bot\Methods\Keyboards\ReplyMarkup;
+use TelegramPro\Bot\Methods\Requests\MultipartFormRequest;
 
 /**
-Use this method to edit live location messages. A location can be edited until its live_period expires or editing is explicitly disabled by a call to stopMessageLiveLocation. On success, if the edited message was sent by the bot, the edited Message is returned, otherwise True is returned.
+ * Use this method to edit live location messages. A location can be edited until its live_period expires or editing is explicitly disabled by a call to stopMessageLiveLocation. On success, if the edited message was sent by the bot, the edited Message is returned, otherwise True is returned.
  */
 final class EditMessageLiveLocation implements Method
 {
@@ -38,7 +40,7 @@ final class EditMessageLiveLocation implements Method
 
     function request(): Request
     {
-        return Request::multipartFormData(
+        return MultipartFormRequest::forMethod(
             'editMessageLiveLocation'
         )->withParameters(
             [

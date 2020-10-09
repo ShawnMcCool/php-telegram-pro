@@ -3,10 +3,12 @@
 use TelegramPro\Api\Telegram;
 use TelegramPro\Bot\Methods\Types\ChatId;
 use TelegramPro\Bot\Methods\Types\MessageId;
+use TelegramPro\Bot\Methods\Requests\Request;
 use TelegramPro\Bot\Methods\Keyboards\ReplyMarkup;
 use TelegramPro\Bot\Methods\FileUploads\VideoNoteFile;
 use TelegramPro\Bot\Methods\FileUploads\FilesToUpload;
 use TelegramPro\Bot\Methods\FileUploads\InputPhotoFile;
+use TelegramPro\Bot\Methods\Requests\MultipartFormRequest;
 
 final class SendVideoNote implements Method
 {
@@ -41,7 +43,7 @@ final class SendVideoNote implements Method
 
     function request(): Request
     {
-        return Request::multipartFormData(
+        return MultipartFormRequest::forMethod(
             'sendVideoNote'
         )->withParameters(
             [

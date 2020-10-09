@@ -1,11 +1,10 @@
 <?php namespace Tests\Bot\RateLimiting;
 
 use PHPUnit\Framework\TestCase;
-use TelegramPro\Bot\RateLimiting\Timeframe;
+use TelegramPro\Bot\RateLimiting\FrameCounter;
 
-class TimeframeTest extends TestCase
+class FrameCounterTest extends TestCase
 {
-
     function testCanDetermineHowLongToWait()
     {
         $timestamps = [
@@ -55,7 +54,7 @@ class TimeframeTest extends TestCase
         ];
 
         #
-        $timeframe = new Timeframe();
+        $timeframe = new FrameCounter();
 
         foreach ($timestamps as $timestamp) {
             $timeframe->add($timestamp);
@@ -79,7 +78,7 @@ class TimeframeTest extends TestCase
         ];
         
         #
-        $timeframe = new Timeframe();
+        $timeframe = new FrameCounter();
         
         self::assertEquals(
             0.0,
