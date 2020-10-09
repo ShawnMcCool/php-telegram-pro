@@ -6,4 +6,5 @@
 .phpunit.result.cache
 /ubuntu*.log
 /.bot-test-config
+/*VBoxSVC*
 /.previous_method_test_option
