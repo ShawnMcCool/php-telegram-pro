@@ -53,6 +53,7 @@ class Message implements ApiReadType
     private ?string $connectedWebsite;
     private ?PassportData $passportData;
     private ?InlineKeyboardMarkup $replyMarkup;
+    private ?Dice $dice;
 
     private function __construct(
         MessageId $messageId,
@@ -101,7 +102,8 @@ class Message implements ApiReadType
         ?SuccessfulPayment $successfulPayment,
         ?string $connectedWebsite,
         ?PassportData $passportData,
-        ?InlineKeyboardMarkup $replyMarkup
+        ?InlineKeyboardMarkup $replyMarkup,
+        ?Dice $dice
     ) {
         $this->messageId = $messageId;
         $this->from = $from;
@@ -150,6 +152,7 @@ class Message implements ApiReadType
         $this->connectedWebsite = $connectedWebsite;
         $this->passportData = $passportData;
         $this->replyMarkup = $replyMarkup;
+        $this->dice = $dice;
     }
 
     /**
@@ -532,6 +535,11 @@ class Message implements ApiReadType
         return $this->replyMarkup;
     }
 
+    public function dice(): ?Dice
+    {
+        return $this->dice;
+    }
+    
     /**
      * @internal Construct with data received from the Telegram bot api.
      */
@@ -586,7 +594,8 @@ class Message implements ApiReadType
             SuccessfulPayment::fromApi($message->successful_payment ?? null),
             $message->connected_website ?? null,
             PassportData::fromApi($message->passport_data ?? null),
-            InlineKeyboardMarkup::fromApi($message->reply_markup ?? null)
+            InlineKeyboardMarkup::fromApi($message->reply_markup ?? null),
+            Dice::fromApi($message->dice ?? null)
         );
     }
 }
