@@ -17,12 +17,16 @@ final class UserProfilePhotos implements ApiReadType
         $this->totalCount = $totalCount;
         $this->photos = $photos;
     }
-    
+
     /**
      * @internal Construct with data received from the Telegram bot api.
      */
     public static function fromApi($userProfilePhotos): ?self
     {
+        if (is_null($userProfilePhotos)) {
+            return null;
+        }
+        
         return new static(
             $userProfilePhotos->total_count,
             ArrayOfArrayOfPhotoSizes::fromApi($userProfilePhotos->photos)
