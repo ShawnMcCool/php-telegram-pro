@@ -1,19 +1,18 @@
 <?php namespace Tests\Bot\Methods;
 
 use Tests\TelegramTestCase;
+use TelegramPro\Bot\Types\FileId;
 use TelegramPro\Bot\Methods\GetFile;
 use TelegramPro\Bot\Methods\Types\File;
 use TelegramPro\Bot\Methods\SendDocument;
+use TelegramPro\Bot\Methods\Types\MethodError;
 use TelegramPro\Bot\Methods\Types\MediaCaption;
 use TelegramPro\Bot\Methods\FileUploads\FilePath;
 use TelegramPro\Bot\Methods\FileUploads\DocumentFile;
 
-/**
- * @todo revisit when send file is created
- */
 class GetFileTest extends TelegramTestCase
 {
-    function testSendMessage()
+    function testCanGetDocumentFileInformation()
     {
         $sendDocumentResponse = SendDocument::parameters(
             $this->config->chatId(),
@@ -36,27 +35,15 @@ class GetFileTest extends TelegramTestCase
         self::assertSame(151827, $response->file()->fileSize());
     }
 
-//    function testSendMarkdownMessage()
-//    {
-//        $response = SendMessage::parameters(
-//            $this->config->chatId(),
-//            MessageText::fromString('[SendMessage] send *markdown parsed* message')
-//        )->send($this->telegram);
-//
-//        $this->isOk($response);
-//        self::assertInstanceOf(Message::class, $response->sentMessage());
-//    }
-//
-//    function testCanParseError()
-//    {
-//        $response = SendMessage::parameters(
-//            $this->config->wrongGroupId(),
-//            MessageText::fromString('[SendMessage] can parse error')
-//        )->send($this->telegram);
-//
-//        self::assertFalse($response->ok());
-//        self::assertInstanceOf(MethodError::class, $response->error());
-//        self::assertSame('400', $response->error()->code());
-//        self::assertNotEmpty($response->error()->description());
-//    }
+    function testCanParseError()
+    {
+        $response = GetFile::parameters(
+            FileId::fromString('wrong file id')
+        )->send($this->telegram);
+
+        self::assertFalse($response->ok());
+        self::assertInstanceOf(MethodError::class, $response->error());
+        self::assertSame('400', $response->error()->code());
+        self::assertNotEmpty($response->error()->description());
+    }
 }
