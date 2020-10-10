@@ -17,6 +17,11 @@ abstract class ArrayOfApiTypes implements Countable, IteratorAggregate, ArrayAcc
         $this->items = $messages;
     }
 
+    public function isEmpty(): bool
+    {
+        return $this->items->isEmpty();
+    }
+    
     public function count()
     {
         return $this->items->count();

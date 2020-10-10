@@ -1,6 +1,8 @@
 <?php namespace TelegramPro\Bot\Types;
 
 use TelegramPro\Bot\Methods\Types\Poll;
+use TelegramPro\Bot\Methods\Types\Chat;
+use TelegramPro\Bot\Methods\Types\User;
 use TelegramPro\Bot\Methods\Types\Message;
 use TelegramPro\Bot\Methods\Types\ApiReadType;
 
@@ -51,27 +53,61 @@ final class Update implements ApiReadType
         $this->pollAnswer = $pollAnswer;
     }
 
-    /**
-     * @internal Construct with data received from the Telegram bot api.
-     */
-    public static function fromApi($json): Update
+    /** Return the update regardless of type */
+    public function result()
     {
-        $update = json_decode($json);
-        
-        return new static(
-            UpdateId::fromInt($update->update_id),
-            Message::fromApi($update->message ?? null),
-            Message::fromApi($update->edited_message ?? null),
-            Message::fromApi($update->channel_post ?? null),
-            Message::fromApi($update->edited_channel_post ?? null),
-            InlineQuery::fromApi($update->inline_query ?? null),
-            ChosenInlineResult::fromApi($update->chosen_inline_result ?? null),
-            CallbackQuery::fromApi($update->callback_query ?? null),
-            ShippingQuery::fromApi($update->shipping_query ?? null),
-            PreCheckoutQuery::fromApi($update->pre_checkout_query ?? null),
-            Poll::fromApi($update->poll ?? null),
-            PollAnswer::fromApi($update->poll_answer ?? null)
-        );
+        return $this->message
+            ?? $this->editedMessage
+            ?? $this->channelPost
+            ?? $this->editedChannelPost
+            ?? $this->inlineQuery
+            ?? $this->chosenInlineResult
+            ?? $this->callbackQuery
+            ?? $this->shippingQuery
+            ?? $this->preCheckoutQuery
+            ?? $this->poll
+            ?? $this->pollAnswer;
+    }
+
+    /**
+     * If a Message object exists in this update, resolvedMessage() returns it.
+     */
+    public function resolvedMessage(): ?Message
+    {
+        return $this->message
+            ?? $this->editedMessage
+            ?? $this->callbackQuery->message()
+            ?? $this->channelPost
+            ?? $this->editedChannelPost;
+    }
+
+    /**
+     * If a Chat object exists in this update, resolvedChat() returns it.
+     */
+    public function resolvedChat(): ?Chat
+    {
+        return $this->message->chat()
+            ?? $this->editedMessage->chat()
+            ?? $this->callbackQuery->message()->chat()
+            ?? $this->channelPost->chat()
+            ?? $this->editedChannelPost->chat();
+    }
+
+    /**
+     * If a User object exists in this update, resolvedUser() returns it.
+     */
+    public function resolvedUser(): ?User
+    {
+        return $this->message->from()
+            ?? $this->editedMessage->from()
+            ?? $this->callbackQuery->message()->from()
+            ?? $this->channelPost->from()
+            ?? $this->editedChannelPost->from()
+            ?? $this->inlineQuery->from()
+            ?? $this->chosenInlineResult->from()
+            ?? $this->shippingQuery->from()
+            ?? $this->preCheckoutQuery->from()
+            ?? $this->pollAnswer()->user();
     }
 
     /**
@@ -99,7 +135,7 @@ final class Update implements ApiReadType
     }
 
     /**
-     * 	Optional. New incoming channel post of any kind — text, photo, sticker, etc.
+     *    Optional. New incoming channel post of any kind — text, photo, sticker, etc.
      */
     public function channelPost(): ?Message
     {
@@ -168,5 +204,26 @@ final class Update implements ApiReadType
     public function pollAnswer(): ?PollAnswer
     {
         return $this->pollAnswer;
+    }
+
+    /**
+     * @internal Construct with data received from the Telegram bot api.
+     */
+    public static function fromApi($update): Update
+    {
+        return new static(
+            UpdateId::fromInt($update->update_id),
+            Message::fromApi($update->message ?? null),
+            Message::fromApi($update->edited_message ?? null),
+            Message::fromApi($update->channel_post ?? null),
+            Message::fromApi($update->edited_channel_post ?? null),
+            InlineQuery::fromApi($update->inline_query ?? null),
+            ChosenInlineResult::fromApi($update->chosen_inline_result ?? null),
+            CallbackQuery::fromApi($update->callback_query ?? null),
+            ShippingQuery::fromApi($update->shipping_query ?? null),
+            PreCheckoutQuery::fromApi($update->pre_checkout_query ?? null),
+            Poll::fromApi($update->poll ?? null),
+            PollAnswer::fromApi($update->poll_answer ?? null)
+        );
     }
 }

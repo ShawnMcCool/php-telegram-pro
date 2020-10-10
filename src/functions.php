@@ -5,7 +5,7 @@ namespace {
     use TelegramPro\Collections\Collection;
     use TelegramPro\Bot\Methods\Types\ApiWriteType;
     use TelegramPro\Bot\Methods\Keyboards\ReplyMarkup;
-    
+
     function bytesToMegabytes(int $bytes): int
     {
         return $bytes / 1000000;
@@ -48,6 +48,11 @@ namespace {
         return abs($a - $b) < PHP_FLOAT_EPSILON;
     }
 
+    function class_short_name($object): string
+    {
+        $className = get_class($object);
+        return (substr($className, strrpos($className, '\\') + 1));
+    }
 }
 
 namespace arr {

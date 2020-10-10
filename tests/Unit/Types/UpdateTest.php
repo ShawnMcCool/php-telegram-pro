@@ -17,7 +17,7 @@ final class UpdateTest extends TelegramTestCase
     function testMessageWithText()
     {
         # Update
-        $update = Update::fromApi($this->messageWithText);
+        $update = Update::fromApi(json_decode($this->messageWithText));
 
         $this->sameValue(UpdateId::fromInt(10000), $update->updateId());
 
@@ -50,7 +50,7 @@ final class UpdateTest extends TelegramTestCase
     function testForwardedMessage()
     {
         # Update
-        $update = Update::fromApi($this->forwardedMessage);
+        $update = Update::fromApi(json_decode($this->forwardedMessage));
 
         $this->sameValue(UpdateId::fromInt(10000), $update->updateId());
 
@@ -91,7 +91,7 @@ final class UpdateTest extends TelegramTestCase
     function testForwardedChannelMessage()
     {
         # Update
-        $update = Update::fromApi($this->forwardedChannelMessage);
+        $update = Update::fromApi(json_decode($this->forwardedChannelMessage));
 
         $this->sameValue(UpdateId::fromInt(10000), $update->updateId());
 
@@ -135,7 +135,7 @@ final class UpdateTest extends TelegramTestCase
     function testMessageWithAReply()
     {
         # Update
-        $update = Update::fromApi($this->messageWithAReply);
+        $update = Update::fromApi(json_decode($this->messageWithAReply));
 
         $this->sameValue(10000, $update->updateId());
 
@@ -185,7 +185,7 @@ final class UpdateTest extends TelegramTestCase
     function testEditedMessage()
     {
         # Update
-        $update = Update::fromApi($this->editedMessage);
+        $update = Update::fromApi(json_decode($this->editedMessage));
 
         $this->sameValue(10000, $update->updateId());
 
@@ -220,7 +220,7 @@ final class UpdateTest extends TelegramTestCase
     function testMessageWithEntities()
     {
         # Update
-        $update = Update::fromApi($this->messageWithEntities);
+        $update = Update::fromApi(json_decode($this->messageWithEntities));
 
         $this->sameValue(10000, $update->updateId());
 
@@ -272,7 +272,7 @@ final class UpdateTest extends TelegramTestCase
     function testMessageWithAudio()
     {
         # Update
-        $update = Update::fromApi($this->messageWithAudio);
+        $update = Update::fromApi(json_decode($this->messageWithAudio));
 
         $this->sameValue(10000, $update->updateId());
 
@@ -314,7 +314,7 @@ final class UpdateTest extends TelegramTestCase
     function testVoiceMessage()
     {
         # Update
-        $update = Update::fromApi($this->voiceMessage);
+        $update = Update::fromApi(json_decode($this->voiceMessage));
 
         $this->sameValue(10000, $update->updateId());
 
@@ -354,7 +354,7 @@ final class UpdateTest extends TelegramTestCase
     function testMessageWithADocument()
     {
         # Update
-        $update = Update::fromApi($this->messageWithADocument);
+        $update = Update::fromApi(json_decode($this->messageWithADocument));
 
         $this->sameValue(10000, $update->updateId());
 
@@ -393,7 +393,7 @@ final class UpdateTest extends TelegramTestCase
 
     function testInlineQuery()
     {
-        $update = Update::fromApi($this->inlineQuery);
+        $update = Update::fromApi(json_decode($this->inlineQuery));
 
         $this->sameValue(10000, $update->updateId());
 
@@ -415,7 +415,7 @@ final class UpdateTest extends TelegramTestCase
 
     function testChosenInlineQuery()
     {
-        $update = Update::fromApi($this->chosenInlineQuery);
+        $update = Update::fromApi(json_decode($this->chosenInlineQuery));
 
         $this->sameValue(10000, $update->updateId());
 
@@ -437,7 +437,7 @@ final class UpdateTest extends TelegramTestCase
 
     function testCallbackQuery()
     {
-        $update = Update::fromApi($this->callbackQuery);
+        $update = Update::fromApi(json_decode($this->callbackQuery));
 
         $this->sameValue(10000, $update->updateId());
 

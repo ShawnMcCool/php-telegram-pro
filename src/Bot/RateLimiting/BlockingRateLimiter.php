@@ -134,4 +134,9 @@ final class BlockingRateLimiter implements Telegram
             $this->telegram->send($request)
         );
     }
+
+    public function bulkToUsers(Request ...$requests)
+    {
+        throw new \Exception('this feature not implemented');
+    }
 }

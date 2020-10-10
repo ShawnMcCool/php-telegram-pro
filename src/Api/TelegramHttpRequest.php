@@ -31,4 +31,9 @@ final class TelegramHttpRequest implements Telegram
     {
         return new static($botToken);
     }
+
+    public function bulkToUsers(Request ...$requests)
+    {
+        throw new \Exception('this feature not implemented');
+    }
 }

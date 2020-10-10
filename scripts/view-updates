@@ -1,0 +1,34 @@
+#!/usr/bin/php
+<?php
+
+use Tests\Bot\BotTestConfig;
+use TelegramPro\Bot\Types\Update;
+use TelegramPro\Bot\Types\UpdateResponse;
+
+require 'vendor/autoload.php';
+
+$config = BotTestConfig::fromConfigFile('/vagrant/.bot-test-config');
+$resultsJson = file_get_contents("https://api.telegram.org/bot" . $config->token() . "/getUpdates");
+
+$response = UpdateResponse::fromApi($resultsJson);
+
+echo "\n";
+/** @var Update $update */
+foreach ($response->updates() as $update) {
+    $type = '';
+    
+    if ($update->message()) {
+        $type = 'Message';
+    } elseif ($update->editedMessage()) {
+        $type = 'Edited Message';
+    } elseif ($update->callbackQuery()) {
+        $type = 'Callback Query';
+    } elseif ($update->channelPost()) {
+        $type = 'Channel Post';
+    } elseif ($update->editedChannelPost()) {
+        $type = 'Edited Channel Post';
+    }
+    
+    echo "[{$type}] {$update->resolvedUser()->username()}: {$update->resolvedMessage()->text()}\n";
+}
+echo "\n";

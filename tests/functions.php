@@ -9,6 +9,6 @@ function d(...$targets): void
 
 function dd(...$targets): void
 {
-    d(...$targets);
+    if ($targets) d(...$targets);
     exit;
 }
