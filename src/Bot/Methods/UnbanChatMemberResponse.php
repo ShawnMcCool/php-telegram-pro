@@ -5,19 +5,19 @@ use TelegramPro\Bot\Methods\Types\MethodError;
 /**
  * Returns True on success.
  */
-final class KickChatMemberResponse implements Response
+final class UnbanChatMemberResponse implements Response
 {
     private bool $ok;
-    private bool $memberWasKicked;
+    private bool $memberWasUnbanned;
     private ?MethodError $error;
 
     public function __construct(
         bool $ok,
-        bool $memberWasKicked,
+        bool $memberWasUnbanned,
         ?MethodError $error
     ) {
         $this->ok = $ok;
-        $this->memberWasKicked = $memberWasKicked;
+        $this->memberWasUnbanned = $memberWasUnbanned;
         $this->error = $error;
     }
 
@@ -26,9 +26,9 @@ final class KickChatMemberResponse implements Response
         return $this->ok;
     }
 
-    public function memberWasKicked(): bool
+    public function memberWasUnbanned(): bool
     {
-        return $this->memberWasKicked;
+        return $this->memberWasUnbanned;
     }
 
     public function error(): ?MethodError
