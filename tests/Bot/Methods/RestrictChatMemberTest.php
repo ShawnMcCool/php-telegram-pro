@@ -2,7 +2,7 @@
 
 use PHPUnit\Framework\TestCase;
 
-class UnbanChatMemberTest extends TestCase
+class RestrictChatMemberTest extends TestCase
 {
     /**
      * @doesNotPerformAssertions
