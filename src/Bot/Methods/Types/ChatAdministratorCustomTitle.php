@@ -2,7 +2,7 @@
 
 use TelegramPro\PrimitiveTypes\StringObject;
 
-final class PhoneNumber extends StringObject
+final class ChatAdministratorCustomTitle extends StringObject
 {
     public static function fromString(?string $string): ?self
     {
@@ -10,8 +10,8 @@ final class PhoneNumber extends StringObject
             return null;
         }
         
-        if ( ! \string\starts_with($string, '+')) {
-            throw new PhoneNumberIsNotValid("Phone numbers must be in valid E.164 format.");
+        if (strlen($string) < 0 || strlen($string) > 16) {
+            throw new ChatAdministratorCustomTitleIsInvalid('A chat administrator custom title must be between 0-16 characters. Emojis are not allowed.');
         }
         
         return new static($string);
