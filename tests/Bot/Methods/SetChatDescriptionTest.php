@@ -1,5 +1,6 @@
 <?php namespace Tests\Bot\Methods;
 
+use Ramsey\Uuid\Uuid;
 use Tests\TelegramTestCase;
 use TelegramPro\Bot\Methods\SetChatDescription;
 use TelegramPro\Bot\Methods\Types\MethodError;
@@ -7,11 +8,11 @@ use TelegramPro\Bot\Methods\Types\ChatDescription;
 
 class SetChatDescriptionTest extends TelegramTestCase
 {
-    function testSetChatPhotoWithFilePath()
+    function testSetChatDescription()
     {
         $response = SetChatDescription::parameters(
             $this->config->chatId(),
-            ChatDescription::fromString('This is a chat description.')
+            ChatDescription::fromString('This is a chat description.' . Uuid::uuid4()->toString())
         )->send($this->telegram);
 
         $this->isOk($response);

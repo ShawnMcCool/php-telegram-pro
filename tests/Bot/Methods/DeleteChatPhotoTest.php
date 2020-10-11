@@ -1,13 +1,23 @@
 <?php namespace Tests\Bot\Methods;
 
 use Tests\TelegramTestCase;
+use TelegramPro\Bot\Methods\SetChatPhoto;
 use TelegramPro\Bot\Methods\DeleteChatPhoto;
 use TelegramPro\Bot\Methods\Types\MethodError;
+use TelegramPro\Bot\Methods\FileUploads\FilePath;
+use TelegramPro\Bot\Methods\FileUploads\InputPhotoFile;
 
 class DeleteChatPhotoTest extends TelegramTestCase
 {
     function testDeleteChatPhotoWithFilePath()
     {
+        SetChatPhoto::parameters(
+            $this->config->chatId(),
+            InputPhotoFile::fromFilePath(
+                FilePath::fromString($this->media->image())
+            )
+        )->send($this->telegram);
+        
         $response = DeleteChatPhoto::parameters(
             $this->config->chatId()
         )->send($this->telegram);

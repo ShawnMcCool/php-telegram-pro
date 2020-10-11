@@ -14,3 +14,4 @@ Responses = Receive
 - Add Update class 'resolved' functions to the UpdateTest
 - Make sure the massive Message class has fields named in accordance to modern standards
 - Update UpdateTest
+- Verify that all test function names are correct

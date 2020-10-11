@@ -13,7 +13,7 @@
     "ext-json": "*",
     "ext-curl": "*",
     "ext-fileinfo": "*",
-    "ramsey/uuid": "^3",
+    "ramsey/uuid": "^4.1",
     "shawnmccool/phansi": "dev-main"
   },
   "require-dev": {
