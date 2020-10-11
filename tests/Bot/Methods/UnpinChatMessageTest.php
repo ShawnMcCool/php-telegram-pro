@@ -3,14 +3,14 @@
 use Tests\TelegramTestCase;
 use TelegramPro\Bot\Methods\SendMessage;
 use TelegramPro\Bot\Methods\PinChatMessage;
-use TelegramPro\Bot\Methods\Types\MessageId;
+use TelegramPro\Bot\Methods\UnpinChatMessage;
 use TelegramPro\Bot\Methods\Types\MessageText;
 use TelegramPro\Bot\Methods\Types\MethodError;
 
-class PinChatMessageTest extends TelegramTestCase
+class UnpinChatMessageTest extends TelegramTestCase
 {
     /**
-     * @todo add getChat so that this can verify the pinned message status
+     * @todo use getChat to test effects (not yet added)
      */
     function testSetChatPhotoWithFilePath()
     {
@@ -18,21 +18,24 @@ class PinChatMessageTest extends TelegramTestCase
             $this->config->chatId(),
             MessageText::fromString('this is a message to be pinned.')
         )->send($this->telegram);
-        
-        $response = PinChatMessage::parameters(
+
+        PinChatMessage::parameters(
             $this->config->chatId(),
             $messageResponse->sentMessage()->messageId()
         )->send($this->telegram);
-        
+
+        $response = UnpinChatMessage::parameters(
+            $this->config->chatId()
+        )->send($this->telegram);
+
         $this->isOk($response);
-        self::assertTrue($response->messageWasPinned());
+        self::assertTrue($response->messageWasUnpinned());
     }
 
     function testCanParseError()
     {
-        $response = PinChatMessage::parameters(
-            $this->config->chatId(),
-            MessageId::fromInt(912837129)
+        $response = UnpinChatMessage::parameters(
+            $this->config->wrongGroupId()
         )->send($this->telegram);
 
         self::assertFalse($response->ok());
