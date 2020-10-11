@@ -13,7 +13,7 @@ final class ThumbnailInputFile extends InputFile
     public static function fromFilePath(FilePath $filePath): InputFile
     {
         if (is_null($filePath)) {
-            return null;
+            throw new ThumbnailFilePathNotFound($filePath);
         }
 
         $filePathString = realpath($filePath);
