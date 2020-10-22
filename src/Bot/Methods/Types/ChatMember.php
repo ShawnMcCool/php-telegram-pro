@@ -1,18 +1,16 @@
 <?php namespace TelegramPro\Bot\Methods\Types;
 
-use Exception;
-use TelegramPro\Bot\Types\User;
 use TelegramPro\Bot\Types\ChatMemberStatus;
 
 /**
  * This object contains information about one member of a chat.
  */
-final class ChatMember 
+final class ChatMember implements ApiReadType
 {
     private User $user;
     private ChatMemberStatus $status;
-    private ?string $customTitle;
-    private ?Date $untilDate;
+    private ?ChatAdministratorCustomTitle $customTitle;
+    private ?RestrictUntilDate $untilDate;
     private ?bool $canBeEdited;
     private ?bool $canPostMessages;
     private ?bool $canEditMessages;
@@ -32,8 +30,8 @@ final class ChatMember
     private function __construct(
         User $user,
         ChatMemberStatus $status,
-        ?string $customTitle,
-        ?Date $untilDate,
+        ?ChatAdministratorCustomTitle $customTitle,
+        ?RestrictUntilDate $untilDate,
         ?bool $canBeEdited,
         ?bool $canPostMessages,
         ?bool $canEditMessages,
@@ -90,7 +88,7 @@ final class ChatMember
     /**
      * Optional. Owner and administrators only. Custom title for this user
      */
-    public function customTitle(): ?string
+    public function customTitle(): ?ChatAdministratorCustomTitle
     {
         return $this->customTitle;
     }
@@ -98,7 +96,7 @@ final class ChatMember
     /**
      * Optional. Restricted and kicked only. Date when restrictions will be lifted for this user; unix time
      */
-    public function untilDate(): ?Date
+    public function untilDate(): ?RestrictUntilDate
     {
         return $this->untilDate;
     }
@@ -228,6 +226,30 @@ final class ChatMember
      */
     public static function fromApi($data): ?self
     {
-        throw new Exception('not implemented');
+        if (is_null($data)) {
+            return null;
+        }
+        
+        return new static(
+            User::fromApi($data->user),
+            ChatMemberStatus::fromApi($data->status),
+            ChatAdministratorCustomTitle::fromApi($data->custom_title ?? null),
+            RestrictUntilDate::fromApi($data->until_date ?? null),
+            $data->can_be_edited ?? null,
+            $data->can_post_messages ?? null,
+            $data->can_edit_messages ?? null,
+            $data->can_delete_messages ?? null,
+            $data->can_restrict_members ?? null,
+            $data->can_promote_members ?? null,
+            $data->can_change_info ?? null,
+            $data->can_invite_users ?? null,
+            $data->can_pin_messages ?? null,
+            $data->is_member ?? null,
+            $data->can_send_messages ?? null,
+            $data->can_send_media_messages ?? null,
+            $data->can_send_polls ?? null,
+            $data->can_send_other_messages ?? null,
+            $data->can_add_web_page_previews ?? null,
+        );
     }
 }

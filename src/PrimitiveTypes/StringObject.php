@@ -32,6 +32,10 @@ abstract class StringObject implements ApiReadType, ApiWriteType
 
     public static function fromApi($string): ?self
     {
+        if (is_null($string)) {
+            return null;
+        }
+        
         return static::fromString($string);
     }
 }

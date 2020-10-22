@@ -1,9 +1,11 @@
 <?php namespace TelegramPro\Bot\Types;
 
+use TelegramPro\PrimitiveTypes\StringObject;
+
 /**
  * The member's status in the chat. Can be “creator”, “administrator”, “member”, “restricted”, “left” or “kicked”
  */
-final class ChatMemberStatus extends \TelegramPro\PrimitiveTypes\StringObject
+final class ChatMemberStatus extends StringObject
 {
     public function isCreator(): bool
     {

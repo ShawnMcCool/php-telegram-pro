@@ -32,7 +32,7 @@ abstract class ArrayOfApiTypes implements Countable, IteratorAggregate, ArrayAcc
         return $this->items->getIterator();
     }
 
-    public function get(int $index): ?Message
+    public function get(int $index)
     {
         return $this->items[$index];
     }
