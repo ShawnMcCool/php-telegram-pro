@@ -15,3 +15,4 @@ Responses = Receive
 - Make sure the massive Message class has fields named in accordance to modern standards
 - Update UpdateTest
 - Verify that all test function names are correct
+- Expand the capabilities of all collections 

@@ -32,6 +32,11 @@ abstract class IntegerObject implements ApiReadType, ApiWriteType
         return $this->integer;
     }
 
+    public function equals(IntegerObject $that): bool
+    {
+        return $this->integer == $that->integer;
+    }
+
     public static function fromInt(?int $integer): ?self
     {
         if ( ! is_integer($integer)) {
