@@ -14,13 +14,15 @@ class PinChatMessageTest extends TelegramTestCase
      */
     function testSetChatPhotoWithFilePath()
     {
+        $chatId = $this->config->validGroup();
+        
         $messageResponse = SendMessage::parameters(
-            $this->config->supergroupChatId(),
+            $chatId,
             MessageText::fromString('this is a message to be pinned.')
         )->send($this->telegram);
         
         $response = PinChatMessage::parameters(
-            $this->config->supergroupChatId(),
+            $chatId,
             $messageResponse->sentMessage()->messageId()
         )->send($this->telegram);
         
@@ -31,7 +33,7 @@ class PinChatMessageTest extends TelegramTestCase
     function testCanParseError()
     {
         $response = PinChatMessage::parameters(
-            $this->config->supergroupChatId(),
+            $this->config->validGroup(),
             MessageId::fromInt(912837129)
         )->send($this->telegram);
 

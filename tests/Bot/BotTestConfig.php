@@ -13,6 +13,7 @@ final class BotTestConfig
     private ChatId $wrongGroupId;
     private ?Latitude $latitude;
     private ?Longitude $longitude;
+    private RangeCycle $validGroupCycle;
 
     private function __construct(
         string $token,
@@ -26,6 +27,7 @@ final class BotTestConfig
         $this->wrongGroupId = $wrongGroupId;
         $this->latitude = Latitude::fromFloat(50.010083);
         $this->longitude = Longitude::fromFloat(-110.113006);
+        $this->validGroupCycle = new RangeCycle([$supergroupChatId, $groupChatId]);
     }
 
     public function token(): string
@@ -46,6 +48,11 @@ final class BotTestConfig
     public function wrongGroupId(): ChatId
     {
         return $this->wrongGroupId;
+    }
+
+    public function validGroup(): ChatId
+    {
+        return $this->validGroupCycle->next();
     }
 
     public function latitude(): ?Latitude

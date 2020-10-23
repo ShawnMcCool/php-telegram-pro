@@ -1,19 +1,18 @@
 <?php namespace Tests\Bot\Methods;
 
 use Tests\TelegramTestCase;
-use TelegramPro\Bot\Methods\SetChatStickerSet;
+use TelegramPro\Bot\Methods\DeleteChatStickerSet;
 use TelegramPro\Bot\Methods\Types\MethodError;
 
 /**
  * Figure out how to test this
  */
-class SetChatStickerSetTest extends TelegramTestCase
+class DeleteChatStickerSetTest extends TelegramTestCase
 {
-//    function testCanSetChatStickerSet()
+//    function testCanDeleteChatStickerSet()
 //    {
-//        $response = SetChatStickerSet::parameters(
-//            $this->config->validGroup(),
-//            'BrokenCats'
+//        $response = DeleteChatStickerSet::parameters(
+//            $this->config->validGroup()
 //        )->send($this->telegram);
 //
 //        $this->isOk($response);
@@ -22,7 +21,7 @@ class SetChatStickerSetTest extends TelegramTestCase
 
 //    function testCanParseError()
 //    {
-//        $response = SetChatStickerSet::parameters(
+//        $response = DeleteChatStickerSet::parameters(
 //            $this->config->wrongGroupId()
 //        )->send($this->telegram);
 //

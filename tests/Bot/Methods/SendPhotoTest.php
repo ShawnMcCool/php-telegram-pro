@@ -16,7 +16,7 @@ class SendPhotoTest extends TelegramTestCase
     function testSendPhotoWithFilePath()
     {
         $response = SendPhoto::parameters(
-            $this->config->supergroupChatId(),
+            $this->config->validGroup(),
             InputPhotoFile::fromFilePath(
                 FilePath::fromString($this->media->image())
             ),
@@ -30,7 +30,7 @@ class SendPhotoTest extends TelegramTestCase
     function testSendPhotoWithUrl()
     {
         $response = SendPhoto::parameters(
-            $this->config->supergroupChatId(),
+            $this->config->validGroup(),
             InputPhotoFile::fromUrl(
                 Url::fromString('https://homepages.cae.wisc.edu/~ece533/images/boat.png')
             ),
@@ -46,7 +46,7 @@ class SendPhotoTest extends TelegramTestCase
         $num = rand(0, 32767);
         
         $response = SendPhoto::parameters(
-            $this->config->supergroupChatId(),
+            $this->config->validGroup(),
             InputPhotoFile::fromFilePath(
                 FilePath::fromString($this->media->image())
             ),
@@ -57,7 +57,7 @@ class SendPhotoTest extends TelegramTestCase
         $photoSize = $response->sentMessage()->photo()[0];
 
         $response = SendPhoto::parameters(
-            $this->config->supergroupChatId(),
+            $this->config->validGroup(),
             InputPhotoFile::fromFileId($photoSize->fileId()),
             MediaCaption::fromString('[SendPhoto] send photo with file id 2/2 ' . $num)
         )->send($this->telegram);
@@ -71,7 +71,7 @@ class SendPhotoTest extends TelegramTestCase
         $this->expectException(CanNotOpenFile::class);
 
         $response = SendPhoto::parameters(
-            $this->config->supergroupChatId(),
+            $this->config->validGroup(),
             InputPhotoFile::fromFilePath(
                 FilePath::fromString('non existent file')
             ),
@@ -82,7 +82,7 @@ class SendPhotoTest extends TelegramTestCase
     function testCanParseError()
     {
         $response = SendPhoto::parameters(
-            $this->config->supergroupChatId(),
+            $this->config->validGroup(),
             InputPhotoFile::fromUrl(
                 Url::fromString('https://bob')
             ),

@@ -15,7 +15,7 @@ class SendDocumentTest extends TelegramTestCase
     function testSendDocumentFileWithFilePath()
     {
         $response = SendDocument::parameters(
-            $this->config->supergroupChatId(),
+            $this->config->validGroup(),
             DocumentFile::fromFilePath(
                 FilePath::fromString($this->media->document())
             ),
@@ -30,7 +30,7 @@ class SendDocumentTest extends TelegramTestCase
     function testSendDocumentWithUrl()
     {
         $response = SendDocument::parameters(
-            $this->config->supergroupChatId(),
+            $this->config->validGroup(),
             DocumentFile::fromUrl(
                 Url::fromString($this->media->imageUrl())
             ),
@@ -47,7 +47,7 @@ class SendDocumentTest extends TelegramTestCase
         $num = rand(0, 32767);
 
         $response = SendDocument::parameters(
-            $this->config->supergroupChatId(),
+            $this->config->validGroup(),
             DocumentFile::fromFilePath(
                 FilePath::fromString($this->media->document())
             ),
@@ -58,7 +58,7 @@ class SendDocumentTest extends TelegramTestCase
         $documentId = $response->sentMessage()->document()->fileId();
 
         $response = SendDocument::parameters(
-            $this->config->supergroupChatId(),
+            $this->config->validGroup(),
             DocumentFile::fromFileId($documentId),
             null,
             MediaCaption::fromString('[SendDocument] send photo with file id 2/2 ' . $num)
@@ -73,7 +73,7 @@ class SendDocumentTest extends TelegramTestCase
         $this->expectException(CanNotOpenFile::class);
 
         $response = SendDocument::parameters(
-            $this->config->supergroupChatId(),
+            $this->config->validGroup(),
             DocumentFile::fromFilePath(
                 FilePath::fromString('non existent file')
             ),
@@ -85,7 +85,7 @@ class SendDocumentTest extends TelegramTestCase
     function testCanParseError()
     {
         $response = SendDocument::parameters(
-            $this->config->supergroupChatId(),
+            $this->config->validGroup(),
             DocumentFile::fromUrl(
                 Url::fromString('https://bob')
             ),

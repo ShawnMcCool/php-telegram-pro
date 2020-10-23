@@ -12,7 +12,7 @@ class GetChatMemberTest extends TelegramTestCase
     function testCanGetChatMember()
     {
         $chatAdminsResponse = GetChatAdministrators::parameters(
-            $this->config->supergroupChatId()
+            $this->config->validGroup()
         )->send($this->telegram);
         
         $nonBotUser = null;
@@ -27,7 +27,7 @@ class GetChatMemberTest extends TelegramTestCase
         self::assertNotNull($nonBotUser);
         
         $response = GetChatMember::parameters(
-            $this->config->supergroupChatId(),
+            $this->config->validGroup(),
             $nonBotUser->userId()
         )->send($this->telegram);
 

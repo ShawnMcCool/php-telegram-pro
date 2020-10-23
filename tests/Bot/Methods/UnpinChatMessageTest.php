@@ -15,17 +15,17 @@ class UnpinChatMessageTest extends TelegramTestCase
     function testSetChatPhotoWithFilePath()
     {
         $messageResponse = SendMessage::parameters(
-            $this->config->supergroupChatId(),
+            $this->config->validGroup(),
             MessageText::fromString('this is a message to be pinned.')
         )->send($this->telegram);
 
         PinChatMessage::parameters(
-            $this->config->supergroupChatId(),
+            $this->config->validGroup(),
             $messageResponse->sentMessage()->messageId()
         )->send($this->telegram);
 
         $response = UnpinChatMessage::parameters(
-            $this->config->supergroupChatId()
+            $this->config->validGroup()
         )->send($this->telegram);
 
         $this->isOk($response);

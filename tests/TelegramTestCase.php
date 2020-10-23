@@ -11,9 +11,10 @@ use TelegramPro\Bot\RateLimiting\BlockingRateLimiter;
 class TelegramTestCase extends TestCase
 {
     private static ?Telegram $telegramInstance = null;
-    
-    protected Telegram $telegram;
-    protected BotTestConfig $config;
+    private static ?BotTestConfig $botConfigInstance = null;
+
+    protected ?Telegram $telegram;
+    protected ?BotTestConfig $config;
     protected TestMedia $media;
 
     public static function telegramInstance(): ?Telegram
@@ -21,11 +22,14 @@ class TelegramTestCase extends TestCase
         return static::$telegramInstance;
     }
 
+    public static function botConfigInstance(): ?BotTestConfig
+    {
+        return static::$botConfigInstance;
+    }
+
     protected function setUp(): void
     {
         parent::setUp();
-
-        $this->config = BotTestConfig::fromConfigFile('/vagrant/.bot-test-config');
 
         $this->media = TestMedia::paths(
             '/vagrant/tests/Media/Images',
@@ -42,7 +46,12 @@ class TelegramTestCase extends TestCase
             'https://upload.wikimedia.org/wikipedia/commons/a/a3/HurdySample.ogg',
             '/vagrant/tests/Media/VideoNotes/golden-ratio-240px.mp4'
         );
-        
+
+        if ( ! isset(static::$botConfigInstance)) {
+            static::$botConfigInstance = BotTestConfig::fromConfigFile('/vagrant/.bot-test-config');
+        }
+        $this->config = static::botConfigInstance();
+
         if ( ! isset(static::$telegramInstance)) {
             static::$telegramInstance = new BlockingRateLimiter(
                 TelegramHttpRequest::botToken(
@@ -50,8 +59,8 @@ class TelegramTestCase extends TestCase
                 )
             );
         }
-        
         $this->telegram = static::telegramInstance();
+        
     }
 
     protected function send(Method $method)

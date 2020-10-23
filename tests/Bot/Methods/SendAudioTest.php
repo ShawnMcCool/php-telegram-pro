@@ -16,7 +16,7 @@ class SendAudioTest extends TelegramTestCase
     function testSendAudioFileWithFilePath()
     {
         $response = SendAudio::parameters(
-            $this->config->supergroupChatId(),
+            $this->config->validGroup(),
             AudioInputFile::fromFilePath(
                 FilePath::fromString($this->media->mp3())
             ),
@@ -30,7 +30,7 @@ class SendAudioTest extends TelegramTestCase
     function testSendAudioWithUrl()
     {
         $response = SendAudio::parameters(
-            $this->config->supergroupChatId(),
+            $this->config->validGroup(),
             AudioInputFile::fromUrl(
                 Url::fromString($this->media->audioUrl())
             ),
@@ -46,7 +46,7 @@ class SendAudioTest extends TelegramTestCase
         $num = rand(0, 32767);
 
         $response = SendAudio::parameters(
-            $this->config->supergroupChatId(),
+            $this->config->validGroup(),
             AudioInputFile::fromFilePath(
                 FilePath::fromString($this->media->mp3())
             ),
@@ -56,7 +56,7 @@ class SendAudioTest extends TelegramTestCase
         $audioId = $response->sentMessage()->audio()->fileId();
 
         $response = SendAudio::parameters(
-            $this->config->supergroupChatId(),
+            $this->config->validGroup(),
             AudioInputFile::fromFileId($audioId),
             MediaCaption::fromString('[SendAudio] send audio with file id 2/2 ' . $num)
         )->send($this->telegram);
@@ -70,7 +70,7 @@ class SendAudioTest extends TelegramTestCase
         $this->expectException(CanNotOpenFile::class);
 
         SendAudio::parameters(
-            $this->config->supergroupChatId(),
+            $this->config->validGroup(),
             AudioInputFile::fromFilePath(
                 FilePath::fromString('non existent file')
             ),
@@ -81,7 +81,7 @@ class SendAudioTest extends TelegramTestCase
     function testCanParseError()
     {
         $response = SendAudio::parameters(
-            $this->config->supergroupChatId(),
+            $this->config->validGroup(),
             AudioInputFile::fromUrl(Url::fromString('https://bob')),
             MediaCaption::fromString('[SendAudio] parse error test')
         )->send($this->telegram);

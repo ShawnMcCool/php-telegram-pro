@@ -11,15 +11,17 @@ class DeleteChatPhotoTest extends TelegramTestCase
 {
     function testDeleteChatPhotoWithFilePath()
     {
+        $chatId = $this->config->validGroup();
+        
         SetChatPhoto::parameters(
-            $this->config->supergroupChatId(),
+            $chatId,
             InputPhotoFile::fromFilePath(
                 FilePath::fromString($this->media->image())
             )
         )->send($this->telegram);
         
         $response = DeleteChatPhoto::parameters(
-            $this->config->supergroupChatId()
+            $chatId
         )->send($this->telegram);
 
         $this->isOk($response);

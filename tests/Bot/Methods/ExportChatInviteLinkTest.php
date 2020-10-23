@@ -9,7 +9,7 @@ class ExportChatInviteLinkTest extends TelegramTestCase
     function testExportChatInviteLink()
     {
         $response = ExportChatInviteLink::parameters(
-            $this->config->supergroupChatId(),
+            $this->config->validGroup(),
         )->send($this->telegram);
 
         $this->isOk($response);

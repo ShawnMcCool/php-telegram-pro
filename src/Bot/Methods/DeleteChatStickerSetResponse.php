@@ -5,19 +5,19 @@ use TelegramPro\Bot\Methods\Types\MethodError;
 /**
  * Returns True on success.
  */
-final class SetChatStickerSetResponse implements Response
+final class DeleteChatStickerSetResponse implements Response
 {
     private bool $ok;
-    private ?bool $chatStickerSetWasSet;
+    private ?bool $chatStickerSetWasDeleted;
     private ?MethodError $error;
 
     public function __construct(
         bool $ok,
-        ?bool $chatStickerSetWasSet,
+        ?bool $chatStickerSetWasDeleted,
         ?MethodError $error
     ) {
         $this->ok = $ok;
-        $this->chatStickerSetWasSet = $chatStickerSetWasSet;
+        $this->chatStickerSetWasDeleted = $chatStickerSetWasDeleted;
         $this->error = $error;
     }
 
@@ -26,9 +26,9 @@ final class SetChatStickerSetResponse implements Response
         return $this->ok;
     }
 
-    public function chatStickerSetWasSet(): ?bool
+    public function chatStickerSetWasDeleted(): ?bool
     {
-        return $this->chatStickerSetWasSet;
+        return $this->chatStickerSetWasDeleted;
     }
 
     public function error(): ?MethodError

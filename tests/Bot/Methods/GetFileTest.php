@@ -15,7 +15,7 @@ class GetFileTest extends TelegramTestCase
     function testCanGetDocumentFileInformation()
     {
         $sendDocumentResponse = SendDocument::parameters(
-            $this->config->supergroupChatId(),
+            $this->config->validGroup(),
             DocumentFile::fromFilePath(
                 FilePath::fromString($this->media->document())
             ),

@@ -12,7 +12,7 @@ class SendDiceTest extends TelegramTestCase
     function testSendDart()
     {
         $response = SendDice::parameters(
-            $this->config->supergroupChatId(),
+            $this->config->validGroup(),
             DiceEmoji::darts()
         )->send($this->telegram);
 
@@ -24,7 +24,7 @@ class SendDiceTest extends TelegramTestCase
     function testSendBasketball()
     {
         $response = SendDice::parameters(
-            $this->config->supergroupChatId(),
+            $this->config->validGroup(),
             DiceEmoji::basketball()
         )->send($this->telegram);
 
@@ -35,7 +35,7 @@ class SendDiceTest extends TelegramTestCase
     function testSendDice()
     {
         $response = SendDice::parameters(
-            $this->config->supergroupChatId(),
+            $this->config->validGroup(),
             DiceEmoji::dice()
         )->send($this->telegram);
 

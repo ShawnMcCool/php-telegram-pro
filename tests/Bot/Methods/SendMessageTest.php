@@ -11,7 +11,7 @@ class SendMessageTest extends TelegramTestCase
     function testSendMessage()
     {
         $response = SendMessage::parameters(
-            $this->config->supergroupChatId(),
+            $this->config->validGroup(),
             MessageText::fromString('[SendMessage] send message')
         )->send($this->telegram);
 
@@ -23,7 +23,7 @@ class SendMessageTest extends TelegramTestCase
     function testSendMarkdownMessage()
     {
         $response = SendMessage::parameters(
-            $this->config->supergroupChatId(),
+            $this->config->validGroup(),
             MessageText::fromString('[SendMessage] send *markdown parsed* message')
         )->send($this->telegram);
 
