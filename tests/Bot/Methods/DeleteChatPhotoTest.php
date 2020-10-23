@@ -11,7 +11,7 @@ class DeleteChatPhotoTest extends TelegramTestCase
 {
     function testDeleteChatPhotoWithFilePath()
     {
-        $chatId = $this->config->validGroup();
+        $chatId = $this->config->cyclingChatId();
         
         SetChatPhoto::parameters(
             $chatId,

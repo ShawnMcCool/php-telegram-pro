@@ -16,7 +16,7 @@ class SendVoiceTest extends TelegramTestCase
     function testSendVoiceFileWithFilePath()
     {
         $response = SendVoice::parameters(
-            $this->config->validGroup(),
+            $this->config->cyclingChatId(),
             VoiceFile::fromFilePath(
                 FilePath::fromString($this->media->voice())
             ),
@@ -30,7 +30,7 @@ class SendVoiceTest extends TelegramTestCase
     function testSendVoiceWithUrl()
     {
         $response = SendVoice::parameters(
-            $this->config->validGroup(),
+            $this->config->cyclingChatId(),
             VoiceFile::fromUrl(
                 Url::fromString($this->media->voiceUrl())
             ),
@@ -46,7 +46,7 @@ class SendVoiceTest extends TelegramTestCase
         $num = rand(0, 32767);
 
         $response = SendVoice::parameters(
-            $this->config->validGroup(),
+            $this->config->cyclingChatId(),
             VoiceFile::fromFilePath(
                 FilePath::fromString($this->media->voice())
             ),
@@ -58,7 +58,7 @@ class SendVoiceTest extends TelegramTestCase
         $voiceId = $response->sentMessage()->voice()->fileId();
         
         $response = SendVoice::parameters(
-            $this->config->validGroup(),
+            $this->config->cyclingChatId(),
             VoiceFile::fromFileId(
                 $voiceId
             ),
@@ -74,7 +74,7 @@ class SendVoiceTest extends TelegramTestCase
         $this->expectException(CanNotOpenFile::class);
 
         $response = SendVoice::parameters(
-            $this->config->validGroup(),
+            $this->config->cyclingChatId(),
             VoiceFile::fromFilePath(
                 FilePath::fromString('non existent file')
             ),
@@ -85,7 +85,7 @@ class SendVoiceTest extends TelegramTestCase
     function testCanParseError()
     {
         $response = SendVoice::parameters(
-            $this->config->validGroup(),
+            $this->config->cyclingChatId(),
             VoiceFile::fromUrl(
                 Url::fromString('https://bob')
             ),

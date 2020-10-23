@@ -14,7 +14,7 @@ class StopMessageLiveLocationTest extends TelegramTestCase
 {
     function testCanStopLiveLocation()
     {
-        $chatId = $this->config->validGroup();
+        $chatId = $this->config->cyclingChatId();
         
         $locationResponse = SendLocation::parameters(
             $chatId,
@@ -36,7 +36,7 @@ class StopMessageLiveLocationTest extends TelegramTestCase
     function testCanParseError()
     {
         $response = StopMessageLiveLocation::parameters(
-            $this->config->validGroup(),
+            $this->config->cyclingChatId(),
             MessageId::fromInt(123)
         )->send($this->telegram);
         

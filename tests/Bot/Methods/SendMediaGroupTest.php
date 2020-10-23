@@ -23,7 +23,7 @@ class SendMediaGroupTest extends TelegramTestCase
     function testSendMediaGroupWithFilePath()
     {
         $response = SendMediaGroup::parameters(
-            $this->config->validGroup(),
+            $this->config->cyclingChatId(),
             MediaGroup::items(
                 InputMediaPhoto::fromFilePath(
                     FilePath::fromString($this->media->image()),
@@ -45,7 +45,7 @@ class SendMediaGroupTest extends TelegramTestCase
     function testSendMediaGroupWithUrl()
     {
         $response = SendMediaGroup::parameters(
-            $this->config->validGroup(),
+            $this->config->cyclingChatId(),
             MediaGroup::items(
                 InputMediaPhoto::fromUrl(
                     Url::fromString($this->media->imageUrl()),
@@ -67,7 +67,7 @@ class SendMediaGroupTest extends TelegramTestCase
         $num = rand(0, 32767);
 
         $response = SendPhoto::parameters(
-            $this->config->validGroup(),
+            $this->config->cyclingChatId(),
             InputPhotoFile::fromFilePath(
                 FilePath::fromString($this->media->image())
             ),
@@ -79,7 +79,7 @@ class SendMediaGroupTest extends TelegramTestCase
         $responsePhoto = $response->sentMessage()->photo()[0];
 
         $response = SendVideo::parameters(
-            $this->config->validGroup(),
+            $this->config->cyclingChatId(),
             VideoFile::fromFilePath(
                 FilePath::fromString($this->media->video())
             ),
@@ -91,7 +91,7 @@ class SendMediaGroupTest extends TelegramTestCase
         $responseVideo = $response->sentMessage()->video();
 
         $response = SendMediaGroup::parameters(
-            $this->config->validGroup(),
+            $this->config->cyclingChatId(),
             MediaGroup::items(
                 InputMediaPhoto::fromFileId(
                     $responsePhoto->fileId(),
@@ -113,7 +113,7 @@ class SendMediaGroupTest extends TelegramTestCase
         $this->expectException(CanNotOpenFile::class);
 
         SendMediaGroup::parameters(
-            $this->config->validGroup(),
+            $this->config->cyclingChatId(),
             MediaGroup::items(
                 InputMediaPhoto::fromFilePath(
                     FilePath::fromString('non existent file')
@@ -128,7 +128,7 @@ class SendMediaGroupTest extends TelegramTestCase
     function testCanParseError()
     {
         $response = SendMediaGroup::parameters(
-            $this->config->validGroup(),
+            $this->config->cyclingChatId(),
             MediaGroup::items(
                 InputMediaPhoto::fromUrl(
                     Url::fromString('http://non.existent.url')

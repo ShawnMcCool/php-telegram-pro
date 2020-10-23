@@ -25,7 +25,7 @@ final class RangeCycle
         $current = $this->currentIndex;
 
         $this->currentIndex = ($this->currentIndex + $this->summand) % $this->rangeCount;
-
+        
         return $this->range[$current];
     }
 }

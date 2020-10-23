@@ -9,7 +9,7 @@ class GetChatMembersCountTest extends TelegramTestCase
     function testCanGetChat()
     {
         $response = GetChatMembersCount::parameters(
-            $this->config->validGroup()
+            $this->config->cyclingChatId()
         )->send($this->telegram);
 
         $this->isOk($response);

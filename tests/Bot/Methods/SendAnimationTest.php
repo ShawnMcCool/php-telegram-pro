@@ -15,7 +15,7 @@ class SendAnimationTest extends TelegramTestCase
     function testSendAnimationWithFilePath()
     {
         $response = SendAnimation::parameters(
-            $this->config->validGroup(),
+            $this->config->cyclingChatId(),
             AnimationFile::fromFilePath(
                 FilePath::fromString($this->media->animation())
             ),
@@ -29,7 +29,7 @@ class SendAnimationTest extends TelegramTestCase
     function testSendAnimationWithUrl()
     {
         $response = SendAnimation::parameters(
-            $this->config->validGroup(),
+            $this->config->cyclingChatId(),
             AnimationFile::fromUrl(
                 Url::fromString($this->media->animationUrl())
             ),
@@ -45,7 +45,7 @@ class SendAnimationTest extends TelegramTestCase
         $num = rand(0, 32767);
 
         $response = SendAnimation::parameters(
-            $this->config->validGroup(),
+            $this->config->cyclingChatId(),
             AnimationFile::fromUrl(
                 Url::fromString($this->media->animationUrl())
             ),
@@ -53,7 +53,7 @@ class SendAnimationTest extends TelegramTestCase
         )->send($this->telegram);
 
         $response = SendAnimation::parameters(
-            $this->config->validGroup(),
+            $this->config->cyclingChatId(),
             AnimationFile::fromFileId(
                 $response->sentMessage()->animation()->fileId()
             ),
@@ -69,7 +69,7 @@ class SendAnimationTest extends TelegramTestCase
         $this->expectException(CanNotOpenFile::class);
 
         $response = SendAnimation::parameters(
-            $this->config->validGroup(),
+            $this->config->cyclingChatId(),
             AnimationFile::fromFilePath(FilePath::fromString('non existent file')),
             MediaCaption::fromString('[SendAnimation] file does not exist error')
         )->send($this->telegram);
@@ -78,7 +78,7 @@ class SendAnimationTest extends TelegramTestCase
     function testCanParseError()
     {
         $response = SendAnimation::parameters(
-            $this->config->validGroup(),
+            $this->config->cyclingChatId(),
             AnimationFile::fromUrl(Url::fromString('https://bob')),
             MediaCaption::fromString('[SendAnimation] parse error test')
         )->send($this->telegram);

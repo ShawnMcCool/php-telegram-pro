@@ -11,7 +11,7 @@ class SetChatPhotoTest extends TelegramTestCase
     function testSetChatPhotoWithFilePath()
     {
         $response = SetChatPhoto::parameters(
-            $this->config->validGroup(),
+            $this->config->cyclingChatId(),
             InputPhotoFile::fromFilePath(
                 FilePath::fromString($this->media->image())
             )

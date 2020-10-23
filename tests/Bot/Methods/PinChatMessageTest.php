@@ -14,7 +14,7 @@ class PinChatMessageTest extends TelegramTestCase
      */
     function testSetChatPhotoWithFilePath()
     {
-        $chatId = $this->config->validGroup();
+        $chatId = $this->config->cyclingChatId();
         
         $messageResponse = SendMessage::parameters(
             $chatId,
@@ -33,7 +33,7 @@ class PinChatMessageTest extends TelegramTestCase
     function testCanParseError()
     {
         $response = PinChatMessage::parameters(
-            $this->config->validGroup(),
+            $this->config->cyclingChatId(),
             MessageId::fromInt(912837129)
         )->send($this->telegram);
 

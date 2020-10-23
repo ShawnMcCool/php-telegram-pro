@@ -8,8 +8,8 @@ use TelegramPro\Bot\Methods\Types\ChatId;
 final class BotTestConfig
 {
     private string $token;
-    private ChatId $supergroupChatId;
-    private ChatId $groupChatId;
+    private array $groupChatIds;
+    private array $supergroupChatIds;
     private ChatId $wrongGroupId;
     private ?Latitude $latitude;
     private ?Longitude $longitude;
@@ -17,17 +17,17 @@ final class BotTestConfig
 
     private function __construct(
         string $token,
-        ChatId $supergroupChatId,
-        ChatId $groupChatId,
+        array $groupChatIds,
+        array $supergroupChatIds,
         ChatId $wrongGroupId
     ) {
         $this->token = $token;
-        $this->supergroupChatId = $supergroupChatId;
-        $this->groupChatId = $groupChatId;
+        $this->groupChatIds = $groupChatIds;
+        $this->supergroupChatIds = $supergroupChatIds;
         $this->wrongGroupId = $wrongGroupId;
         $this->latitude = Latitude::fromFloat(50.010083);
         $this->longitude = Longitude::fromFloat(-110.113006);
-        $this->validGroupCycle = new RangeCycle([$supergroupChatId, $groupChatId]);
+        $this->validGroupCycle = new RangeCycle(array_merge($this->groupChatIds, $this->supergroupChatIds));
     }
 
     public function token(): string
@@ -35,14 +35,14 @@ final class BotTestConfig
         return $this->token;
     }
 
-    public function supergroupChatId(): ChatId
+    public function supergroupChatIds(): array
     {
-        return $this->supergroupChatId;
+        return $this->supergroupChatIds;
     }
 
-    public function groupChatId(): ChatId
+    public function groupChatIds(): array
     {
-        return $this->groupChatId;
+        return $this->groupChatIds;
     }
 
     public function wrongGroupId(): ChatId
@@ -50,14 +50,14 @@ final class BotTestConfig
         return $this->wrongGroupId;
     }
 
-    public function validGroup(): ChatId
-    {
-        return $this->validGroupCycle->next();
-    }
-
     public function latitude(): ?Latitude
     {
         return $this->latitude;
+    }
+
+    public function cyclingChatId(): ChatId
+    {
+        return $this->validGroupCycle->next();
     }
 
     public function longitude(): ?Longitude
@@ -75,8 +75,14 @@ final class BotTestConfig
 
         return new static(
             $config->token,
-            ChatId::fromInt($config->supergroupChatId),
-            ChatId::fromInt($config->groupChatId),
+            array_map(
+                fn($chatId) => ChatId::fromInt($chatId),
+                $config->groupChatIds
+            ),
+            array_map(
+                fn($chatId) => ChatId::fromInt($chatId),
+                $config->supergroupChatIds
+            ),
             ChatId::fromInt($config->wrongChatId)
         );
     }

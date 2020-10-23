@@ -17,3 +17,4 @@ Responses = Receive
 - Verify that all test function names are correct
 - Expand the capabilities of all collections 
 - Make sure that set chat sticker group works
+- Document .bot-test-config

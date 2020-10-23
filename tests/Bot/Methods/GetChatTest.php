@@ -8,7 +8,7 @@ class GetChatTest extends TelegramTestCase
 {
     function testCanGetChat()
     {
-        $chatId = $this->config->validGroup();
+        $chatId = $this->config->cyclingChatId();
         
         $response = GetChat::parameters(
             $chatId

@@ -14,7 +14,7 @@ class SendLocationTest extends TelegramTestCase
     function testSendLocation()
     {
         $response = SendLocation::parameters(
-            $this->config->validGroup(),
+            $this->config->cyclingChatId(),
             Latitude::fromFloat(90.0),
             Longitude::fromFloat(180)
         )->send($this->telegram);
@@ -28,7 +28,7 @@ class SendLocationTest extends TelegramTestCase
         $this->expectException(LivePeriodIsNotValid::class);
 
         SendLocation::parameters(
-            $this->config->validGroup(),
+            $this->config->cyclingChatId(),
             Latitude::fromFloat(90.0),
             Longitude::fromFloat(180),
             LivePeriod::fromInt(32)
@@ -38,7 +38,7 @@ class SendLocationTest extends TelegramTestCase
     function testCanParseError()
     {
         $response = SendLocation::parameters(
-            $this->config->validGroup(),
+            $this->config->cyclingChatId(),
             Latitude::fromFloat(0.0),
             Longitude::fromFloat(180)
         )->send($this->telegram);

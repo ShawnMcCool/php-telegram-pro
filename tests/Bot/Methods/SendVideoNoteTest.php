@@ -12,7 +12,7 @@ class SendVideoNoteTest extends TelegramTestCase
     function testSendVideoNoteWithFilePath()
     {
         $response = SendVideoNote::parameters(
-            $this->config->validGroup(),
+            $this->config->cyclingChatId(),
             VideoNoteFile::fromFilePath(
                 FilePath::fromString($this->media->videoNote())
             )
@@ -25,14 +25,14 @@ class SendVideoNoteTest extends TelegramTestCase
     function testSendVideoNoteWithFileId()
     {
         $response = SendVideoNote::parameters(
-            $this->config->validGroup(),
+            $this->config->cyclingChatId(),
             VideoNoteFile::fromFilePath(
                 FilePath::fromString($this->media->videoNote())
             )
         )->send($this->telegram);
         
         $response = SendVideoNote::parameters(
-            $this->config->validGroup(),
+            $this->config->cyclingChatId(),
             VideoNoteFile::fromFileId(
                 $response->sentMessage()->videoNote()->fileId()
             )
@@ -47,7 +47,7 @@ class SendVideoNoteTest extends TelegramTestCase
         $this->expectException(CanNotOpenFile::class);
 
         SendVideoNote::parameters(
-            $this->config->validGroup(),
+            $this->config->cyclingChatId(),
             VideoNoteFile::fromFilePath(
                 FilePath::fromString('non existent file')
             )

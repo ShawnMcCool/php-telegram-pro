@@ -11,7 +11,7 @@ class SendContactTest extends TelegramTestCase
     function testSendLocation()
     {
         $response = SendContact::parameters(
-            $this->config->validGroup(),
+            $this->config->cyclingChatId(),
             PhoneNumber::fromString('+612341234'),
             'first name',
             'last name'

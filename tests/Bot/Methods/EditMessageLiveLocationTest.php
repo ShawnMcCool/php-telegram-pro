@@ -14,7 +14,7 @@ class EditMessageLiveLocationTest extends TelegramTestCase
 {
     function testCanStopLiveLocation()
     {
-        $chatId = $this->config->validGroup();
+        $chatId = $this->config->cyclingChatId();
         
         $locationResponse = SendLocation::parameters(
             $chatId,
