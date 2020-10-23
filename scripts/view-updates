@@ -7,6 +7,8 @@ use TelegramPro\Bot\Types\UpdateResponse;
 
 require 'vendor/autoload.php';
 
+$debug = isset($argv[1]) && $argv[1] == '-v';
+
 $config = BotTestConfig::fromConfigFile('/vagrant/.bot-test-config');
 $resultsJson = file_get_contents("https://api.telegram.org/bot" . $config->token() . "/getUpdates");
 
@@ -30,5 +32,6 @@ foreach ($response->updates() as $update) {
     }
     
     echo "[{$type}] {$update->resolvedUser()->username()}: {$update->resolvedMessage()->text()}\n";
+    echo "(Chat: {$update->resolvedChat()->chatId()->toString()})\n";
 }
 echo "\n";

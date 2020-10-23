@@ -10,7 +10,7 @@ class SetChatTitleTest extends TelegramTestCase
     function testSetChatPhotoWithFilePath()
     {
         $response = SetChatTitle::parameters(
-            $this->config->chatId(),
+            $this->config->supergroupChatId(),
             ChatTitle::fromString('This is a chat.')
         )->send($this->telegram);
 

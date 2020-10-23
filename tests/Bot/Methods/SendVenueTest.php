@@ -10,7 +10,7 @@ class SendVenueTest extends TelegramTestCase
     function testSendLocation()
     {
         $response = SendVenue::parameters(
-            $this->config->chatId(),
+            $this->config->supergroupChatId(),
             $this->config->latitude(),
             $this->config->longitude(),
             'my cool venue',

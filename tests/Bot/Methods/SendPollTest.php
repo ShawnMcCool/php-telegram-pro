@@ -12,7 +12,7 @@ class SendPollTest extends TelegramTestCase
     function testSendPoll()
     {
         $response = SendPoll::parameters(
-            $this->config->chatId(),
+            $this->config->supergroupChatId(),
             'Is this a poll?',
             ArrayOfPollOptions::list(
                 PollOptionText::fromString('yes'),

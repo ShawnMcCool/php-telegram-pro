@@ -11,7 +11,7 @@ class GetChatAdministratorsTest extends TelegramTestCase
     function testCanGetChat()
     {
         $response = GetChatAdministrators::parameters(
-            $this->config->chatId()
+            $this->config->supergroupChatId()
         )->send($this->telegram);
 
         $this->isOk($response);

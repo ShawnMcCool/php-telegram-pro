@@ -34,7 +34,7 @@ class SetChatAdministratorCustomTitleTest extends TelegramTestCase
         $getMeResponse = GetMe::parameters()->send($this->telegram);
         
         $response = SetChatAdministratorCustomTitle::parameters(
-            $this->config->chatId(),
+            $this->config->supergroupChatId(),
             $getMeResponse->botInformation()->userId(),
             ChatAdministratorCustomTitle::fromString('custom title 123')
         )->send($this->telegram);

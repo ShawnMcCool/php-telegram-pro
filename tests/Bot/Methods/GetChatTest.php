@@ -9,11 +9,11 @@ class GetChatTest extends TelegramTestCase
     function testCanGetChat()
     {
         $response = GetChat::parameters(
-            $this->config->chatId()
+            $this->config->supergroupChatId()
         )->send($this->telegram);
 
         $this->isOk($response);
-        self::assertSame($response->chat()->chatId()->toString(), $this->config->chatId()->toString());
+        self::assertSame($response->chat()->chatId()->toString(), $this->config->supergroupChatId()->toString());
     }
 
     function testCanParseError()

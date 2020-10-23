@@ -10,7 +10,7 @@ class SendChatActionTest extends TelegramTestCase
     function testSendChatAction()
     {
         $response = SendChatAction::parameters(
-            $this->config->chatId(),
+            $this->config->supergroupChatId(),
             ActionType::typing()
         )->send($this->telegram);
 

@@ -110,7 +110,7 @@ final class BlockingRateLimiter implements Telegram
     private function secondsToWaitForNextMessage(float $current): float
     {
         $timeSinceLastSend = $current - $this->lastSendTimestamp;
-        return $timeSinceLastSend > 1 ? 1 : 1 - $timeSinceLastSend;
+        return $timeSinceLastSend > 1 ? 0 : 1 - $timeSinceLastSend;
     }
 
     private function waitSecondsRateLimited(float $seconds)

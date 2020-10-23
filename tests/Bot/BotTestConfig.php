@@ -8,18 +8,21 @@ use TelegramPro\Bot\Methods\Types\ChatId;
 final class BotTestConfig
 {
     private string $token;
-    private ChatId $chatId;
+    private ChatId $supergroupChatId;
+    private ChatId $groupChatId;
     private ChatId $wrongGroupId;
     private ?Latitude $latitude;
     private ?Longitude $longitude;
 
     private function __construct(
         string $token,
-        ChatId $chatId,
+        ChatId $supergroupChatId,
+        ChatId $groupChatId,
         ChatId $wrongGroupId
     ) {
         $this->token = $token;
-        $this->chatId = $chatId;
+        $this->supergroupChatId = $supergroupChatId;
+        $this->groupChatId = $groupChatId;
         $this->wrongGroupId = $wrongGroupId;
         $this->latitude = Latitude::fromFloat(50.010083);
         $this->longitude = Longitude::fromFloat(-110.113006);
@@ -30,9 +33,14 @@ final class BotTestConfig
         return $this->token;
     }
 
-    public function chatId(): ChatId
+    public function supergroupChatId(): ChatId
     {
-        return $this->chatId;
+        return $this->supergroupChatId;
+    }
+
+    public function groupChatId(): ChatId
+    {
+        return $this->groupChatId;
     }
 
     public function wrongGroupId(): ChatId
@@ -60,7 +68,8 @@ final class BotTestConfig
 
         return new static(
             $config->token,
-            ChatId::fromInt($config->chatId),
+            ChatId::fromInt($config->supergroupChatId),
+            ChatId::fromInt($config->groupChatId),
             ChatId::fromInt($config->wrongChatId)
         );
     }

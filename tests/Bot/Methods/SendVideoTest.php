@@ -15,7 +15,7 @@ class SendVideoTest extends TelegramTestCase
     function testSendVideoWithFilePath()
     {
         $response = SendVideo::parameters(
-            $this->config->chatId(),
+            $this->config->supergroupChatId(),
             VideoFile::fromFilePath(
                 FilePath::fromString($this->media->video())
             ),
@@ -29,7 +29,7 @@ class SendVideoTest extends TelegramTestCase
     function testSendVideoWithUrl()
     {
         $response = SendVideo::parameters(
-            $this->config->chatId(),
+            $this->config->supergroupChatId(),
             VideoFile::fromUrl(
                 Url::fromString($this->media->videoUrl())
             ),
@@ -45,7 +45,7 @@ class SendVideoTest extends TelegramTestCase
         $num = rand(0, 32767);
 
         $response = SendVideo::parameters(
-            $this->config->chatId(),
+            $this->config->supergroupChatId(),
             VideoFile::fromUrl(
                 Url::fromString($this->media->videoUrl())
             ),
@@ -53,7 +53,7 @@ class SendVideoTest extends TelegramTestCase
         )->send($this->telegram);
         
         $response = SendVideo::parameters(
-            $this->config->chatId(),
+            $this->config->supergroupChatId(),
             VideoFile::fromFileId(
                 $response->sentMessage()->video()->fileId()
             ),
@@ -69,7 +69,7 @@ class SendVideoTest extends TelegramTestCase
         $this->expectException(CanNotOpenFile::class);
 
         SendVideo::parameters(
-            $this->config->chatId(),
+            $this->config->supergroupChatId(),
             VideoFile::fromFilePath(
                 FilePath::fromString('non existent file')
             ),
@@ -80,7 +80,7 @@ class SendVideoTest extends TelegramTestCase
     function testCanParseError()
     {
         $response = SendVideo::parameters(
-            $this->config->chatId(),
+            $this->config->supergroupChatId(),
             VideoFile::fromUrl(
                 Url::fromString('https://bob')
             ),

@@ -11,7 +11,7 @@ class SetChatDescriptionTest extends TelegramTestCase
     function testSetChatDescription()
     {
         $response = SetChatDescription::parameters(
-            $this->config->chatId(),
+            $this->config->supergroupChatId(),
             ChatDescription::fromString('This is a chat description.' . Uuid::uuid4()->toString())
         )->send($this->telegram);
 
