@@ -19,7 +19,7 @@ class GetChatMembersCountTest extends TelegramTestCase
     function testCanParseError()
     {
         $response = GetChatMembersCount::parameters(
-            $this->config->wrongGroupId()
+            $this->config->wrongGroupId ()
         )->send($this->telegram);
 
         self::assertFalse($response->ok());

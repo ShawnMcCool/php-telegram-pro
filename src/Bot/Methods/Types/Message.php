@@ -17,6 +17,7 @@ class Message implements ApiReadType
     private ?string $forwardSenderName;
     private ?Date $forwardDate;
     private ?Message $replyToMessage;
+    private ?User $viaBot;
     private ?Date $editDate;
     private ?string $mediaGroupId;
     private ?string $authorSignature;
@@ -67,6 +68,7 @@ class Message implements ApiReadType
         ?string $forwardSenderName,
         ?Date $forwardDate,
         ?Message $replyToMessage,
+        ?User $viaBot,
         ?Date $editDate,
         ?string $mediaGroupId,
         ?string $authorSignature,
@@ -116,6 +118,7 @@ class Message implements ApiReadType
         $this->forwardSenderName = $forwardSenderName;
         $this->forwardDate = $forwardDate;
         $this->replyToMessage = $replyToMessage;
+        $this->viaBot = $viaBot;
         $this->editDate = $editDate;
         $this->mediaGroupId = $mediaGroupId;
         $this->authorSignature = $authorSignature;
@@ -243,6 +246,14 @@ class Message implements ApiReadType
         return $this->replyToMessage;
     }
 
+    /**
+     * 	Optional. Bot through which the message was sent
+     */
+    public function viaBot(): ?User
+    {
+        return $this->viaBot;
+    }
+    
     /**
      * Optional. Date the message was last edited in Unix time
      */
@@ -559,6 +570,7 @@ class Message implements ApiReadType
             $message->forward_sender_name ?? null,
             Date::fromApi($message->forward_date ?? null),
             Message::fromApi($message->reply_to_message ?? null),
+            User::fromApi($message->via_but ?? null),
             Date::fromApi($message->edit_date ?? null),
             $message->media_group_id ?? null,
             $message->author_signature ?? null,
