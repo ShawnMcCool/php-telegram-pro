@@ -24,8 +24,13 @@ final class RangeCycle
     {
         $current = $this->currentIndex;
 
-        $this->currentIndex = ($this->currentIndex + $this->summand) % $this->rangeCount;
-        
+        $this->currentIndex = $this->mod(($this->currentIndex + $this->summand), $this->rangeCount);
+
         return $this->range[$current];
+    }
+
+    private function mod($a, $b)
+    {
+        return ((($a % $b) + $b) % $b);
     }
 }

@@ -29,3 +29,5 @@ Responses = Receive
 - Provide separate methods for split requirements. (edit message text, chat+message vs inline)
 - Consider how to test seemingly superfluous fields like parsemode and disable notifications 
 - Review @todos
+- When caption is returned, it's a string.. this was due to cqrs concerns, we came up with apireadtype / writetype for this reason and it should be replaced 
+- Return types should expose all values

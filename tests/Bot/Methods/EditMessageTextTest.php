@@ -52,7 +52,7 @@ class EditMessageTextTest extends TelegramTestCase
     function testCanParseError()
     {
         $response = EditMessageText::parametersForChat(
-            $this->config->cyclingChatId(),
+            $this->config->wrongGroupId(),
             MessageId::fromInt(123),
             MessageText::fromString('[EditMessageText] testing error')
         )->send($this->telegram);
