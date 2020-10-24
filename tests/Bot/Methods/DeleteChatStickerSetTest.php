@@ -19,15 +19,15 @@ class DeleteChatStickerSetTest extends TelegramTestCase
 //        self::assertTrue($response->chatStickerSetWasSet());
 //    }
 
-//    function testCanParseError()
-//    {
-//        $response = DeleteChatStickerSet::parameters(
-//            $this->config->wrongGroupId()
-//        )->send($this->telegram);
-//
-//        self::assertFalse($response->ok());
-//        self::assertInstanceOf(MethodError::class, $response->error());
-//        self::assertSame('400', $response->error()->code());
-//        self::assertNotEmpty($response->error()->description());
-//    }
+    function testCanParseError()
+    {
+        $response = DeleteChatStickerSet::parameters(
+            $this->config->wrongGroupId()
+        )->send($this->telegram);
+
+        self::assertFalse($response->ok());
+        self::assertInstanceOf(MethodError::class, $response->error());
+        self::assertSame('400', $response->error()->code());
+        self::assertNotEmpty($response->error()->description());
+    }
 }

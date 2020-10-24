@@ -42,7 +42,7 @@ final class DeleteChatStickerSetResponse implements Response
 
         return new static(
             $response->ok,
-            $response->result,
+            $response->result ?? null,
             MethodError::fromApi($response)
         );
     }

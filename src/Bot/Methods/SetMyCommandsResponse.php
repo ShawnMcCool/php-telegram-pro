@@ -5,19 +5,19 @@ use TelegramPro\Bot\Methods\Types\MethodError;
 /**
  * Returns True on success.
  */
-final class SetChatStickerSetResponse implements Response
+final class SetMyCommandsResponse implements Response
 {
     private bool $ok;
-    private ?bool $chatStickerSetWasSet;
+    private bool $commandsWereSet;
     private ?MethodError $error;
 
     public function __construct(
         bool $ok,
-        ?bool $chatStickerSetWasSet,
+        bool $commandsWereSet,
         ?MethodError $error
     ) {
         $this->ok = $ok;
-        $this->chatStickerSetWasSet = $chatStickerSetWasSet;
+        $this->commandsWereSet = $commandsWereSet;
         $this->error = $error;
     }
 
@@ -26,9 +26,9 @@ final class SetChatStickerSetResponse implements Response
         return $this->ok;
     }
 
-    public function chatStickerSetWasSet(): ?bool
+    public function commandsWereSet(): bool
     {
-        return $this->chatStickerSetWasSet;
+        return $this->commandsWereSet;
     }
 
     public function error(): ?MethodError
@@ -42,7 +42,7 @@ final class SetChatStickerSetResponse implements Response
 
         return new static(
             $response->ok,
-            $response->result ?? null,
+            $response->result ?? false,
             MethodError::fromApi($response)
         );
     }

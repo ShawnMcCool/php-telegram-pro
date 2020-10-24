@@ -1,4 +1,4 @@
-<?php
+<?php /** @noinspection PhpFullyQualifiedNameUsageInspection */
 
 namespace {
 
@@ -98,7 +98,9 @@ namespace string {
 }
 
 namespace regex {
-
+    /**
+     * Returns the first match of a pattern in the haystack.
+     */
     function first($pattern, $haystack, $autoDelimiter = true): ?string
     {
         if (
@@ -115,5 +117,33 @@ namespace regex {
         }
 
         return \arr\last($matches);
+    }
+
+    /**
+     * Returns true if the haystack matches the pattern.
+     */
+    function matches($pattern, $haystack, $autoDelimiter = true): bool
+    {
+        if (
+            $autoDelimiter &&
+            ! \string\starts_with($haystack, '/')
+        ) {
+            $pattern = '/' . $pattern . '/';
+        }
+
+        preg_match($pattern, $haystack, $matches);
+
+        return ! empty($matches);
+    }
+
+    /** 
+     * Returns true if characters exist in the haystack that do not match the pattern.
+     *
+     * A valid set of character classes looks like this: a-zA-Z0-9_\s  
+     */
+    function has_unmatched_characters($characterClasses, $haystack): bool
+    {
+        preg_match("([^{$characterClasses}])", $haystack, $matches);
+        return ! empty($matches);
     }
 }

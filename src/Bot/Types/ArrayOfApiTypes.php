@@ -6,22 +6,21 @@ use ArrayAccess;
 use ArrayIterator;
 use IteratorAggregate;
 use TelegramPro\Collections\Collection;
-use TelegramPro\Bot\Methods\Types\Message;
 
 abstract class ArrayOfApiTypes implements Countable, IteratorAggregate, ArrayAccess
 {
     protected Collection $items;
 
-    protected function __construct(Collection $messages)
+    protected function __construct(Collection $items)
     {
-        $this->items = $messages;
+        $this->items = $items;
     }
 
     public function isEmpty(): bool
     {
         return $this->items->isEmpty();
     }
-    
+
     public function count()
     {
         return $this->items->count();
@@ -36,8 +35,6 @@ abstract class ArrayOfApiTypes implements Countable, IteratorAggregate, ArrayAcc
     {
         return $this->items[$index];
     }
-
-    abstract static function fromApi($items): self;
 
     public function offsetExists($offset)
     {

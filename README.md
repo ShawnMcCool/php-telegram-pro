@@ -18,3 +18,6 @@ Responses = Receive
 - Expand the capabilities of all collections 
 - Make sure that set chat sticker group works
 - Document .bot-test-config
+- ArrayOf Types should have correct ApiWriteType and ApiReadType bits
+- Unify ArrayOf Collection methods
+- All response 'result' references in fromApi() should use null coalescence 
