@@ -1,6 +1,6 @@
 <?php namespace TelegramPro\Bot\Methods\Types;
 
-final class BotCommand implements ApiWriteType
+final class BotCommand implements ApiWriteType, ApiReadType
 {
     private string $command;
     private string $description;
@@ -36,5 +36,13 @@ final class BotCommand implements ApiWriteType
         }
         
         return new static($command, $description);
+    }
+
+    public static function fromApi($botCommand): ?self
+    {
+        return new static(
+            $botCommand->command,
+            $botCommand->description
+        );
     }
 }

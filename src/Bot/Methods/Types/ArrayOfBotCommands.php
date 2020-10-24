@@ -6,7 +6,7 @@ use TelegramPro\Bot\Types\ArrayOfApiTypes;
 /**
  * Contains a list of bot commands.
  */
-final class ArrayOfBotCommands extends ArrayOfApiTypes implements ApiWriteType
+final class ArrayOfBotCommands extends ArrayOfApiTypes implements ApiWriteType, ApiReadType
 {
     public function toApi()
     {
@@ -20,6 +20,16 @@ final class ArrayOfBotCommands extends ArrayOfApiTypes implements ApiWriteType
     {
         return new static(
             Collection::of($botCommands)
+        );
+    }
+
+    public static function fromApi($data): ?self
+    {
+        return new static(
+            collect($data)
+                ->map(
+                    fn($command) => BotCommand::fromApi($command)
+                )
         );
     }
 }

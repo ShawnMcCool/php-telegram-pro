@@ -5,8 +5,10 @@ Responses = Receive
 
 # To-do
 
+- Methods/ and Types/ should be hierarchical equals
 - Make sure all Request types (json, multipart, etc) are correct.
-- Give response interface a unifying result()
+- Give response interface a unifying result() in addition to domain-specific result parameters
+- Give response interfaces a unifying resultJson() 
 - Implement response parameters
     - https://core.telegram.org/bots/api#responseparameters
 - Rate limiting is a naive spike.  
@@ -21,3 +23,9 @@ Responses = Receive
 - ArrayOf Types should have correct ApiWriteType and ApiReadType bits
 - Unify ArrayOf Collection methods
 - All response 'result' references in fromApi() should use null coalescence 
+- Method test names are often incorrect
+- Tests should check result type and function as partial documentation for result types
+- Carefully look through each folder to make sure files weren't created in the wrong place
+- Provide separate methods for split requirements. (edit message text, chat+message vs inline)
+- Consider how to test seemingly superfluous fields like parsemode and disable notifications 
+- Review @todos

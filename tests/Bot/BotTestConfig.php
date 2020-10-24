@@ -27,7 +27,9 @@ final class BotTestConfig
         $this->wrongGroupId = $wrongGroupId;
         $this->latitude = Latitude::fromFloat(50.010083);
         $this->longitude = Longitude::fromFloat(-110.113006);
-        $this->validGroupCycle = new RangeCycle(array_merge($this->groupChatIds, $this->supergroupChatIds));
+        
+        $allChatIds = array_merge($this->groupChatIds, $this->supergroupChatIds);
+        $this->validGroupCycle = new RangeCycle($allChatIds, rand(0, count($allChatIds)-1), rand(0, 1) ? 1 : -1);
     }
 
     public function token(): string
