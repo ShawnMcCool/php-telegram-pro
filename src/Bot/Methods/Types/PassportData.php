@@ -25,7 +25,7 @@ final class PassportData implements ApiReadType
     public static function fromApi($passportData): ?PassportData
     {
         if ( ! $passportData) return null;
-        
+
         return new static(
             ArrayOfEncryptedPassportElements::fromApi($passportData->data),
             EncryptedCredentials::fromApi($passportData->credentials)

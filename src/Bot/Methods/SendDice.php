@@ -7,6 +7,7 @@ use TelegramPro\Bot\Methods\Types\MessageId;
 use TelegramPro\Bot\Methods\Requests\Request;
 use TelegramPro\Bot\Methods\Requests\JsonRequest;
 use TelegramPro\Bot\Methods\Keyboards\ReplyMarkup;
+use function TelegramPro\optional;
 
 /**
  * Use this method to send an animated emoji that will display a random value. On success, the sent Message is returned.

@@ -58,7 +58,7 @@ final class Poll
     }
 
     /**
-     * 	Unique poll identifier
+     *    Unique poll identifier
      */
     public function id(): PollId
     {
@@ -114,7 +114,7 @@ final class Poll
     }
 
     /**
-     * 	True, if the poll allows multiple answers
+     *    True, if the poll allows multiple answers
      */
     public function allowsMultipleAnswers(): bool
     {

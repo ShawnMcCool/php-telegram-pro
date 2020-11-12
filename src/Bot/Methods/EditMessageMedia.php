@@ -7,8 +7,8 @@ use TelegramPro\Bot\Methods\Types\MessageId;
 use TelegramPro\Bot\Methods\Requests\Request;
 use TelegramPro\Bot\Methods\Keyboards\ReplyMarkup;
 use TelegramPro\Bot\Methods\FileUploads\InputMediaFile;
-use TelegramPro\Bot\Methods\FileUploads\FilesToUpload;
 use TelegramPro\Bot\Methods\Requests\MultipartFormRequest;
+use function TelegramPro\optional;
 
 /**
  * Use this method to edit animation, audio, document, photo, or video messages. If a message is a part of a message album, then it can be edited only to a photo or a video. Otherwise, message type can be changed arbitrarily. When inline message is edited, new file can't be uploaded. Use previously uploaded file via its file_id or specify a URL. On success, if the edited message was sent by the bot, the edited Message is returned, otherwise True is returned.

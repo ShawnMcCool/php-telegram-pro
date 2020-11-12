@@ -13,7 +13,7 @@ final class Url implements ApiReadType, ApiWriteType
     {
         return $this->url;
     }
-    
+
     public static function fromString(?string $url): ?Url
     {
         if (is_null($url)) {

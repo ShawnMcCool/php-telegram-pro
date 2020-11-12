@@ -8,7 +8,7 @@ use TelegramPro\Bot\Methods\Types\MessageId;
 use TelegramPro\Bot\Methods\Requests\Request;
 use TelegramPro\Bot\Methods\Requests\JsonRequest;
 use TelegramPro\Bot\Methods\Keyboards\ReplyMarkup;
-use TelegramPro\Bot\Methods\Requests\MultipartFormRequest;
+use function TelegramPro\optional;
 
 /**
  * Use this method to send information about a venue. On success, the sent Message is returned.

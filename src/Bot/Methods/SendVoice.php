@@ -10,6 +10,7 @@ use TelegramPro\Bot\Methods\Keyboards\ReplyMarkup;
 use TelegramPro\Bot\Methods\FileUploads\VoiceFile;
 use TelegramPro\Bot\Methods\FileUploads\FilesToUpload;
 use TelegramPro\Bot\Methods\Requests\MultipartFormRequest;
+use function TelegramPro\optional;
 
 final class SendVoice implements Method
 {

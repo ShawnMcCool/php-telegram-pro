@@ -11,7 +11,7 @@ final class RestrictUntilDate extends Date
     {
         return static::fromString('now');
     }
-    
+
     /**
      * @internal Construct with data received from the Telegram bot api.
      */

@@ -16,7 +16,7 @@ final class JsonRequest implements Request
     {
         return new static($method);
     }
-    
+
     public function withParameters(array $parameterArray): self
     {
         $this->parameters = $parameterArray;

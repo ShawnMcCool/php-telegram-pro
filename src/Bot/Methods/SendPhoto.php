@@ -10,6 +10,7 @@ use TelegramPro\Bot\Methods\Keyboards\ReplyMarkup;
 use TelegramPro\Bot\Methods\FileUploads\FilesToUpload;
 use TelegramPro\Bot\Methods\FileUploads\InputPhotoFile;
 use TelegramPro\Bot\Methods\Requests\MultipartFormRequest;
+use function TelegramPro\optional;
 
 final class SendPhoto implements Method
 {

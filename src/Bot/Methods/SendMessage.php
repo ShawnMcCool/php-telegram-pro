@@ -8,6 +8,7 @@ use TelegramPro\Bot\Methods\Requests\Request;
 use TelegramPro\Bot\Methods\Types\MessageText;
 use TelegramPro\Bot\Methods\Requests\JsonRequest;
 use TelegramPro\Bot\Methods\Keyboards\ReplyMarkup;
+use function TelegramPro\optional;
 
 final class SendMessage implements Method
 {

@@ -1,5 +1,7 @@
 <?php namespace TelegramPro\Bot\Methods\FileUploads;
 
+use function TelegramPro\optional;
+
 use TelegramPro\Bot\Types\FileId;
 use TelegramPro\Bot\Methods\Types\Url;
 use TelegramPro\Bot\Methods\Types\UniqueId;

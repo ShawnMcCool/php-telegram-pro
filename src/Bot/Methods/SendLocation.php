@@ -9,6 +9,7 @@ use TelegramPro\Bot\Methods\Types\MessageId;
 use TelegramPro\Bot\Methods\Requests\Request;
 use TelegramPro\Bot\Methods\Requests\JsonRequest;
 use TelegramPro\Bot\Methods\Keyboards\ReplyMarkup;
+use function TelegramPro\optional;
 
 /**
  * Use this method to send point on the map. On success, the sent Message is returned.

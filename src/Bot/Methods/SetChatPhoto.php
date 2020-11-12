@@ -30,7 +30,7 @@ final class SetChatPhoto implements Method
         )->withParameters(
             [
                 'chat_id' => $this->chatId->toApi(),
-                'photo' => $this->photo->toApi()
+                'photo' => $this->photo->toApi(),
             ]
         )->withFiles(
             FilesToUpload::list(

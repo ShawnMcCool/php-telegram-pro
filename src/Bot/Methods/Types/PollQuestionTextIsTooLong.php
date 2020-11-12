@@ -2,4 +2,6 @@
 
 use TelegramPro\TelegramProException;
 
-final class PollQuestionTextIsTooLong extends TelegramProException {}
+final class PollQuestionTextIsTooLong extends TelegramProException
+{
+}

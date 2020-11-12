@@ -41,12 +41,12 @@ final class ReplyKeyboardRemove implements ApiWriteType, ReplyMarkup
     {
         return [
             'remove_keyboard' => $this->removeKeyboard,
-            'selective' => $this->selective
+            'selective' => $this->selective,
         ];
     }
 
     function toParameter(): ArrayOfInlineKeyboardRows
     {
-        
+
     }
 }

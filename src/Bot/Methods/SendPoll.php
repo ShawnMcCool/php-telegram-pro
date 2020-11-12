@@ -12,6 +12,7 @@ use TelegramPro\Bot\Methods\Types\PollOpenPeriod;
 use TelegramPro\Bot\Methods\Requests\JsonRequest;
 use TelegramPro\Bot\Methods\Keyboards\ReplyMarkup;
 use TelegramPro\Bot\Methods\Types\ArrayOfPollOptions;
+use function TelegramPro\optional;
 
 /**
  * Use this method to send a native poll.

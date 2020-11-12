@@ -33,7 +33,7 @@ final class PinChatMessage implements Method
             [
                 'chat_id' => $this->chatId->toApi(),
                 'message_id' => $this->messageId->toApi(),
-                'disable_notification' => $this->disableNotification
+                'disable_notification' => $this->disableNotification,
             ]
         );
     }

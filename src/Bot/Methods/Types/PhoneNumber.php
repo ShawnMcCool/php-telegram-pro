@@ -9,11 +9,11 @@ final class PhoneNumber extends StringObject
         if (is_null($string)) {
             return null;
         }
-        
+
         if ( ! \string\starts_with($string, '+')) {
             throw new PhoneNumberIsNotValid("Phone numbers must be in valid E.164 format.");
         }
-        
+
         return new static($string);
     }
 }

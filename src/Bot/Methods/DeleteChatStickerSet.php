@@ -24,7 +24,7 @@ final class DeleteChatStickerSet implements Method
             'deleteChatStickerSet'
         )->withParameters(
             [
-                'chat_id' => $this->chatId->toApi()
+                'chat_id' => $this->chatId->toApi(),
             ]
         );
     }

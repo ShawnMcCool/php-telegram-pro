@@ -9,11 +9,11 @@ final class UserProfilePhotoLimit extends IntegerObject
         if ( ! is_integer($integer)) {
             return null;
         }
-        
+
         if ($integer > 100 || $integer < 1) {
             throw new UserProfilePhotoLimitIsInvalid('The user profile photo retrieval limit must be between 1-100 inclusive.');
         }
-        
+
         return new static($integer);
     }
 }

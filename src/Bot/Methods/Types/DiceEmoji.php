@@ -8,7 +8,7 @@ final class DiceEmoji implements ApiWriteType
     {
         $this->emoji = $emoji;
     }
-    
+
     public static function dice()
     {
         return new static('🎲');
@@ -23,7 +23,7 @@ final class DiceEmoji implements ApiWriteType
     {
         return new static('🏀');
     }
-    
+
     function toApi()
     {
         return $this->emoji;

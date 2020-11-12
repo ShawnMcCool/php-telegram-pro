@@ -61,7 +61,7 @@ final class RequestRepo
     {
         $jsonData = json_encode($this->parameters());
         $dataLength = strlen($jsonData);
-        
+
         return new CurlParameters(
             "https://api.telegram.org/bot{$botToken}/{$this->method}",
             [

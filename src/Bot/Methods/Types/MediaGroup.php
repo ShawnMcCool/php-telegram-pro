@@ -29,24 +29,24 @@ final class MediaGroup implements ApiWriteType
         foreach ($this->mediaGroup as $key => $media) {
             $mediaArray[] = $media->toApi();
         }
-        
+
         return json_encode($mediaArray);
     }
 
     public function filesToUpload(): FilesToUpload
     {
         $mediaArray = [];
-        
+
         /** @var InputMediaFile $media */
         foreach ($this->mediaGroup as $media) {
-            
+
             /** @var InputFile $file */
-            foreach ($media->filesToUpload() as  $file) {
+            foreach ($media->filesToUpload() as $file) {
                 if ( ! $file) continue;
                 $mediaArray[] = $file;
             }
         }
-        
+
         return FilesToUpload::fromArray($mediaArray);
     }
 

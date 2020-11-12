@@ -12,13 +12,13 @@ final class Dice implements ApiReadType
         $this->emoji = $emoji;
         $this->value = $value;
     }
-    
+
     public static function fromApi($data): ?self
     {
         if (is_null($data)) {
             return null;
         }
-        
+
         return new static(
             $data->emoji,
             $data->value

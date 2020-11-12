@@ -54,7 +54,7 @@ final class Game implements ApiReadType
     }
 
     /**
-     * 	Description of the game
+     *    Description of the game
      */
     public function description(): string
     {
@@ -86,7 +86,7 @@ final class Game implements ApiReadType
     }
 
     /**
-     *	Optional. Animation that will be displayed in the game message in chats. Upload via BotFather
+     *    Optional. Animation that will be displayed in the game message in chats. Upload via BotFather
      */
     public function animation(): ?Animation
     {

@@ -9,16 +9,16 @@ final class PollCloseDate extends IntegerObject
     {
         return new static(time() + $seconds);
     }
-    
+
     public static function fromInt(?int $integer): ?self
     {
         if ( ! is_integer($integer)) {
             return null;
         }
-    
+
         $low = time() + 5;
         $high = time() + 600;
-        
+
         if ($integer > $high || $integer < $low) {
             throw new LivePeriodIsNotValid("Poll close date must be between 5 and 600 seconds into the future.");
         }

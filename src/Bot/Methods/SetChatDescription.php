@@ -2,9 +2,9 @@
 
 use TelegramPro\Api\Telegram;
 use TelegramPro\Bot\Methods\Types\ChatId;
-use TelegramPro\Bot\Methods\Types\ChatDescription;
 use TelegramPro\Bot\Methods\Requests\Request;
 use TelegramPro\Bot\Methods\Requests\JsonRequest;
+use TelegramPro\Bot\Methods\Types\ChatDescription;
 
 /**
  * Use this method to change the description of a group, a supergroup or a channel. The bot must be an administrator in the chat for this to work and must have the appropriate admin rights. Returns True on success.

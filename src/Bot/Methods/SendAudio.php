@@ -11,6 +11,7 @@ use TelegramPro\Bot\Methods\FileUploads\FilesToUpload;
 use TelegramPro\Bot\Methods\FileUploads\InputPhotoFile;
 use TelegramPro\Bot\Methods\FileUploads\AudioInputFile;
 use TelegramPro\Bot\Methods\Requests\MultipartFormRequest;
+use function TelegramPro\optional;
 
 final class SendAudio implements Method
 {

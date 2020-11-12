@@ -1,4 +1,5 @@
 <?php namespace TelegramPro\Bot\Methods\Types;
+
 use TelegramPro\Bot\Types\ChatType;
 use TelegramPro\Bot\Types\ChatPhoto;
 use TelegramPro\Bot\Types\ChatPermissions;
@@ -62,7 +63,7 @@ final class Chat implements ApiReadType
     public static function fromApi($chat): ?Chat
     {
         if ( ! $chat) return null;
-        
+
         return new static(
             ChatId::fromInt($chat->id),
             ChatType::fromApi($chat->type),

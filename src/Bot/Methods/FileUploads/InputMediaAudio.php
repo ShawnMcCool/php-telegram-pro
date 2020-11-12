@@ -1,5 +1,7 @@
 <?php namespace TelegramPro\Bot\Methods\FileUploads;
 
+use function TelegramPro\optional;
+
 use JsonSerializable;
 use TelegramPro\Bot\Types\FileId;
 use TelegramPro\Bot\Methods\Types\Url;
@@ -85,15 +87,15 @@ final class InputMediaAudio implements InputMediaFile, JsonSerializable
 
     /**
      * If the file is already stored somewhere on the Telegram servers, you don't need to reupload it: each file object has a file_id field, simply pass this file_id as a parameter instead of uploading. There are no limits for files sent this way.
-     * 
+     *
      * @param FileId $fileId Identifier for this file, which can be used to download or reuse the file
      * @param ThumbnailInputFile|null $thumb Optional. Thumbnail of the file sent
      * @param MediaCaption|null $caption Optional. Caption of the audio to be sent
      * @param ParseMode|null $parseMode Optional. Send Markdown or HTML, if you want Telegram apps to show bold, italic, fixed-width text or inline URLs in the media caption.
-     * @param int|null $duration Optional. Duration of the audio in seconds 
+     * @param int|null $duration Optional. Duration of the audio in seconds
      * @param string|null $performer Optional. Performer of the audio
      * @param string|null $title Optional. Title of the audio
-     * 
+     *
      * @return static
      */
     public static function fromFileId(
@@ -118,7 +120,7 @@ final class InputMediaAudio implements InputMediaFile, JsonSerializable
 
     /**
      * Provide Telegram with an HTTP URL for the file to be sent. Telegram will download and send the file. 5 MB max size for photos and 20 MB max for other types of content.
-     * 
+     *
      * @param Url $url Provide Telegram with an HTTP URL for the file to be sent. Telegram will download and send the file. 5 MB max size for photos and 20 MB max for other types of content.
      * @param ThumbnailInputFile|null $thumb Optional. Thumbnail of the file sent
      * @param MediaCaption|null $caption Optional. Caption of the audio to be sent
@@ -126,7 +128,7 @@ final class InputMediaAudio implements InputMediaFile, JsonSerializable
      * @param int|null $duration Optional. Duration of the audio in seconds
      * @param string|null $performer Optional. Performer of the audio
      * @param string|null $title Optional. Title of the audio
-     * 
+     *
      * @return static
      */
     public static function fromUrl(
@@ -151,7 +153,7 @@ final class InputMediaAudio implements InputMediaFile, JsonSerializable
 
     /**
      * Upload a local file at the given path
-     * 
+     *
      * @param FilePath $filePath Path to the local file
      * @param ThumbnailInputFile|null $thumb Optional. Thumbnail of the file sent
      * @param MediaCaption|null $caption Optional. Caption of the audio to be sent
@@ -159,9 +161,9 @@ final class InputMediaAudio implements InputMediaFile, JsonSerializable
      * @param int|null $duration Optional. Duration of the audio in seconds
      * @param string|null $performer Optional. Performer of the audio
      * @param string|null $title Optional. Title of the audio
-     * 
+     *
      * @return static
-     * 
+     *
      * @throws AudioFileNotSupported
      */
     public static function fromFilePath(

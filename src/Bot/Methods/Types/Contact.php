@@ -33,7 +33,7 @@ final class Contact implements ApiReadType
     public static function fromApi($contact): ?Contact
     {
         if ( ! $contact) return null;
-        
+
         return new static(
             $contact->phone_number,
             $contact->first_name,

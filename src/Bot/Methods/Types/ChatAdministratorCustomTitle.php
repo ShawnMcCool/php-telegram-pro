@@ -9,11 +9,11 @@ final class ChatAdministratorCustomTitle extends StringObject
         if (is_null($string)) {
             return null;
         }
-        
+
         if (strlen($string) < 0 || strlen($string) > 16) {
             throw new ChatAdministratorCustomTitleIsInvalid('A chat administrator custom title must be between 0-16 characters. Emojis are not allowed.');
         }
-        
+
         return new static($string);
     }
 }

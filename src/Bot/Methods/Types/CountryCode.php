@@ -5,7 +5,7 @@ use function TelegramPro\collect;
 /**
  * ISO 3166-1 alpha-2 country code
  */
-final class CountryCode 
+final class CountryCode
 {
     private static $countryCodes = [
         [

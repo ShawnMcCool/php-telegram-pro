@@ -25,15 +25,10 @@ namespace TelegramPro {
         }
         return new Collection($items);
     }
-}
-
-namespace {
-
-
+    
     use TelegramPro\Bot\Methods\Types\ApiWriteType;
     use TelegramPro\Bot\Methods\Keyboards\ReplyMarkup;
-
-
+    
     function optional($type)
     {
         if (is_null($type)) {
@@ -47,17 +42,6 @@ namespace {
         }
 
         return $type;
-    }
-
-    function float_is_equal(float $a, $b): bool
-    {
-        return abs($a - $b) < PHP_FLOAT_EPSILON;
-    }
-
-    function class_short_name($object): string
-    {
-        $className = get_class($object);
-        return (substr($className, strrpos($className, '\\') + 1));
     }
 }
 

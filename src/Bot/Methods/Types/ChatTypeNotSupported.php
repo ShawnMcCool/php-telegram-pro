@@ -2,4 +2,6 @@
 
 use TelegramPro\TelegramProException;
 
-final class ChatTypeNotSupported extends TelegramProException {}
+final class ChatTypeNotSupported extends TelegramProException
+{
+}

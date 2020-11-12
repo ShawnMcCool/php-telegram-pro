@@ -2,4 +2,6 @@
 
 use TelegramPro\TelegramProException;
 
-final class CurrencyIsNotSupported extends TelegramProException {}
+final class CurrencyIsNotSupported extends TelegramProException
+{
+}

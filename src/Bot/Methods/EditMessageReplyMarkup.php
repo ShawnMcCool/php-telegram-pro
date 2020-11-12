@@ -7,6 +7,7 @@ use TelegramPro\Bot\Methods\Types\MessageId;
 use TelegramPro\Bot\Methods\Requests\Request;
 use TelegramPro\Bot\Methods\Requests\JsonRequest;
 use TelegramPro\Bot\Methods\Keyboards\ReplyMarkup;
+use function TelegramPro\optional;
 
 /**
  * Use this method to edit only the reply markup of messages. On success, if edited message is sent by the bot, the edited Message is returned, otherwise True is returned.

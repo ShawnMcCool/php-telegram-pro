@@ -59,7 +59,7 @@ final class InlineKeyboardButton implements ApiReadType, ApiWriteType
     }
 
     /**
-     * 	Label text on the button
+     *    Label text on the button
      */
     public function text(): string
     {
@@ -67,7 +67,7 @@ final class InlineKeyboardButton implements ApiReadType, ApiWriteType
     }
 
     /**
-     * 	Optional. HTTP or tg:// url to be opened when button is pressed
+     *    Optional. HTTP or tg:// url to be opened when button is pressed
      */
     public function url(): ?Url
     {
@@ -83,7 +83,7 @@ final class InlineKeyboardButton implements ApiReadType, ApiWriteType
     }
 
     /**
-     * 	Optional. Data to be sent in a callback query to the bot when button is pressed, 1-64 bytes
+     *    Optional. Data to be sent in a callback query to the bot when button is pressed, 1-64 bytes
      */
     public function callbackData(): ?string
     {
@@ -136,7 +136,7 @@ final class InlineKeyboardButton implements ApiReadType, ApiWriteType
             'switch_inline_query' => $this->switchInlineQuery,
             'switch_inline_query_current_chat' => $this->switchInlineQueryCurrentChat,
             'callback_game' => $this->callbackGame,
-            'pay' => $this->pay
+            'pay' => $this->pay,
         ];
     }
 }

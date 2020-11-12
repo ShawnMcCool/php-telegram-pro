@@ -1,5 +1,7 @@
 <?php namespace TelegramPro\Bot\Methods\FileUploads;
 
+use function TelegramPro\optional;
+
 use JsonSerializable;
 use TelegramPro\Bot\Types\FileId;
 use TelegramPro\Bot\Methods\Types\Url;

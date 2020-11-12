@@ -28,7 +28,7 @@ final class SetChatStickerSet implements Method
         )->withParameters(
             [
                 'chat_id' => $this->chatId->toApi(),
-                'sticker_set_name' => $this->stickerSetName
+                'sticker_set_name' => $this->stickerSetName,
             ]
         );
     }

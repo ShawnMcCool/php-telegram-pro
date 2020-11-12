@@ -1,5 +1,7 @@
 <?php namespace TelegramPro\Bot\Methods\FileUploads;
 
+use function TelegramPro\optional;
+
 use TelegramPro\Bot\Types\FileId;
 
 /**
@@ -27,7 +29,7 @@ final class VideoNoteFile extends InputFile
             mime_content_type($filePath),
             [
                 'video/mp4',
-                'video/x-m4v'
+                'video/x-m4v',
             ]
         );
     }

@@ -1132,7 +1132,8 @@ final class Currency
         $found = array_filter(
             $codes, function ($codeRow) use ($code) {
             return $code == $codeRow['code'];
-        });
+        }
+        );
 
         return count($found) > 0;
     }

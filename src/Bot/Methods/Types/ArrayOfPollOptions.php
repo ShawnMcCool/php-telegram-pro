@@ -28,7 +28,7 @@ final class ArrayOfPollOptions extends ArrayOfApiTypes implements ApiReadType, A
     {
         return new static(Collection::of($options));
     }
-    
+
     function toApi()
     {
         $options = $this
@@ -36,7 +36,7 @@ final class ArrayOfPollOptions extends ArrayOfApiTypes implements ApiReadType, A
             ->map(
                 fn(PollOptionText $option) => $option->toApi()
             )->toArray();
-        
+
         return json_encode($options);
     }
 }

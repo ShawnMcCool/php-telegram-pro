@@ -2,4 +2,6 @@
 
 use TelegramPro\TelegramProException;
 
-final class SpokenLanguageCodeNotSupported extends TelegramProException {}
+final class SpokenLanguageCodeNotSupported extends TelegramProException
+{
+}

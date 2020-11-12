@@ -1,7 +1,7 @@
 <?php namespace TelegramPro\Bot\Methods;
 
-use TelegramPro\Bot\Methods\Types\ArrayOfBotCommands;
 use TelegramPro\Bot\Methods\Types\MethodError;
+use TelegramPro\Bot\Methods\Types\ArrayOfBotCommands;
 
 /**
  * Returns Array of BotCommand on success.

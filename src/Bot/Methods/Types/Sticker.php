@@ -51,7 +51,7 @@ final class Sticker implements ApiReadType
     public static function fromApi($sticker): ?Sticker
     {
         if ( ! $sticker) return null;
-        
+
         return new static(
             $sticker->file_id,
             $sticker->file_unique_id,

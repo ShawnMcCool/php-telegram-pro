@@ -229,7 +229,7 @@ final class ChatMember implements ApiReadType
         if (is_null($data)) {
             return null;
         }
-        
+
         return new static(
             User::fromApi($data->user),
             ChatMemberStatus::fromApi($data->status),

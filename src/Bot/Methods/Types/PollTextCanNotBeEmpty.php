@@ -2,4 +2,6 @@
 
 use TelegramPro\TelegramProException;
 
-final class PollTextCanNotBeEmpty extends TelegramProException {}
+final class PollTextCanNotBeEmpty extends TelegramProException
+{
+}

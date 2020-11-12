@@ -2,4 +2,6 @@
 
 use TelegramPro\TelegramProException;
 
-final class MessageEntityTypeNotSupported extends TelegramProException {}
+final class MessageEntityTypeNotSupported extends TelegramProException
+{
+}

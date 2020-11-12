@@ -1,5 +1,7 @@
 <?php namespace TelegramPro\Bot\Methods\FileUploads;
 
+use function TelegramPro\optional;
+
 use TelegramPro\Bot\Types\FileId;
 use TelegramPro\Bot\Methods\Types\Url;
 use function TelegramPro\bytesToMegabytes;
@@ -28,7 +30,7 @@ final class AudioInputFile extends InputFile
         if ( ! static::isValidMimeType($filePath)) {
             throw AudioFileNotSupported::formatNotSupported($filePath, mime_content_type($filePath->toString()));
         }
-        
+
         return new static(null, null, $filePath);
     }
 

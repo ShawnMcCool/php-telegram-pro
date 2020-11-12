@@ -8,6 +8,7 @@ use TelegramPro\Bot\Methods\Requests\Request;
 use TelegramPro\Bot\Methods\Types\PhoneNumber;
 use TelegramPro\Bot\Methods\Keyboards\ReplyMarkup;
 use TelegramPro\Bot\Methods\Requests\MultipartFormRequest;
+use function TelegramPro\optional;
 
 /**
  * Use this method to send phone contacts. On success, the sent Message is returned.

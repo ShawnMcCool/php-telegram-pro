@@ -5,6 +5,7 @@ use TelegramPro\Bot\Methods\Types\ChatId;
 use TelegramPro\Bot\Methods\Types\MessageId;
 use TelegramPro\Bot\Methods\Requests\Request;
 use TelegramPro\Bot\Methods\Requests\JsonRequest;
+use function TelegramPro\optional;
 
 /**
  * Use this method to forward messages of any kind. On success, the sent Message is returned.

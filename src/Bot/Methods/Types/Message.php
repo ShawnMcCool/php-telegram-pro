@@ -247,13 +247,13 @@ class Message implements ApiReadType
     }
 
     /**
-     * 	Optional. Bot through which the message was sent
+     *    Optional. Bot through which the message was sent
      */
     public function viaBot(): ?User
     {
         return $this->viaBot;
     }
-    
+
     /**
      * Optional. Date the message was last edited in Unix time
      */
@@ -311,7 +311,7 @@ class Message implements ApiReadType
     }
 
     /**
-     * 	Optional. Message is a general file, information about the file
+     *    Optional. Message is a general file, information about the file
      */
     public function document(): ?Document
     {
@@ -319,7 +319,7 @@ class Message implements ApiReadType
     }
 
     /**
-     * 	Optional. Message is an animation, information about the animation. For backward compatibility, when this field is set, the document field will also be set
+     *    Optional. Message is an animation, information about the animation. For backward compatibility, when this field is set, the document field will also be set
      */
     public function animation(): ?Animation
     {
@@ -440,7 +440,7 @@ class Message implements ApiReadType
     }
 
     /**
-     * 	Optional. A chat photo was change to this value
+     *    Optional. A chat photo was change to this value
      */
     public function newChatPhoto(): ArrayOfPhotoSizes
     {
@@ -550,7 +550,7 @@ class Message implements ApiReadType
     {
         return $this->dice;
     }
-    
+
     /**
      * @internal Construct with data received from the Telegram bot api.
      */

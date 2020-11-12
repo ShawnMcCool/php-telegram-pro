@@ -950,11 +950,11 @@ final class SpokenLanguage implements ApiReadType
         if ( ! $code) {
             return null;
         }
-        
+
         if ( ! static::isValidCode($code)) {
             throw new SpokenLanguageCodeNotSupported($code);
         }
-        
+
         return new static($code);
     }
 

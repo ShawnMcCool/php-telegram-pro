@@ -39,7 +39,7 @@ final class EditMessageLiveLocationResponse implements Response
 
     public static function fromApi(string $jsonResponse): self
     {
-       $response = json_decode($jsonResponse);
+        $response = json_decode($jsonResponse);
         return new static(
             $response->ok,
             Message::fromApi($response->result ?? null),

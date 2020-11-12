@@ -5,6 +5,7 @@ use TelegramPro\Bot\Types\UserId;
 use TelegramPro\Bot\Methods\Requests\Request;
 use TelegramPro\Bot\Methods\Requests\JsonRequest;
 use TelegramPro\Bot\Methods\Types\UserProfilePhotoLimit;
+use function TelegramPro\optional;
 
 /**
  * Use this method to get a list of profile pictures for a user. Returns a UserProfilePhotos object.

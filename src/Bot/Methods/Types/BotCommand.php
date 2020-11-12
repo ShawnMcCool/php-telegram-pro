@@ -26,15 +26,15 @@ final class BotCommand implements ApiWriteType, ApiReadType
         if (strlen($command) < 1 || strlen($command) > 32) {
             throw BotCommandIsInvalid::commandIsAnInvalidLength($command);
         }
-        
+
         if (\regex\has_unmatched_characters('a-zA-Z0-9_', $command)) {
             throw BotCommandIsInvalid::commandContainsInvalidCharacters($command);
         }
-        
+
         if (strlen($description) < 3 || strlen($description) > 256) {
             throw BotCommandIsInvalid::descriptionIsAnInvalidLength($command);
         }
-        
+
         return new static($command, $description);
     }
 

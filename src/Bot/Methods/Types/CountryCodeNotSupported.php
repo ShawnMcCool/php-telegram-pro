@@ -2,4 +2,6 @@
 
 use TelegramPro\TelegramProException;
 
-final class CountryCodeNotSupported extends TelegramProException {}
+final class CountryCodeNotSupported extends TelegramProException
+{
+}
