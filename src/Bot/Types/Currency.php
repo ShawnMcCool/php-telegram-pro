@@ -1,5 +1,7 @@
 <?php namespace TelegramPro\Bot\Types;
 
+use function TelegramPro\collect;
+
 /**
  * Three-letter ISO 4217 currency code, see more on currencies
  * https://core.telegram.org/bots/payments#supported-currencies

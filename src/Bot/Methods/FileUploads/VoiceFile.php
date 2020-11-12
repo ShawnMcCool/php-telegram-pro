@@ -2,6 +2,7 @@
 
 use TelegramPro\Bot\Types\FileId;
 use TelegramPro\Bot\Methods\Types\Url;
+use function TelegramPro\bytesToMegabytes;
 
 final class VoiceFile extends InputFile
 {

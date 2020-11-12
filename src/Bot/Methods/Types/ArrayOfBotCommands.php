@@ -2,6 +2,7 @@
 
 use TelegramPro\Collections\Collection;
 use TelegramPro\Bot\Types\ArrayOfApiTypes;
+use function TelegramPro\collect;
 
 /**
  * Contains a list of bot commands.

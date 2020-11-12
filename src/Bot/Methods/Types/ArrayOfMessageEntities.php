@@ -2,6 +2,7 @@
 
 use TelegramPro\Bot\Types\MessageEntity;
 use TelegramPro\Bot\Types\ArrayOfApiTypes;
+use function TelegramPro\collect;
 
 /**
  * Contains multiple message entities (which format text elements)

@@ -1,5 +1,7 @@
 <?php namespace TelegramPro\Bot\Methods\Types;
 
+use function TelegramPro\collect;
+
 /**
  * ISO 3166-1 alpha-2 country code
  */

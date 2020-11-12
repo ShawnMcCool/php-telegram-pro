@@ -2,6 +2,7 @@
 
 use TelegramPro\Bot\Methods\Types\ApiReadType;
 use TelegramPro\Bot\Methods\Types\ApiWriteType;
+use function TelegramPro\collect;
 
 /**
  * array of inline keyboard rows is an interesting way for Telegram to say an "inline keyboard"

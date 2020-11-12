@@ -1,5 +1,7 @@
 <?php namespace TelegramPro\Bot\Types;
 
+use function TelegramPro\collect;
+
 /**
  * Optional. IETF language tag of the user's language
  * https://en.wikipedia.org/wiki/IETF_language_tag

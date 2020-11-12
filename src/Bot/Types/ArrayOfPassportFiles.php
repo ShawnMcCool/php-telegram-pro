@@ -1,6 +1,7 @@
 <?php namespace TelegramPro\Bot\Types;
 
 use TelegramPro\Bot\Methods\Types\ApiReadType;
+use function TelegramPro\collect;
 
 /**
  * Contains multiple Passport Files

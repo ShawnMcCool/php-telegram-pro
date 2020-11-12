@@ -1,6 +1,7 @@
 <?php namespace TelegramPro\Bot\Methods\Types;
 
 use TelegramPro\Bot\Types\ArrayOfApiTypes;
+use function TelegramPro\collect;
 
 /**
  * Contains a list of users

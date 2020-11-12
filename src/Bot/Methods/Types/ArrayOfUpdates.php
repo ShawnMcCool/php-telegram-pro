@@ -2,6 +2,7 @@
 
 use TelegramPro\Bot\Types\Update;
 use TelegramPro\Bot\Types\ArrayOfApiTypes;
+use function TelegramPro\collect;
 
 /**
  * Contains a list of updates

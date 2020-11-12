@@ -5,6 +5,7 @@ use TelegramPro\Bot\Types\FileId;
 use TelegramPro\Bot\Methods\Types\Url;
 use TelegramPro\Bot\Methods\Types\ParseMode;
 use TelegramPro\Bot\Methods\Types\MediaCaption;
+use function TelegramPro\bytesToMegabytes;
 
 /**
  * Represents an audio file to be treated as music to be sent.

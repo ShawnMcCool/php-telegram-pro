@@ -3,6 +3,7 @@
 use TelegramPro\Bot\Methods\Types\ApiReadType;
 use TelegramPro\Bot\Methods\Types\ApiWriteType;
 use TelegramPro\Bot\Methods\Keyboards\InlineKeyboardButton;
+use function TelegramPro\collect;
 
 /**
  * Contains multiple inline keyboard buttons. The Telegram API refers to this as either

@@ -1,10 +1,6 @@
 <?php /** @noinspection PhpFullyQualifiedNameUsageInspection */
 
-namespace {
-
-    use TelegramPro\Collections\Collection;
-    use TelegramPro\Bot\Methods\Types\ApiWriteType;
-    use TelegramPro\Bot\Methods\Keyboards\ReplyMarkup;
+namespace TelegramPro {
 
     function bytesToMegabytes(int $bytes): int
     {
@@ -15,6 +11,8 @@ namespace {
     {
         return $bytes / 1000;
     }
+
+    use TelegramPro\Collections\Collection;
 
     function collect($items): Collection
     {
@@ -27,6 +25,14 @@ namespace {
         }
         return new Collection($items);
     }
+}
+
+namespace {
+
+
+    use TelegramPro\Bot\Methods\Types\ApiWriteType;
+    use TelegramPro\Bot\Methods\Keyboards\ReplyMarkup;
+
 
     function optional($type)
     {
@@ -136,10 +142,10 @@ namespace regex {
         return ! empty($matches);
     }
 
-    /** 
+    /**
      * Returns true if characters exist in the haystack that do not match the pattern.
      *
-     * A valid set of character classes looks like this: a-zA-Z0-9_\s  
+     * A valid set of character classes looks like this: a-zA-Z0-9_\s
      */
     function has_unmatched_characters($characterClasses, $haystack): bool
     {

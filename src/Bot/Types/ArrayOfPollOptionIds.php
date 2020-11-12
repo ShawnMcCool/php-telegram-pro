@@ -2,6 +2,7 @@
 
 use TelegramPro\Bot\Methods\Types\ApiReadType;
 use TelegramPro\Bot\Methods\Types\PollOptionId;
+use function TelegramPro\collect;
 
 /**
  * Contains a list of poll options identifiers

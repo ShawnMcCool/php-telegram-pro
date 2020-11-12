@@ -2,6 +2,7 @@
 
 use TelegramPro\Bot\Methods\Types\ApiReadType;
 use TelegramPro\Bot\Methods\Types\ArrayOfPhotoSizes;
+use function TelegramPro\collect;
 
 /**
  * Contains photo size information for multiple photos

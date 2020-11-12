@@ -37,3 +37,4 @@ Responses = Receive
 - See how EditMessageMedia uses Media File as json
 - Add a request log TelegramApi decorator
 - ReplyMarkup stuff is also old, sort it out
+- Ensure no global artifacts

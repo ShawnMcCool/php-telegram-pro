@@ -2,6 +2,7 @@
 
 use TelegramPro\Bot\Methods\Types\Message;
 use TelegramPro\Bot\Methods\Types\ApiReadType;
+use function TelegramPro\collect;
 
 /**
  * Contains multiple Messages
