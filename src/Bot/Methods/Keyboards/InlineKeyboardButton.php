@@ -5,11 +5,12 @@ use TelegramPro\Bot\Methods\Types\Url;
 use TelegramPro\Bot\Types\CallbackGame;
 use TelegramPro\Bot\Methods\Types\ApiReadType;
 use TelegramPro\Bot\Methods\Types\CallbackData;
+use TelegramPro\Bot\Methods\Types\ApiWriteType;
 
 /**
  * This object represents one button of an inline keyboard. You must use exactly one of the optional fields.
  */
-final class InlineKeyboardButton implements ApiReadType
+final class InlineKeyboardButton implements ApiReadType, ApiWriteType
 {
     private string $text;
     private ?Url $url;
@@ -22,13 +23,13 @@ final class InlineKeyboardButton implements ApiReadType
 
     public function __construct(
         string $text,
-        ?Url $url,
-        ?LoginUrl $loginUrl,
-        ?CallbackData $callbackData,
-        ?string $switchInlineQuery,
-        ?string $switchInlineQueryCurrentChat,
-        ?CallbackGame $callbackGame,
-        ?bool $pay
+        ?Url $url = null,
+        ?LoginUrl $loginUrl = null,
+        ?CallbackData $callbackData = null,
+        ?string $switchInlineQuery = null,
+        ?string $switchInlineQueryCurrentChat = null,
+        ?CallbackGame $callbackGame = null,
+        ?bool $pay = null
     ) {
         $this->text = $text;
         $this->url = $url;
@@ -123,5 +124,19 @@ final class InlineKeyboardButton implements ApiReadType
     public function pay(): ?bool
     {
         return $this->pay;
+    }
+
+    function toApi()
+    {
+        return [
+            'text' => $this->text,
+            'url' => $this->url,
+            'login_url' => $this->loginUrl,
+            'callback_data' => $this->callbackData,
+            'switch_inline_query' => $this->switchInlineQuery,
+            'switch_inline_query_current_chat' => $this->switchInlineQueryCurrentChat,
+            'callback_game' => $this->callbackGame,
+            'pay' => $this->pay
+        ];
     }
 }

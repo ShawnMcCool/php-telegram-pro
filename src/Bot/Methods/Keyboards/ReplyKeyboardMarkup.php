@@ -14,9 +14,9 @@ final class ReplyKeyboardMarkup implements ReplyMarkup
 
     public function __construct(
         ArrayOfInlineKeyboardRows $keyboard,
-        ?bool $resizeKeyboard,
-        ?bool $oneTimeKeyboard,
-        ?bool $selective
+        ?bool $resizeKeyboard = null,
+        ?bool $oneTimeKeyboard = null,
+        ?bool $selective = null
     ) {
         $this->keyboard = $keyboard;
         $this->resizeKeyboard = $resizeKeyboard;

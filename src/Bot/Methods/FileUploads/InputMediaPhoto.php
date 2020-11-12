@@ -1,6 +1,5 @@
 <?php namespace TelegramPro\Bot\Methods\FileUploads;
 
-use JsonSerializable;
 use TelegramPro\Bot\Types\FileId;
 use TelegramPro\Bot\Methods\Types\Url;
 use TelegramPro\Bot\Methods\Types\ParseMode;
@@ -56,7 +55,6 @@ final class InputMediaPhoto implements InputMediaFile
             $this->media->fileToUpload()
         );
     }
-
 
     /**
      * If the file is already stored somewhere on the Telegram servers, you don't need to reupload it: each file object has a file_id field, simply pass this file_id as a parameter instead of uploading. There are no limits for files sent this way.

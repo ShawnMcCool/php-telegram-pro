@@ -1,10 +1,13 @@
 <?php namespace TelegramPro\Bot\Methods\Keyboards;
 
+use TelegramPro\Bot\Methods\Types\ApiWriteType;
+use TelegramPro\Bot\Types\ArrayOfInlineKeyboardRows;
+
 /**
  * Upon receiving a message with this object, Telegram clients will remove the current custom keyboard and display the default letter-keyboard. By default, custom keyboards are displayed until a new keyboard is sent by a bot. An exception is made for one-time keyboards that are hidden immediately after the user presses a button (see ReplyKeyboardMarkup).
  * https://core.telegram.org/bots/api#replykeyboardmarkup
  */
-final class ReplyKeyboardRemove
+final class ReplyKeyboardRemove implements ApiWriteType, ReplyMarkup
 {
     private bool $removeKeyboard;
     private ?bool $selective;
@@ -32,5 +35,18 @@ final class ReplyKeyboardRemove
     public function selective(): ?bool
     {
         return $this->selective;
+    }
+
+    function toApi()
+    {
+        return [
+            'remove_keyboard' => $this->removeKeyboard,
+            'selective' => $this->selective
+        ];
+    }
+
+    function toParameter(): ArrayOfInlineKeyboardRows
+    {
+        
     }
 }

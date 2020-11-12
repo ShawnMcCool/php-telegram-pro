@@ -29,7 +29,9 @@ final class BotTestConfig
         $this->longitude = Longitude::fromFloat(-110.113006);
         
         $allChatIds = array_merge($this->groupChatIds, $this->supergroupChatIds);
-        $this->validGroupCycle = new RangeCycle($allChatIds, rand(0, count($allChatIds)-1), rand(0, 1) ? 1 : -1);
+        shuffle($allChatIds);
+        
+        $this->validGroupCycle = new RangeCycle($allChatIds);
     }
 
     public function token(): string

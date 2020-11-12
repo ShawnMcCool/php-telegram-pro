@@ -129,7 +129,7 @@ final class BlockingRateLimiter implements Telegram
     private function sendRequest(Request $request, float $current): RateLimitedResponse
     {
         $this->lastSendTimestamp = $current;
-        
+
         return RateLimitedResponse::fromApi(
             $this->telegram->send($request)
         );

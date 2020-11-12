@@ -46,9 +46,12 @@ final class TestMedia
         $this->videoNotePath = $videoNotePath;
     }
 
-    public function image(): string
+    public function image($key = null): string
     {
-        $key = array_rand($this->images, 1);
+        if (is_null($key)) {
+            $key = array_rand($this->images, 1);
+        }
+        
         return $this->images[$key];
     }
 
