@@ -27,7 +27,7 @@ final class BotCommand implements ApiWriteType, ApiReadType
             throw BotCommandIsInvalid::commandIsAnInvalidLength($command);
         }
 
-        if (\regex\has_unmatched_characters('a-zA-Z0-9_', $command)) {
+        if (\TelegramPro\regex\has_unmatched_characters('a-zA-Z0-9_', $command)) {
             throw BotCommandIsInvalid::commandContainsInvalidCharacters($command);
         }
 

@@ -31,7 +31,7 @@ class GetFileTest extends TelegramTestCase
         $this->isOk($response);
         self::assertInstanceOf(File::class, $response->file());
 
-        self::assertTrue(\string\starts_with($response->file()->filePath(), 'documents/file'));
+        self::assertTrue(\TelegramPro\string\starts_with($response->file()->filePath(), 'documents/file'));
         self::assertSame(151827, $response->file()->fileSize());
     }
 

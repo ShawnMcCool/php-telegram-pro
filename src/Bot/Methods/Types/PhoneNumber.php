@@ -10,7 +10,7 @@ final class PhoneNumber extends StringObject
             return null;
         }
 
-        if ( ! \string\starts_with($string, '+')) {
+        if ( ! \TelegramPro\string\starts_with($string, '+')) {
             throw new PhoneNumberIsNotValid("Phone numbers must be in valid E.164 format.");
         }
 

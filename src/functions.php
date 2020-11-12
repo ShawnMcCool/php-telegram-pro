@@ -13,6 +13,8 @@ namespace TelegramPro {
     }
 
     use TelegramPro\Collections\Collection;
+    use TelegramPro\Bot\Methods\Types\ApiWriteType;
+    use TelegramPro\Bot\Methods\Keyboards\ReplyMarkup;
 
     function collect($items): Collection
     {
@@ -25,10 +27,7 @@ namespace TelegramPro {
         }
         return new Collection($items);
     }
-    
-    use TelegramPro\Bot\Methods\Types\ApiWriteType;
-    use TelegramPro\Bot\Methods\Keyboards\ReplyMarkup;
-    
+
     function optional($type)
     {
         if (is_null($type)) {
@@ -45,7 +44,7 @@ namespace TelegramPro {
     }
 }
 
-namespace arr {
+namespace TelegramPro\arr {
     function only($keys, $array): array
     {
         return array_intersect_key($array, array_flip((array) $keys));
@@ -57,7 +56,7 @@ namespace arr {
     }
 }
 
-namespace string {
+namespace TelegramPro\string {
     function contains($haystack, $needle): bool
     {
         return strpos($haystack, $needle) !== false;
@@ -87,7 +86,7 @@ namespace string {
     }
 }
 
-namespace regex {
+namespace TelegramPro\regex {
     /**
      * Returns the first match of a pattern in the haystack.
      */
@@ -95,7 +94,7 @@ namespace regex {
     {
         if (
             $autoDelimiter &&
-            ! \string\starts_with($haystack, '/')
+            ! \TelegramPro\string\starts_with($haystack, '/')
         ) {
             $pattern = '/' . $pattern . '/';
         }
@@ -106,7 +105,7 @@ namespace regex {
             return null;
         }
 
-        return \arr\last($matches);
+        return \TelegramPro\arr\last($matches);
     }
 
     /**
@@ -116,7 +115,7 @@ namespace regex {
     {
         if (
             $autoDelimiter &&
-            ! \string\starts_with($haystack, '/')
+            ! \TelegramPro\string\starts_with($haystack, '/')
         ) {
             $pattern = '/' . $pattern . '/';
         }

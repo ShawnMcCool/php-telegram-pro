@@ -66,7 +66,7 @@ final class BlockingRateLimiter implements Telegram
         # repeat until it goes through
         if ( ! $response->ok() && $response->error()->code() == '429') {
             $this->waitSecondsForceThrottled(
-                \regex\first('Too Many Requests: retry after (\d+)', $response->error()->description())
+                \TelegramPro\regex\first('Too Many Requests: retry after (\d+)', $response->error()->description())
             );
             return $this->retry($request);
         }
@@ -99,7 +99,7 @@ final class BlockingRateLimiter implements Telegram
         # repeat until it goes through
         if ( ! $response->ok() && $response->error()->code() == '429') {
             $this->waitSecondsForceThrottled(
-                \regex\first('Too Many Requests: retry after (\d+)', $response->error()->description())
+                \TelegramPro\regex\first('Too Many Requests: retry after (\d+)', $response->error()->description())
             );
             return $this->retry($request);
         }
