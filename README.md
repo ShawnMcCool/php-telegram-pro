@@ -5,6 +5,8 @@ Responses = Receive
 
 # To-do
 
+- Create auto-escaping etc for https://core.telegram.org/bots/api#markdownv2-style
+- Implement Update methods https://core.telegram.org/bots/api#getupdates
 - Deal with the fact that the edit methods have atypical returns
 - Outline the models, files, methods, types, etc
 - Methods/ and Types/ should be hierarchical equals
