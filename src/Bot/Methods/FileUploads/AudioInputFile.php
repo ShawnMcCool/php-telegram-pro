@@ -11,7 +11,7 @@ use function TelegramPro\bytesToMegabytes;
  */
 final class AudioInputFile extends InputFile
 {
-    public static function fromFileId(FileId $fileId): self
+    public static function fromFileId(FileId $fileId): static
     {
         return new static($fileId, null, null);
     }

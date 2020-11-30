@@ -6,7 +6,7 @@ use TelegramPro\TelegramProException;
 
 final class VoiceFileNotSupported extends TelegramProException
 {
-    public static function formatNotSupported(string $filePath, string $mimeType): self
+    public static function formatNotSupported(string $filePath, string $mimeType): static
     {
         return new static("'{$filePath}' is reporting '{$mimeType}' but we need .OGG format.");
     }

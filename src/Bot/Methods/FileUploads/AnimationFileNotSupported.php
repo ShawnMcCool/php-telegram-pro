@@ -6,7 +6,7 @@ use TelegramPro\TelegramProException;
 
 final class AnimationFileNotSupported extends TelegramProException
 {
-    public static function formatNotSupported(string $filePath, string $mimeType): self
+    public static function formatNotSupported(string $filePath, string $mimeType): static
     {
         return new static("'{$filePath}' is reporting '{$mimeType}' but we need .GIF or H.264/MPEG-4 AVC video format.");
     }

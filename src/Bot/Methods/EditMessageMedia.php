@@ -78,7 +78,7 @@ final class EditMessageMedia implements Method
         MessageId $messageId,
         InputMediaFile $media,
         ?ReplyMarkup $replyMarkup = null
-    ): self {
+    ): static {
         return new static(
             $chatId,
             $messageId,

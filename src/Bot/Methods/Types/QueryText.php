@@ -24,7 +24,7 @@ final class QueryText implements JsonSerializable, ApiReadType
         return $this->toString();
     }
 
-    public static function fromString(string $text): self
+    public static function fromString(string $text): static
     {
         if (strlen($text) > 256) {
             throw new MessageTextIsTooLong("Query text '{$text}' can not be longer than 256 characters.");

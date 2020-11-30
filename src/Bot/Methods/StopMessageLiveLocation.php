@@ -57,7 +57,7 @@ final class StopMessageLiveLocation implements Method
         ?MessageId $messageId,
         ?InlineMessageId $inlineMessageId = null,
         ?ReplyMarkup $replyMarkup = null
-    ): self {
+    ): static {
         return new static(
             $chatId,
             $messageId,

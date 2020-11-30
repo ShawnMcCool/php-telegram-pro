@@ -68,7 +68,7 @@ final class EditMessageReplyMarkup implements Method
         ChatId $chatId,
         MessageId $messageId,
         ?ReplyMarkup $replyMarkup = null
-    ): self {
+    ): static {
         return new static(
             $chatId,
             $messageId,

@@ -49,7 +49,7 @@ final class SetChatPhoto implements Method
     public static function parameters(
         ChatId $chatId,
         InputPhotoFile $photo
-    ): self {
+    ): static {
         return new static(
             $chatId,
             $photo

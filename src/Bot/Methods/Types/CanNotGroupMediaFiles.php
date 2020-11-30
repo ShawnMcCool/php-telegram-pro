@@ -4,7 +4,7 @@ use TelegramPro\TelegramProException;
 
 final class CanNotGroupMediaFiles extends TelegramProException
 {
-    public static function mediaFileNotSupported(string $class): self
+    public static function mediaFileNotSupported(string $class): static
     {
         return new static("{$class} not supported. Use InputMediaPhoto or InputMediaVideo");
     }

@@ -55,7 +55,7 @@ final class SendMediaGroup implements Method
         MediaGroup $mediaGroup,
         ?bool $disableNotification = null,
         ?MessageId $replyToMessageId = null
-    ): self {
+    ): static {
         return new static(
             $chatId,
             $mediaGroup,

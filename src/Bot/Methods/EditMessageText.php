@@ -91,7 +91,7 @@ final class EditMessageText implements Method
         ?ParseMode $parseMode = null,
         ?bool $disableWebPagePreview = null,
         ?ReplyMarkup $replyMarkup = null
-    ): self {
+    ): static {
         return new static(
             $chatId,
             $messageId,

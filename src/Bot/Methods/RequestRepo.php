@@ -21,13 +21,13 @@ final class RequestRepo
         $this->filesToUpload = FilesToUpload::empty();
     }
 
-    public function withParameters(array $parameterArray): self
+    public function withParameters(array $parameterArray): static
     {
         $this->parameters = $parameterArray;
         return $this;
     }
 
-    public function withFiles(?FilesToUpload $files = null): self
+    public function withFiles(?FilesToUpload $files = null): static
     {
         $this->filesToUpload->merge($files);
         return $this;
@@ -141,22 +141,22 @@ final class RequestRepo
         );
     }
 
-    public static function queryString(string $method): self
+    public static function queryString(string $method): static
     {
         return new static($method, 'query-string');
     }
 
-    public static function xWwwFormUrlencoded(string $method): self
+    public static function xWwwFormUrlencoded(string $method): static
     {
         return new static($method, 'application/x-www-form-urlencoded');
     }
 
-    public static function multipartFormData(string $method): self
+    public static function multipartFormData(string $method): static
     {
         return new static($method, 'multipart/form-data');
     }
 
-    public static function json(string $method): self
+    public static function json(string $method): static
     {
         return new static($method, 'application/json');
     }

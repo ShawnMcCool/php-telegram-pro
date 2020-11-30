@@ -38,7 +38,7 @@ class Date implements ApiReadType, ApiWriteType
      * "next Thursday"
      * "last Monday"
      */
-    public static function fromString(string $dateString): self
+    public static function fromString(string $dateString): static
     {
         return new static(
             (new DateTimeImmutable())->setTimestamp(

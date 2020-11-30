@@ -102,7 +102,7 @@ final class InputMediaVideo implements InputMediaFile
         ?int $height = null,
         ?int $duration = null,
         ?bool $supportsStreaming = null
-    ): self {
+    ): static {
         return new static(
             VideoFile::fromFileId($fileId),
             $thumb,
@@ -138,7 +138,7 @@ final class InputMediaVideo implements InputMediaFile
         ?int $height = null,
         ?int $duration = null,
         ?bool $supportsStreaming = null
-    ): self {
+    ): static {
         return new static(
             VideoFile::fromUrl($url),
             $thumb,
@@ -177,7 +177,7 @@ final class InputMediaVideo implements InputMediaFile
         ?int $height = null,
         ?int $duration = null,
         ?bool $supportsStreaming = null
-    ): self {
+    ): static {
         return new static(
             VideoFile::fromFilePath($filePath),
             $thumb,

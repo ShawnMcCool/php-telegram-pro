@@ -49,7 +49,7 @@ final class PinChatMessage implements Method
         ChatId $chatId,
         MessageId $messageId,
         ?bool $disableNotification = null
-    ): self {
+    ): static {
         return new static(
             $chatId,
             $messageId,

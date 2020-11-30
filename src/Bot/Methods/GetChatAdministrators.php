@@ -38,7 +38,7 @@ final class GetChatAdministrators implements Method
 
     public static function parameters(
         ChatId $chatId
-    ): self {
+    ): static {
         return new static(
             $chatId
         );

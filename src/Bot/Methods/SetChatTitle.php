@@ -44,7 +44,7 @@ final class SetChatTitle implements Method
     public static function parameters(
         ChatId $chatId,
         ChatTitle $title
-    ): self {
+    ): static {
         return new static(
             $chatId,
             $title

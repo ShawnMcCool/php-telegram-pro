@@ -44,7 +44,7 @@ final class SetChatDescription implements Method
     public static function parameters(
         ChatId $chatId,
         ChatDescription $description
-    ): self {
+    ): static {
         return new static(
             $chatId,
             $description

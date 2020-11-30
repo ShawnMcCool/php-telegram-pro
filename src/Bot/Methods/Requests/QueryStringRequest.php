@@ -12,7 +12,7 @@ final class QueryStringRequest implements Request
         $this->method = $method;
     }
 
-    public function withParameters(array $parameterArray): self
+    public function withParameters(array $parameterArray): static
     {
         $this->parameters = $parameterArray;
         return $this;
@@ -54,7 +54,7 @@ final class QueryStringRequest implements Request
         return array_filter($this->parameters);
     }
 
-    public static function forMethod(string $method): self
+    public static function forMethod(string $method): static
     {
         return new static($method);
     }

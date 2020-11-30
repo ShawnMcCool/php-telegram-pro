@@ -84,7 +84,7 @@ final class EditMessageCaption implements Method
         MediaCaption $caption,
         ?ParseMode $parseMode = null,
         ?ReplyMarkup $replyMarkup = null
-    ): self {
+    ): static {
         return new static(
             $chatId,
             $messageId,

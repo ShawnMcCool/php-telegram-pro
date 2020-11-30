@@ -41,7 +41,7 @@ final class MessageText implements ApiWriteType
      * @return static
      * @throws MessageTextIsTooLong
      */
-    public static function fromString(string $string): self
+    public static function fromString(string $string): static
     {
         if (strlen($string) > 4096) {
             throw new MessageTextIsTooLong("Message text '{$string}' can not be longer than 4096 bytes.");

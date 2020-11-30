@@ -45,14 +45,14 @@ final class FilesToUpload implements IteratorAggregate
         return new ArrayIterator($this->files);
     }
 
-    public static function list(?FileToUpload ...$files): self
+    public static function list(?FileToUpload ...$files): static
     {
         return new static(
             array_filter($files)
         );
     }
 
-    public static function fromArray(array $mediaArray): self
+    public static function fromArray(array $mediaArray): static
     {
         return new static(
             array_filter($mediaArray)

@@ -106,7 +106,7 @@ final class InputMediaAudio implements InputMediaFile, JsonSerializable
         ?int $duration = null,
         ?string $performer = null,
         ?string $title = null
-    ): self {
+    ): static {
         return new static(
             AudioInputFile::fromFileId($fileId),
             $thumb,
@@ -139,7 +139,7 @@ final class InputMediaAudio implements InputMediaFile, JsonSerializable
         ?int $duration = null,
         ?string $performer = null,
         ?string $title = null
-    ): self {
+    ): static {
         return new static(
             AudioInputFile::fromUrl($url),
             $thumb,
@@ -174,7 +174,7 @@ final class InputMediaAudio implements InputMediaFile, JsonSerializable
         ?int $duration = null,
         ?string $performer = null,
         ?string $title = null
-    ): self {
+    ): static {
         if (bytesToMegabytes(filesize($filePath)) > 50) {
             throw AudioFileNotSupported::fileSizeIsGreaterThan50Megabyte($filePath);
         }

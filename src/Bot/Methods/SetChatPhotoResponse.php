@@ -36,7 +36,7 @@ final class SetChatPhotoResponse implements Response
         return $this->error;
     }
 
-    public static function fromApi(string $jsonResponse): self
+    public static function fromApi(string $jsonResponse): static
     {
         $response = json_decode($jsonResponse);
 

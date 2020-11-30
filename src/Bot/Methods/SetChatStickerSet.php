@@ -43,7 +43,7 @@ final class SetChatStickerSet implements Method
     public static function parameters(
         ChatId $chatId,
         string $stickerSetName
-    ): self {
+    ): static {
         return new static(
             $chatId,
             $stickerSetName

@@ -69,7 +69,7 @@ final class EditMessageLiveLocation implements Method
         ?MessageId $messageId,
         ?InlineMessageId $inlineMessageId = null,
         ?ReplyMarkup $replyMarkup = null
-    ): self {
+    ): static {
         return new static(
             $latitude,
             $longitude,

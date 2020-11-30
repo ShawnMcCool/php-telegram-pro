@@ -86,7 +86,7 @@ final class InputMediaDocument implements InputMediaFile, JsonSerializable
         ?ThumbnailInputFile $thumb = null,
         ?MediaCaption $caption = null,
         ?ParseMode $parseMode = null
-    ): self {
+    ): static {
         return new static(
             DocumentFile::fromFileId($fileId),
             $thumb,
@@ -110,7 +110,7 @@ final class InputMediaDocument implements InputMediaFile, JsonSerializable
         ?ThumbnailInputFile $thumb = null,
         ?MediaCaption $caption = null,
         ?ParseMode $parseMode = null
-    ): self {
+    ): static {
         return new static(
             DocumentFile::fromUrl($url),
             $thumb,
@@ -136,7 +136,7 @@ final class InputMediaDocument implements InputMediaFile, JsonSerializable
         ?ThumbnailInputFile $thumb = null,
         ?MediaCaption $caption = null,
         ?ParseMode $parseMode = null
-    ): self {
+    ): static {
         return new static(
             DocumentFile::fromFilePath($filePath),
             $thumb,

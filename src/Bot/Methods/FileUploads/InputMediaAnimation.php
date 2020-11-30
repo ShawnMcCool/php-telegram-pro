@@ -106,7 +106,7 @@ final class InputMediaAnimation implements InputMediaFile, JsonSerializable
         ?int $width = null,
         ?int $height = null,
         ?int $duration = null
-    ): self {
+    ): static {
         return new static(
             AnimationFile::fromFileId($fileId),
             $thumb,
@@ -139,7 +139,7 @@ final class InputMediaAnimation implements InputMediaFile, JsonSerializable
         ?int $width = null,
         ?int $height = null,
         ?int $duration = null
-    ): self {
+    ): static {
         return new static(
             AnimationFile::fromUrl($url),
             $thumb,
@@ -174,7 +174,7 @@ final class InputMediaAnimation implements InputMediaFile, JsonSerializable
         ?int $width = null,
         ?int $height = null,
         ?int $duration = null
-    ): self {
+    ): static {
         return new static(
             AnimationFile::fromFilePath($filePath),
             $thumb,

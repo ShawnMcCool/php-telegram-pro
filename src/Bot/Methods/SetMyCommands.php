@@ -38,7 +38,7 @@ final class SetMyCommands implements Method
 
     public static function parameters(
         ArrayOfBotCommands $commands
-    ): self {
+    ): static {
         return new static(
             $commands
         );

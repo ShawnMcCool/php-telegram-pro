@@ -22,7 +22,7 @@ final class EncryptedPassportElementType
         return $this->toString();
     }
 
-    public static function fromApi($type): self
+    public static function fromApi($type): static
     {
         $validTypes = [
             'personal_details', 'passport', 'driver_license', 'identity_card', 'internal_passport',

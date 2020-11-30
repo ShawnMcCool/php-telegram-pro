@@ -78,7 +78,7 @@ final class SendContact implements Method
         ?bool $disableNotification = null,
         ?MessageId $replyToMessageId = null,
         ?ReplyMarkup $replyMarkup = null
-    ): self {
+    ): static {
         return new static(
             $chatId,
             $phoneNumber,

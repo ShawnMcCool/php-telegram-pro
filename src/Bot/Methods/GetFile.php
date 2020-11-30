@@ -39,7 +39,7 @@ final class GetFile implements Method
 
     public static function parameters(
         FileId $fileId
-    ): self {
+    ): static {
         return new static(
             $fileId
         );

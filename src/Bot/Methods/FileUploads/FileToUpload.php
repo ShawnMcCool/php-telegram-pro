@@ -38,7 +38,7 @@ final class FileToUpload
     public static function fromFilePath(
         string $formFieldName,
         FilePath $filePath
-    ): self {
+    ): static {
         return new static(
             $formFieldName,
             $filePath

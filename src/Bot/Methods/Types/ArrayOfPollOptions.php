@@ -24,7 +24,7 @@ final class ArrayOfPollOptions extends ArrayOfApiTypes implements ApiReadType, A
         );
     }
 
-    public static function list(PollOptionText ...$options): self
+    public static function list(PollOptionText ...$options): static
     {
         return new static(Collection::of($options));
     }

@@ -71,7 +71,7 @@ final class InputMediaPhoto implements InputMediaFile
         FileId $fileId,
         ?MediaCaption $caption = null,
         ?ParseMode $parseMode = null
-    ): self {
+    ): static {
         return new static(
             InputPhotoFile::fromFileId($fileId),
             $caption,
@@ -92,7 +92,7 @@ final class InputMediaPhoto implements InputMediaFile
         Url $url,
         ?MediaCaption $caption = null,
         ?ParseMode $parseMode = null
-    ): self {
+    ): static {
         return new static(
             InputPhotoFile::fromUrl($url),
             $caption,
@@ -115,7 +115,7 @@ final class InputMediaPhoto implements InputMediaFile
         FilePath $filePath,
         ?MediaCaption $caption = null,
         ?ParseMode $parseMode = null
-    ): self {
+    ): static {
         return new static(
             InputPhotoFile::fromFilePath($filePath),
             $caption,

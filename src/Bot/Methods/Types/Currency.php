@@ -1117,7 +1117,7 @@ final class Currency
         return $this->toString();
     }
 
-    public static function fromString(string $code): self
+    public static function fromString(string $code): static
     {
         if ( ! static::codeIsValid($code)) {
             throw new CurrencyIsNotSupported($code);

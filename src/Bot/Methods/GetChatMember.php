@@ -44,7 +44,7 @@ final class GetChatMember implements Method
     public static function parameters(
         ChatId $chatId,
         UserId $userId
-    ): self {
+    ): static {
         return new static(
             $chatId,
             $userId

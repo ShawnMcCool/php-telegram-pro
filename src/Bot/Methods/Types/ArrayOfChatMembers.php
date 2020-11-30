@@ -11,7 +11,7 @@ final class ArrayOfChatMembers extends ArrayOfApiTypes implements ApiReadType
     /**
      * @inheritDoc
      */
-    static function fromApi($items): self
+    static function fromApi($items): static
     {
         return new static(
             collect(

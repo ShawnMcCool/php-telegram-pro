@@ -16,13 +16,13 @@ final class MultipartFormRequest implements Request
         $this->filesToUpload = FilesToUpload::empty();
     }
 
-    public function withParameters(array $parameterArray): self
+    public function withParameters(array $parameterArray): static
     {
         $this->parameters = $parameterArray;
         return $this;
     }
 
-    public function withFiles(?FilesToUpload $files = null): self
+    public function withFiles(?FilesToUpload $files = null): static
     {
         $this->filesToUpload->merge($files);
         return $this;
@@ -77,7 +77,7 @@ final class MultipartFormRequest implements Request
         );
     }
 
-    public static function forMethod(string $method): self
+    public static function forMethod(string $method): static
     {
         return new static($method);
     }
