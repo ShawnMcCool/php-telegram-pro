@@ -554,7 +554,7 @@ class Message implements ApiReadType
     /**
      * @internal Construct with data received from the Telegram bot api.
      */
-    public static function fromApi($message): ?Message
+    public static function fromApi($message): ?static
     {
         if ( ! $message) return null;
 

@@ -38,7 +38,7 @@ final class SuccessfulPayment implements ApiReadType
     /**
      * @internal Construct with data received from the Telegram bot api.
      */
-    public static function fromApi($successfulPayment): ?SuccessfulPayment
+    public static function fromApi($successfulPayment): ?static
     {
         if ( ! $successfulPayment) return null;
 

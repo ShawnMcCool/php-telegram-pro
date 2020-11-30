@@ -35,7 +35,7 @@ final class Document implements ApiReadType
     /**
      * @internal Construct with data received from the Telegram bot api.
      */
-    public static function fromApi($document): ?Document
+    public static function fromApi($document): ?static
     {
         if ( ! $document) return null;
 

@@ -25,7 +25,7 @@ final class EncryptedCredentials implements ApiReadType
     /**
      * @internal Construct with data received from the Telegram bot api.
      */
-    public static function fromApi($credentials): ?EncryptedCredentials
+    public static function fromApi($credentials): ?static
     {
         if ( ! $credentials) return null;
 

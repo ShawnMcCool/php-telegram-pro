@@ -28,7 +28,7 @@ final class ArrayOfInlineKeyboardButtons extends ArrayOfApiTypes implements ApiR
     /**
      * @inheritDoc
      */
-    public static function fromApi($items): ArrayOfInlineKeyboardButtons
+    public static function fromApi($items): static
     {
         return new static(
             collect(

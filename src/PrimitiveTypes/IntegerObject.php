@@ -37,7 +37,7 @@ abstract class IntegerObject implements ApiReadType, ApiWriteType
         return $this->integer == $that->integer;
     }
 
-    public static function fromInt(?int $integer): ?self
+    public static function fromInt(?int $integer): ?static
     {
         if ( ! is_integer($integer)) {
             return null;
@@ -46,7 +46,7 @@ abstract class IntegerObject implements ApiReadType, ApiWriteType
         return new static($integer);
     }
 
-    public static function fromApi($int): ?self
+    public static function fromApi($int): ?static
     {
         return static::fromInt($int);
     }

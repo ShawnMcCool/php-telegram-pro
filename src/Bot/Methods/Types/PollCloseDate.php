@@ -10,7 +10,7 @@ final class PollCloseDate extends IntegerObject
         return new static(time() + $seconds);
     }
 
-    public static function fromInt(?int $integer): ?self
+    public static function fromInt(?int $integer): ?static
     {
         if ( ! is_integer($integer)) {
             return null;

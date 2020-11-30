@@ -60,7 +60,7 @@ class Date implements ApiReadType, ApiWriteType
     /**
      * @internal Construct with data received from the Telegram bot api.
      */
-    public static function fromApi($timestamp): ?Date
+    public static function fromApi($timestamp): ?static
     {
         if ( ! $timestamp) {
             return null;

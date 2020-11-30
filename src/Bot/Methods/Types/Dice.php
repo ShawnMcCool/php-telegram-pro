@@ -13,7 +13,7 @@ final class Dice implements ApiReadType
         $this->value = $value;
     }
 
-    public static function fromApi($data): ?self
+    public static function fromApi($data): ?static
     {
         if (is_null($data)) {
             return null;

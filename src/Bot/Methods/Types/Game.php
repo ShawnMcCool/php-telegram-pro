@@ -31,7 +31,7 @@ final class Game implements ApiReadType
     /**
      * @internal Construct with data received from the Telegram bot api.
      */
-    public static function fromApi($game): ?Game
+    public static function fromApi($game): ?static
     {
         if ( ! $game) return null;
 

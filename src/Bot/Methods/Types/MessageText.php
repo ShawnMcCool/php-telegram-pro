@@ -25,7 +25,7 @@ final class MessageText implements ApiWriteType
     /**
      * @internal Construct with data received from the Telegram bot api.
      */
-    public static function fromApi($text): ?self
+    public static function fromApi($text): ?static
     {
         if (is_null($text)) {
             return null;

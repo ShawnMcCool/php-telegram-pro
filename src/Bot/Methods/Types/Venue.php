@@ -28,7 +28,7 @@ final class Venue implements ApiReadType
     /**
      * @internal Construct with data received from the Telegram bot api.
      */
-    public static function fromApi($venue): ?Venue
+    public static function fromApi($venue): ?static
     {
         if ( ! $venue) return null;
 

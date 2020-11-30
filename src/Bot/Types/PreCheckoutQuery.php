@@ -37,7 +37,7 @@ final class PreCheckoutQuery implements ApiReadType
     /**
      * @internal Construct with data received from the Telegram bot api.
      */
-    public static function fromApi($preCheckoutQuery): ?PreCheckoutQuery
+    public static function fromApi($preCheckoutQuery): ?static
     {
         if ( ! $preCheckoutQuery) return null;
 

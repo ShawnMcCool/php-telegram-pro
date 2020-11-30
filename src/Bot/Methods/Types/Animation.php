@@ -44,7 +44,7 @@ final class Animation implements ApiReadType
     /**
      * @internal Construct with data received from the Telegram bot api.
      */
-    public static function fromApi($animation): ?Animation
+    public static function fromApi($animation): ?static
     {
         if ( ! $animation) return null;
 

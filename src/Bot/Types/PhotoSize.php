@@ -30,7 +30,7 @@ final class PhotoSize implements ApiReadType
     /**
      * @internal Construct with data received from the Telegram bot api.
      */
-    public static function fromApi($thumb): ?PhotoSize
+    public static function fromApi($thumb): ?static
     {
         if ( ! $thumb) return null;
         

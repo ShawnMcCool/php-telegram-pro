@@ -16,7 +16,7 @@ final class MediaCaption extends StringObject
      *
      * @throws MessageTextIsTooLong
      */
-    public static function fromString(?string $string): MediaCaption
+    public static function fromString(?string $string): static
     {
         if (strlen($string) > 1024) {
             throw new MessageTextIsTooLong("Media caption '{$string}' can not be longer than 1024 bytes.");
@@ -27,7 +27,7 @@ final class MediaCaption extends StringObject
     /**
      * @internal Construct with data received from the Telegram bot api.
      */
-    public static function fromApi($caption): ?MediaCaption
+    public static function fromApi($caption): ?static
     {
         if (is_null($caption)) {
             return null;

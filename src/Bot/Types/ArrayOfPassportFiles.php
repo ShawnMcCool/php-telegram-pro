@@ -11,7 +11,7 @@ final class ArrayOfPassportFiles extends ArrayOfApiTypes implements ApiReadType
     /**
      * @inheritDoc
      */
-    public static function fromApi($items): ArrayOfPassportFiles
+    public static function fromApi($items): static
     {
         return new static(
             collect(

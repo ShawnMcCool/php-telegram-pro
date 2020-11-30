@@ -27,7 +27,7 @@ final class OrderInfo implements ApiReadType
     /**
      * @internal Construct with data received from the Telegram bot api.
      */
-    public static function fromApi($orderInfo): ?OrderInfo
+    public static function fromApi($orderInfo): ?static
     {
         if ( ! $orderInfo) return null;
 

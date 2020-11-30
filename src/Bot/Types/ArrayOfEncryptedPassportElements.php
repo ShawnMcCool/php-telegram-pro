@@ -11,7 +11,7 @@ final class ArrayOfEncryptedPassportElements extends ArrayOfApiTypes implements 
     /**
      * @inheritDoc
      */
-    public static function fromApi($items): ArrayOfEncryptedPassportElements
+    public static function fromApi($items): static
     {
         return new static(
             collect(

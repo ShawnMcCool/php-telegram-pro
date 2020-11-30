@@ -13,7 +13,7 @@ final class ArrayOfPollOptions extends ArrayOfApiTypes implements ApiReadType, A
     /**
      * @inheritDoc
      */
-    public static function fromApi($items): ArrayOfPollOptions
+    public static function fromApi($items): static
     {
         return new static(
             collect(

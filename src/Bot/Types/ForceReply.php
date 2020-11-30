@@ -44,7 +44,7 @@ final class ForceReply implements ApiReadType
     /**
      * @inheritDoc
      */
-    public static function fromApi($data): ?self
+    public static function fromApi($data): ?static
     {
         return new static(
             $data->force_reply,

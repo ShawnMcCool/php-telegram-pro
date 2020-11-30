@@ -22,7 +22,7 @@ final class ArrayOfInlineKeyboardRows extends ArrayOfApiTypes implements ApiRead
             )->toArray();
     }
 
-    static function fromApi($items): ArrayOfInlineKeyboardRows
+    static function fromApi($items): static
     {
         return new static(
             collect(

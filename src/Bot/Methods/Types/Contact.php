@@ -30,7 +30,7 @@ final class Contact implements ApiReadType
     /**
      * @internal Construct with data received from the Telegram bot api.
      */
-    public static function fromApi($contact): ?Contact
+    public static function fromApi($contact): ?static
     {
         if ( ! $contact) return null;
 

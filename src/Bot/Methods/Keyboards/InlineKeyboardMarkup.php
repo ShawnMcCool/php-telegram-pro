@@ -25,7 +25,7 @@ final class InlineKeyboardMarkup implements ReplyMarkup, ApiReadType
     /**
      * @internal Construct with data received from the Telegram bot api.
      */
-    public static function fromApi($replyMarkup): ?InlineKeyboardMarkup
+    public static function fromApi($replyMarkup): ?static
     {
         if ( ! $replyMarkup) return null;
 

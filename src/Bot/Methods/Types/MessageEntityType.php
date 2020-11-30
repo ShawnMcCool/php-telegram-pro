@@ -22,7 +22,7 @@ final class MessageEntityType implements ApiReadType
         return $this->toString();
     }
 
-    public static function fromApi($type): ?self
+    public static function fromApi($type): ?static
     {
         $validTypes = [
             'mention', 'hashtag', 'cashtag', 'bot_command', 'url', 'email', 'phone_number', 'bold',

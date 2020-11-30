@@ -17,7 +17,7 @@ abstract class StringObject implements ApiReadType, ApiWriteType
         return $this->string;
     }
     
-    public static function fromString(?string $string): ?self
+    public static function fromString(?string $string): ?static
     {
         if (is_null($string)) {
             return null;
@@ -30,7 +30,7 @@ abstract class StringObject implements ApiReadType, ApiWriteType
         return $this->string;
     }
 
-    public static function fromApi($string): ?self
+    public static function fromApi($string): ?static
     {
         if (is_null($string)) {
             return null;

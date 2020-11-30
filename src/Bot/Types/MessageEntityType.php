@@ -80,7 +80,7 @@ final class MessageEntityType extends \TelegramPro\PrimitiveTypes\StringObject
         return $this->string == 'text_mention';
     }
 
-    public static function fromApi($type): ?self
+    public static function fromApi($type): ?static
     {
         return new static($type);
     }

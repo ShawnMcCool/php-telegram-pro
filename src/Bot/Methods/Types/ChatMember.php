@@ -224,7 +224,7 @@ final class ChatMember implements ApiReadType
     /**
      * @inheritDoc
      */
-    public static function fromApi($data): ?self
+    public static function fromApi($data): ?static
     {
         if (is_null($data)) {
             return null;

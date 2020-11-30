@@ -4,7 +4,7 @@ use TelegramPro\PrimitiveTypes\StringObject;
 
 final class PollQuestion extends StringObject
 {
-    public static function fromApi($question): ?self
+    public static function fromApi($question): ?static
     {
         if (is_null($question)) {
             return null;

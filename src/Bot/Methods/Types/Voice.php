@@ -31,7 +31,7 @@ final class Voice implements ApiReadType
     /**
      * @internal Construct with data received from the Telegram bot api.
      */
-    public static function fromApi($voice): ?Voice
+    public static function fromApi($voice): ?static
     {
         if ( ! $voice) return null;
 

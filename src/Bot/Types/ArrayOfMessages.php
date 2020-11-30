@@ -12,7 +12,7 @@ final class ArrayOfMessages extends ArrayOfApiTypes implements ApiReadType
     /**
      * @inheritDoc
      */
-    public static function fromApi($items): ArrayOfMessages
+    public static function fromApi($items): static
     {
         return new static(
             collect(

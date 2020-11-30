@@ -26,7 +26,7 @@ final class UpdateResponse implements ApiReadType
         return $this->updates;
     }
 
-    public static function fromApi($jsonResponse): ?self
+    public static function fromApi($jsonResponse): ?static
     {
         $response = json_decode($jsonResponse);
         

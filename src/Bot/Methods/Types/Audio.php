@@ -42,7 +42,7 @@ final class Audio implements ApiReadType
     /**
      * @internal Construct with data received from the Telegram bot api.
      */
-    public static function fromApi($audio): ?Audio
+    public static function fromApi($audio): ?static
     {
         if ( ! $audio) return null;
 

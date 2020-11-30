@@ -22,7 +22,7 @@ final class File implements ApiReadType
         $this->filePath = $filePath;
     }
 
-    public static function fromApi($file): ?self
+    public static function fromApi($file): ?static
     {
         if ( ! $file) return null;
 

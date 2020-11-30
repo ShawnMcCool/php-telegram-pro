@@ -26,7 +26,7 @@ final class PollAnswer implements ApiReadType
     /**
      * @internal Construct with data received from the Telegram bot api.
      */
-    public static function fromApi($pollAnswer): ?PollAnswer
+    public static function fromApi($pollAnswer): ?static
     {
         if ( ! $pollAnswer) return null;
 

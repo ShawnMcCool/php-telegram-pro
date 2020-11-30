@@ -28,7 +28,7 @@ final class ShippingQuery implements ApiReadType
     /**
      * @internal Construct with data received from the Telegram bot api.
      */
-    public static function fromApi($shippingQuery): ?ShippingQuery
+    public static function fromApi($shippingQuery): ?static
     {
         if ( ! $shippingQuery) return null;
 

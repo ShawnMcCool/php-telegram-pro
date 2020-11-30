@@ -33,7 +33,7 @@ final class ShippingAddress implements ApiReadType
     /**
      * @internal Construct with data received from the Telegram bot api.
      */
-    public static function fromApi($shippingAddress): ?ShippingAddress
+    public static function fromApi($shippingAddress): ?static
     {
         if ( ! $shippingAddress) return null;
 

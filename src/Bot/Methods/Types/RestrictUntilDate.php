@@ -15,7 +15,7 @@ final class RestrictUntilDate extends Date
     /**
      * @internal Construct with data received from the Telegram bot api.
      */
-    public static function fromApi($timestamp): ?self
+    public static function fromApi($timestamp): ?static
     {
         if ( ! $timestamp) {
             return null;

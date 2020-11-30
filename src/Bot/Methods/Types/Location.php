@@ -19,7 +19,7 @@ final class Location implements ApiReadType
     /**
      * @inheritDoc
      */
-    public static function fromApi($location): ?Location
+    public static function fromApi($location): ?static
     {
         if ( ! $location) return null;
 

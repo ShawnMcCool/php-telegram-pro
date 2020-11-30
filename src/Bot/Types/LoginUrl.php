@@ -29,7 +29,7 @@ final class LoginUrl implements ApiReadType
     /**
      * @inheritDoc
      */
-    public static function fromApi($loginUrl): ?LoginUrl
+    public static function fromApi($loginUrl): ?static
     {
         if ( ! $loginUrl) return null;
 

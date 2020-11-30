@@ -30,7 +30,7 @@ final class Invoice implements ApiReadType
     /**
      * @internal Construct with data received from the Telegram bot api.
      */
-    public static function fromApi($invoice): ?Invoice
+    public static function fromApi($invoice): ?static
     {
         if ( ! $invoice) return null;
 

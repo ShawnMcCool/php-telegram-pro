@@ -48,7 +48,7 @@ final class Sticker implements ApiReadType
     /**
      * @internal Construct with data received from the Telegram bot api.
      */
-    public static function fromApi($sticker): ?Sticker
+    public static function fromApi($sticker): ?static
     {
         if ( ! $sticker) return null;
 

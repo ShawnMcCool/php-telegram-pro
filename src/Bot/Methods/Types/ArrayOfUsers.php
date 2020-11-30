@@ -11,7 +11,7 @@ final class ArrayOfUsers extends ArrayOfApiTypes implements ApiReadType
     /**
      * @inheritDoc
      */
-    static function fromApi($items): ArrayOfUsers
+    static function fromApi($items): static
     {
         return new static(
             collect(

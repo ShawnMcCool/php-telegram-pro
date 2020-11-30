@@ -32,7 +32,7 @@ final class ChosenInlineResult implements ApiReadType
     /**
      * @internal Construct with data received from the Telegram bot api.
      */
-    public static function fromApi($chosenInlineResult): ?ChosenInlineResult
+    public static function fromApi($chosenInlineResult): ?static
     {
         if ( ! $chosenInlineResult) return null;
 

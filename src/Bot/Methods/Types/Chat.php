@@ -60,7 +60,7 @@ final class Chat implements ApiReadType
     /**
      * @internal Construct with data received from the Telegram bot api.
      */
-    public static function fromApi($chat): ?Chat
+    public static function fromApi($chat): ?static
     {
         if ( ! $chat) return null;
 

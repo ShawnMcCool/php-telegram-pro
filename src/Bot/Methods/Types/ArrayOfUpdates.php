@@ -12,7 +12,7 @@ final class ArrayOfUpdates extends ArrayOfApiTypes implements ApiReadType
     /**
      * @inheritDoc
      */
-    static function fromApi($updates): ArrayOfUpdates
+    static function fromApi($updates): static
     {
         return new static(
             collect(

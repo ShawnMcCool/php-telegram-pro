@@ -4,7 +4,7 @@ use TelegramPro\PrimitiveTypes\IntegerObject;
 
 final class UserProfilePhotoLimit extends IntegerObject
 {
-    public static function fromInt(?int $integer): ?self
+    public static function fromInt(?int $integer): ?static
     {
         if ( ! is_integer($integer)) {
             return null;

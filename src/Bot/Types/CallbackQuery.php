@@ -41,7 +41,7 @@ final class CallbackQuery implements ApiReadType
     /**
      * @inheritDoc
      */
-    public static function fromApi($callbackQuery): ?CallbackQuery
+    public static function fromApi($callbackQuery): ?static
     {
         if ( ! $callbackQuery) return null;
 

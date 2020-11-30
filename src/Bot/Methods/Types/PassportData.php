@@ -22,7 +22,7 @@ final class PassportData implements ApiReadType
     /**
      * @internal Construct with data received from the Telegram bot api.
      */
-    public static function fromApi($passportData): ?PassportData
+    public static function fromApi($passportData): ?static
     {
         if ( ! $passportData) return null;
 

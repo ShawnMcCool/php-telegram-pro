@@ -24,7 +24,7 @@ final class ArrayOfBotCommands extends ArrayOfApiTypes implements ApiWriteType, 
         );
     }
 
-    public static function fromApi($data): ?self
+    public static function fromApi($data): ?static
     {
         return new static(
             collect($data)

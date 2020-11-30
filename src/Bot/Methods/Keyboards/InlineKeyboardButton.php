@@ -44,7 +44,7 @@ final class InlineKeyboardButton implements ApiReadType, ApiWriteType
     /**
      * @internal Construct with data received from the Telegram bot api.
      */
-    public static function fromApi($inlineKeyboardButton): InlineKeyboardButton
+    public static function fromApi($inlineKeyboardButton): static
     {
         return new static(
             $inlineKeyboardButton->text,

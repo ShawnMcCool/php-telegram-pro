@@ -83,7 +83,7 @@ final class MessageEntity implements ApiReadType
     /**
      * @internal Construct with data received from the Telegram bot api.
      */
-    public static function fromApi($entity): MessageEntity
+    public static function fromApi($entity): static
     {
         return new static(
             MessageEntityType::fromApi($entity->type),

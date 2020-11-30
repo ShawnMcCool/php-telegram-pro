@@ -38,7 +38,7 @@ final class BotCommand implements ApiWriteType, ApiReadType
         return new static($command, $description);
     }
 
-    public static function fromApi($botCommand): ?self
+    public static function fromApi($botCommand): ?static
     {
         return new static(
             $botCommand->command,

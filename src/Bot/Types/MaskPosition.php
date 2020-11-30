@@ -27,7 +27,7 @@ final class MaskPosition implements ApiReadType
     /**
      * @internal Construct with data received from the Telegram bot api.
      */
-    public static function fromApi($maskPosition): ?MaskPosition
+    public static function fromApi($maskPosition): ?static
     {
         if ( ! $maskPosition) return null;
 

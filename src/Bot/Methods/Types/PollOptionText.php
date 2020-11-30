@@ -7,7 +7,7 @@ use TelegramPro\PrimitiveTypes\StringObject;
  */
 final class PollOptionText extends StringObject
 {
-    public static function fromString($pollOptionText): ?self
+    public static function fromString($pollOptionText): ?static
     {
         if (is_null($pollOptionText)) {
             return null;

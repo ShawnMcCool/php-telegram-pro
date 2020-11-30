@@ -27,7 +27,7 @@ final class Url implements ApiReadType, ApiWriteType
         return new static($url);
     }
 
-    public static function fromApi($url): ?self
+    public static function fromApi($url): ?static
     {
         return new static($url);
     }

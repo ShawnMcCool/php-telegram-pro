@@ -945,7 +945,7 @@ final class SpokenLanguage implements ApiReadType
     /**
      * @inheritDoc
      */
-    public static function fromApi($code): ?self
+    public static function fromApi($code): ?static
     {
         if ( ! $code) {
             return null;

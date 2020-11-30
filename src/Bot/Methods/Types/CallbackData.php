@@ -25,7 +25,7 @@ final class CallbackData implements ApiReadType
     /**
      * @internal Construct with data received from the Telegram bot api.
      */
-    public static function fromApi($data): ?self
+    public static function fromApi($data): ?static
     {
         if (is_null($data)) {
             return null;

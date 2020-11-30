@@ -21,7 +21,7 @@ final class UserProfilePhotos implements ApiReadType
     /**
      * @internal Construct with data received from the Telegram bot api.
      */
-    public static function fromApi($userProfilePhotos): ?self
+    public static function fromApi($userProfilePhotos): ?static
     {
         if (is_null($userProfilePhotos)) {
             return null;

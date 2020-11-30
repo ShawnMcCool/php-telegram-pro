@@ -46,7 +46,7 @@ final class EncryptedPassportElement implements ApiReadType
     /**
      * @internal Construct with data received from the Telegram bot api.
      */
-    public static function fromApi($encryptedPassportElement): EncryptedPassportElement
+    public static function fromApi($encryptedPassportElement): static
     {
         return new static(
             EncryptedPassportElementType::fromApi($encryptedPassportElement->type),

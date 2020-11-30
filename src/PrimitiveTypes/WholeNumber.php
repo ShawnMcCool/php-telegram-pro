@@ -24,7 +24,7 @@ abstract class WholeNumber
         return $this->toString();
     }
 
-    public static function fromInt(?int $integer): ?self
+    public static function fromInt(?int $integer): ?static
     {
         if (is_null($integer)) {
             return null;

@@ -129,7 +129,7 @@ final class ChatPermissions implements ApiReadType, ApiWriteType
     /**
      * @internal Construct with data received from the Telegram bot api.
      */
-    public static function fromApi($permissions): ?ChatPermissions
+    public static function fromApi($permissions): ?static
     {
         if ( ! $permissions) return null;
 

@@ -116,7 +116,7 @@ final class User implements ApiReadType
     /**
      * @internal Construct with data received from the Telegram bot api.
      */
-    public static function fromApi($user): ?User
+    public static function fromApi($user): ?static
     {
         if ( ! $user) return null;
 

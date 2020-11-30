@@ -7,7 +7,7 @@ use TelegramPro\PrimitiveTypes\StringObject;
  */
 final class ChatTitle extends StringObject
 {
-    public static function fromString(?string $string): ?self
+    public static function fromString(?string $string): ?static
     {
         if (is_null($string)) {
             return null;

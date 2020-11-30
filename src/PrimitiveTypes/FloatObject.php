@@ -27,7 +27,7 @@ abstract class FloatObject implements ApiReadType, ApiWriteType
         return $this->float;
     }
 
-    public static function fromFloat(?float $float): ?self
+    public static function fromFloat(?float $float): ?static
     {
         if ( ! is_float($float)) {
             return null;
@@ -36,7 +36,7 @@ abstract class FloatObject implements ApiReadType, ApiWriteType
         return new static($float);
     }
 
-    public static function fromApi($float): ?self
+    public static function fromApi($float): ?static
     {
         return static::fromFloat($float);
     }

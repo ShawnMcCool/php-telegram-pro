@@ -12,7 +12,7 @@ final class ArrayOfMessageEntities extends ArrayOfApiTypes implements ApiReadTyp
     /**
      * @inheritDoc
      */
-    public static function fromApi($items): ArrayOfMessageEntities
+    public static function fromApi($items): static
     {
         return new static(
             collect(

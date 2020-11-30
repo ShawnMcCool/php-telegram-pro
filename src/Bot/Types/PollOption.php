@@ -22,7 +22,7 @@ final class PollOption implements ApiReadType
     /**
      * @internal Construct with data received from the Telegram bot api.
      */
-    public static function fromApi($option): PollOption
+    public static function fromApi($option): static
     {
         return new static(
             PollOptionText::fromApi($option->text),

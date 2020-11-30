@@ -33,7 +33,7 @@ final class InlineQuery implements ApiReadType
     /**
      * @internal Construct with data received from the Telegram bot api.
      */
-    public static function fromApi($inlineQuery): ?InlineQuery
+    public static function fromApi($inlineQuery): ?static
     {
         if ( ! $inlineQuery) return null;
 

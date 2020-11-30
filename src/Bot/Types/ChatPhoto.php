@@ -27,7 +27,7 @@ final class ChatPhoto implements ApiReadType
     /**
      * @internal Construct with data received from the Telegram bot api.
      */
-    public static function fromApi($photo): ?ChatPhoto
+    public static function fromApi($photo): ?static
     {
         if ( ! $photo) return null;
 

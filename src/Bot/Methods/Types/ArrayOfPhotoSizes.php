@@ -12,7 +12,7 @@ final class ArrayOfPhotoSizes extends ArrayOfApiTypes implements ApiReadType
     /**
      * @inheritDoc
      */
-    public static function fromApi($items): ArrayOfPhotoSizes
+    public static function fromApi($items): static
     {
         return new static(
             collect(

@@ -4,7 +4,7 @@ use TelegramPro\PrimitiveTypes\FloatObject;
 
 final class Longitude extends FloatObject
 {
-    public static function fromFloat(?float $float): ?self
+    public static function fromFloat(?float $float): ?static
     {
         if ( ! is_float($float)) {
             return null;

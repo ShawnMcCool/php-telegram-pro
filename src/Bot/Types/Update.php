@@ -209,7 +209,7 @@ final class Update implements ApiReadType
     /**
      * @internal Construct with data received from the Telegram bot api.
      */
-    public static function fromApi($update): Update
+    public static function fromApi($update): static
     {
         return new static(
             UpdateId::fromInt($update->update_id),

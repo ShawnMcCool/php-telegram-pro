@@ -105,7 +105,7 @@ final class Video implements ApiReadType
     /**
      * @internal Construct with data received from the Telegram bot api.
      */
-    public static function fromApi($video): ?Video
+    public static function fromApi($video): ?static
     {
         if ( ! $video) return null;
 
