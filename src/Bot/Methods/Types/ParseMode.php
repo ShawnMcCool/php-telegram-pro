@@ -15,7 +15,7 @@ final class ParseMode implements ApiWriteType
     public function escapeText(string $text): string
     {
         if ($this->parseMode == 'MarkdownV2') {
-            return preg_replace("/(?<!\\\)([_*\[\]()~`>#+-=|{}.!])/", '\\\${0}', $text);
+            return preg_replace("/(?<!\\\)([_*\[\]()~>#+-=|{}.!])/", '\\\${0}', $text);
         }
         return $text;
     }
