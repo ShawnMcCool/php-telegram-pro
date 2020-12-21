@@ -51,7 +51,7 @@ final class EditMessageText implements Method
                 'chat_id' => optional($this->chatId),
                 'message_id' => optional($this->messageId),
                 'inline_message_id' => optional($this->inlineMessageId),
-                'text' => $this->text->toApi(),
+                'text' => $this->text->toApi($this->parseMode),
                 'parse_mode' => $this->parseMode->toApi(),
                 'disable_web_page_preview' => $this->disableWebPagePreview,
                 'reply_markup' => optional($this->replyMarkup),

@@ -5,6 +5,7 @@ Responses = Receive
 
 # To-do
 
+- Make sure that all text types that support ParseMode filter accordingly.
 - Create auto-escaping etc for https://core.telegram.org/bots/api#markdownv2-style
 - Implement Update methods https://core.telegram.org/bots/api#getupdates
 - Deal with the fact that the edit methods have atypical returns

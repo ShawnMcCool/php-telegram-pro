@@ -45,7 +45,7 @@ final class SendMessage implements Method
         )->withParameters(
             [
                 'chat_id' => $this->chatId->toApi(),
-                'text' => $this->text->toApi(),
+                'text' => $this->text->toApi($this->parseMode),
                 'parse_mode' => $this->parseMode->toApi(),
                 'disable_web_page_preview' => optional($this->disableWebPagePreview),
                 'disable_notification' => optional($this->disableNotification),

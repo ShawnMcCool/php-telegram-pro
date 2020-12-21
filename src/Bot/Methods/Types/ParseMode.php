@@ -12,6 +12,19 @@ final class ParseMode implements ApiWriteType
         $this->parseMode = $parseMode;
     }
 
+    public function escapeText(string $text): string
+    {
+        if ($this->parseMode == 'MarkdownV2') {
+            return preg_replace("/(?<!\\\)([_*\[\]()~`>#+-=|{}.!])/", '\\\${0}', $text);
+        }
+        return $text;
+    }
+
+    function toApi()
+    {
+        return $this->parseMode ?? '';
+    }
+
     public static function markdown(): ParseMode
     {
         return new static('MarkdownV2');
@@ -30,10 +43,5 @@ final class ParseMode implements ApiWriteType
     public static function none(): ParseMode
     {
         return new static(null);
-    }
-
-    function toApi()
-    {
-        return $this->parseMode ?? '';
     }
 }

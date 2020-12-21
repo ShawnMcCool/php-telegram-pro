@@ -17,9 +17,17 @@ final class MessageText implements ApiWriteType
         return $this->text;
     }
 
-    public function __toString()
+    public function __toString(): string
     {
         return $this->toString();
+    }
+
+    function toApi(?ParseMode $parseMode = null): string
+    {
+        if ($parseMode) {
+            return $parseMode->escapeText($this->text);
+        }
+        return $this->text;
     }
 
     /**
@@ -48,10 +56,5 @@ final class MessageText implements ApiWriteType
         }
 
         return new static($string);
-    }
-
-    function toApi(): string
-    {
-        return $this->text;
     }
 }
