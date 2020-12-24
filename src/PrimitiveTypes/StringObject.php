@@ -1,5 +1,6 @@
 <?php namespace TelegramPro\PrimitiveTypes;
 
+use TelegramPro\Bot\Methods\Types\ParseMode;
 use TelegramPro\Bot\Methods\Types\ApiReadType;
 use TelegramPro\Bot\Methods\Types\ApiWriteType;
 
@@ -25,8 +26,11 @@ abstract class StringObject implements ApiReadType, ApiWriteType
         return new static($string);
     }
 
-    public function toApi()
+    function toApi(?ParseMode $parseMode = null): string
     {
+        if ($parseMode) {
+            return $parseMode->escapeText($this->string);
+        }
         return $this->string;
     }
 
