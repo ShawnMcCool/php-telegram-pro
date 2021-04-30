@@ -21,7 +21,7 @@ final class WebhookInfo implements ApiReadType
             $response->has_custom_certificate,
             $response->pending_update_count,
             $response->ip_address ?? null,
-            $response->last_error_date ?? null,
+            Date::fromApi($response->last_error_date ?? null),
             $response->last_error_message ?? null,
             $response->max_connections ?? null,
             ArrayOfStrings::fromApi($response->allowed_updates ?? null),
