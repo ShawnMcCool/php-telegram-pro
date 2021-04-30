@@ -12,18 +12,11 @@ use TelegramPro\Bot\Methods\Types\ChatAdministratorCustomTitle;
  */
 final class SetChatAdministratorCustomTitle implements Method
 {
-    private ChatId $chatId;
-    private UserId $userId;
-    private ChatAdministratorCustomTitle $customTitle;
-
     private function __construct(
-        ChatId $chatId,
-        UserId $userId,
-        ChatAdministratorCustomTitle $customTitle
+        private ChatId $chatId,
+        private UserId $userId,
+        private ChatAdministratorCustomTitle $customTitle
     ) {
-        $this->chatId = $chatId;
-        $this->userId = $userId;
-        $this->customTitle = $customTitle;
     }
 
     function request(): Request

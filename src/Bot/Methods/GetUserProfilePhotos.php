@@ -12,18 +12,11 @@ use function TelegramPro\optional;
  */
 final class GetUserProfilePhotos implements Method
 {
-    private UserId $userId;
-    private ?int $offset;
-    private ?UserProfilePhotoLimit $limit;
-
     private function __construct(
-        UserId $userId,
-        ?int $offset,
-        ?UserProfilePhotoLimit $limit
+        private UserId $userId,
+        private ?int $offset,
+        private ?UserProfilePhotoLimit $limit
     ) {
-        $this->userId = $userId;
-        $this->offset = $offset;
-        $this->limit = $limit;
     }
 
     function request(): Request

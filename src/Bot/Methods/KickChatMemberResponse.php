@@ -7,18 +7,12 @@ use TelegramPro\Bot\Methods\Types\MethodError;
  */
 final class KickChatMemberResponse implements Response
 {
-    private bool $ok;
-    private bool $memberWasKicked;
-    private ?MethodError $error;
 
     public function __construct(
-        bool $ok,
-        bool $memberWasKicked,
-        ?MethodError $error
+        private bool $ok,
+        private bool $memberWasKicked,
+        private ?MethodError $error
     ) {
-        $this->ok = $ok;
-        $this->memberWasKicked = $memberWasKicked;
-        $this->error = $error;
     }
 
     public function ok(): bool

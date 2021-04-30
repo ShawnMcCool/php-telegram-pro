@@ -7,24 +7,13 @@ use TelegramPro\Bot\Types\Currency;
  */
 final class Invoice implements ApiReadType
 {
-    private string $title;
-    private string $description;
-    private string $startParameter;
-    private Currency $currency;
-    private int $totalAmount;
-
     private function __construct(
-        string $title,
-        string $description,
-        string $startParameter,
-        Currency $currency,
-        int $totalAmount
+        private string $title,
+        private string $description,
+        private string $startParameter,
+        private Currency $currency,
+        private int $totalAmount
     ) {
-        $this->title = $title;
-        $this->description = $description;
-        $this->startParameter = $startParameter;
-        $this->currency = $currency;
-        $this->totalAmount = $totalAmount;
     }
 
     /**

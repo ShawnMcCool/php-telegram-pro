@@ -14,33 +14,17 @@ use function TelegramPro\optional;
 
 final class SendVoice implements Method
 {
-    private ChatId $chatId;
-    private VoiceFile $voice;
-    private ?MediaCaption $caption;
-    private ?ParseMode $parseMode;
-    private ?int $duration;
-    private ?bool $disableNotification;
-    private ?MessageId $replyToMessageId;
-    private ?ReplyMarkup $replyMarkup;
 
     public function __construct(
-        ChatId $chatId,
-        VoiceFile $voice,
-        ?MediaCaption $caption,
-        ?ParseMode $parseMode,
-        ?int $duration,
-        ?bool $disableNotification,
-        ?MessageId $replyToMessageId,
-        ?ReplyMarkup $replyMarkup
+        private ChatId $chatId,
+        private VoiceFile $voice,
+        private ?MediaCaption $caption,
+        private ?ParseMode $parseMode,
+        private ?int $duration,
+        private ?bool $disableNotification,
+        private ?MessageId $replyToMessageId,
+        private ?ReplyMarkup $replyMarkup
     ) {
-        $this->chatId = $chatId;
-        $this->voice = $voice;
-        $this->caption = $caption;
-        $this->parseMode = $parseMode;
-        $this->duration = $duration;
-        $this->disableNotification = $disableNotification;
-        $this->replyToMessageId = $replyToMessageId;
-        $this->replyMarkup = $replyMarkup;
     }
 
     function request(): Request

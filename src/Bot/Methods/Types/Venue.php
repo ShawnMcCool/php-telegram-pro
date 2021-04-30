@@ -5,24 +5,13 @@
  */
 final class Venue implements ApiReadType
 {
-    private Location $location;
-    private string $title;
-    private string $address;
-    private ?string $foursquareId;
-    private ?string $foursquareType;
-
     private function __construct(
-        Location $location,
-        string $title,
-        string $address,
-        ?string $foursquareId,
-        ?string $foursquareType
+        private Location $location,
+        private string $title,
+        private string $address,
+        private ?string $foursquareId,
+        private ?string $foursquareType
     ) {
-        $this->location = $location;
-        $this->title = $title;
-        $this->address = $address;
-        $this->foursquareId = $foursquareId;
-        $this->foursquareType = $foursquareType;
     }
 
     /**

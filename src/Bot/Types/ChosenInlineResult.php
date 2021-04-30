@@ -9,24 +9,13 @@ use TelegramPro\Bot\Methods\Types\ApiReadType;
  */
 final class ChosenInlineResult implements ApiReadType
 {
-    private ResultId $resultId;
-    private User $from;
-    private ?Location $location;
-    private InlineMessageId $inlineMessageId;
-    private string $query;
-
     private function __construct(
-        ResultId $resultId,
-        User $from,
-        ?Location $location,
-        InlineMessageId $inlineMessageId,
-        string $query
+        private ResultId $resultId,
+        private User $from,
+        private ?Location $location,
+        private InlineMessageId $inlineMessageId,
+        private string $query
     ) {
-        $this->resultId = $resultId;
-        $this->from = $from;
-        $this->location = $location;
-        $this->inlineMessageId = $inlineMessageId;
-        $this->query = $query;
     }
 
     /**

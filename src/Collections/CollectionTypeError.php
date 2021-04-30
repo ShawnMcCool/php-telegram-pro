@@ -11,7 +11,7 @@ final class CollectionTypeError extends TelegramProException
         $twoType = is_object($two) ? get_class($two) : gettype($two);
         $twoCount = $two->count();
 
-        $message=<<<EOF
+        $message = <<<EOF
 Can not merge collection objects which have different types.
 
 Attempted to merge a collection of type {$oneType} containing {$oneCount} items with\n

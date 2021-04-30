@@ -6,156 +6,57 @@
  */
 class Message implements ApiReadType
 {
-    private MessageId $messageId;
-    private ?User $from;
-    private Date $date;
-    private Chat $chat;
-    private ?User $forwardFrom;
-    private ?Chat $forwardFromChat;
-    private ?MessageId $forwardFromMessageId;
-    private ?string $forwardSignature;
-    private ?string $forwardSenderName;
-    private ?Date $forwardDate;
-    private ?Message $replyToMessage;
-    private ?User $viaBot;
-    private ?Date $editDate;
-    private ?string $mediaGroupId;
-    private ?string $authorSignature;
-    private ?string $text;
-    private ArrayOfMessageEntities $entities;
-    private ArrayOfMessageEntities $captionEntities;
-    private ?Audio $audio;
-    private ?Document $document;
-    private ?Animation $animation;
-    private ?Game $game;
-    private ArrayOfPhotoSizes $photo;
-    private ?Sticker $sticker;
-    private ?Video $video;
-    private ?Voice $voice;
-    private ?VideoNote $videoNote;
-    private ?string $caption;
-    private ?Contact $contact;
-    private ?Location $location;
-    private ?Venue $venue;
-    private ?Poll $poll;
-    private ArrayOfUsers $newChatMembers;
-    private ?User $leftChatMember;
-    private ?string $newChatTitle;
-    private ArrayOfPhotoSizes $newChatPhoto;
-    private ?bool $deleteChatPhoto;
-    private ?bool $groupChatCreated;
-    private ?bool $supergroupChatCreated;
-    private ?bool $channelChatCreated;
-    private ?ChatId $migrateToChatId;
-    private ?ChatId $migrateFromChatId;
-    private ?Message $pinnedMessage;
-    private ?Invoice $invoice;
-    private ?SuccessfulPayment $successfulPayment;
-    private ?string $connectedWebsite;
-    private ?PassportData $passportData;
-    private ?InlineKeyboardMarkup $replyMarkup;
-    private ?Dice $dice;
-
     private function __construct(
-        MessageId $messageId,
-        ?User $from,
-        Date $date,
-        Chat $chat,
-        ?User $forwardFrom,
-        ?Chat $forwardFromChat,
-        ?MessageId $forwardFromMessageId,
-        ?string $forwardSignature,
-        ?string $forwardSenderName,
-        ?Date $forwardDate,
-        ?Message $replyToMessage,
-        ?User $viaBot,
-        ?Date $editDate,
-        ?string $mediaGroupId,
-        ?string $authorSignature,
-        ?string $text,
-        ArrayOfMessageEntities $entities,
-        ArrayOfMessageEntities $captionEntities,
-        ?Audio $audio,
-        ?Document $document,
-        ?Animation $animation,
-        ?Game $game,
-        ArrayOfPhotoSizes $photo,
-        ?Sticker $sticker,
-        ?Video $video,
-        ?Voice $voice,
-        ?VideoNote $videoNote,
-        ?string $caption,
-        ?Contact $contact,
-        ?Location $location,
-        ?Venue $venue,
-        ?Poll $poll,
-        ArrayOfUsers $newChatMembers,
-        ?User $leftChatMember,
-        ?string $newChatTitle,
-        ArrayOfPhotoSizes $newChatPhoto,
-        ?bool $deleteChatPhoto,
-        ?bool $groupChatCreated,
-        ?bool $supergroupChatCreated,
-        ?bool $channelChatCreated,
-        ?ChatId $migrateToChatId,
-        ?ChatId $migrateFromChatId,
-        ?Message $pinnedMessage,
-        ?Invoice $invoice,
-        ?SuccessfulPayment $successfulPayment,
-        ?string $connectedWebsite,
-        ?PassportData $passportData,
-        ?InlineKeyboardMarkup $replyMarkup,
-        ?Dice $dice
+        private MessageId $messageId,
+        private ?User $from,
+        private Date $date,
+        private Chat $chat,
+        private ?User $forwardFrom,
+        private ?Chat $forwardFromChat,
+        private ?MessageId $forwardFromMessageId,
+        private ?string $forwardSignature,
+        private ?string $forwardSenderName,
+        private ?Date $forwardDate,
+        private ?Message $replyToMessage,
+        private ?User $viaBot,
+        private ?Date $editDate,
+        private ?string $mediaGroupId,
+        private ?string $authorSignature,
+        private ?string $text,
+        private ArrayOfMessageEntities $entities,
+        private ArrayOfMessageEntities $captionEntities,
+        private ?Audio $audio,
+        private ?Document $document,
+        private ?Animation $animation,
+        private ?Game $game,
+        private ArrayOfPhotoSizes $photo,
+        private ?Sticker $sticker,
+        private ?Video $video,
+        private ?Voice $voice,
+        private ?VideoNote $videoNote,
+        private ?string $caption,
+        private ?Contact $contact,
+        private ?Location $location,
+        private ?Venue $venue,
+        private ?Poll $poll,
+        private ArrayOfUsers $newChatMembers,
+        private ?User $leftChatMember,
+        private ?string $newChatTitle,
+        private ArrayOfPhotoSizes $newChatPhoto,
+        private ?bool $deleteChatPhoto,
+        private ?bool $groupChatCreated,
+        private ?bool $supergroupChatCreated,
+        private ?bool $channelChatCreated,
+        private ?ChatId $migrateToChatId,
+        private ?ChatId $migrateFromChatId,
+        private ?Message $pinnedMessage,
+        private ?Invoice $invoice,
+        private ?SuccessfulPayment $successfulPayment,
+        private ?string $connectedWebsite,
+        private ?PassportData $passportData,
+        private ?InlineKeyboardMarkup $replyMarkup,
+        private ?Dice $dice
     ) {
-        $this->messageId = $messageId;
-        $this->from = $from;
-        $this->date = $date;
-        $this->chat = $chat;
-        $this->forwardFrom = $forwardFrom;
-        $this->forwardFromChat = $forwardFromChat;
-        $this->forwardFromMessageId = $forwardFromMessageId;
-        $this->forwardSignature = $forwardSignature;
-        $this->forwardSenderName = $forwardSenderName;
-        $this->forwardDate = $forwardDate;
-        $this->replyToMessage = $replyToMessage;
-        $this->viaBot = $viaBot;
-        $this->editDate = $editDate;
-        $this->mediaGroupId = $mediaGroupId;
-        $this->authorSignature = $authorSignature;
-        $this->text = $text;
-        $this->entities = $entities;
-        $this->captionEntities = $captionEntities;
-        $this->audio = $audio;
-        $this->document = $document;
-        $this->animation = $animation;
-        $this->game = $game;
-        $this->photo = $photo;
-        $this->sticker = $sticker;
-        $this->video = $video;
-        $this->voice = $voice;
-        $this->videoNote = $videoNote;
-        $this->caption = $caption;
-        $this->contact = $contact;
-        $this->location = $location;
-        $this->venue = $venue;
-        $this->poll = $poll;
-        $this->newChatMembers = $newChatMembers;
-        $this->leftChatMember = $leftChatMember;
-        $this->newChatTitle = $newChatTitle;
-        $this->newChatPhoto = $newChatPhoto;
-        $this->deleteChatPhoto = $deleteChatPhoto;
-        $this->groupChatCreated = $groupChatCreated;
-        $this->supergroupChatCreated = $supergroupChatCreated;
-        $this->channelChatCreated = $channelChatCreated;
-        $this->migrateToChatId = $migrateToChatId;
-        $this->migrateFromChatId = $migrateFromChatId;
-        $this->pinnedMessage = $pinnedMessage;
-        $this->invoice = $invoice;
-        $this->successfulPayment = $successfulPayment;
-        $this->connectedWebsite = $connectedWebsite;
-        $this->passportData = $passportData;
-        $this->replyMarkup = $replyMarkup;
-        $this->dice = $dice;
     }
 
     /**

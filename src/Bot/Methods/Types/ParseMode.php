@@ -5,11 +5,9 @@
  */
 final class ParseMode implements ApiWriteType
 {
-    private ?string $parseMode;
-
-    private function __construct(?string $parseMode)
-    {
-        $this->parseMode = $parseMode;
+    private function __construct(
+        private ?string $parseMode
+    ) {
     }
 
     public function escapeText(string $text): string

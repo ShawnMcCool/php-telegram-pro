@@ -8,18 +8,11 @@ use TelegramPro\Bot\Methods\Types\ApiReadType;
  */
 final class EncryptedCredentials implements ApiReadType
 {
-    private string $data;
-    private string $hash;
-    private string $secret;
-
     private function __construct(
-        string $data,
-        string $hash,
-        string $secret
+        private string $data,
+        private string $hash,
+        private string $secret
     ) {
-        $this->data = $data;
-        $this->hash = $hash;
-        $this->secret = $secret;
     }
 
     /**
@@ -37,7 +30,7 @@ final class EncryptedCredentials implements ApiReadType
     }
 
     /**
-     * 	Base64-encoded encrypted JSON-serialized data with unique user's payload, data hashes and secrets required for EncryptedPassportElement decryption and authentication
+     *    Base64-encoded encrypted JSON-serialized data with unique user's payload, data hashes and secrets required for EncryptedPassportElement decryption and authentication
      */
     public function data(): string
     {

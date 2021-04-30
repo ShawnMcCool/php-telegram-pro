@@ -8,21 +8,12 @@ use TelegramPro\Bot\Methods\Types\ApiReadType;
  */
 final class PassportFile implements ApiReadType
 {
-    private FileId $fileId;
-    private FileUniqueId $fileUniqueId;
-    private int $fileSize;
-    private Date $fileDate;
-
     private function __construct(
-        FileId $fileId,
-        FileUniqueId $fileUniqueId,
-        int $fileSize,
-        Date $fileDate
+        private FileId $fileId,
+        private FileUniqueId $fileUniqueId,
+        private int $fileSize,
+        private Date $fileDate
     ) {
-        $this->fileId = $fileId;
-        $this->fileUniqueId = $fileUniqueId;
-        $this->fileSize = $fileSize;
-        $this->fileDate = $fileDate;
     }
 
     /**

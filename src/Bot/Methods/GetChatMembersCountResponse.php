@@ -7,18 +7,12 @@ use TelegramPro\Bot\Methods\Types\MethodError;
  */
 final class GetChatMembersCountResponse implements Response
 {
-    private bool $ok;
-    private ?int $memberCount;
-    private ?MethodError $error;
 
     public function __construct(
-        bool $ok,
-        ?int $memberCount,
-        ?MethodError $error
+        private bool $ok,
+        private ?int $memberCount,
+        private ?MethodError $error
     ) {
-        $this->ok = $ok;
-        $this->memberCount = $memberCount;
-        $this->error = $error;
     }
 
     public function ok(): bool

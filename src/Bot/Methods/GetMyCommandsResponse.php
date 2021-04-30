@@ -8,18 +8,12 @@ use TelegramPro\Bot\Methods\Types\ArrayOfBotCommands;
  */
 final class GetMyCommandsResponse implements Response
 {
-    private bool $ok;
-    private ?ArrayOfBotCommands $commands;
-    private ?MethodError $error;
 
     public function __construct(
-        bool $ok,
-        ?ArrayOfBotCommands $commands,
-        ?MethodError $error
+        private bool $ok,
+        private ?ArrayOfBotCommands $commands,
+        private ?MethodError $error
     ) {
-        $this->ok = $ok;
-        $this->commands = $commands;
-        $this->error = $error;
     }
 
     public function ok(): bool

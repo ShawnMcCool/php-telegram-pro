@@ -16,27 +16,14 @@ use function TelegramPro\optional;
  */
 final class EditMessageCaption implements Method
 {
-    private ?ChatId $chatId;
-    private ?MessageId $messageId;
-    private ?InlineMessageId $inlineMessageId;
-    private MediaCaption $caption;
-    private ParseMode $parseMode;
-    private ?ReplyMarkup $replyMarkup;
-
     private function __construct(
-        ?ChatId $chatId,
-        ?MessageId $messageId,
-        ?InlineMessageId $inlineMessageId,
-        MediaCaption $caption,
-        ParseMode $parseMode,
-        ?ReplyMarkup $replyMarkup
+        private ?ChatId $chatId,
+        private ?MessageId $messageId,
+        private ?InlineMessageId $inlineMessageId,
+        private MediaCaption $caption,
+        private ParseMode $parseMode,
+        private ?ReplyMarkup $replyMarkup
     ) {
-        $this->chatId = $chatId;
-        $this->messageId = $messageId;
-        $this->inlineMessageId = $inlineMessageId;
-        $this->caption = $caption;
-        $this->parseMode = $parseMode;
-        $this->replyMarkup = $replyMarkup;
     }
 
     function request(): Request

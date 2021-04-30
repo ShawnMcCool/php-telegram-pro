@@ -17,18 +17,15 @@ final class BlockingRateLimiter implements Telegram
      * const MULTIPLE_USER_BULK_MESSAGES_PER_SECOND_LIMIT = 30;
      **/
     const MESSAGES_TO_SAME_GROUP_PER_MINUTE_LIMIT = 20;
-
-    private Telegram $telegram;
     private Dictionary $chatTimeframes;
     private float $lastSendTimestamp = 0;
-
     private int $numberOfTelegramForcedThrottleDelays = 0;
     private float $totalSecondsOfRateLimitedThrottleDelay = 0.0;
     private float $totalSecondsOfTelegramForcedThrottleDelay = 0.0;
 
-    public function __construct(Telegram $telegram)
-    {
-        $this->telegram = $telegram;
+    public function __construct(
+        private Telegram $telegram
+    ) {
         $this->chatTimeframes = Dictionary::empty();
     }
 

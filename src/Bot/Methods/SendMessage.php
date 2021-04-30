@@ -12,30 +12,15 @@ use function TelegramPro\optional;
 
 final class SendMessage implements Method
 {
-    private ChatId $chatId;
-    private MessageText $text;
-    private ParseMode $parseMode;
-    private ?bool $disableWebPagePreview;
-    private ?bool $disableNotification;
-    private ?MessageId $replyToMessageId;
-    private ?ReplyMarkup $replyMarkup;
-
     private function __construct(
-        ChatId $chatId,
-        MessageText $text,
-        ParseMode $parseMode,
-        ?bool $disableWebPagePreview,
-        ?bool $disableNotification,
-        ?MessageId $replyToMessageId,
-        ?ReplyMarkup $replyMarkup
+        private ChatId $chatId,
+        private MessageText $text,
+        private ParseMode $parseMode,
+        private ?bool $disableWebPagePreview,
+        private ?bool $disableNotification,
+        private ?MessageId $replyToMessageId,
+        private ?ReplyMarkup $replyMarkup
     ) {
-        $this->chatId = $chatId;
-        $this->text = $text;
-        $this->parseMode = $parseMode;
-        $this->disableWebPagePreview = $disableWebPagePreview;
-        $this->disableNotification = $disableNotification;
-        $this->replyToMessageId = $replyToMessageId;
-        $this->replyMarkup = $replyMarkup;
     }
 
     function request(): Request

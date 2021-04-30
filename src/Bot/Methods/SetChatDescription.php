@@ -11,15 +11,10 @@ use TelegramPro\Bot\Methods\Types\ChatDescription;
  */
 final class SetChatDescription implements Method
 {
-    private ChatId $chatId;
-    private ChatDescription $description;
-
     private function __construct(
-        ChatId $chatId,
-        ChatDescription $description
+        private ChatId $chatId,
+        private ChatDescription $description
     ) {
-        $this->chatId = $chatId;
-        $this->description = $description;
     }
 
     function request(): Request

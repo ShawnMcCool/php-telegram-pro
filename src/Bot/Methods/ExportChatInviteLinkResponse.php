@@ -7,18 +7,12 @@ use TelegramPro\Bot\Methods\Types\MethodError;
  */
 final class ExportChatInviteLinkResponse implements Response
 {
-    private bool $ok;
-    private string $newInviteLink;
-    private ?MethodError $error;
 
     public function __construct(
-        bool $ok,
-        string $newInviteLink,
-        ?MethodError $error
+        private bool $ok,
+        private string $newInviteLink,
+        private ?MethodError $error
     ) {
-        $this->ok = $ok;
-        $this->newInviteLink = $newInviteLink;
-        $this->error = $error;
     }
 
     public function ok(): bool

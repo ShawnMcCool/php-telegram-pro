@@ -7,18 +7,12 @@ use TelegramPro\Bot\Methods\Types\MethodError;
  */
 final class DeleteChatPhotoResponse implements Response
 {
-    private bool $ok;
-    private bool $chatPhotoWasDeleted;
-    private ?MethodError $error;
 
     public function __construct(
-        bool $ok,
-        bool $chatPhotoWasDeleted,
-        ?MethodError $error
+        private bool $ok,
+        private bool $chatPhotoWasDeleted,
+        private ?MethodError $error
     ) {
-        $this->ok = $ok;
-        $this->chatPhotoWasDeleted = $chatPhotoWasDeleted;
-        $this->error = $error;
     }
 
     public function ok(): bool

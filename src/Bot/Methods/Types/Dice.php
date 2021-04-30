@@ -2,15 +2,11 @@
 
 final class Dice implements ApiReadType
 {
-    private string $emoji;
-    private int $value;
 
     public function __construct(
-        string $emoji,
-        int $value
+        private string $emoji,
+        private int $value
     ) {
-        $this->emoji = $emoji;
-        $this->value = $value;
     }
 
     public static function fromApi($data): ?static

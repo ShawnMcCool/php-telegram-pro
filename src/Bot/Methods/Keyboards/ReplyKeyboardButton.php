@@ -10,21 +10,13 @@ use TelegramPro\Bot\Types\KeyboardButtonPollReadType;
  */
 final class ReplyKeyboardButton
 {
-    private string $text;
-    private ?bool $requestContact;
-    private ?bool $requestLocation;
-    private ?KeyboardButtonPollReadType $requestPoll;
 
     public function __construct(
-        string $text,
-        ?bool $requestContact,
-        ?bool $requestLocation,
-        ?KeyboardButtonPollReadType $requestPoll
+        private string $text,
+        private ?bool $requestContact,
+        private ?bool $requestLocation,
+        private ?KeyboardButtonPollReadType $requestPoll
     ) {
-        $this->text = $text;
-        $this->requestContact = $requestContact;
-        $this->requestLocation = $requestLocation;
-        $this->requestPoll = $requestPoll;
     }
 
     /**

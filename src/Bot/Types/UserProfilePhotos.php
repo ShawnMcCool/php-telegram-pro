@@ -7,15 +7,10 @@ use TelegramPro\Bot\Methods\Types\ApiReadType;
  */
 final class UserProfilePhotos implements ApiReadType
 {
-    private int $totalCount;
-    private ArrayOfArrayOfPhotoSizes $photos;
-
     private function __construct(
-        int $totalCount,
-        ArrayOfArrayOfPhotoSizes $photos
+        private int $totalCount,
+        private ArrayOfArrayOfPhotoSizes $photos
     ) {
-        $this->totalCount = $totalCount;
-        $this->photos = $photos;
     }
 
     /**
@@ -26,7 +21,7 @@ final class UserProfilePhotos implements ApiReadType
         if (is_null($userProfilePhotos)) {
             return null;
         }
-        
+
         return new static(
             $userProfilePhotos->total_count,
             ArrayOfArrayOfPhotoSizes::fromApi($userProfilePhotos->photos)

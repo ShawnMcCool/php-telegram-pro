@@ -14,31 +14,17 @@ use function TelegramPro\optional;
 
 final class SendPhoto implements Method
 {
-    private ChatId $chatId;
-    private InputPhotoFile $photo;
-    private ?MediaCaption $caption;
-    private ?ParseMode $parseMode;
-    private ?bool $disableNotification;
-    private ?MessageId $replyToMessageId;
-    private ?ReplyMarkup $replyMarkup;
 
     public function __construct(
-        ChatId $chatId,
-        InputPhotoFile $photo,
-        ?MediaCaption $caption,
-        ?ParseMode $parseMode,
-        ?bool $disableNotification,
-        ?MessageId $replyToMessageId,
-        ?ReplyMarkup $replyMarkup
+        private ChatId $chatId,
+        private InputPhotoFile $photo,
+        private ?MediaCaption $caption,
+        private ?ParseMode $parseMode,
+        private ?bool $disableNotification,
+        private ?MessageId $replyToMessageId,
+        private ?ReplyMarkup $replyMarkup
 
     ) {
-        $this->chatId = $chatId;
-        $this->photo = $photo;
-        $this->caption = $caption;
-        $this->parseMode = $parseMode;
-        $this->disableNotification = $disableNotification;
-        $this->replyToMessageId = $replyToMessageId;
-        $this->replyMarkup = $replyMarkup;
     }
 
     function request(): Request

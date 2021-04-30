@@ -9,33 +9,16 @@ use TelegramPro\Bot\Types\FileUniqueId;
  */
 final class Video implements ApiReadType
 {
-    private FileId $fileId;
-    private FileUniqueId $fileUniqueId;
-    private int $width;
-    private int $height;
-    private int $duration;
-    private ?PhotoSize $thumb;
-    private ?string $mimeType;
-    private ?int $fileSize;
-
     private function __construct(
-        FileId $fileId,
-        FileUniqueId $fileUniqueId,
-        int $width,
-        int $height,
-        int $duration,
-        ?PhotoSize $thumb,
-        ?string $mimeType,
-        ?int $fileSize
+        private FileId $fileId,
+        private FileUniqueId $fileUniqueId,
+        private int $width,
+        private int $height,
+        private int $duration,
+        private ?PhotoSize $thumb,
+        private ?string $mimeType,
+        private ?int $fileSize
     ) {
-        $this->fileId = $fileId;
-        $this->fileUniqueId = $fileUniqueId;
-        $this->width = $width;
-        $this->height = $height;
-        $this->duration = $duration;
-        $this->thumb = $thumb;
-        $this->mimeType = $mimeType;
-        $this->fileSize = $fileSize;
     }
 
     /**

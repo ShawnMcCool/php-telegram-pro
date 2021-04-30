@@ -5,27 +5,14 @@
  */
 final class Game implements ApiReadType
 {
-    private string $title;
-    private string $description;
-    private ArrayOfPhotoSizes $photos;
-    private ?string $text;
-    private ArrayOfMessageEntities $textEntities;
-    private ?Animation $animation;
-
     private function __construct(
-        string $title,
-        string $description,
-        ArrayOfPhotoSizes $photos,
-        ?string $text,
-        ArrayOfMessageEntities $textEntities,
-        ?Animation $animation
+        private string $title,
+        private string $description,
+        private ArrayOfPhotoSizes $photos,
+        private ?string $text,
+        private ArrayOfMessageEntities $textEntities,
+        private ?Animation $animation
     ) {
-        $this->title = $title;
-        $this->description = $description;
-        $this->photos = $photos;
-        $this->text = $text;
-        $this->textEntities = $textEntities;
-        $this->animation = $animation;
     }
 
     /**

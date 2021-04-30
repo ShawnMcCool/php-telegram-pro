@@ -9,27 +9,14 @@ use TelegramPro\Bot\Methods\Types\ApiReadType;
  */
 final class MessageEntity implements ApiReadType
 {
-    private int $offset;
-    private int $length;
-    private MessageEntityType $type;
-    private ?Url $url;
-    private ?User $user;
-    private ?ProgrammingLanguage $language;
-
     private function __construct(
-        MessageEntityType $type,
-        int $offset,
-        int $length,
-        ?Url $url,
-        ?User $user,
-        ?ProgrammingLanguage $language
+        private MessageEntityType $type,
+        private int $offset,
+        private int $length,
+        private ?Url $url,
+        private ?User $user,
+        private ?ProgrammingLanguage $language
     ) {
-        $this->offset = $offset;
-        $this->length = $length;
-        $this->type = $type;
-        $this->url = $url;
-        $this->user = $user;
-        $this->language = $language;
     }
 
     /**

@@ -5,36 +5,17 @@
  */
 final class Poll
 {
-    private PollId $id;
-    private PollQuestion $question;
-    private ArrayOfPollOptions $options;
-    private int $totalVoterCount;
-    private bool $isClosed;
-    private bool $isAnonymous;
-    private PollType $type;
-    private bool $allowsMultipleAnswers;
-    private ?PollOptionId $correctOptionId;
-
     private function __construct(
-        PollId $id,
-        PollQuestion $question,
-        ArrayOfPollOptions $options,
-        int $totalVoterCount,
-        bool $isClosed,
-        bool $isAnonymous,
-        PollType $type,
-        bool $allowsMultipleAnswers,
-        ?PollOptionId $correctOptionId
+        private PollId $id,
+        private PollQuestion $question,
+        private ArrayOfPollOptions $options,
+        private int $totalVoterCount,
+        private bool $isClosed,
+        private bool $isAnonymous,
+        private PollType $type,
+        private bool $allowsMultipleAnswers,
+        private ?PollOptionId $correctOptionId
     ) {
-        $this->id = $id;
-        $this->question = $question;
-        $this->options = $options;
-        $this->totalVoterCount = $totalVoterCount;
-        $this->isClosed = $isClosed;
-        $this->isAnonymous = $isAnonymous;
-        $this->type = $type;
-        $this->allowsMultipleAnswers = $allowsMultipleAnswers;
-        $this->correctOptionId = $correctOptionId;
     }
 
     /**

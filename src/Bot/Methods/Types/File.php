@@ -5,21 +5,13 @@ use TelegramPro\Bot\Types\FileUniqueId;
 
 final class File implements ApiReadType
 {
-    private FileId $fileId;
-    private FileUniqueId $fileUniqueId;
-    private ?int $fileSize;
-    private ?string $filePath;
 
     public function __construct(
-        FileId $fileId,
-        FileUniqueId $fileUniqueId,
-        ?int $fileSize,
-        ?string $filePath
+        private FileId $fileId,
+        private FileUniqueId $fileUniqueId,
+        private ?int $fileSize,
+        private ?string $filePath
     ) {
-        $this->fileId = $fileId;
-        $this->fileUniqueId = $fileUniqueId;
-        $this->fileSize = $fileSize;
-        $this->filePath = $filePath;
     }
 
     public static function fromApi($file): ?static

@@ -11,15 +11,10 @@ use TelegramPro\Bot\Methods\Requests\JsonRequest;
  */
 final class SetChatPermissions implements Method
 {
-    private ChatId $chatId;
-    private ChatPermissions $permissions;
-
     private function __construct(
-        ChatId $chatId,
-        ChatPermissions $permissions
+        private ChatId $chatId,
+        private ChatPermissions $permissions
     ) {
-        $this->chatId = $chatId;
-        $this->permissions = $permissions;
     }
 
     function request(): Request

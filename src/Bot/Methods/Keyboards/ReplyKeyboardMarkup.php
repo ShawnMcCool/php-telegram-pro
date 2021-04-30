@@ -7,21 +7,13 @@ use TelegramPro\Bot\Types\ArrayOfInlineKeyboardRows;
  */
 final class ReplyKeyboardMarkup implements ReplyMarkup
 {
-    private ArrayOfInlineKeyboardRows $keyboard;
-    private ?bool $resizeKeyboard;
-    private ?bool $oneTimeKeyboard;
-    private ?bool $selective;
 
     public function __construct(
-        ArrayOfInlineKeyboardRows $keyboard,
-        ?bool $resizeKeyboard = null,
-        ?bool $oneTimeKeyboard = null,
-        ?bool $selective = null
+        private ArrayOfInlineKeyboardRows $keyboard,
+        private ?bool $resizeKeyboard = null,
+        private ?bool $oneTimeKeyboard = null,
+        private ?bool $selective = null
     ) {
-        $this->keyboard = $keyboard;
-        $this->resizeKeyboard = $resizeKeyboard;
-        $this->oneTimeKeyboard = $oneTimeKeyboard;
-        $this->selective = $selective;
     }
 
     /**

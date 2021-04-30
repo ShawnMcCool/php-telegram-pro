@@ -12,30 +12,15 @@ use TelegramPro\Bot\Methods\Types\ApiReadType;
  */
 final class CallbackQuery implements ApiReadType
 {
-    private CallbackQueryId $id;
-    private User $from;
-    private ?Message $message;
-    private ?InlineMessageId $inlineMessageId;
-    private ?ChatId $chatInstance;
-    private ?string $data;
-    private ?GameShortName $gameShortName;
-
     private function __construct(
-        CallbackQueryId $id,
-        User $from,
-        ?Message $message,
-        ?InlineMessageId $inlineMessageId,
-        ?ChatId $chatInstance,
-        ?string $data,
-        ?GameShortName $gameShortName
+        private CallbackQueryId $id,
+        private User $from,
+        private ?Message $message,
+        private ?InlineMessageId $inlineMessageId,
+        private ?ChatId $chatInstance,
+        private ?string $data,
+        private ?GameShortName $gameShortName
     ) {
-        $this->id = $id;
-        $this->from = $from;
-        $this->message = $message;
-        $this->inlineMessageId = $inlineMessageId;
-        $this->chatInstance = $chatInstance;
-        $this->data = $data;
-        $this->gameShortName = $gameShortName;
     }
 
     /**
@@ -97,7 +82,7 @@ final class CallbackQuery implements ApiReadType
     }
 
     /**
-     *	Optional. Data associated with the callback button. Be aware that a bad client can send arbitrary data in this field.
+     *    Optional. Data associated with the callback button. Be aware that a bad client can send arbitrary data in this field.
      */
     public function data(): ?string
     {

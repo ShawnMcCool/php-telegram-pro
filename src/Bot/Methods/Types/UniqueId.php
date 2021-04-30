@@ -7,11 +7,9 @@ use Ramsey\Uuid\Uuid;
  */
 final class UniqueId
 {
-    private string $uuid;
-
-    private function __construct(string $uuid)
-    {
-        $this->uuid = $uuid;
+    private function __construct(
+        private string $uuid
+    ) {
     }
 
     public function toString(): string

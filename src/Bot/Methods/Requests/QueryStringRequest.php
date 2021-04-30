@@ -4,12 +4,11 @@ use TelegramPro\Api\CurlParameters;
 
 final class QueryStringRequest implements Request
 {
-    private string $method;
     private array $parameters = [];
 
-    private function __construct(string $method)
-    {
-        $this->method = $method;
+    private function __construct(
+        private string $method
+    ) {
     }
 
     public function withParameters(array $parameterArray): static

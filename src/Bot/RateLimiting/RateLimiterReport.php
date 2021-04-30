@@ -2,18 +2,12 @@
 
 final class RateLimiterReport
 {
-    private int $numberOfTelegramForcedThrottleDelays;
-    private float $totalSecondsOfRateLimitedThrottleDelay;
-    private float $totalSecondsOfTelegramForcedThrottleDelay;
 
     public function __construct(
-        int $numberOfTelegramForcedThrottleDelays,
-        float $totalSecondsOfRateLimitedThrottleDelay,
-        float $totalSecondsOfTelegramForcedThrottleDelay
+        private int $numberOfTelegramForcedThrottleDelays,
+        private float $totalSecondsOfRateLimitedThrottleDelay,
+        private float $totalSecondsOfTelegramForcedThrottleDelay
     ) {
-        $this->numberOfTelegramForcedThrottleDelays = $numberOfTelegramForcedThrottleDelays;
-        $this->totalSecondsOfRateLimitedThrottleDelay = $totalSecondsOfRateLimitedThrottleDelay;
-        $this->totalSecondsOfTelegramForcedThrottleDelay = $totalSecondsOfTelegramForcedThrottleDelay;
     }
 
     public function numberOfTelegramForcedThrottleDelays(): int

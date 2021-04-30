@@ -7,21 +7,12 @@ use TelegramPro\Bot\Methods\Types\ApiReadType;
  */
 final class ChatPhoto implements ApiReadType
 {
-    private FileId $smallFileId;
-    private FileUniqueId $smallFileUniqueId;
-    private FileId $bigFileId;
-    private FileUniqueId $bigFileUniqueId;
-
     private function __construct(
-        FileId $smallFileId,
-        FileUniqueId $smallFileUniqueId,
-        FileId $bigFileId,
-        FileUniqueId $bigFileUniqueId
+        private FileId $smallFileId,
+        private FileUniqueId $smallFileUniqueId,
+        private FileId $bigFileId,
+        private FileUniqueId $bigFileUniqueId
     ) {
-        $this->smallFileId = $smallFileId;
-        $this->smallFileUniqueId = $smallFileUniqueId;
-        $this->bigFileId = $bigFileId;
-        $this->bigFileUniqueId = $bigFileUniqueId;
     }
 
     /**

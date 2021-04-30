@@ -8,15 +8,10 @@ use TelegramPro\Bot\Types\ArrayOfEncryptedPassportElements;
  */
 final class PassportData implements ApiReadType
 {
-    private ArrayOfEncryptedPassportElements $data;
-    private EncryptedCredentials $credentials;
-
     private function __construct(
-        ArrayOfEncryptedPassportElements $data,
-        EncryptedCredentials $credentials
+        private ArrayOfEncryptedPassportElements $data,
+        private EncryptedCredentials $credentials
     ) {
-        $this->data = $data;
-        $this->credentials = $credentials;
     }
 
     /**

@@ -12,21 +12,12 @@ use function TelegramPro\optional;
  */
 final class ForwardMessage implements Method
 {
-    private ChatId $chatId;
-    private ChatId $fromChatId;
-    private MessageId $messageId;
-    private ?bool $disableNotification;
-
     private function __construct(
-        ChatId $chatId,
-        ChatId $fromChatId,
-        MessageId $messageId,
-        ?bool $disableNotification
+        private ChatId $chatId,
+        private ChatId $fromChatId,
+        private MessageId $messageId,
+        private ?bool $disableNotification
     ) {
-        $this->chatId = $chatId;
-        $this->fromChatId = $fromChatId;
-        $this->messageId = $messageId;
-        $this->disableNotification = $disableNotification;
     }
 
     function request(): Request

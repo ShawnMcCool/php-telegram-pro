@@ -5,11 +5,9 @@
  */
 final class EncryptedPassportElementType
 {
-    private string $type;
-
-    private function __construct(string $type)
-    {
-        $this->type = $type;
+    private function __construct(
+        private string $type
+    ) {
     }
 
     public function toString(): string

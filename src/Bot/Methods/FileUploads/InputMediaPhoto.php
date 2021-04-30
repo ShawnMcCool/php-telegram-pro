@@ -1,11 +1,10 @@
 <?php namespace TelegramPro\Bot\Methods\FileUploads;
 
-use function TelegramPro\optional;
-
 use TelegramPro\Bot\Types\FileId;
 use TelegramPro\Bot\Methods\Types\Url;
 use TelegramPro\Bot\Methods\Types\ParseMode;
 use TelegramPro\Bot\Methods\Types\MediaCaption;
+use function TelegramPro\optional;
 
 /**
  * This object represents the photo content of a media message.
@@ -13,18 +12,12 @@ use TelegramPro\Bot\Methods\Types\MediaCaption;
 final class InputMediaPhoto implements InputMediaFile
 {
     private string $type = 'photo';
-    private InputPhotoFile $media;
-    private ?MediaCaption $caption;
-    private ?ParseMode $parseMode;
 
     private function __construct(
-        InputPhotoFile $media,
-        ?MediaCaption $caption,
-        ?ParseMode $parseMode
+        private InputPhotoFile $media,
+        private ?MediaCaption $caption,
+        private ?ParseMode $parseMode
     ) {
-        $this->media = $media;
-        $this->caption = $caption;
-        $this->parseMode = $parseMode;
     }
 
     /**

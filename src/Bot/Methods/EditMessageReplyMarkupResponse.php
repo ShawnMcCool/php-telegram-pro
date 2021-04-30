@@ -8,18 +8,12 @@ use TelegramPro\Bot\Methods\Types\MethodError;
  */
 final class EditMessageReplyMarkupResponse implements Response
 {
-    private bool $ok;
-    private ?Message $editedMessage;
-    private ?MethodError $error;
 
     public function __construct(
-        bool $ok,
-        ?Message $editedMessage,
-        ?MethodError $error
+        private bool $ok,
+        private ?Message $editedMessage,
+        private ?MethodError $error
     ) {
-        $this->ok = $ok;
-        $this->editedMessage = $editedMessage;
-        $this->error = $error;
     }
 
     public function ok(): bool

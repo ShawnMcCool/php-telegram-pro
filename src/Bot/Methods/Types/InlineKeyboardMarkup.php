@@ -8,12 +8,10 @@ use TelegramPro\Bot\Types\ArrayOfInlineKeyboardRows;
  */
 final class InlineKeyboardMarkup implements ApiReadType
 {
-    private ArrayOfInlineKeyboardRows $inlineKeyboard;
 
     public function __construct(
-        ArrayOfInlineKeyboardRows $inlineKeyboard
+        private ArrayOfInlineKeyboardRows $inlineKeyboard
     ) {
-        $this->inlineKeyboard = $inlineKeyboard;
     }
 
     /**

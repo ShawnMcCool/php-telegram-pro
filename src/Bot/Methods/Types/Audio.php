@@ -10,33 +10,16 @@ use TelegramPro\Bot\Types\FileUniqueId;
 
 final class Audio implements ApiReadType
 {
-    private FileId $fileId;
-    private ?FileUniqueId $fileUniqueId;
-    private int $duration;
-    private ?string $performer;
-    private ?string $title;
-    private ?string $mimeType;
-    private ?int $fileSize;
-    private ?PhotoSize $thumb;
-
     private function __construct(
-        FileId $fileId,
-        ?FileUniqueId $fileUniqueId,
-        int $duration,
-        ?string $performer,
-        ?string $title,
-        ?string $mimeType,
-        ?int $fileSize,
-        ?PhotoSize $thumb
+        private FileId $fileId,
+        private ?FileUniqueId $fileUniqueId,
+        private int $duration,
+        private ?string $performer,
+        private ?string $title,
+        private ?string $mimeType,
+        private ?int $fileSize,
+        private ?PhotoSize $thumb
     ) {
-        $this->fileId = $fileId;
-        $this->fileUniqueId = $fileUniqueId;
-        $this->duration = $duration;
-        $this->performer = $performer;
-        $this->title = $title;
-        $this->mimeType = $mimeType;
-        $this->fileSize = $fileSize;
-        $this->thumb = $thumb;
     }
 
     /**

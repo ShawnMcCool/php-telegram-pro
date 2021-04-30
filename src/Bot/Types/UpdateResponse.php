@@ -5,15 +5,11 @@ use TelegramPro\Bot\Methods\Types\ArrayOfUpdates;
 
 final class UpdateResponse implements ApiReadType
 {
-    private bool $ok;
-    private ?ArrayOfUpdates $updates;
 
     public function __construct(
-        bool $ok,
-        ?ArrayOfUpdates $updates
+        private bool $ok,
+        private ?ArrayOfUpdates $updates
     ) {
-        $this->ok = $ok;
-        $this->updates = $updates;
     }
 
     public function ok(): bool
@@ -29,7 +25,7 @@ final class UpdateResponse implements ApiReadType
     public static function fromApi($jsonResponse): ?static
     {
         $response = json_decode($jsonResponse);
-        
+
         return new static(
             $response->ok,
             ArrayOfUpdates::fromApi($response->result)

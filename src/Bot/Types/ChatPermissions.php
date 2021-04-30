@@ -17,33 +17,16 @@ final class ChatPermissions implements ApiReadType, ApiWriteType
     const CAN_INVITE_USERS = 'can_invite_users';
     const CAN_PIN_MESSAGES = 'can_pin_messages';
 
-    private bool $canSendMessages;
-    private bool $canSendMediaMessages;
-    private bool $canSendPolls;
-    private bool $canSendOtherMessages;
-    private bool $canAddWebPagePreviews;
-    private bool $canChangeInfo;
-    private bool $canInviteUsers;
-    private bool $canPinMessages;
-
     private function __construct(
-        bool $canSendMessages,
-        bool $canSendMediaMessages,
-        bool $canSendPolls,
-        bool $canSendOtherMessages,
-        bool $canAddWebPagePreviews,
-        bool $canChangeInfo,
-        bool $canInviteUsers,
-        bool $canPinMessages
+        private bool $canSendMessages,
+        private bool $canSendMediaMessages,
+        private bool $canSendPolls,
+        private bool $canSendOtherMessages,
+        private bool $canAddWebPagePreviews,
+        private bool $canChangeInfo,
+        private bool $canInviteUsers,
+        private bool $canPinMessages
     ) {
-        $this->canSendMessages = $canSendMessages;
-        $this->canSendMediaMessages = $canSendMediaMessages;
-        $this->canSendPolls = $canSendPolls;
-        $this->canSendOtherMessages = $canSendOtherMessages;
-        $this->canAddWebPagePreviews = $canAddWebPagePreviews;
-        $this->canChangeInfo = $canChangeInfo;
-        $this->canInviteUsers = $canInviteUsers;
-        $this->canPinMessages = $canPinMessages;
     }
 
     /**
@@ -157,19 +140,19 @@ final class ChatPermissions implements ApiReadType, ApiWriteType
             'can_invite_users',
             'can_pin_messages',
         ];
-        
+
         $invalidPermissions = [];
-        
+
         foreach ($permissions as $permission) {
             if ( ! in_array($permission, $allPossiblePermissions)) {
                 $invalidPermissions[] = $permission;
             }
         }
-        
+
         if ($invalidPermissions) {
             throw new InvalidChatPermissionsSpecified(implode(', ', $invalidPermissions));
         }
-        
+
         return new static(
             in_array(ChatPermissions::CAN_SEND_MESSAGES, $permissions),
             in_array(ChatPermissions::CAN_SEND_MEDIA_MESSAGES, $permissions),

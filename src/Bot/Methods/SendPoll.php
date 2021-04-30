@@ -19,55 +19,25 @@ use function TelegramPro\optional;
  */
 final class SendPoll implements Method
 {
-    private ChatId $chatId;
-    private string $question;
-    private ArrayOfPollOptions $options;
-    private ?bool $isAnonymous;
-    private ?PollType $type;
-    private ?bool $allowsMultipleAnswers;
-    private ?PollOptionId $correctOptionId;
-    private ?string $explanation;
-    private ?ParseMode $explanationParseMode;
-    private ?PollOpenPeriod $openPeriod;
-    private ?PollCloseDate $closeDate;
-    private ?bool $isClosed;
-    private ?bool $disableNotification;
-    private ?MessageId $replyToMessageId;
-    private ?ReplyMarkup $replyMarkup;
 
     public function __construct(
-        ChatId $chatId,
-        string $question,
-        ArrayOfPollOptions $options,
-        ?bool $isAnonymous,
-        ?PollType $type,
-        ?bool $allowsMultipleAnswers,
-        ?PollOptionId $correctOptionId,
-        ?string $explanation,
-        ?ParseMode $explanationParseMode,
-        ?PollOpenPeriod $openPeriod,
-        ?PollCloseDate $closeDate,
-        ?bool $isClosed,
-        ?bool $disableNotification,
-        ?MessageId $replyToMessageId,
-        ?ReplyMarkup $replyMarkup
+        private ChatId $chatId,
+        private string $question,
+        private ArrayOfPollOptions $options,
+        private ?bool $isAnonymous,
+        private ?PollType $type,
+        private ?bool $allowsMultipleAnswers,
+        private ?PollOptionId $correctOptionId,
+        private ?string $explanation,
+        private ?ParseMode $explanationParseMode,
+        private ?PollOpenPeriod $openPeriod,
+        private ?PollCloseDate $closeDate,
+        private ?bool $isClosed,
+        private ?bool $disableNotification,
+        private ?MessageId $replyToMessageId,
+        private ?ReplyMarkup $replyMarkup
 
     ) {
-        $this->chatId = $chatId;
-        $this->question = $question;
-        $this->options = $options;
-        $this->isAnonymous = $isAnonymous;
-        $this->type = $type;
-        $this->allowsMultipleAnswers = $allowsMultipleAnswers;
-        $this->correctOptionId = $correctOptionId;
-        $this->explanation = $explanation;
-        $this->explanationParseMode = $explanationParseMode;
-        $this->openPeriod = $openPeriod;
-        $this->closeDate = $closeDate;
-        $this->isClosed = $isClosed;
-        $this->disableNotification = $disableNotification;
-        $this->replyToMessageId = $replyToMessageId;
-        $this->replyMarkup = $replyMarkup;
     }
 
     function request(): Request

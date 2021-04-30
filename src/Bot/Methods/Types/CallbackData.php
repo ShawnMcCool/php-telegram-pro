@@ -5,11 +5,9 @@
  */
 final class CallbackData implements ApiReadType
 {
-    private string $data;
-
-    private function __construct(string $data)
-    {
-        $this->data = $data;
+    private function __construct(
+        private string $data
+    ) {
     }
 
     public function toString(): string

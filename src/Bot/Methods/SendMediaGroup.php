@@ -10,21 +10,13 @@ use function TelegramPro\optional;
 
 final class SendMediaGroup implements Method
 {
-    private ChatId $chatId;
-    private MediaGroup $mediaGroup;
-    private ?bool $disableNotification;
-    private ?MessageId $replyToMessageId;
 
     public function __construct(
-        ChatId $chatId,
-        MediaGroup $mediaGroup,
-        ?bool $disableNotification,
-        ?MessageId $replyToMessageId
+        private ChatId $chatId,
+        private MediaGroup $mediaGroup,
+        private ?bool $disableNotification,
+        private ?MessageId $replyToMessageId
     ) {
-        $this->chatId = $chatId;
-        $this->mediaGroup = $mediaGroup;
-        $this->disableNotification = $disableNotification;
-        $this->replyToMessageId = $replyToMessageId;
     }
 
     function request(): Request

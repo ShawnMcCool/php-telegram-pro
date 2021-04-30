@@ -16,30 +16,16 @@ use function TelegramPro\optional;
  */
 final class SendLocation implements Method
 {
-    private ChatId $chatId;
-    private Latitude $latitude;
-    private Longitude $longitude;
-    private ?LivePeriod $livePeriod;
-    private ?bool $disableNotification;
-    private ?MessageId $replyToMessageId;
-    private ?ReplyMarkup $replyMarkup;
 
     public function __construct(
-        ChatId $chatId,
-        Latitude $latitude,
-        Longitude $longitude,
-        ?LivePeriod $livePeriod,
-        ?bool $disableNotification,
-        ?MessageId $replyToMessageId,
-        ?ReplyMarkup $replyMarkup
+        private ChatId $chatId,
+        private Latitude $latitude,
+        private Longitude $longitude,
+        private ?LivePeriod $livePeriod,
+        private ?bool $disableNotification,
+        private ?MessageId $replyToMessageId,
+        private ?ReplyMarkup $replyMarkup
     ) {
-        $this->chatId = $chatId;
-        $this->latitude = $latitude;
-        $this->longitude = $longitude;
-        $this->livePeriod = $livePeriod;
-        $this->disableNotification = $disableNotification;
-        $this->replyToMessageId = $replyToMessageId;
-        $this->replyMarkup = $replyMarkup;
     }
 
     function request(): Request

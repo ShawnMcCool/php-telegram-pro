@@ -9,36 +9,17 @@ use TelegramPro\Bot\Types\SpokenLanguage;
  */
 final class User implements ApiReadType
 {
-    private UserId $userId;
-    private ?bool $isBot;
-    private string $firstName;
-    private ?string $lastName;
-    private ?string $username;
-    private ?SpokenLanguage $languageCode;
-    private ?bool $canJoinGroups;
-    private ?bool $canReadAllGroupMessages;
-    private ?bool $supportsInlineQueries;
-
     private function __construct(
-        UserId $userId,
-        ?bool $isBot,
-        string $firstName,
-        ?string $lastName,
-        ?string $username,
-        ?SpokenLanguage $languageCode,
-        ?bool $canJoinGroups,
-        ?bool $canReadAllGroupMessages,
-        ?bool $supportsInlineQueries
+        private UserId $userId,
+        private ?bool $isBot,
+        private string $firstName,
+        private ?string $lastName,
+        private ?string $username,
+        private ?SpokenLanguage $languageCode,
+        private ?bool $canJoinGroups,
+        private ?bool $canReadAllGroupMessages,
+        private ?bool $supportsInlineQueries
     ) {
-        $this->userId = $userId;
-        $this->isBot = $isBot;
-        $this->firstName = $firstName;
-        $this->lastName = $lastName;
-        $this->username = $username;
-        $this->languageCode = $languageCode;
-        $this->canJoinGroups = $canJoinGroups;
-        $this->canReadAllGroupMessages = $canReadAllGroupMessages;
-        $this->supportsInlineQueries = $supportsInlineQueries;
     }
 
     /**

@@ -9,27 +9,14 @@ use TelegramPro\Bot\Types\FileUniqueId;
  */
 final class VideoNote implements ApiReadType
 {
-    private FileId $fileId;
-    private FileUniqueId $fileUniqueId;
-    private int $length;
-    private int $duration;
-    private ?PhotoSize $thumb;
-    private ?int $fileSize;
-
     private function __construct(
-        FileId $fileId,
-        FileUniqueId $fileUniqueId,
-        int $length,
-        int $duration,
-        ?PhotoSize $thumb,
-        ?int $fileSize
+        private FileId $fileId,
+        private FileUniqueId $fileUniqueId,
+        private int $length,
+        private int $duration,
+        private ?PhotoSize $thumb,
+        private ?int $fileSize
     ) {
-        $this->fileId = $fileId;
-        $this->fileUniqueId = $fileUniqueId;
-        $this->length = $length;
-        $this->duration = $duration;
-        $this->thumb = $thumb;
-        $this->fileSize = $fileSize;
     }
 
     /**

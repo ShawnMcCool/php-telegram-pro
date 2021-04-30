@@ -8,11 +8,9 @@ use IteratorAggregate;
 
 class Collection implements Countable, ArrayAccess, IteratorAggregate, JsonSerializable
 {
-    protected array $items;
 
-    public function __construct(array $items = [])
+    public function __construct(protected array $items = [])
     {
-        $this->items = $items;
     }
 
     public function add($item): Collection
@@ -28,7 +26,7 @@ class Collection implements Countable, ArrayAccess, IteratorAggregate, JsonSeria
             $f($i);
         }
     }
-    
+
     public function equals(Collection $that, callable $func = null): bool
     {
         if (is_null($func)) {
@@ -226,8 +224,8 @@ class Collection implements Countable, ArrayAccess, IteratorAggregate, JsonSeria
     {
         return new static($items);
     }
-    
-        public function unique(?callable $f = null)
+
+    public function unique(?callable $f = null)
     {
         if (is_null($f)) {
             return new static(array_values(array_unique($this->items)));
@@ -235,10 +233,12 @@ class Collection implements Countable, ArrayAccess, IteratorAggregate, JsonSeria
 
         $hashTable = new MutableDictionary();
 
-        $this->each(function($item) use ($hashTable, $f) {
-            $hash = $f($item);
-            $hashTable->add($hash, $item);
-        });
+        $this->each(
+            function ($item) use ($hashTable, $f) {
+                $hash = $f($item);
+                $hashTable->add($hash, $item);
+            }
+        );
 
         return $hashTable->toCollection();
     }

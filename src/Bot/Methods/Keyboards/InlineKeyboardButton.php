@@ -12,33 +12,17 @@ use TelegramPro\Bot\Methods\Types\ApiWriteType;
  */
 final class InlineKeyboardButton implements ApiReadType, ApiWriteType
 {
-    private string $text;
-    private ?Url $url;
-    private ?LoginUrl $loginUrl;
-    private ?CallbackData $callbackData;
-    private ?string $switchInlineQuery;
-    private ?string $switchInlineQueryCurrentChat;
-    private ?CallbackGame $callbackGame;
-    private ?bool $pay;
 
     public function __construct(
-        string $text,
-        ?Url $url = null,
-        ?LoginUrl $loginUrl = null,
-        ?CallbackData $callbackData = null,
-        ?string $switchInlineQuery = null,
-        ?string $switchInlineQueryCurrentChat = null,
-        ?CallbackGame $callbackGame = null,
-        ?bool $pay = null
+        private string $text,
+        private ?Url $url = null,
+        private ?LoginUrl $loginUrl = null,
+        private ?CallbackData $callbackData = null,
+        private ?string $switchInlineQuery = null,
+        private ?string $switchInlineQueryCurrentChat = null,
+        private ?CallbackGame $callbackGame = null,
+        private ?bool $pay = null
     ) {
-        $this->text = $text;
-        $this->url = $url;
-        $this->loginUrl = $loginUrl;
-        $this->callbackData = $callbackData;
-        $this->switchInlineQuery = $switchInlineQuery;
-        $this->switchInlineQueryCurrentChat = $switchInlineQueryCurrentChat;
-        $this->callbackGame = $callbackGame;
-        $this->pay = $pay;
     }
 
     /**

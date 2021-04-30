@@ -9,18 +9,11 @@ use TelegramPro\Bot\Methods\Types\ApiReadType;
  */
 final class PollAnswer implements ApiReadType
 {
-    private PollId $pollId;
-    private User $user;
-    private ArrayOfPollOptionIds $optionIds;
-
     private function __construct(
-        PollId $pollId,
-        User $user,
-        ArrayOfPollOptionIds $optionIds
+        private PollId $pollId,
+        private User $user,
+        private ArrayOfPollOptionIds $optionIds
     ) {
-        $this->pollId = $pollId;
-        $this->user = $user;
-        $this->optionIds = $optionIds;
     }
 
     /**

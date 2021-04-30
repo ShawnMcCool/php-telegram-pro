@@ -8,18 +8,12 @@ use TelegramPro\Bot\Methods\Types\MethodError;
  */
 final class GetFileResponse implements Response
 {
-    private bool $ok;
-    private ?File $file;
-    private ?MethodError $error;
 
     public function __construct(
-        bool $ok,
-        ?File $file,
-        ?MethodError $error
+        private bool $ok,
+        private ?File $file,
+        private ?MethodError $error
     ) {
-        $this->ok = $ok;
-        $this->file = $file;
-        $this->error = $error;
     }
 
     public function ok(): bool

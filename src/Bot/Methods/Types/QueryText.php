@@ -7,11 +7,9 @@ use JsonSerializable;
  */
 final class QueryText implements JsonSerializable, ApiReadType
 {
-    private string $text;
-
-    private function __construct(string $text)
-    {
-        $this->text = $text;
+    private function __construct(
+        private string $text
+    ) {
     }
 
     public function toString(): string

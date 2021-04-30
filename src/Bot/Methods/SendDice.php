@@ -14,24 +14,14 @@ use function TelegramPro\optional;
  */
 final class SendDice implements Method
 {
-    private ChatId $chatId;
-    private ?DiceEmoji $emoji;
-    private ?bool $disableNotification;
-    private ?MessageId $replyToMessageId;
-    private ?ReplyMarkup $replyMarkup;
 
     public function __construct(
-        ChatId $chatId,
-        ?DiceEmoji $emoji,
-        ?bool $disableNotification,
-        ?MessageId $replyToMessageId,
-        ?ReplyMarkup $replyMarkup
+        private ChatId $chatId,
+        private ?DiceEmoji $emoji,
+        private ?bool $disableNotification,
+        private ?MessageId $replyToMessageId,
+        private ?ReplyMarkup $replyMarkup
     ) {
-        $this->chatId = $chatId;
-        $this->emoji = $emoji;
-        $this->disableNotification = $disableNotification;
-        $this->replyToMessageId = $replyToMessageId;
-        $this->replyMarkup = $replyMarkup;
     }
 
     public function send(Telegram $telegramApi): SendDiceResponse

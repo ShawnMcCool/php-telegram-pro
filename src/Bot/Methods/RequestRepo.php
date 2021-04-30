@@ -6,18 +6,13 @@ use TelegramPro\Bot\Methods\FileUploads\FilesToUpload;
 
 final class RequestRepo
 {
-    private string $method;
-    private string $requestType;
-
     private array $parameters = [];
     private FilesToUpload $filesToUpload;
 
     private function __construct(
-        string $method,
-        string $requestType
+        private string $method,
+        private string $requestType
     ) {
-        $this->method = $method;
-        $this->requestType = $requestType;
         $this->filesToUpload = FilesToUpload::empty();
     }
 

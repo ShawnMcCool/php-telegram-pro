@@ -1,7 +1,5 @@
 <?php namespace TelegramPro\Bot\Methods\FileUploads;
 
-use function TelegramPro\optional;
-
 use JsonSerializable;
 use TelegramPro\Bot\Types\FileId;
 use TelegramPro\Bot\Methods\Types\Url;
@@ -15,30 +13,16 @@ use function TelegramPro\bytesToMegabytes;
 final class InputMediaAudio implements InputMediaFile, JsonSerializable
 {
     private string $type = 'audio';
-    private AudioInputFile $media;
-    private ?ThumbnailInputFile $thumb;
-    private ?MediaCaption $caption;
-    private ?ParseMode $parseMode;
-    private ?int $duration;
-    private ?string $performer;
-    private ?string $title;
 
     private function __construct(
-        AudioInputFile $media,
-        ?ThumbnailInputFile $thumb,
-        ?MediaCaption $caption,
-        ?ParseMode $parseMode,
-        ?int $duration,
-        ?string $performer,
-        ?string $title
+        private AudioInputFile $media,
+        private ?ThumbnailInputFile $thumb,
+        private ?MediaCaption $caption,
+        private ?ParseMode $parseMode,
+        private ?int $duration,
+        private ?string $performer,
+        private ?string $title
     ) {
-        $this->media = $media;
-        $this->thumb = $thumb;
-        $this->caption = $caption;
-        $this->parseMode = $parseMode;
-        $this->duration = $duration;
-        $this->performer = $performer;
-        $this->title = $title;
     }
 
     /**

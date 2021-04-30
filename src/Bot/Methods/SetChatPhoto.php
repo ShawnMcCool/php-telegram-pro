@@ -12,15 +12,10 @@ use TelegramPro\Bot\Methods\Requests\MultipartFormRequest;
  */
 final class SetChatPhoto implements Method
 {
-    private ChatId $chatId;
-    private InputPhotoFile $photo;
-
     private function __construct(
-        ChatId $chatId,
-        InputPhotoFile $photo
+        private ChatId $chatId,
+        private InputPhotoFile $photo
     ) {
-        $this->chatId = $chatId;
-        $this->photo = $photo;
     }
 
     function request(): Request

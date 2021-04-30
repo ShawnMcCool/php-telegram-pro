@@ -7,18 +7,12 @@ use TelegramPro\Bot\Methods\Types\MethodError;
  */
 final class SetChatPermissionsResponse implements Response
 {
-    private bool $ok;
-    private bool $permissionsWereSet;
-    private ?MethodError $error;
 
     public function __construct(
-        bool $ok,
-        bool $permissionsWereSet,
-        ?MethodError $error
+        private bool $ok,
+        private bool $permissionsWereSet,
+        private ?MethodError $error
     ) {
-        $this->ok = $ok;
-        $this->permissionsWereSet = $permissionsWereSet;
-        $this->error = $error;
     }
 
     public function ok(): bool

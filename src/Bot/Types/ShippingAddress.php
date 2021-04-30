@@ -7,27 +7,14 @@ use TelegramPro\Bot\Methods\Types\ApiReadType;
  */
 final class ShippingAddress implements ApiReadType
 {
-    private CountryCode $countryCode;
-    private string $state;
-    private string $city;
-    private string $streetLine1;
-    private string $streetLine2;
-    private string $postalCode;
-
     private function __construct(
-        CountryCode $countryCode,
-        string $state,
-        string $city,
-        string $streetLine1,
-        string $streetLine2,
-        string $postalCode
+        private CountryCode $countryCode,
+        private string $state,
+        private string $city,
+        private string $streetLine1,
+        private string $streetLine2,
+        private string $postalCode
     ) {
-        $this->countryCode = $countryCode;
-        $this->state = $state;
-        $this->city = $city;
-        $this->streetLine1 = $streetLine1;
-        $this->streetLine2 = $streetLine2;
-        $this->postalCode = $postalCode;
     }
 
     /**
@@ -64,7 +51,7 @@ final class ShippingAddress implements ApiReadType
     }
 
     /**
-     * 	City
+     *    City
      */
     public function city(): string
     {

@@ -2,13 +2,11 @@
 
 final class CurlParameters
 {
-    private string $url;
-    private array $optionArray;
 
-    public function __construct(string $url, array $optionArray = [])
-    {
-        $this->url = $url;
-        $this->optionArray = $optionArray;
+    public function __construct(
+        private string $url,
+        private array $optionArray = []
+    ) {
     }
 
     public function url(): string

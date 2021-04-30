@@ -8,21 +8,12 @@ use TelegramPro\Bot\Methods\Types\ApiReadType;
  */
 final class ShippingQuery implements ApiReadType
 {
-    private ShippingQueryId $id;
-    private User $from;
-    private string $invoicePayload;
-    private ShippingAddress $shippingAddress;
-
     private function __construct(
-        ShippingQueryId $id,
-        User $from,
-        string $invoicePayload,
-        ShippingAddress $shippingAddress
+        private ShippingQueryId $id,
+        private User $from,
+        private string $invoicePayload,
+        private ShippingAddress $shippingAddress
     ) {
-        $this->id = $id;
-        $this->from = $from;
-        $this->invoicePayload = $invoicePayload;
-        $this->shippingAddress = $shippingAddress;
     }
 
     /**

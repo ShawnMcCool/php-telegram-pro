@@ -9,27 +9,14 @@ use TelegramPro\Bot\Types\FileUniqueId;
  */
 final class Document implements ApiReadType
 {
-    private FileId $fileId;
-    private ?FileUniqueId $fileUniqueId;
-    private ?PhotoSize $thumb;
-    private ?string $fileName;
-    private ?string $mimeType;
-    private ?int $fileSize;
-
     private function __construct(
-        FileId $fileId,
-        ?FileUniqueId $fileUniqueId,
-        ?PhotoSize $thumb,
-        ?string $fileName,
-        ?string $mimeType,
-        ?int $fileSize
+        private FileId $fileId,
+        private ?FileUniqueId $fileUniqueId,
+        private ?PhotoSize $thumb,
+        private ?string $fileName,
+        private ?string $mimeType,
+        private ?int $fileSize
     ) {
-        $this->fileId = $fileId;
-        $this->fileUniqueId = $fileUniqueId;
-        $this->thumb = $thumb;
-        $this->fileName = $fileName;
-        $this->mimeType = $mimeType;
-        $this->fileSize = $fileSize;
     }
 
     /**

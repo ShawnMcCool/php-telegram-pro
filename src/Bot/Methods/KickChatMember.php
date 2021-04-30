@@ -13,18 +13,11 @@ use function TelegramPro\optional;
  */
 final class KickChatMember implements Method
 {
-    private ChatId $chatId;
-    private UserId $userId;
-    private ?BanUntilDate $untilDate;
-
     private function __construct(
-        ChatId $chatId,
-        UserId $userId,
-        ?BanUntilDate $untilDate
+        private ChatId $chatId,
+        private UserId $userId,
+        private ?BanUntilDate $untilDate
     ) {
-        $this->chatId = $chatId;
-        $this->userId = $userId;
-        $this->untilDate = $untilDate;
     }
 
     function request(): Request

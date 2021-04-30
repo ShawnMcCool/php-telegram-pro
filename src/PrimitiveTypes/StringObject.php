@@ -6,18 +6,16 @@ use TelegramPro\Bot\Methods\Types\ApiWriteType;
 
 abstract class StringObject implements ApiReadType, ApiWriteType
 {
-    protected string $string;
 
-    protected function __construct(string $string)
+    protected function __construct(protected string $string)
     {
-        $this->string = $string;
     }
 
     public function toString(): string
     {
         return $this->string;
     }
-    
+
     public static function fromString(?string $string): ?static
     {
         if (is_null($string)) {
@@ -39,7 +37,7 @@ abstract class StringObject implements ApiReadType, ApiWriteType
         if (is_null($string)) {
             return null;
         }
-        
+
         return static::fromString($string);
     }
 }

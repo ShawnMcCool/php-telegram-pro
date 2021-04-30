@@ -9,11 +9,9 @@ use DateTimeImmutable;
  */
 class Date implements ApiReadType, ApiWriteType
 {
-    private DateTimeInterface $dateTime;
-
-    private function __construct(DateTimeInterface $dateTime)
-    {
-        $this->dateTime = $dateTime;
+    private function __construct(
+        private DateTimeInterface $dateTime
+    ) {
     }
 
     public function toUnixTimestamp(): int

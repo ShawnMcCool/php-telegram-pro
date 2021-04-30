@@ -12,45 +12,20 @@ use TelegramPro\Bot\Methods\Types\ApiReadType;
  */
 final class Update implements ApiReadType
 {
-    private UpdateId $updateId;
-    private ?Message $message;
-    private ?Message $editedMessage;
-    private ?Message $channelPost;
-    private ?Message $editedChannelPost;
-    private ?InlineQuery $inlineQuery;
-    private ?ChosenInlineResult $chosenInlineResult;
-    private ?CallbackQuery $callbackQuery;
-    private ?ShippingQuery $shippingQuery;
-    private ?PreCheckoutQuery $preCheckoutQuery;
-    private ?Poll $poll;
-    private ?PollAnswer $pollAnswer;
-
     private function __construct(
-        UpdateId $updateId,
-        ?Message $message,
-        ?Message $editedMessage,
-        ?Message $channelPost,
-        ?Message $editedChannelPost,
-        ?InlineQuery $inlineQuery,
-        ?ChosenInlineResult $chosenInlineResult,
-        ?CallbackQuery $callbackQuery,
-        ?ShippingQuery $shippingQuery,
-        ?PreCheckoutQuery $preCheckoutQuery,
-        ?Poll $poll,
-        ?PollAnswer $pollAnswer
+        private UpdateId $updateId,
+        private ?Message $message,
+        private ?Message $editedMessage,
+        private ?Message $channelPost,
+        private ?Message $editedChannelPost,
+        private ?InlineQuery $inlineQuery,
+        private ?ChosenInlineResult $chosenInlineResult,
+        private ?CallbackQuery $callbackQuery,
+        private ?ShippingQuery $shippingQuery,
+        private ?PreCheckoutQuery $preCheckoutQuery,
+        private ?Poll $poll,
+        private ?PollAnswer $pollAnswer
     ) {
-        $this->updateId = $updateId;
-        $this->message = $message;
-        $this->editedMessage = $editedMessage;
-        $this->channelPost = $channelPost;
-        $this->editedChannelPost = $editedChannelPost;
-        $this->inlineQuery = $inlineQuery;
-        $this->chosenInlineResult = $chosenInlineResult;
-        $this->callbackQuery = $callbackQuery;
-        $this->shippingQuery = $shippingQuery;
-        $this->preCheckoutQuery = $preCheckoutQuery;
-        $this->poll = $poll;
-        $this->pollAnswer = $pollAnswer;
     }
 
     /** Return the update regardless of type */

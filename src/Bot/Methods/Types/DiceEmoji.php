@@ -2,11 +2,10 @@
 
 final class DiceEmoji implements ApiWriteType
 {
-    private string $emoji;
 
-    public function __construct(string $emoji)
-    {
-        $this->emoji = $emoji;
+    public function __construct(
+        private string $emoji
+    ) {
     }
 
     public static function dice()

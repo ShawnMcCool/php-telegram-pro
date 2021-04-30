@@ -8,15 +8,10 @@ use TelegramPro\Bot\Methods\Types\PollOptionText;
  */
 final class PollOption implements ApiReadType
 {
-    private PollOptionText $text;
-    private int $voterCount;
-
     private function __construct(
-        PollOptionText $text,
-        int $voterCount
+        private PollOptionText $text,
+        private int $voterCount
     ) {
-        $this->text = $text;
-        $this->voterCount = $voterCount;
     }
 
     /**

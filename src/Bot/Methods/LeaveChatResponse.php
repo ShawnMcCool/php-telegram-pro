@@ -7,18 +7,12 @@ use TelegramPro\Bot\Methods\Types\MethodError;
  */
 final class LeaveChatResponse implements Response
 {
-    private bool $ok;
-    private bool $chatWasLeft;
-    private ?MethodError $error;
 
     public function __construct(
-        bool $ok,
-        bool $chatWasLeft,
-        ?MethodError $error
+        private bool $ok,
+        private bool $chatWasLeft,
+        private ?MethodError $error
     ) {
-        $this->ok = $ok;
-        $this->chatWasLeft = $chatWasLeft;
-        $this->error = $error;
     }
 
     public function ok(): bool

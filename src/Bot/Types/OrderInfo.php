@@ -7,23 +7,14 @@ use TelegramPro\Bot\Methods\Types\ApiReadType;
  */
 final class OrderInfo implements ApiReadType
 {
-    private ?string $name;
-    private ?string $phoneNumber;
-    private ?string $email;
-    private ?ShippingAddress $shippingAddress;
-
     private function __construct(
-        ?string $name,
-        ?string $phoneNumber,
-        ?string $email,
-        ?ShippingAddress $shippingAddress
+        private ?string $name,
+        private ?string $phoneNumber,
+        private ?string $email,
+        private ?ShippingAddress $shippingAddress
     ) {
-        $this->name = $name;
-        $this->phoneNumber = $phoneNumber;
-        $this->email = $email;
-        $this->shippingAddress = $shippingAddress;
     }
-    
+
     /**
      * @internal Construct with data received from the Telegram bot api.
      */

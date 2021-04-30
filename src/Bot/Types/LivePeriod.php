@@ -9,7 +9,7 @@ final class LivePeriod extends IntegerObject
         if ( ! is_integer($integer)) {
             return null;
         }
-        
+
         if ($integer < 60 || $integer > 86400) {
             throw new LivePeriodIsNotValid("Live period must be between 60 and 86400.");
         }

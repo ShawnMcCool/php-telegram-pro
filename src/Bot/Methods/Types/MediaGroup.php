@@ -11,11 +11,10 @@ use TelegramPro\Bot\Methods\FileUploads\InputMediaVideo;
  */
 final class MediaGroup implements ApiWriteType
 {
-    private array $mediaGroup;
 
-    public function __construct(array $mediaGroup)
-    {
-        $this->mediaGroup = $mediaGroup;
+    public function __construct(
+        private array $mediaGroup
+    ) {
     }
 
     public function toApi(): string

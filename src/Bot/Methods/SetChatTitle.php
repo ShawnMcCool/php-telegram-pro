@@ -11,15 +11,10 @@ use TelegramPro\Bot\Methods\Requests\JsonRequest;
  */
 final class SetChatTitle implements Method
 {
-    private ChatId $chatId;
-    private ChatTitle $title;
-
     private function __construct(
-        ChatId $chatId,
-        ChatTitle $title
+        private ChatId $chatId,
+        private ChatTitle $title
     ) {
-        $this->chatId = $chatId;
-        $this->title = $title;
     }
 
     function request(): Request

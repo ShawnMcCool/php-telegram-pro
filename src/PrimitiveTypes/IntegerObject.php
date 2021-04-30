@@ -5,11 +5,10 @@ use TelegramPro\Bot\Methods\Types\ApiWriteType;
 
 abstract class IntegerObject implements ApiReadType, ApiWriteType
 {
-    private int $integer;
 
-    protected function __construct(int $integer)
-    {
-        $this->integer = $integer;
+    protected function __construct(
+        private int $integer
+    ) {
     }
 
     public function toInteger(): int

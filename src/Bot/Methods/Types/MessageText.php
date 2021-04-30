@@ -5,11 +5,9 @@
  */
 final class MessageText implements ApiWriteType
 {
-    private string $text;
-
-    private function __construct(string $text)
-    {
-        $this->text = $text;
+    private function __construct(
+        private string $text
+    ) {
     }
 
     public function toString(): string

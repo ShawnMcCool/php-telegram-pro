@@ -1,7 +1,5 @@
 <?php namespace TelegramPro\Bot\Methods\FileUploads;
 
-use function TelegramPro\optional;
-
 use ArrayIterator;
 use IteratorAggregate;
 
@@ -10,11 +8,9 @@ use IteratorAggregate;
  */
 final class FilesToUpload implements IteratorAggregate
 {
-    private array $files;
-
-    private function __construct(array $files)
-    {
-        $this->files = $files;
+    private function __construct(
+        private array $files
+    ) {
     }
 
     public function merge(?FilesToUpload $that): void

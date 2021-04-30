@@ -10,12 +10,9 @@ use TelegramPro\Bot\Methods\Types\ArrayOfBotCommands;
  */
 final class SetMyCommands implements Method
 {
-    private ArrayOfBotCommands $commands;
-
     private function __construct(
-        ArrayOfBotCommands $commands
+        private ArrayOfBotCommands $commands
     ) {
-        $this->commands = $commands;
     }
 
     function request(): Request

@@ -1,7 +1,5 @@
 <?php namespace TelegramPro\Bot\Methods\FileUploads;
 
-use function TelegramPro\optional;
-
 use function TelegramPro\bytesToKilobytes;
 
 /**

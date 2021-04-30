@@ -11,18 +11,11 @@ use TelegramPro\Bot\Methods\Requests\JsonRequest;
  */
 final class PinChatMessage implements Method
 {
-    private ChatId $chatId;
-    private MessageId $messageId;
-    private ?bool $disableNotification;
-
     private function __construct(
-        ChatId $chatId,
-        MessageId $messageId,
-        ?bool $disableNotification
+        private ChatId $chatId,
+        private MessageId $messageId,
+        private ?bool $disableNotification
     ) {
-        $this->chatId = $chatId;
-        $this->messageId = $messageId;
-        $this->disableNotification = $disableNotification;
     }
 
     function request(): Request

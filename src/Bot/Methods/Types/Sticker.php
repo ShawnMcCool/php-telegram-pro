@@ -10,39 +10,18 @@ use TelegramPro\Bot\Types\FileUniqueId;
  */
 final class Sticker implements ApiReadType
 {
-    private FileId $fileId;
-    private FileUniqueId $fileUniqueId;
-    private int $width;
-    private int $height;
-    private bool $isAnimated;
-    private ?PhotoSize $thumb;
-    private ?string $emoji;
-    private ?string $setName;
-    private ?MaskPosition $maskPosition;
-    private ?int $fileSize;
-
     private function __construct(
-        FileId $fileId,
-        FileUniqueId $fileUniqueId,
-        int $width,
-        int $height,
-        bool $isAnimated,
-        ?PhotoSize $thumb,
-        ?string $emoji,
-        ?string $setName,
-        ?MaskPosition $maskPosition,
-        ?int $fileSize
+        private FileId $fileId,
+        private FileUniqueId $fileUniqueId,
+        private int $width,
+        private int $height,
+        private bool $isAnimated,
+        private ?PhotoSize $thumb,
+        private ?string $emoji,
+        private ?string $setName,
+        private ?MaskPosition $maskPosition,
+        private ?int $fileSize
     ) {
-        $this->fileId = $fileId;
-        $this->fileUniqueId = $fileUniqueId;
-        $this->width = $width;
-        $this->height = $height;
-        $this->isAnimated = $isAnimated;
-        $this->thumb = $thumb;
-        $this->emoji = $emoji;
-        $this->setName = $setName;
-        $this->maskPosition = $maskPosition;
-        $this->fileSize = $fileSize;
     }
 
     /**

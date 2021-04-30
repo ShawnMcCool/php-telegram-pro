@@ -12,39 +12,18 @@ use TelegramPro\Bot\Methods\Types\PromotionCapabilities;
  */
 final class PromoteChatMember implements Method
 {
-    private ChatId $chatId;
-    private UserId $userId;
-    private ?bool $canChangeInfo;
-    private ?bool $canPostMessages;
-    private ?bool $canEditMessages;
-    private ?bool $canDeleteMessages;
-    private ?bool $canInviteUsers;
-    private ?bool $canRestrictMembers;
-    private ?bool $canPinMessages;
-    private ?bool $canPromoteMembers;
-
     private function __construct(
-        ChatId $chatId,
-        UserId $userId,
-        ?bool $canChangeInfo,
-        ?bool $canPostMessages,
-        ?bool $canEditMessages,
-        ?bool $canDeleteMessages,
-        ?bool $canInviteUsers,
-        ?bool $canRestrictMembers,
-        ?bool $canPinMessages,
-        ?bool $canPromoteMembers
+        private ChatId $chatId,
+        private UserId $userId,
+        private ?bool $canChangeInfo,
+        private ?bool $canPostMessages,
+        private ?bool $canEditMessages,
+        private ?bool $canDeleteMessages,
+        private ?bool $canInviteUsers,
+        private ?bool $canRestrictMembers,
+        private ?bool $canPinMessages,
+        private ?bool $canPromoteMembers
     ) {
-        $this->chatId = $chatId;
-        $this->userId = $userId;
-        $this->canChangeInfo = $canChangeInfo;
-        $this->canPostMessages = $canPostMessages;
-        $this->canEditMessages = $canEditMessages;
-        $this->canDeleteMessages = $canDeleteMessages;
-        $this->canInviteUsers = $canInviteUsers;
-        $this->canRestrictMembers = $canRestrictMembers;
-        $this->canPinMessages = $canPinMessages;
-        $this->canPromoteMembers = $canPromoteMembers;
     }
 
     function request(): Request

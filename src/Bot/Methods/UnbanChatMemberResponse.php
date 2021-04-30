@@ -7,18 +7,12 @@ use TelegramPro\Bot\Methods\Types\MethodError;
  */
 final class UnbanChatMemberResponse implements Response
 {
-    private bool $ok;
-    private bool $memberWasUnbanned;
-    private ?MethodError $error;
 
     public function __construct(
-        bool $ok,
-        bool $memberWasUnbanned,
-        ?MethodError $error
+        private bool $ok,
+        private bool $memberWasUnbanned,
+        private ?MethodError $error
     ) {
-        $this->ok = $ok;
-        $this->memberWasUnbanned = $memberWasUnbanned;
-        $this->error = $error;
     }
 
     public function ok(): bool

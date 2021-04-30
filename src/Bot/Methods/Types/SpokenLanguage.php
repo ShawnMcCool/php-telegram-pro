@@ -930,11 +930,10 @@ final class SpokenLanguage implements ApiReadType
     "alpha3-b": "zul"
   }
 ]';
-    private string $code;
 
-    private function __construct(string $code)
-    {
-        $this->code = $code;
+    private function __construct(
+        private string $code
+    ) {
     }
 
     public function toString(): string

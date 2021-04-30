@@ -10,15 +10,10 @@ use TelegramPro\Bot\Methods\Requests\JsonRequest;
  */
 final class SetChatStickerSet implements Method
 {
-    private ChatId $chatId;
-    private string $stickerSetName;
-
     private function __construct(
-        ChatId $chatId,
-        string $stickerSetName
+        private ChatId $chatId,
+        private string $stickerSetName
     ) {
-        $this->chatId = $chatId;
-        $this->stickerSetName = $stickerSetName;
     }
 
     function request(): Request

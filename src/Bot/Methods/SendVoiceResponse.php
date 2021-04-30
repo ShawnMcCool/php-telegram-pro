@@ -8,18 +8,12 @@ use TelegramPro\Bot\Methods\Types\MethodError;
  */
 final class SendVoiceResponse implements Response
 {
-    private bool $ok;
-    private ?Message $sentMessage;
-    private ?MethodError $error;
 
     public function __construct(
-        bool $ok,
-        ?Message $sentMessage,
-        ?MethodError $error
+        private bool $ok,
+        private ?Message $sentMessage,
+        private ?MethodError $error
     ) {
-        $this->ok = $ok;
-        $this->sentMessage = $sentMessage;
-        $this->error = $error;
     }
 
     public function ok(): bool

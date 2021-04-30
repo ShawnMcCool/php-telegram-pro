@@ -1100,11 +1100,10 @@ final class Currency
     "max_amount": "17311250"
   }
 }';
-    private string $code;
 
-    private function __construct(string $code)
-    {
-        $this->code = $code;
+    private function __construct(
+        private string $code
+    ) {
     }
 
     public function toString(): string

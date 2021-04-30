@@ -10,12 +10,9 @@ use TelegramPro\Bot\Methods\Requests\JsonRequest;
  */
 final class GetChatAdministrators implements Method
 {
-    private ChatId $chatId;
-
     private function __construct(
-        ChatId $chatId
+        private ChatId $chatId
     ) {
-        $this->chatId = $chatId;
     }
 
     function request(): Request

@@ -1,11 +1,10 @@
 <?php namespace TelegramPro\Bot\Methods\FileUploads;
 
-use function TelegramPro\optional;
-
 use TelegramPro\Bot\Types\FileId;
 use TelegramPro\Bot\Methods\Types\Url;
 use TelegramPro\Bot\Methods\Types\ParseMode;
 use TelegramPro\Bot\Methods\Types\MediaCaption;
+use function TelegramPro\optional;
 
 /**
  * This object represents the video content of a media message.
@@ -13,33 +12,17 @@ use TelegramPro\Bot\Methods\Types\MediaCaption;
 final class InputMediaVideo implements InputMediaFile
 {
     private string $type = 'video';
-    private VideoFile $media;
-    private ?ThumbnailInputFile $thumb;
-    private ?MediaCaption $caption;
-    private ?ParseMode $parseMode;
-    private ?int $width;
-    private ?int $height;
-    private ?int $duration;
-    private ?bool $supportsStreaming;
 
     private function __construct(
-        VideoFile $media,
-        ?ThumbnailInputFile $thumb,
-        ?MediaCaption $caption,
-        ?ParseMode $parseMode,
-        ?int $width,
-        ?int $height,
-        ?int $duration,
-        ?bool $supportsStreaming
+        private VideoFile $media,
+        private ?ThumbnailInputFile $thumb,
+        private ?MediaCaption $caption,
+        private ?ParseMode $parseMode,
+        private ?int $width,
+        private ?int $height,
+        private ?int $duration,
+        private ?bool $supportsStreaming
     ) {
-        $this->media = $media;
-        $this->thumb = $thumb;
-        $this->caption = $caption;
-        $this->parseMode = $parseMode;
-        $this->width = $width;
-        $this->height = $height;
-        $this->duration = $duration;
-        $this->supportsStreaming = $supportsStreaming;
     }
 
     /**

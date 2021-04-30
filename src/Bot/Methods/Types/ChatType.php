@@ -5,11 +5,9 @@
  */
 final class ChatType implements ApiWriteType
 {
-    private string $type;
-
-    private function __construct(string $type)
-    {
-        $this->type = $type;
+    private function __construct(
+        private string $type
+    ) {
     }
 
     public function toApi(): string

@@ -14,15 +14,10 @@ use TelegramPro\Bot\Methods\Types\ApiReadType;
  */
 final class ForceReply implements ApiReadType
 {
-    private bool $forceReply;
-    private ?bool $selective;
-
     private function __construct(
-        bool $forceReply,
-        ?bool $selective
+        private bool $forceReply,
+        private ?bool $selective
     ) {
-        $this->forceReply = $forceReply;
-        $this->selective = $selective;
     }
 
     /**

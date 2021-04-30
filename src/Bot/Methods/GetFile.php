@@ -11,12 +11,9 @@ use TelegramPro\Bot\Methods\Requests\JsonRequest;
  */
 final class GetFile implements Method
 {
-    private FileId $fileId;
-
     private function __construct(
-        FileId $fileId
+        private FileId $fileId
     ) {
-        $this->fileId = $fileId;
     }
 
     function request(): Request

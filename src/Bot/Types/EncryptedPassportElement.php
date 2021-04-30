@@ -8,39 +8,18 @@ use TelegramPro\Bot\Methods\Types\EncryptedPassportElementType;
  */
 final class EncryptedPassportElement implements ApiReadType
 {
-    private EncryptedPassportElementType $type;
-    private ?string $data;
-    private ?string $phoneNumber;
-    private ?string $email;
-    private ArrayOfPassportFiles $files;
-    private ?PassportFile $frontSide;
-    private ?PassportFile $reverseSide;
-    private ?PassportFile $selfie;
-    private ArrayOfPassportFiles $translation;
-    private string $hash;
-
     private function __construct(
-        EncryptedPassportElementType $type,
-        ?string $data,
-        ?string $phoneNumber,
-        ?string $email,
-        ArrayOfPassportFiles $files,
-        ?PassportFile $frontSide,
-        ?PassportFile $reverseSide,
-        ?PassportFile $selfie,
-        ArrayOfPassportFiles $translation,
-        string $hash
+        private EncryptedPassportElementType $type,
+        private ?string $data,
+        private ?string $phoneNumber,
+        private ?string $email,
+        private ArrayOfPassportFiles $files,
+        private ?PassportFile $frontSide,
+        private ?PassportFile $reverseSide,
+        private ?PassportFile $selfie,
+        private ArrayOfPassportFiles $translation,
+        private string $hash
     ) {
-        $this->type = $type;
-        $this->data = $data;
-        $this->phoneNumber = $phoneNumber;
-        $this->email = $email;
-        $this->files = $files;
-        $this->frontSide = $frontSide;
-        $this->reverseSide = $reverseSide;
-        $this->selfie = $selfie;
-        $this->translation = $translation;
-        $this->hash = $hash;
     }
 
     /**
@@ -63,7 +42,7 @@ final class EncryptedPassportElement implements ApiReadType
     }
 
     /**
-     * 	Element type. One of “personal_details”, “passport”, “driver_license”, “identity_card”, “internal_passport”, “address”, “utility_bill”, “bank_statement”, “rental_agreement”, “passport_registration”, “temporary_registration”, “phone_number”, “email”.
+     *    Element type. One of “personal_details”, “passport”, “driver_license”, “identity_card”, “internal_passport”, “address”, “utility_bill”, “bank_statement”, “rental_agreement”, “passport_registration”, “temporary_registration”, “phone_number”, “email”.
      */
     public function type(): EncryptedPassportElementType
     {

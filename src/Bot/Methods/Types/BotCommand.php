@@ -2,15 +2,10 @@
 
 final class BotCommand implements ApiWriteType, ApiReadType
 {
-    private string $command;
-    private string $description;
-
     private function __construct(
-        string $command,
-        string $description
+        private string $command,
+        private string $description
     ) {
-        $this->command = $command;
-        $this->description = $description;
     }
 
     function toApi()

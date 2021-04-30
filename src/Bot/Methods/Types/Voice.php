@@ -8,24 +8,13 @@ use TelegramPro\Bot\Types\FileUniqueId;
  */
 final class Voice implements ApiReadType
 {
-    private FileId $fileId;
-    private ?FileUniqueId $fileUniqueId;
-    private int $duration;
-    private ?string $mimeType;
-    private ?int $fileSize;
-
     private function __construct(
-        FileId $fileId,
-        ?FileUniqueId $fileUniqueId,
-        int $duration,
-        ?string $mimeType,
-        ?int $fileSize
+        private FileId $fileId,
+        private ?FileUniqueId $fileUniqueId,
+        private int $duration,
+        private ?string $mimeType,
+        private ?int $fileSize
     ) {
-        $this->fileId = $fileId;
-        $this->fileUniqueId = $fileUniqueId;
-        $this->duration = $duration;
-        $this->mimeType = $mimeType;
-        $this->fileSize = $fileSize;
     }
 
     /**

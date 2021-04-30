@@ -2,11 +2,9 @@
 
 abstract class WholeNumber
 {
-    private int $number;
-
-    private function __construct(int $number)
-    {
-        $this->number = $number;
+    private function __construct(
+        private int $number
+    ) {
     }
 
     public function toInteger(): int
@@ -33,7 +31,7 @@ abstract class WholeNumber
         if (($integer % 2) != 0) {
             throw new NonWholeNumberIsNotSupported($integer);
         }
-        
+
         return new static($integer);
     }
 }

@@ -8,18 +8,12 @@ use TelegramPro\Bot\Methods\Types\MethodError;
  */
 final class GetUserProfilePhotosResponse implements Response
 {
-    private bool $ok;
-    private ?UserProfilePhotos $userProfilePhotos;
-    private ?MethodError $error;
 
     public function __construct(
-        bool $ok,
-        ?UserProfilePhotos $userProfilePhotos,
-        ?MethodError $error
+        private bool $ok,
+        private ?UserProfilePhotos $userProfilePhotos,
+        private ?MethodError $error
     ) {
-        $this->ok = $ok;
-        $this->userProfilePhotos = $userProfilePhotos;
-        $this->error = $error;
     }
 
     public function ok(): bool

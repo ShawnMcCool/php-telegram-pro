@@ -2,4 +2,6 @@
 
 use TelegramPro\TelegramProException;
 
-final class CannotWriteToImmutableDictionaryUsingArrayAccess extends TelegramProException {}
+final class CannotWriteToImmutableDictionaryUsingArrayAccess extends TelegramProException
+{
+}

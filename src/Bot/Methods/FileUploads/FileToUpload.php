@@ -1,7 +1,5 @@
 <?php namespace TelegramPro\Bot\Methods\FileUploads;
 
-use function TelegramPro\optional;
-
 use CURLFile;
 
 /**
@@ -9,14 +7,12 @@ use CURLFile;
  */
 final class FileToUpload
 {
-    private string $formFieldName;
     private FilePath $filePath;
 
     private function __construct(
-        string $formFieldName,
+        private string $formFieldName,
         FilePath $file
     ) {
-        $this->formFieldName = $formFieldName;
         $this->filePath = $file;
     }
 

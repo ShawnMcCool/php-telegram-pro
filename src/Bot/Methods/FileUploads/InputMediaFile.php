@@ -1,7 +1,5 @@
 <?php namespace TelegramPro\Bot\Methods\FileUploads;
 
-use function TelegramPro\optional;
-
 /**
  * Interface InputMediaFile
  * @package TelegramPro\Methods\FileUploads

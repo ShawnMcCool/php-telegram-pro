@@ -9,15 +9,11 @@ use TelegramPro\Bot\Types\ArrayOfInlineKeyboardRows;
  */
 final class ReplyKeyboardRemove implements ApiWriteType, ReplyMarkup
 {
-    private bool $removeKeyboard;
-    private ?bool $selective;
 
     public function __construct(
-        bool $removeKeyboard,
-        ?bool $selective
+        private bool $removeKeyboard,
+        private ?bool $selective
     ) {
-        $this->removeKeyboard = $removeKeyboard;
-        $this->selective = $selective;
     }
 
     /**

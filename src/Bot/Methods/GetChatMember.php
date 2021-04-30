@@ -11,15 +11,10 @@ use TelegramPro\Bot\Methods\Requests\JsonRequest;
  */
 final class GetChatMember implements Method
 {
-    private ChatId $chatId;
-    private UserId $userId;
-
     private function __construct(
-        ChatId $chatId,
-        UserId $userId
+        private ChatId $chatId,
+        private UserId $userId
     ) {
-        $this->chatId = $chatId;
-        $this->userId = $userId;
     }
 
     function request(): Request

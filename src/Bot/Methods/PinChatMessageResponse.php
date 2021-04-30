@@ -7,18 +7,12 @@ use TelegramPro\Bot\Methods\Types\MethodError;
  */
 final class PinChatMessageResponse implements Response
 {
-    private bool $ok;
-    private bool $messageWasPinned;
-    private ?MethodError $error;
 
     public function __construct(
-        bool $ok,
-        bool $messageWasPinned,
-        ?MethodError $error
+        private bool $ok,
+        private bool $messageWasPinned,
+        private ?MethodError $error
     ) {
-        $this->ok = $ok;
-        $this->messageWasPinned = $messageWasPinned;
-        $this->error = $error;
     }
 
     public function ok(): bool

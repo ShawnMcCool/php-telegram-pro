@@ -1,18 +1,20 @@
 {
+  "ansible_python_interpreter": "auto_legacy_silent",
   "hostname": "php-telegram-pro",
   "dbuser": "root",
   "dbpasswd": "password",
   "databases": [],
   "sites": [],
   "php_configs": [],
-  "php_version": "7.4",
+  "boost_pam_limits": "yes",
+  "boosted_pam_limit": 40000,
   "install_redis": "no",
   "install_db": "no",
+  "install_nginx": "no",
   "install_php": "yes",
+  "php_version": "8.0",
   "install_javascript_build_system": "no",
-  "node_major_version": "10",
+  "node_major_version": "12",
   "enable_swap": "yes",
-  "swap_size_in_mb": "1024",
-  "install_smenu": "no",
-  "install_lazygit": "no"
+  "swap_size_in_mb": "1024"
 }

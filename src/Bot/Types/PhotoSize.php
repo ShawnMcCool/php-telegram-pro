@@ -7,24 +7,13 @@ use TelegramPro\Bot\Methods\Types\ApiReadType;
  */
 final class PhotoSize implements ApiReadType
 {
-    private FileId $fileId;
-    private FileUniqueId $fileUniqueId;
-    private int $width;
-    private int $height;
-    private ?int $fileSize;
-
     private function __construct(
-        FileId $fileId,
-        FileUniqueId $fileUniqueId,
-        int $width,
-        int $height,
-        ?int $fileSize
+        private FileId $fileId,
+        private FileUniqueId $fileUniqueId,
+        private int $width,
+        private int $height,
+        private ?int $fileSize
     ) {
-        $this->fileId = $fileId;
-        $this->fileUniqueId = $fileUniqueId;
-        $this->width = $width;
-        $this->height = $height;
-        $this->fileSize = $fileSize;
     }
 
     /**
@@ -33,7 +22,7 @@ final class PhotoSize implements ApiReadType
     public static function fromApi($thumb): ?static
     {
         if ( ! $thumb) return null;
-        
+
         return new static(
             FileId::fromApi($thumb->file_id),
             FileUniqueId::fromApi($thumb->file_unique_id),

@@ -15,15 +15,10 @@ use TelegramPro\Bot\Methods\Requests\JsonRequest;
  */
 final class SendChatAction implements Method
 {
-    private ChatId $chatId;
-    private ActionType $action;
-
     private function __construct(
-        ChatId $chatId,
-        ActionType $action
+        private ChatId $chatId,
+        private ActionType $action
     ) {
-        $this->chatId = $chatId;
-        $this->action = $action;
     }
 
     public function send(Telegram $telegramApi): SendChatActionResponse

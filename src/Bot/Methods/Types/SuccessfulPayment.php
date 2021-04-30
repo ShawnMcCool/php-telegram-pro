@@ -9,30 +9,15 @@ use TelegramPro\Bot\Types\ShippingOptionId;
  */
 final class SuccessfulPayment implements ApiReadType
 {
-    private Currency $currency;
-    private int $totalAmount;
-    private string $invoicePayload;
-    private ?ShippingOptionId $shippingOptionId;
-    private ?OrderInfo $orderInfo;
-    private string $telegramPaymentChargeId;
-    private string $providerPaymentChargeId;
-
     private function __construct(
-        Currency $currency,
-        int $totalAmount,
-        string $invoicePayload,
-        ?ShippingOptionId $shippingOptionId,
-        ?OrderInfo $orderInfo,
-        string $telegramPaymentChargeId,
-        string $providerPaymentChargeId
+        private Currency $currency,
+        private int $totalAmount,
+        private string $invoicePayload,
+        private ?ShippingOptionId $shippingOptionId,
+        private ?OrderInfo $orderInfo,
+        private string $telegramPaymentChargeId,
+        private string $providerPaymentChargeId
     ) {
-        $this->currency = $currency;
-        $this->totalAmount = $totalAmount;
-        $this->invoicePayload = $invoicePayload;
-        $this->shippingOptionId = $shippingOptionId;
-        $this->orderInfo = $orderInfo;
-        $this->telegramPaymentChargeId = $telegramPaymentChargeId;
-        $this->providerPaymentChargeId = $providerPaymentChargeId;
     }
 
     /**

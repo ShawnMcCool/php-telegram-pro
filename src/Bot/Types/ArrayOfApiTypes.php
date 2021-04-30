@@ -9,11 +9,9 @@ use TelegramPro\Collections\Collection;
 
 abstract class ArrayOfApiTypes implements Countable, IteratorAggregate, ArrayAccess
 {
-    protected Collection $items;
 
-    protected function __construct(Collection $items)
+    protected function __construct(protected Collection $items)
     {
-        $this->items = $items;
     }
 
     public function isEmpty(): bool

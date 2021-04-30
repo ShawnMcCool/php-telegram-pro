@@ -15,34 +15,18 @@ use function TelegramPro\optional;
 
 final class SendDocument implements Method
 {
-    private ChatId $chatId;
-    private DocumentFile $document;
-    private ?InputPhotoFile $thumb;
-    private ?MediaCaption $caption;
-    private ?ParseMode $parseMode;
-    private ?bool $disableNotification;
-    private ?MessageId $replyToMessageId;
-    private ?ReplyMarkup $replyMarkup;
 
     public function __construct(
-        ChatId $chatId,
-        DocumentFile $document,
-        ?InputPhotoFile $thumb,
-        ?MediaCaption $caption,
-        ?ParseMode $parseMode,
-        ?bool $disableNotification,
-        ?MessageId $replyToMessageId,
-        ?ReplyMarkup $replyMarkup
+        private ChatId $chatId,
+        private DocumentFile $document,
+        private ?InputPhotoFile $thumb,
+        private ?MediaCaption $caption,
+        private ?ParseMode $parseMode,
+        private ?bool $disableNotification,
+        private ?MessageId $replyToMessageId,
+        private ?ReplyMarkup $replyMarkup
 
     ) {
-        $this->chatId = $chatId;
-        $this->document = $document;
-        $this->thumb = $thumb;
-        $this->caption = $caption;
-        $this->parseMode = $parseMode;
-        $this->disableNotification = $disableNotification;
-        $this->replyToMessageId = $replyToMessageId;
-        $this->replyMarkup = $replyMarkup;
     }
 
     function request(): Request

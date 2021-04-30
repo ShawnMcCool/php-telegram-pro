@@ -13,33 +13,17 @@ use function TelegramPro\optional;
 
 final class SendVideoNote implements Method
 {
-    private ChatId $chatId;
-    private VideoNoteFile $videoNote;
-    private ?int $duration;
-    private ?int $length;
-    private ?InputPhotoFile $thumb;
-    private ?bool $disableNotification;
-    private ?MessageId $replyToMessageId;
-    private ?ReplyMarkup $replyMarkup;
 
     public function __construct(
-        ChatId $chatId,
-        VideoNoteFile $videoNote,
-        ?int $duration,
-        ?int $length,
-        ?InputPhotoFile $thumb,
-        ?bool $disableNotification,
-        ?MessageId $replyToMessageId,
-        ?ReplyMarkup $replyMarkup
+        private ChatId $chatId,
+        private VideoNoteFile $videoNote,
+        private ?int $duration,
+        private ?int $length,
+        private ?InputPhotoFile $thumb,
+        private ?bool $disableNotification,
+        private ?MessageId $replyToMessageId,
+        private ?ReplyMarkup $replyMarkup
     ) {
-        $this->chatId = $chatId;
-        $this->videoNote = $videoNote;
-        $this->duration = $duration;
-        $this->length = $length;
-        $this->thumb = $thumb;
-        $this->disableNotification = $disableNotification;
-        $this->replyToMessageId = $replyToMessageId;
-        $this->replyMarkup = $replyMarkup;
     }
 
     function request(): Request

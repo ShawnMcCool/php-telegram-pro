@@ -15,24 +15,13 @@ use function TelegramPro\optional;
  */
 final class EditMessageMedia implements Method
 {
-    private ?ChatId $chatId;
-    private ?MessageId $messageId;
-    private ?InlineMessageId $inlineMessageId;
-    private InputMediaFile $media;
-    private ?ReplyMarkup $replyMarkup;
-
     private function __construct(
-        ?ChatId $chatId,
-        ?MessageId $messageId,
-        ?InlineMessageId $inlineMessageId,
-        InputMediaFile $media,
-        ?ReplyMarkup $replyMarkup
+        private ?ChatId $chatId,
+        private ?MessageId $messageId,
+        private ?InlineMessageId $inlineMessageId,
+        private InputMediaFile $media,
+        private ?ReplyMarkup $replyMarkup
     ) {
-        $this->chatId = $chatId;
-        $this->messageId = $messageId;
-        $this->inlineMessageId = $inlineMessageId;
-        $this->media = $media;
-        $this->replyMarkup = $replyMarkup;
     }
 
     function request(): Request

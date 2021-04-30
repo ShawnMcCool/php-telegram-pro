@@ -9,21 +9,12 @@ use TelegramPro\Bot\Methods\Types\ApiReadType;
  */
 final class LoginUrl implements ApiReadType
 {
-    private Url $url;
-    private ?string $forwardText;
-    private ?string $botUsername;
-    private ?bool $requestWriteAccess;
-
     private function __construct(
-        Url $url,
-        ?string $forwardText,
-        ?string $botUsername,
-        ?bool $requestWriteAccess
+        private Url $url,
+        private ?string $forwardText,
+        private ?string $botUsername,
+        private ?bool $requestWriteAccess
     ) {
-        $this->url = $url;
-        $this->forwardText = $forwardText;
-        $this->botUsername = $botUsername;
-        $this->requestWriteAccess = $requestWriteAccess;
     }
 
     /**

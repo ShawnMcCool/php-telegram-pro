@@ -16,27 +16,15 @@ use function TelegramPro\optional;
  */
 final class EditMessageLiveLocation implements Method
 {
-    private Latitude $latitude;
-    private Longitude $longitude;
-    private ?ChatId $chatId;
-    private ?MessageId $messageId;
-    private ?InlineMessageId $inlineMessageId;
-    private ?ReplyMarkup $replyMarkup;
 
     public function __construct(
-        Latitude $latitude,
-        Longitude $longitude,
-        ?ChatId $chatId,
-        ?MessageId $messageId,
-        ?InlineMessageId $inlineMessageId,
-        ?ReplyMarkup $replyMarkup
+        private Latitude $latitude,
+        private Longitude $longitude,
+        private ?ChatId $chatId,
+        private ?MessageId $messageId,
+        private ?InlineMessageId $inlineMessageId,
+        private ?ReplyMarkup $replyMarkup
     ) {
-        $this->latitude = $latitude;
-        $this->longitude = $longitude;
-        $this->chatId = $chatId;
-        $this->messageId = $messageId;
-        $this->inlineMessageId = $inlineMessageId;
-        $this->replyMarkup = $replyMarkup;
     }
 
     function request(): Request

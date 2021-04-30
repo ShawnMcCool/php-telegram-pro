@@ -8,18 +8,12 @@ use TelegramPro\Bot\Methods\Types\MethodError;
  */
 final class SendMediaGroupResponse implements Response
 {
-    private bool $ok;
-    private ArrayOfMessages $sentMessages;
-    private ?MethodError $error;
 
     public function __construct(
-        bool $ok,
-        ArrayOfMessages $sentMessages,
-        ?MethodError $error
+        private bool $ok,
+        private ArrayOfMessages $sentMessages,
+        private ?MethodError $error
     ) {
-        $this->ok = $ok;
-        $this->error = $error;
-        $this->sentMessages = $sentMessages;
     }
 
     public function ok(): bool

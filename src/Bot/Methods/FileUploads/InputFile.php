@@ -1,11 +1,10 @@
 <?php namespace TelegramPro\Bot\Methods\FileUploads;
 
-use function TelegramPro\optional;
-
 use TelegramPro\Bot\Types\FileId;
 use TelegramPro\Bot\Methods\Types\Url;
 use TelegramPro\Bot\Methods\Types\UniqueId;
 use TelegramPro\Bot\Methods\Types\ApiWriteType;
+use function TelegramPro\optional;
 
 /**
  * This object represents the contents of a file to be uploaded. Must be posted using multipart/form-data in the usual way that files are uploaded via the browser.
@@ -34,19 +33,13 @@ use TelegramPro\Bot\Methods\Types\ApiWriteType;
  */
 class InputFile implements ApiWriteType
 {
-    private ?FileId $fileId;
-    private ?Url $url;
-    private ?FilePath $filePath;
     private UniqueId $id;
 
     public function __construct(
-        ?FileId $fileId,
-        ?Url $url,
-        ?FilePath $filePath
+        private ?FileId $fileId,
+        private ?Url $url,
+        private ?FilePath $filePath
     ) {
-        $this->fileId = $fileId;
-        $this->url = $url;
-        $this->filePath = $filePath;
         $this->id = UniqueId::new();
     }
 

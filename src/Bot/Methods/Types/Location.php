@@ -5,15 +5,11 @@
  */
 final class Location implements ApiReadType
 {
-    private float $longitude;
-    private float $latitude;
 
     public function __construct(
-        float $longitude,
-        float $latitude
+        private float $longitude,
+        private float $latitude
     ) {
-        $this->longitude = $longitude;
-        $this->latitude = $latitude;
     }
 
     /**

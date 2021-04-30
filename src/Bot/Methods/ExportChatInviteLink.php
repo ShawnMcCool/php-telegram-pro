@@ -10,11 +10,9 @@ use TelegramPro\Bot\Methods\Requests\JsonRequest;
  */
 final class ExportChatInviteLink implements Method
 {
-    private ChatId $chatId;
-
-    private function __construct(ChatId $chatId)
-    {
-        $this->chatId = $chatId;
+    private function __construct(
+        private ChatId $chatId
+    ) {
     }
 
     function request(): Request

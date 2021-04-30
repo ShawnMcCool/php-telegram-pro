@@ -1,7 +1,5 @@
 <?php namespace TelegramPro\Bot\Methods\FileUploads;
 
-use function TelegramPro\optional;
-
 use JsonSerializable;
 use TelegramPro\Bot\Types\FileId;
 use TelegramPro\Bot\Methods\Types\Url;
@@ -14,21 +12,13 @@ use TelegramPro\Bot\Methods\Types\MediaCaption;
 final class InputMediaDocument implements InputMediaFile, JsonSerializable
 {
     private string $type = 'document';
-    private DocumentFile $media;
-    private ?ThumbnailInputFile $thumb;
-    private ?MediaCaption $caption;
-    private ?ParseMode $parseMode;
 
     private function __construct(
-        DocumentFile $media,
-        ?ThumbnailInputFile $thumb,
-        ?MediaCaption $caption,
-        ?ParseMode $parseMode
+        private DocumentFile $media,
+        private ?ThumbnailInputFile $thumb,
+        private ?MediaCaption $caption,
+        private ?ParseMode $parseMode
     ) {
-        $this->media = $media;
-        $this->thumb = $thumb;
-        $this->caption = $caption;
-        $this->parseMode = $parseMode;
     }
 
     /**

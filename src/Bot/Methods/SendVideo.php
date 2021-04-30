@@ -15,45 +15,21 @@ use function TelegramPro\optional;
 
 final class SendVideo implements Method
 {
-    private ChatId $chatId;
-    private VideoFile $video;
-    private ?MediaCaption $caption;
-    private ?ParseMode $parseMode;
-    private ?int $duration;
-    private ?int $width;
-    private ?int $height;
-    private ?InputPhotoFile $thumb;
-    private ?bool $supportsStreaming;
-    private ?bool $disableNotification;
-    private ?MessageId $replyToMessageId;
-    private ?ReplyMarkup $replyMarkup;
 
     public function __construct(
-        ChatId $chatId,
-        VideoFile $video,
-        ?MediaCaption $caption,
-        ?ParseMode $parseMode,
-        ?int $duration,
-        ?int $width,
-        ?int $height,
-        ?InputPhotoFile $thumb,
-        ?bool $supportsStreaming,
-        ?bool $disableNotification,
-        ?MessageId $replyToMessageId,
-        ?ReplyMarkup $replyMarkup
+        private ChatId $chatId,
+        private VideoFile $video,
+        private ?MediaCaption $caption,
+        private ?ParseMode $parseMode,
+        private ?int $duration,
+        private ?int $width,
+        private ?int $height,
+        private ?InputPhotoFile $thumb,
+        private ?bool $supportsStreaming,
+        private ?bool $disableNotification,
+        private ?MessageId $replyToMessageId,
+        private ?ReplyMarkup $replyMarkup
     ) {
-        $this->chatId = $chatId;
-        $this->video = $video;
-        $this->caption = $caption;
-        $this->parseMode = $parseMode;
-        $this->duration = $duration;
-        $this->width = $width;
-        $this->height = $height;
-        $this->thumb = $thumb;
-        $this->supportsStreaming = $supportsStreaming;
-        $this->disableNotification = $disableNotification;
-        $this->replyToMessageId = $replyToMessageId;
-        $this->replyMarkup = $replyMarkup;
     }
 
     function request(): Request

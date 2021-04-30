@@ -2,11 +2,9 @@
 
 final class Url implements ApiReadType, ApiWriteType
 {
-    private string $url;
-
-    private function __construct(string $url)
-    {
-        $this->url = $url;
+    private function __construct(
+        private string $url
+    ) {
     }
 
     public function toString(): string

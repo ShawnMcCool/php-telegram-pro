@@ -7,66 +7,27 @@ use TelegramPro\Bot\Types\ChatMemberStatus;
  */
 final class ChatMember implements ApiReadType
 {
-    private User $user;
-    private ChatMemberStatus $status;
-    private ?ChatAdministratorCustomTitle $customTitle;
-    private ?RestrictUntilDate $untilDate;
-    private ?bool $canBeEdited;
-    private ?bool $canPostMessages;
-    private ?bool $canEditMessages;
-    private ?bool $canDeleteMessages;
-    private ?bool $canRestrictMessages;
-    private ?bool $canPromoteMembers;
-    private ?bool $canChangeInfo;
-    private ?bool $canInviteUsers;
-    private ?bool $canPinMessages;
-    private ?bool $isMember;
-    private ?bool $canSendMessages;
-    private ?bool $canSendMediaMessages;
-    private ?bool $canSendPolls;
-    private ?bool $canSendOtherMessages;
-    private ?bool $canAddWebPagePreviews;
-
     private function __construct(
-        User $user,
-        ChatMemberStatus $status,
-        ?ChatAdministratorCustomTitle $customTitle,
-        ?RestrictUntilDate $untilDate,
-        ?bool $canBeEdited,
-        ?bool $canPostMessages,
-        ?bool $canEditMessages,
-        ?bool $canDeleteMessages,
-        ?bool $canRestrictMessages,
-        ?bool $canPromoteMembers,
-        ?bool $canChangeInfo,
-        ?bool $canInviteUsers,
-        ?bool $canPinMessages,
-        ?bool $isMember,
-        ?bool $canSendMessages,
-        ?bool $canSendMediaMessages,
-        ?bool $canSendPolls,
-        ?bool $canSendOtherMessages,
-        ?bool $canAddWebPagePreviews
+        private User $user,
+        private ChatMemberStatus $status,
+        private ?ChatAdministratorCustomTitle $customTitle,
+        private ?RestrictUntilDate $untilDate,
+        private ?bool $canBeEdited,
+        private ?bool $canPostMessages,
+        private ?bool $canEditMessages,
+        private ?bool $canDeleteMessages,
+        private ?bool $canRestrictMessages,
+        private ?bool $canPromoteMembers,
+        private ?bool $canChangeInfo,
+        private ?bool $canInviteUsers,
+        private ?bool $canPinMessages,
+        private ?bool $isMember,
+        private ?bool $canSendMessages,
+        private ?bool $canSendMediaMessages,
+        private ?bool $canSendPolls,
+        private ?bool $canSendOtherMessages,
+        private ?bool $canAddWebPagePreviews
     ) {
-        $this->user = $user;
-        $this->status = $status;
-        $this->customTitle = $customTitle;
-        $this->untilDate = $untilDate;
-        $this->canBeEdited = $canBeEdited;
-        $this->canPostMessages = $canPostMessages;
-        $this->canEditMessages = $canEditMessages;
-        $this->canDeleteMessages = $canDeleteMessages;
-        $this->canRestrictMessages = $canRestrictMessages;
-        $this->canPromoteMembers = $canPromoteMembers;
-        $this->canChangeInfo = $canChangeInfo;
-        $this->canInviteUsers = $canInviteUsers;
-        $this->canPinMessages = $canPinMessages;
-        $this->isMember = $isMember;
-        $this->canSendMessages = $canSendMessages;
-        $this->canSendMediaMessages = $canSendMediaMessages;
-        $this->canSendPolls = $canSendPolls;
-        $this->canSendOtherMessages = $canSendOtherMessages;
-        $this->canAddWebPagePreviews = $canAddWebPagePreviews;
     }
 
     /**

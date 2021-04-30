@@ -1,17 +1,13 @@
 <?php namespace TelegramPro\Bot\Methods\FileUploads;
 
-use function TelegramPro\optional;
-
 /**
  * Path to a file available locally
  */
 final class FilePath
 {
-    private string $filePath;
-
-    private function __construct(string $filePath)
-    {
-        $this->filePath = $filePath;
+    private function __construct(
+        private string $filePath
+    ) {
     }
 
     public static function fromString(string $filePath): FilePath

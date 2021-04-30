@@ -8,18 +8,12 @@ use TelegramPro\Bot\Methods\Types\ArrayOfChatMembers;
  */
 final class GetChatAdministratorsResponse implements Response
 {
-    private bool $ok;
-    private ?ArrayOfChatMembers $chatMembers;
-    private ?MethodError $error;
 
     public function __construct(
-        bool $ok,
-        ?ArrayOfChatMembers $chatMembers,
-        ?MethodError $error
+        private bool $ok,
+        private ?ArrayOfChatMembers $chatMembers,
+        private ?MethodError $error
     ) {
-        $this->ok = $ok;
-        $this->chatMembers = $chatMembers;
-        $this->error = $error;
     }
 
     public function ok(): bool

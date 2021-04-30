@@ -10,26 +10,15 @@ use TelegramPro\Bot\Methods\Types\ApiReadType;
  */
 final class InlineQuery implements ApiReadType
 {
-    private InlineQueryId $id;
-    private User $from;
-    private ?Location $location;
-    private string $query;
-    private string $offset;
-
     private function __construct(
-        InlineQueryId $id,
-        User $from,
-        ?Location $location,
-        string $query,
-        string $offset
+        private InlineQueryId $id,
+        private User $from,
+        private ?Location $location,
+        private string $query,
+        private string $offset
     ) {
-        $this->id = $id;
-        $this->from = $from;
-        $this->location = $location;
-        $this->query = $query;
-        $this->offset = $offset;
     }
-    
+
     /**
      * @internal Construct with data received from the Telegram bot api.
      */

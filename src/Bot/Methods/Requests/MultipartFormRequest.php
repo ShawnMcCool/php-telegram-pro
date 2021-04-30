@@ -6,13 +6,12 @@ use TelegramPro\Bot\Methods\FileUploads\FilesToUpload;
 
 final class MultipartFormRequest implements Request
 {
-    private string $method;
     private array $parameters = [];
     private FilesToUpload $filesToUpload;
 
-    private function __construct(string $method)
-    {
-        $this->method = $method;
+    private function __construct(
+        private string $method
+    ) {
         $this->filesToUpload = FilesToUpload::empty();
     }
 

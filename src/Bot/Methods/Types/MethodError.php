@@ -2,15 +2,11 @@
 
 final class MethodError
 {
-    private string $code;
-    private string $description;
 
     public function __construct(
-        string $code,
-        string $description
+        private string $code,
+        private string $description
     ) {
-        $this->code = $code;
-        $this->description = $description;
     }
 
     public function code(): string

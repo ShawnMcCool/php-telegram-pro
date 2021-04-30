@@ -15,33 +15,17 @@ use function TelegramPro\optional;
  */
 final class SendContact implements Method
 {
-    private ChatId $chatId;
-    private PhoneNumber $phoneNumber;
-    private string $firstName;
-    private ?string $lastName;
-    private ?VCard $vcard;
-    private ?bool $disableNotification;
-    private ?MessageId $replyToMessageId;
-    private ?ReplyMarkup $replyMarkup;
 
     public function __construct(
-        ChatId $chatId,
-        PhoneNumber $phoneNumber,
-        string $firstName,
-        ?string $lastName,
-        ?VCard $vcard,
-        ?bool $disableNotification,
-        ?MessageId $replyToMessageId,
-        ?ReplyMarkup $replyMarkup
+        private ChatId $chatId,
+        private PhoneNumber $phoneNumber,
+        private string $firstName,
+        private ?string $lastName,
+        private ?VCard $vcard,
+        private ?bool $disableNotification,
+        private ?MessageId $replyToMessageId,
+        private ?ReplyMarkup $replyMarkup
     ) {
-        $this->chatId = $chatId;
-        $this->phoneNumber = $phoneNumber;
-        $this->firstName = $firstName;
-        $this->lastName = $lastName;
-        $this->vcard = $vcard;
-        $this->disableNotification = $disableNotification;
-        $this->replyToMessageId = $replyToMessageId;
-        $this->replyMarkup = $replyMarkup;
     }
 
     function request(): Request

@@ -10,51 +10,22 @@ use TelegramPro\Bot\Types\ChatPermissions;
  */
 final class Chat implements ApiReadType
 {
-    private ChatId $chatId;
-    private ChatType $type;
-    private ?string $title;
-    private ?string $username;
-    private ?string $firstName;
-    private ?string $lastName;
-    private ?ChatPhoto $photo;
-    private ?string $description;
-    private ?Url $inviteLink;
-    private ?Message $pinnedMessage;
-    private ?ChatPermissions $permissions;
-    private ?int $slowModeDelay;
-    private ?string $stickerSetName;
-    private ?bool $canSetStickerSet;
-
     private function __construct(
-        ChatId $chatId,
-        ChatType $type,
-        ?string $title,
-        ?string $username,
-        ?string $firstName,
-        ?string $lastName,
-        ?ChatPhoto $photo,
-        ?string $description,
-        ?Url $inviteLink,
-        ?Message $pinnedMessage,
-        ?ChatPermissions $permissions,
-        ?int $slowModeDelay,
-        ?string $stickerSetName,
-        ?bool $canSetStickerSet
+        private ChatId $chatId,
+        private ChatType $type,
+        private ?string $title,
+        private ?string $username,
+        private ?string $firstName,
+        private ?string $lastName,
+        private ?ChatPhoto $photo,
+        private ?string $description,
+        private ?Url $inviteLink,
+        private ?Message $pinnedMessage,
+        private ?ChatPermissions $permissions,
+        private ?int $slowModeDelay,
+        private ?string $stickerSetName,
+        private ?bool $canSetStickerSet
     ) {
-        $this->chatId = $chatId;
-        $this->type = $type;
-        $this->title = $title;
-        $this->username = $username;
-        $this->firstName = $firstName;
-        $this->lastName = $lastName;
-        $this->photo = $photo;
-        $this->description = $description;
-        $this->inviteLink = $inviteLink;
-        $this->pinnedMessage = $pinnedMessage;
-        $this->permissions = $permissions;
-        $this->slowModeDelay = $slowModeDelay;
-        $this->stickerSetName = $stickerSetName;
-        $this->canSetStickerSet = $canSetStickerSet;
     }
 
     /**

@@ -7,21 +7,12 @@ use TelegramPro\Bot\Methods\Types\ApiReadType;
  */
 final class MaskPosition implements ApiReadType
 {
-    private string $point;
-    private float $xShift;
-    private float $yShift;
-    private float $scale;
-
     private function __construct(
-        string $point,
-        float $xShift,
-        float $yShift,
-        float $scale
+        private string $point,
+        private float $xShift,
+        private float $yShift,
+        private float $scale
     ) {
-        $this->point = $point;
-        $this->xShift = $xShift;
-        $this->yShift = $yShift;
-        $this->scale = $scale;
     }
 
     /**

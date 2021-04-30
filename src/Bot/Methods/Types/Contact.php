@@ -7,24 +7,13 @@ use TelegramPro\Bot\Types\UserId;
  */
 final class Contact implements ApiReadType
 {
-    private string $phoneNumber;
-    private string $firstName;
-    private ?string $lastName;
-    private ?UserId $userId;
-    private ?string $vcard;
-
     private function __construct(
-        string $phoneNumber,
-        string $firstName,
-        ?string $lastName,
-        ?UserId $userId,
-        ?string $vcard
+        private string $phoneNumber,
+        private string $firstName,
+        private ?string $lastName,
+        private ?UserId $userId,
+        private ?string $vcard
     ) {
-        $this->phoneNumber = $phoneNumber;
-        $this->firstName = $firstName;
-        $this->lastName = $lastName;
-        $this->userId = $userId;
-        $this->vcard = $vcard;
     }
 
     /**

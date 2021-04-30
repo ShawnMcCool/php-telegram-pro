@@ -14,21 +14,12 @@ use function TelegramPro\optional;
  */
 final class RestrictChatMember implements Method
 {
-    private ChatId $chatId;
-    private UserId $userId;
-    private ChatPermissions $permissions;
-    private RestrictUntilDate $untilDate;
-
     private function __construct(
-        ChatId $chatId,
-        UserId $userId,
-        ChatPermissions $permissions,
-        RestrictUntilDate $untilDate
+        private ChatId $chatId,
+        private UserId $userId,
+        private ChatPermissions $permissions,
+        private RestrictUntilDate $untilDate
     ) {
-        $this->chatId = $chatId;
-        $this->userId = $userId;
-        $this->permissions = $permissions;
-        $this->untilDate = $untilDate;
     }
 
     function request(): Request

@@ -14,21 +14,13 @@ use function TelegramPro\optional;
  */
 final class StopMessageLiveLocation implements Method
 {
-    private ?ChatId $chatId;
-    private ?MessageId $messageId;
-    private ?InlineMessageId $inlineMessageId;
-    private ?ReplyMarkup $replyMarkup;
 
     public function __construct(
-        ?ChatId $chatId,
-        ?MessageId $messageId,
-        ?InlineMessageId $inlineMessageId,
-        ?ReplyMarkup $replyMarkup
+        private ?ChatId $chatId,
+        private ?MessageId $messageId,
+        private ?InlineMessageId $inlineMessageId,
+        private ?ReplyMarkup $replyMarkup
     ) {
-        $this->chatId = $chatId;
-        $this->messageId = $messageId;
-        $this->inlineMessageId = $inlineMessageId;
-        $this->replyMarkup = $replyMarkup;
     }
 
     function request(): Request

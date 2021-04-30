@@ -2,11 +2,9 @@
 
 final class ActionType implements ApiWriteType
 {
-    private string $actionType;
-
-    private function __construct(string $actionType)
-    {
-        $this->actionType = $actionType;
+    private function __construct(
+        private string $actionType
+    ) {
     }
 
     function toApi()

@@ -7,18 +7,12 @@ use TelegramPro\Bot\Methods\Types\MethodError;
  */
 final class SetMyCommandsResponse implements Response
 {
-    private bool $ok;
-    private bool $commandsWereSet;
-    private ?MethodError $error;
 
     public function __construct(
-        bool $ok,
-        bool $commandsWereSet,
-        ?MethodError $error
+        private bool $ok,
+        private bool $commandsWereSet,
+        private ?MethodError $error
     ) {
-        $this->ok = $ok;
-        $this->commandsWereSet = $commandsWereSet;
-        $this->error = $error;
     }
 
     public function ok(): bool

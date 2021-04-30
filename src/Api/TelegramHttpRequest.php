@@ -8,14 +8,12 @@ use TelegramPro\Bot\Methods\Requests\Request;
  */
 final class TelegramHttpRequest implements Telegram
 {
-    private string $botToken;
-
-    private function __construct(string $botToken)
-    {
-        $this->botToken = $botToken;
+    private function __construct(
+        private string $botToken
+    ) {
     }
 
-    public function send(\TelegramPro\Bot\Methods\Requests\Request $request)
+    public function send(Request $request)
     {
         $parameters = $request->toCurlParameters($this->botToken);
 

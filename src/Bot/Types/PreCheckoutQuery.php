@@ -8,30 +8,15 @@ use TelegramPro\Bot\Methods\Types\ApiReadType;
  */
 final class PreCheckoutQuery implements ApiReadType
 {
-    private PreCheckoutQueryId $id;
-    private User $from;
-    private Currency $currency;
-    private int $totalAmount;
-    private string $invoicePayload;
-    private ?ShippingOptionId $shippingOptionId;
-    private ?OrderInfo $orderInfo;
-
     private function __construct(
-        PreCheckoutQueryId $id,
-        User $from,
-        Currency $currency,
-        int $totalAmount,
-        string $invoicePayload,
-        ?ShippingOptionId $shippingOptionId,
-        ?OrderInfo $orderInfo
+        private PreCheckoutQueryId $id,
+        private User $from,
+        private Currency $currency,
+        private int $totalAmount,
+        private string $invoicePayload,
+        private ?ShippingOptionId $shippingOptionId,
+        private ?OrderInfo $orderInfo
     ) {
-        $this->id = $id;
-        $this->from = $from;
-        $this->currency = $currency;
-        $this->totalAmount = $totalAmount;
-        $this->invoicePayload = $invoicePayload;
-        $this->shippingOptionId = $shippingOptionId;
-        $this->orderInfo = $orderInfo;
     }
 
     /**
