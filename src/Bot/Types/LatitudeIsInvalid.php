@@ -2,6 +2,6 @@
 
 use TelegramPro\TelegramProException;
 
-final class LatitudeIsInvalid extends TelegramProException
+final class LatitudeIsInvalid extends \InvalidArgumentException implements TelegramProException
 {
 }

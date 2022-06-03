@@ -2,7 +2,7 @@
 
 use TelegramPro\TelegramProException;
 
-final class CanNotValidateUrl extends TelegramProException
+final class CanNotValidateUrl extends \InvalidArgumentException implements TelegramProException
 {
 
 }

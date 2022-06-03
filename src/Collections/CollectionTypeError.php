@@ -2,7 +2,7 @@
 
 use TelegramPro\TelegramProException;
 
-final class CollectionTypeError extends TelegramProException
+final class CollectionTypeError extends \InvalidArgumentException implements TelegramProException
 {
     public static function cannotMergeDifferentTypes($one, $two)
     {

@@ -2,6 +2,6 @@
 
 use TelegramPro\TelegramProException;
 
-final class NonWholeNumberIsNotSupported extends TelegramProException
+final class NonWholeNumberIsNotSupported extends \InvalidArgumentException implements TelegramProException
 {
 }

@@ -1,6 +1,6 @@
 <?php namespace TelegramPro;
 
-class TelegramProException extends \Exception
+interface TelegramProException
 {
 
 }

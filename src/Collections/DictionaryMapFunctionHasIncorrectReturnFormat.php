@@ -2,6 +2,6 @@
 
 use TelegramPro\TelegramProException;
 
-final class DictionaryMapFunctionHasIncorrectReturnFormat extends TelegramProException
+final class DictionaryMapFunctionHasIncorrectReturnFormat extends \InvalidArgumentException implements TelegramProException
 {
 }

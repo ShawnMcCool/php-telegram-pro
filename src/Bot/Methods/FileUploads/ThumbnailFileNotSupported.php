@@ -2,7 +2,7 @@
 
 use TelegramPro\TelegramProException;
 
-final class ThumbnailFileNotSupported extends TelegramProException
+final class ThumbnailFileNotSupported extends \InvalidArgumentException implements TelegramProException
 {
     public static function fileSizeIsGreaterThan200Kilobytes(string $filePath): static
     {

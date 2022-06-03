@@ -2,6 +2,6 @@
 
 use TelegramPro\TelegramProException;
 
-final class PollTypeNotSupported extends TelegramProException
+final class PollTypeNotSupported extends \InvalidArgumentException implements TelegramProException
 {
 }

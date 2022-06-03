@@ -2,6 +2,6 @@
 
 use TelegramPro\TelegramProException;
 
-final class CanNotFindLanguageUsingCode extends TelegramProException
+final class CanNotFindLanguageUsingCode extends \InvalidArgumentException implements TelegramProException
 {
 }

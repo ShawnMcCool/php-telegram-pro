@@ -2,7 +2,7 @@
 
 use TelegramPro\TelegramProException;
 
-final class DocumentFileNotSupported extends TelegramProException
+final class DocumentFileNotSupported extends \InvalidArgumentException implements TelegramProException
 {
     public static function fileSizeIsGreaterThan50Megabyte(string $filePath)
     {

@@ -2,6 +2,6 @@
 
 use TelegramPro\TelegramProException;
 
-final class ChatTitleLengthIsInvalid extends TelegramProException
+final class ChatTitleLengthIsInvalid extends \InvalidArgumentException implements TelegramProException
 {
 }

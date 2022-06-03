@@ -38,7 +38,7 @@ class TelegramTestCase extends TestCase
             '/vagrant/tests/Media/Audio/audio.m4a',
             'https://file-examples.com/wp-content/uploads/2017/11/file_example_MP3_700KB.mp3',
             '/vagrant/tests/Media/Documents/the-comedy-of-errors_william-shakespeare.txt',
-            '/vagrant/tests/Media/Videos/big-buck-bunny-trailer.m4v',
+            '/vagrant/tests/Media/Videos/big-buck-bunny-trailer.mp4',
             'https://www.sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4',
             '/vagrant/tests/Media/Animations/spinning-woman.gif',
             'https://www.sample-videos.com/gif/3.gif',

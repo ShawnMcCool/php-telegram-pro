@@ -2,6 +2,6 @@
 
 use TelegramPro\TelegramProException;
 
-final class PollOpenPeriodIsNotValid extends TelegramProException
+final class PollOpenPeriodIsNotValid extends \InvalidArgumentException implements TelegramProException
 {
 }

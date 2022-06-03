@@ -2,7 +2,7 @@
 
 use TelegramPro\TelegramProException;
 
-final class CanNotGroupMediaFiles extends TelegramProException
+final class CanNotGroupMediaFiles extends \InvalidArgumentException implements TelegramProException
 {
     public static function mediaFileNotSupported(string $class): static
     {

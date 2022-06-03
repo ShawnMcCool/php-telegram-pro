@@ -13,7 +13,7 @@ class ExportChatInviteLinkTest extends TelegramTestCase
         )->send($this->telegram);
 
         $this->isOk($response);
-        self::assertStringStartsWith('https://t.me/joinchat/', $response->newInviteLink());
+        self::assertStringStartsWith('https://t.me/', $response->newInviteLink());
     }
 
     function testCanParseError()

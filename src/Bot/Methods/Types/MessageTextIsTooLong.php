@@ -2,6 +2,6 @@
 
 use TelegramPro\TelegramProException;
 
-final class MessageTextIsTooLong extends TelegramProException
+final class MessageTextIsTooLong extends \InvalidArgumentException implements TelegramProException
 {
 }

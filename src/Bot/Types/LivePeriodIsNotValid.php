@@ -2,6 +2,6 @@
 
 use TelegramPro\TelegramProException;
 
-final class LivePeriodIsNotValid extends TelegramProException
+final class LivePeriodIsNotValid extends \InvalidArgumentException implements TelegramProException
 {
 }

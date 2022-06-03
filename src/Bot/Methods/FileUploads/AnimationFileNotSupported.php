@@ -2,7 +2,7 @@
 
 use TelegramPro\TelegramProException;
 
-final class AnimationFileNotSupported extends TelegramProException
+final class AnimationFileNotSupported extends \InvalidArgumentException implements TelegramProException
 {
     public static function formatNotSupported(string $filePath, string $mimeType): static
     {

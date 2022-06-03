@@ -2,7 +2,7 @@
 
 use TelegramPro\TelegramProException;
 
-final class CanNotOpenFile extends TelegramProException
+final class CanNotOpenFile extends \InvalidArgumentException implements TelegramProException
 {
     public static function fileDoesNotExist($filePath): CanNotOpenFile
     {

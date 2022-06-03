@@ -6,7 +6,7 @@ Vagrant.configure("2") do |config|
     config.vm.box = "geerlingguy/ubuntu1804"
 
     config.vm.box_version = "1.0.0"
-    config.vm.network "private_network", ip: "10.10.10.10"
+    config.vm.network "private_network", ip: "192.168.56.2"
     config.vm.box_check_update = false
 
     # default to false because security isn't important

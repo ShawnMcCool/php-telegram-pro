@@ -2,7 +2,7 @@
 
 use TelegramPro\TelegramProException;
 
-final class VideoFileNotSupported extends TelegramProException
+final class VideoFileNotSupported extends \InvalidArgumentException implements TelegramProException
 {
     public static function formatNotSupported(string $filePath, string $mimeType): static
     {

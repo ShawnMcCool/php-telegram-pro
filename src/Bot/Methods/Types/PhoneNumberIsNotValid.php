@@ -2,6 +2,6 @@
 
 use TelegramPro\TelegramProException;
 
-final class PhoneNumberIsNotValid extends TelegramProException
+final class PhoneNumberIsNotValid extends \InvalidArgumentException implements TelegramProException
 {
 }

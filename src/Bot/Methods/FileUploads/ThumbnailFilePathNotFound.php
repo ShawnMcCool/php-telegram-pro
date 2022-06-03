@@ -2,6 +2,6 @@
 
 use TelegramPro\TelegramProException;
 
-final class ThumbnailFilePathNotFound extends TelegramProException
+final class ThumbnailFilePathNotFound extends \InvalidArgumentException implements TelegramProException
 {
 }

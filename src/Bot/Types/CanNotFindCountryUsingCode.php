@@ -2,6 +2,6 @@
 
 use TelegramPro\TelegramProException;
 
-final class CanNotFindCountryUsingCode extends TelegramProException
+final class CanNotFindCountryUsingCode extends \InvalidArgumentException implements TelegramProException
 {
 }

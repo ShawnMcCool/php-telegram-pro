@@ -2,6 +2,6 @@
 
 use TelegramPro\TelegramProException;
 
-final class PollOptionTextIsTooLong extends TelegramProException
+final class PollOptionTextIsTooLong extends \InvalidArgumentException implements TelegramProException
 {
 }

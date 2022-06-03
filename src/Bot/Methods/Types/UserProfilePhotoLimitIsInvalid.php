@@ -2,6 +2,6 @@
 
 use TelegramPro\TelegramProException;
 
-final class UserProfilePhotoLimitIsInvalid extends TelegramProException
+final class UserProfilePhotoLimitIsInvalid extends \InvalidArgumentException implements TelegramProException
 {
 }

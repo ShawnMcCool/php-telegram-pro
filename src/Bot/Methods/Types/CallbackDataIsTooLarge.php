@@ -2,6 +2,6 @@
 
 use TelegramPro\TelegramProException;
 
-final class CallbackDataIsTooLarge extends TelegramProException
+final class CallbackDataIsTooLarge extends \InvalidArgumentException implements TelegramProException
 {
 }

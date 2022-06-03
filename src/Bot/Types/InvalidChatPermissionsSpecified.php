@@ -2,6 +2,6 @@
 
 use TelegramPro\TelegramProException;
 
-final class InvalidChatPermissionsSpecified extends TelegramProException
+final class InvalidChatPermissionsSpecified extends \InvalidArgumentException implements TelegramProException
 {
 }

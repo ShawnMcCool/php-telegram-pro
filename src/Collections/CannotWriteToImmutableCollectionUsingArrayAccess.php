@@ -2,6 +2,6 @@
 
 use TelegramPro\TelegramProException;
 
-final class CannotWriteToImmutableCollectionUsingArrayAccess extends TelegramProException
+final class CannotWriteToImmutableCollectionUsingArrayAccess extends \InvalidArgumentException implements TelegramProException
 {
 }

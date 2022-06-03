@@ -2,7 +2,7 @@
 
 use TelegramPro\TelegramProException;
 
-final class BotCommandIsInvalid extends TelegramProException
+final class BotCommandIsInvalid extends \InvalidArgumentException implements TelegramProException
 {
     public static function commandIsAnInvalidLength(string $command)
     {
