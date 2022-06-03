@@ -1,43 +1,31 @@
-# Paradigm
+# PHP Telegram Pro
 
-Methods = Send  
-Responses = Receive
+This is a decently written PHP Telegram client library. It's not 100% complete, but it's complete enough for most use-cases.
 
-# To-do
+[Look at Real Usage Examples](https://github.com/ShawnMcCool/php-telegram-pro/tree/master/tests/Bot/Methods)
 
-- Make sure that all text types that support ParseMode filter accordingly.
-- Create auto-escaping etc for https://core.telegram.org/bots/api#markdownv2-style
-- Implement Update methods https://core.telegram.org/bots/api#getupdates
-- Deal with the fact that the edit methods have atypical returns
-- Outline the models, files, methods, types, etc
-- Methods/ and Types/ should be hierarchical equals
-- Make sure all Request types (json, multipart, etc) are correct.
-- Give response interface a unifying result() in addition to domain-specific result parameters
-- Give response interfaces a unifying resultJson() 
-- Implement response parameters
-    - https://core.telegram.org/bots/api#responseparameters
-- Rate limiting is a naive spike.  
-- Security certificate
-- Add Update class 'resolved' functions to the UpdateTest
-- Make sure the massive Message class has fields named in accordance to modern standards
-- Update UpdateTest
-- Verify that all test function names are correct
-- Expand the capabilities of all collections 
-- Make sure that set chat sticker group works
-- Document .bot-test-config
-- ArrayOf Types should have correct ApiWriteType and ApiReadType bits
-- Unify ArrayOf Collection methods
-- All response 'result' references in fromApi() should use null coalescence 
-- Method test names are often incorrect
-- Tests should check result type and function as partial documentation for result types
-- Carefully look through each folder to make sure files weren't created in the wrong place
-- Provide separate methods for split requirements. (edit message text, chat+message vs inline)
-- Consider how to test seemingly superfluous fields like parsemode and disable notifications 
-- Review @todos
-- When caption is returned, it's a string.. this was due to cqrs concerns, we came up with apireadtype / writetype for this reason and it should be replaced 
-- Return types should expose all values
-- The whole InputFile, InputMediaFile thing was designed early on, sort that out
-- See how EditMessageMedia uses Media File as json
-- Add a request log TelegramApi decorator
-- ReplyMarkup stuff is also old, sort it out
-- Ensure no global artifacts
+Requires php8.1-dom and php8.1-curl.
+
+## Virtual Machine
+
+Install vagrant and virtualbox, then `vagrant up`.  
+
+## Tests
+
+To run the tests, run `composer install`, create a `.bot-test-config` in the main repository directory, and fill in the necessary details:
+
+```json
+{
+    "token": "numbers:otherstuff",
+    "groupChatIds": [-12312312331, -234234234],
+    "supergroupChatIds": [-1567657657567657],
+    "wrongChatId": -456456456
+}
+```
+
+- token is your bot token
+- groupChatIds is an array of group chats that your bot is in, use one or more
+- supergroupChatIds is an array of supergroup chats that your bot is in, use one or more
+- wrongChatId is a valid chat id, that your bot is NOT in
+
+run: `bin/phpunit` to run the test suite
