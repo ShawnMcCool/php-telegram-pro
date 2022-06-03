@@ -3,8 +3,8 @@
 This is a decently written PHP Telegram client library. It's not 100% complete, but it's complete enough for most use-cases.
 
 Look at Usage Examples:
-- [SendMessage](tree/master/tests/Bot/Methods/SendMessageTest.php)
-- [All Methods](tree/master/tests/Bot/Methods)
+- [SendMessage](tests/Bot/Methods/SendMessageTest.php)
+- [All Methods](tests/Bot/Methods)
 
 Requires php8.1-dom and php8.1-curl.
 
