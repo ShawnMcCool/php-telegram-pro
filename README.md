@@ -8,6 +8,23 @@ Look at Usage Examples:
 
 Requires php8.1-dom and php8.1-curl.
 
+## Usage
+
+Usage is straight-forward.
+
+```php
+use TelegramPro\Bot\Methods\SendMessage;
+use TelegramPro\Bot\Methods\Types\ChatId;
+use TelegramPro\Bot\Methods\Types\MessageText;
+
+$telegram = TelegramHttpRequest::botToken('botToken');
+
+SendMessage::parameters(
+    ChatId::fromInt(-1293813),
+    MessageText::fromString('Hey everyone!')
+)->send($telegram);
+```
+
 ## Tests
 
 To run the tests, run `composer install`, create a `.bot-test-config` in the main repository directory, and fill in the necessary details:
