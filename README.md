@@ -1,6 +1,6 @@
 # PHP Telegram Pro
 
-This is a decently written PHP Telegram client library. It's not 100% complete, but it's complete enough for most use-cases.
+This is a decently written PHP Telegram client library. It's not 100% complete, but it's complete enough for most use-cases. The library keeps you from doing dumb stuff like sending invalid files, messages that are too long, etc. The Telegram API specifications are built into the value-objects.
 
 Look at Usage Examples:
 - [SendMessage](tests/Bot/Methods/SendMessageTest.php)
