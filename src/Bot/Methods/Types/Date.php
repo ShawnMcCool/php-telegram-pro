@@ -1,5 +1,6 @@
 <?php namespace TelegramPro\Bot\Methods\Types;
 
+use DateTimeZone;
 use DateTimeInterface;
 use DateTimeImmutable;
 
@@ -36,11 +37,15 @@ class Date implements ApiReadType, ApiWriteType
      * "next Thursday"
      * "last Monday"
      */
-    public static function fromString(string $dateString): static
-    {
+    public static function fromString(
+        string $dateString,
+        ?DateTimeZone $timeZone = null
+    ): static {
         return new static(
             (new DateTimeImmutable())->setTimestamp(
                 strtotime($dateString)
+            )->setTimezone(
+                $timeZone ?? new DateTimeZone('UTC')
             )
         );
     }
@@ -65,7 +70,9 @@ class Date implements ApiReadType, ApiWriteType
         }
 
         return new static(
-            (new DateTimeImmutable())->setTimestamp($timestamp)
+            (new DateTimeImmutable())
+                ->setTimestamp($timestamp)
+                ->setTimezone(new DateTimeZone('UTC'))
         );
     }
 }

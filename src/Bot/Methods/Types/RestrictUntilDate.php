@@ -1,5 +1,6 @@
 <?php namespace TelegramPro\Bot\Methods\Types;
 
+use DateTimeZone;
 use DateTimeImmutable;
 
 /**
@@ -22,7 +23,9 @@ final class RestrictUntilDate extends Date
         }
 
         return new static(
-            (new DateTimeImmutable())->setTimestamp($timestamp)
+            (new DateTimeImmutable())
+                ->setTimestamp($timestamp)
+                ->setTimezone(new DateTimeZone('UTC'))
         );
     }
 }
