@@ -13,16 +13,25 @@ Requires php8.1-dom and php8.1-curl.
 Usage is straight-forward.
 
 ```php
-use TelegramPro\Bot\Methods\SendMessage;
-use TelegramPro\Bot\Methods\Types\ChatId;
-use TelegramPro\Bot\Methods\Types\MessageText;
-
 $telegram = TelegramHttpRequest::botToken('botToken');
 
 SendMessage::parameters(
     ChatId::fromInt(-1293813),
     MessageText::fromString('Hey everyone!')
 )->send($telegram);
+```
+
+Want to use a rate-limiter so that you can send messages as fast as you'd like and know that they'll be delivered?
+
+```php
+$telegram = TelegramHttpRequest::botToken('botToken');
+
+$rateLimitedTelegram = new BlockingRateLimiter($telegram);
+
+SendMessage::parameters(
+    ChatId::fromInt(-1293813),
+    MessageText::fromString('Hey everyone!')
+)->send($rateLimitedTelegram);
 ```
 
 ## Tests
