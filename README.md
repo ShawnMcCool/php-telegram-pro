@@ -2,6 +2,10 @@
 
 This is a decently written PHP Telegram client library. It's not 100% complete, but it's complete enough for most use-cases. The library keeps you from doing dumb stuff like sending invalid files, messages that are too long, etc. The Telegram API specifications are built into the value-objects.
 
+Perhaps most importantly, all methods have carefully typed method signatures, preventing ant ambiguity over how to use the code, and all API methods return unique response objects.
+
+That's right, no more magic method / string oriented garbage fire.
+
 Look at Usage Examples:
 - [SendMessage](tests/Bot/Methods/SendMessageTest.php)
 - [All Methods](tests/Bot/Methods)
