@@ -2,13 +2,11 @@
 
 This is a decently written PHP Telegram client library. It's not 100% complete, but it's complete enough for most use-cases.
 
-[Look at Real Usage Examples](https://github.com/ShawnMcCool/php-telegram-pro/tree/master/tests/Bot/Methods)
+Look at Usage Examples:
+- [SendMessage](tree/master/tests/Bot/Methods/SendMessageTest.php)
+- [All Methods](tree/master/tests/Bot/Methods)
 
 Requires php8.1-dom and php8.1-curl.
-
-## Virtual Machine
-
-Install vagrant and virtualbox, then `vagrant up`.  
 
 ## Tests
 
